@@ -18,3 +18,5 @@ data/raw/**
 graphify-out/cache/
 .astro/
 dist/
+.specify/extensions/.cache/
+graphify-out/
