@@ -22,3 +22,11 @@ Prazo: dom 15/11/2026 12h BRT. Arquivo curto de decisões, evidências, bloqueio
 ## Decisões
 - 14/11 01h15 — Ideia B escolhida pelo usuário: segunda safra (milho, sorgo ou cobertura) conforme data de colheita da soja, com margem por cenário. NDVI MODIS como camada extra. Região ainda aberta (candidata: Rio Verde-GO); fechar após achar custo Conab e ZARC do mesmo recorte.
 - Maestri aberto pelo usuário às 01h15. A sessão que escreveu este registro até aqui roda fora do Maestri.
+
+## Evidência Rio Verde-GO (14/11 01h30)
+- POWER diário 1984-2026, ponto -17.80,-50.92: HTTP 200, 2,3 s. `data/raw/power/rioverde_go_*`.
+- Chuva somada nos dias 45-85 após o plantio, 41 anos (janela é hipótese, sem fonte agronômica ainda): plantio 20/01 mediana 193 mm; 05/02 125 mm; 20/02 68 mm; 05/03 36 mm. O sinal da data de plantio é forte.
+- ALERTA de validade: a chuva anual do POWER cai de mediana 1353 mm (1984-2024) para ~1000 mm em 2020-2024 e 678 mm em 2025. O mesmo ocorre em Pindamonhangaba. Suspeita: viés do produto nos anos recentes, não clima real. Conferir com estação INMET ou CHIRPS antes de mostrar anos recentes. Até lá, avisar na tela.
+
+## Plano
+- Escopo, método, contrato, agentes e cronograma em `docs/PLANO.md`.
