@@ -68,3 +68,22 @@ Estação INMET A025 (medição em solo, -17.785,-50.965) contra POWER PRECTOTCO
 ## Maestri
 - A sessão que escreveu até aqui não tem o CLI `maestri`. A orquestração tem de sair da sessão aberta dentro do Maestri.
 - Próximos passos do Maestro: (a) `maestri list`, `maestri preset list`, `maestri floor list`; (b) delegação de teste a um Codex: criar `app/__init__.py` e `pyproject.toml` com uv, fastapi, pytest, e devolver por ask back; (c) conferir o commit; (d) só então ativar a etapa 1 de `docs/PLANO.md`.
+
+## Conab e ZARC de Rio Verde-GO (14/11, Claude Code) — pendência fechada
+Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita antes de eu ver que a região fechou em Rio Verde. Os dados de SP ali ficam só como registro.
+- Conab, abas "Rio Verde-GO-2026", março/2026, R$/ha, plantio direto, em `data/raw/conab/`:
+| Cultura | Produtividade kg/ha | Custeio | Custo variável | Custo operacional | Custo total |
+|---|---|---|---|---|---|
+| Soja 1ª safra 2026/27 | 3.900 | 3.354 | 4.096 | 5.152 | 6.129 |
+| Milho 2ª safra 2026 | 6.000 | 3.804 | 4.819 | 5.889 | 6.886 |
+| Sorgo granífero 2ª safra 2026 | 3.600 | 2.259 | 2.807 | 3.807 | 4.788 |
+- Custo total inclui depreciação, arrendamento e remuneração de terra e capital. A produtividade é a premissa da Conab (ex-ante), não medição. Não há planilha Conab para planta de cobertura.
+- ZARC 2026/27, Rio Verde, sequeiro, GRUPO I de cultivar, do SISZARC (`data/raw/zarc/siszarc_GO_*.xls`). Decêndio 1 = 1 a 10 de janeiro.
+  - Milho 2ª safra (Portaria 322): risco 20% nos decêndios 1 a 3. Decêndio 4 (1 a 10 fev): 40% em AD1, 30% em AD2 e AD3, 20% em AD4 a AD6. Decêndio 5: 40% AD4, 30% AD5, 20% AD6. Decêndio 6 (21 a 28 fev): só AD6, 30%. Depois disso, fora da janela.
+  - Milho com braquiária (Portaria 337): janela igual à do milho.
+  - Sorgo granífero 2ª safra (Portaria 273): solo arenoso até o decêndio 6 (40%); textura média até o 7 (30%); argiloso 20% até o 8 e 30% no 9 (21 a 31 mar).
+  - Soja (Portaria 198): decêndios 28 a 36 e 1 (1º out a 10 jan); 27 com 40% em AD3 a AD6.
+- Leitura para o produto: o sorgo aceita plantio cerca de um mês depois do milho. Isso apoia a ideia B com fonte oficial.
+- Falta: grupos II e III de cultivar (o script baixou só o GRUPO I); preço de venda (Conab não traz); custo de cobertura.
+- SISZARC responde a POST simples sem login. Sequência: `carregarComboCulturas` → `OutrosManejos` → `Clima` → `Ufs` → `Portarias` → `Grupos` → `Solos` → `gerarRelatorioXLS`, sempre em `gerarRelatorioPublicacoesDoZarc!<ação>.action`.
+- Texto oficial do desafio Field Shift continua sem leitura (certificado falha no curl; extensão do Chrome desligada).
