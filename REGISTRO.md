@@ -20,4 +20,5 @@ Prazo: dom 15/11/2026 12h BRT. Arquivo curto de decisões, evidências, bloqueio
 - Nenhum custo Conab ou regra ZARC consultado ainda.
 
 ## Decisões
-- (aberta) Ideia e região.
+- 14/11 01h15 — Ideia B escolhida pelo usuário: segunda safra (milho, sorgo ou cobertura) conforme data de colheita da soja, com margem por cenário. NDVI MODIS como camada extra. Região ainda aberta (candidata: Rio Verde-GO); fechar após achar custo Conab e ZARC do mesmo recorte.
+- Maestri aberto pelo usuário às 01h15. A sessão que escreveu este registro até aqui roda fora do Maestri.
