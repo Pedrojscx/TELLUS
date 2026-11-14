@@ -29,9 +29,9 @@
 |---|---|---|
 | constitution, specify, clarify, checklist, plan, tasks, analyze, implement | sim | sim |
 | converge (novo na 1.4.0) | sim | sim |
-| taskstoissues | não | não |
+| taskstoissues (extensão `github`) | sim: `speckit-github-taskstoissues` | sim: `$speckit-github-taskstoissues` |
 
-Na 1.4.0, `taskstoissues` saiu do núcleo. Ele vem na extensão oficial **GitHub Integration** (`github`, v1.0.5, autor spec-kit-core, catálogo default). Ela traz o comando `speckit.github.taskstoissues`, que cria issues em ordem de dependência a partir do `tasks.md`. Ela exige `git` e o `github-mcp-server` (ferramentas `list_issues` e `issue_write`). Comando para instalar: `specify extension add github`. Não instalei.
+Na 1.4.0, `taskstoissues` saiu do núcleo. Ele vem na extensão oficial **GitHub Integration** (`github`, v1.0.5, autor spec-kit-core, catálogo default). Ela traz o comando `speckit.github.taskstoissues`, que cria issues em ordem de dependência a partir do `tasks.md`. Ela exige `git` e o `github-mcp-server` (ferramentas `list_issues` e `issue_write`). Instalada depois, a pedido (`specify extension add github`). Para registrar no Codex também: `specify integration use codex`, `specify extension add github --force`, `specify integration use claude`. O registro mostra o comando nos dois agentes; `specify integration status`: OK, 0 arquivos alterados. Falta o `github-mcp-server`, sem ele o comando não cria issues.
 
 ## Estado do Git
 
@@ -65,7 +65,7 @@ Os hooks não se sobrescrevem, porque cada um fica num arquivo diferente.
 
 1. Reiniciar o Claude Code e rodar `/context-mode:ctx-doctor`.
 2. Abrir o Codex, fazer uma chamada de ferramenta (o aviso "hook-seen" some) e rodar `/ctx-doctor`.
-3. Decidir se instala a extensão `github` do Spec Kit (`specify extension add github`, exige o github-mcp-server).
+3. Instalar e configurar o `github-mcp-server` no Claude e no Codex. A extensão `github` precisa dele.
 4. Opcional: o README do graphify pede `multi_agent = true` em `[features]` no `~/.codex/config.toml` para extração em paralelo. Não mexi.
 
 ## Desvios deste prompt
