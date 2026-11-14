@@ -1,0 +1,3 @@
+source,n_seasons,years,bias_mm_season,bias_percent,mae_mm_season,rmse_mm_season
+power,5,2008;2016;2019;2022;2025,-227.698000,-24.980033,251.614000,308.193975
+imerg,5,2008;2016;2019;2022;2025,-52.926024,-5.806348,90.646009,105.216985

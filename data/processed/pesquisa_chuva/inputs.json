@@ -1,0 +1,34 @@
+[
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2008_A_31-12-2008.CSV",
+    "sha256": "90f6f980cd422c820177f3207ccb5799b1190d49ddf4877971599197dcd2e2d7"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2012_A_31-12-2012.CSV",
+    "sha256": "24e9065b51a32094c5a65ac19bebfa0f5d40ed75c7b52f496f8d136303ec960d"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2016_A_31-12-2016.CSV",
+    "sha256": "c701723d71cd6d5759d03067558fd462cba68e4c00e0e7ddfe83c2fb8e882777"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2019_A_31-12-2019.CSV",
+    "sha256": "e681664acbe053e21ab5d940cdd53eaf49e20aaf1f44c5d59c525d83f790d299"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2022_A_31-12-2022.CSV",
+    "sha256": "959432d62987239b327c0496b090d507ff450081b8e3ecc3ccdd6ba0781817db"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2024_A_31-12-2024.CSV",
+    "sha256": "cd2c36590b36d78d46529ae4f40e617891aa1a004b98f0e097b38a516a14d160"
+  },
+  {
+    "path": "data/raw/conferencia/INMET_CO_GO_A025_RIO VERDE_01-01-2025_A_31-12-2025.CSV",
+    "sha256": "e4df8f6ff529ad77d18544595601a168aa53b4473a20e03d8e12543be0f4e1c2"
+  },
+  {
+    "path": "data/raw/pesquisa_chuva/power_station_utc_2008_2025.json",
+    "sha256": "79adacdb32de57c8565a48c661a6dde50c6459f18e0c55327bbd129c46092362"
+  }
+]

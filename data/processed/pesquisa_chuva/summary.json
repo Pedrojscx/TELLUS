@@ -1,0 +1,44 @@
+{
+  "all": {
+    "n": 2267,
+    "inmet_paired_mm": 9672.0,
+    "power_paired_mm": 7269.360000000001,
+    "bias_mm_day": -1.0598323775915308,
+    "bias_percent": -24.84119106699752,
+    "mae_mm_day": 3.7278517865019856,
+    "rmse_mm_day": 8.643998741780607,
+    "correlation": 0.5486673579537312,
+    "inmet_wet_percent": 30.877812086457872,
+    "power_wet_percent": 44.15527128363476
+  },
+  "jan_jun": {
+    "n": 1218,
+    "inmet_paired_mm": 6349.6,
+    "power_paired_mm": 4637.610000000001,
+    "bias_mm_day": -1.405574712643678,
+    "bias_percent": -26.962170845407577,
+    "mae_mm_day": 4.527495894909688,
+    "rmse_mm_day": 9.85414746437202,
+    "correlation": 0.5459574825338919,
+    "inmet_wet_percent": 35.139573070607554,
+    "power_wet_percent": 50.0
+  },
+  "n_days": 2559,
+  "excluded_days": 292,
+  "accepted_months_95pct": 61,
+  "complete_months": 47,
+  "inmet_negative_after_cleaning": 0,
+  "power_missing_days": 0,
+  "train_years": [
+    2008,
+    2012,
+    2016,
+    2019
+  ],
+  "test_years": [
+    2022,
+    2024,
+    2025
+  ],
+  "model_present": false
+}

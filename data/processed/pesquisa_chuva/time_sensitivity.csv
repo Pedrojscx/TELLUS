@@ -1,0 +1,3 @@
+inmet_timestamp_shift_hours,n,inmet_paired_mm,power_paired_mm,bias_mm_day,bias_percent,mae_mm_day,rmse_mm_day,correlation,inmet_wet_percent,power_wet_percent
+0,2267,9681.800000,7269.360000,-1.064155,-24.917267,3.810393,8.824619,0.528912,31.054257,44.155271
+1,2267,9672.000000,7269.360000,-1.059832,-24.841191,3.727852,8.643999,0.548667,30.877812,44.155271

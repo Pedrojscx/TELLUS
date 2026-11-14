@@ -1,0 +1,29 @@
+{
+  "station": {
+    "lat": -17.78527777,
+    "lon": -50.965,
+    "altitude_m": 780.11
+  },
+  "imerg": {
+    "lat": -17.749999999999996,
+    "lon": -50.95000076293945,
+    "distance_km": 4.232056186733212,
+    "indices_zero_based": {
+      "lon": 1290,
+      "lat": 722
+    }
+  },
+  "power_station_cell": {
+    "lat": -18,
+    "lon": -51.25,
+    "distance_km": 38.46499822500619,
+    "status": "January 2025 API values identical at station and this native-grid center"
+  },
+  "power_original_point_cell": {
+    "lat": -18,
+    "lon": -50.625,
+    "distance_km": 43.179385534256404,
+    "status": "January 2025 API values identical at original point and this native-grid center"
+  },
+  "original_query_distance_km": 5.037829667913744
+}

@@ -1,0 +1,5 @@
+scope,source,n_months,bias_mm_month,bias_percent,mae_mm_month,rmse_mm_month,correlation
+Jan-Jun,power,34,-42.452059,-26.123398,57.120294,82.970080,0.800811
+Jan-Jun,imerg,34,1.187053,0.730468,29.609117,43.623323,0.930775
+all_available,power,37,-39.590000,-26.339231,53.158649,79.614209,0.825853
+all_available,imerg,37,1.380265,0.918291,27.701621,41.887869,0.938742

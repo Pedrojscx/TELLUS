@@ -1,0 +1,77 @@
+{
+  "analysis_date": "2026-11-14",
+  "station": "INMET A025",
+  "station_source": "https://portal.inmet.gov.br/dadoshistoricos",
+  "station_version": "annual automatic-station CSV; no version identifier supplied",
+  "station_obtained_at": "exact original timestamp unknown; existing REGISTRO.md reports 2026-11-14",
+  "station_years": [
+    2008,
+    2012,
+    2016,
+    2019,
+    2022,
+    2024,
+    2025
+  ],
+  "power": {
+    "parameter": "PRECTOTCORR",
+    "api_version": "v2.10.3",
+    "source": "MERRA2",
+    "units": "mm/day",
+    "time_standard": "UTC",
+    "period": "2008-01-01/2025-12-31",
+    "queries": "data/raw/pesquisa_chuva/power_*meta.json"
+  },
+  "imerg": {
+    "product": "GPM_3IMERGDF",
+    "version": "07 / granules V07B",
+    "collection": "C2723754864-GES_DISC",
+    "doi": "10.5067/GPM/IMERGDF/DAY/07",
+    "units": "mm/day",
+    "period": "January\u2013June of station years; July\u2013September 2025 context",
+    "cmr_temporal_extent": "1998-01-01/2025-09-30 (catalog snapshot)",
+    "daily_files": 1363,
+    "valid_count_required": 48,
+    "daily_queries": "data/raw/pesquisa_chuva/imerg/*.meta.json"
+  },
+  "cells": {
+    "station": {
+      "lat": -17.78527777,
+      "lon": -50.965,
+      "altitude_m": 780.11
+    },
+    "imerg": {
+      "lat": -17.749999999999996,
+      "lon": -50.95000076293945,
+      "distance_km": 4.232056186733212,
+      "indices_zero_based": {
+        "lon": 1290,
+        "lat": 722
+      }
+    },
+    "power_station_cell": {
+      "lat": -18,
+      "lon": -51.25,
+      "distance_km": 38.46499822500619,
+      "status": "January 2025 API values identical at station and this native-grid center"
+    },
+    "power_original_point_cell": {
+      "lat": -18,
+      "lon": -50.625,
+      "distance_km": 43.179385534256404,
+      "status": "January 2025 API values identical at original point and this native-grid center"
+    },
+    "original_query_distance_km": 5.037829667913744
+  },
+  "thresholds": {
+    "day_hours": 24,
+    "month_fraction": 0.95,
+    "complete_period_fraction": 1.0,
+    "wet_day_mm": 1.0
+  },
+  "sources_fetched": "data/raw/pesquisa_chuva/*.meta.json",
+  "input_hashes": [
+    "inputs.json",
+    "imerg_inputs.json"
+  ]
+}
