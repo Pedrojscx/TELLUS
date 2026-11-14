@@ -1,0 +1,6 @@
+{
+  "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR&community=AG&longitude=-50.92&latitude=-17.8&start=20080101&end=20251231&format=JSON&time-standard=UTC",
+  "obtido_em": "2026-11-14T16:53:08.893664+00:00",
+  "sha256": "fa2144df18d7efaaab6c0992c7f1de64463e595f32b9247d3db45fa604300b5f",
+  "status": 200
+}

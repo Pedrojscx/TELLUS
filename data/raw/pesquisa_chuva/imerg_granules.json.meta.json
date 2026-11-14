@@ -1,0 +1,6 @@
+{
+  "url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2723754864-GES_DISC&temporal=2025-01-01T00%3A00%3A00Z%2C2025-01-01T23%3A59%3A59Z&page_size=1",
+  "obtido_em": "2026-11-14T16:57:48.595119+00:00",
+  "sha256": "6638746122b16f42511053fb9fc226be49606f29c7c4039b9b9c582ba09ff6e2",
+  "status": 200
+}

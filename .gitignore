@@ -1,4 +1,20 @@
+# Ambiente
 .venv/
 __pycache__/
 node_modules/
+
+# Segredos
 .env
+.env.*
+!.env.example
+
+# Dados brutos: só a procedência entra no Git
+data/raw/**
+!data/raw/**/
+!data/raw/**/FONTE.md
+!data/raw/**/*.meta.json
+
+# Ferramentas e build
+graphify-out/cache/
+.astro/
+dist/
