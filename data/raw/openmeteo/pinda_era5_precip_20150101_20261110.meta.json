@@ -1,0 +1,1 @@
+{"url":"https://archive-api.open-meteo.com/v1/archive?latitude=-22.92&longitude=-45.46&start_date=2015-01-01&end_date=2026-11-10&daily=precipitation_sum&timezone=America%2FSao_Paulo","obtido_em":"2026-11-14","fonte":"Open-Meteo archive (reanálise ERA5), não é NASA; usado só para conferir a chuva do POWER","celula":"-22.95,-45.47, 540 m"}
