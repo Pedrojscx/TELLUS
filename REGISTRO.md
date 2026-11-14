@@ -87,3 +87,13 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Falta: grupos II e III de cultivar (o script baixou só o GRUPO I); preço de venda (Conab não traz); custo de cobertura.
 - SISZARC responde a POST simples sem login. Sequência: `carregarComboCulturas` → `OutrosManejos` → `Clima` → `Ufs` → `Portarias` → `Grupos` → `Solos` → `gerarRelatorioXLS`, sempre em `gerarRelatorioPublicacoesDoZarc!<ação>.action`.
 - Texto oficial do desafio Field Shift continua sem leitura (certificado falha no curl; extensão do Chrome desligada).
+
+## IMERG com token Earthdata (14/11, Claude Code) — BLOQUEIO
+- Token Earthdata do usuário guardado em `.env` (`EARTHDATA_TOKEN`, permissão 600, ignorado pelo Git). Vale até 13/01/2027. Nunca commitar.
+- `gpm1.gesdisc.eosdis.nasa.gov` (OPeNDAP antigo): respondeu `.dds` (só metadados) e depois passou a recusar conexão (porta 443, IPv4 e IPv6). Nenhum valor de chuva foi baixado. Arquivo parcial apagado.
+- Caminho atual, achado pelo CMR: `https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC/granules/<GranuleUR>` (IMERG mensal V07B) e download direto em `data.gesdisc.earthdata.nasa.gov`. Variáveis no grupo `/Grid/`.
+- Os dois dão 403 "EULA Acceptance Failure". O usuário precisa autorizar a aplicação "NASA GESDISC DATA ARCHIVE" no perfil Earthdata (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Depois, refazer a série mensal 2000-2026 no ponto da estação A025 e comparar com `data/raw/conferencia/inmet_a025_mensal.json` (já pronto, 80 meses).
+
+## ZARC grupos II e III, Rio Verde (14/11)
+- Milho 2ª safra, GRUPO II: janela mais curta que o GRUPO I. 20% só até 10/jan (AD1) ou 20/jan (AD3, AD4); AD6 vai até o decêndio 5 com 40%.
+- Sorgo 2ª safra: GRUPO II argiloso até o decêndio 8 (40%); GRUPO III argiloso até o 6 (40%). Ciclo mais longo encurta a janela.
