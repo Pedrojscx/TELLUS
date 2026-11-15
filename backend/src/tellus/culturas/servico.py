@@ -21,6 +21,7 @@ DOMINIO = {
     "isna_limite": (0.0, 1.0),
     "kc": (0.1, 1.6),
     "ky": (0.0, 2.5),
+    "p_esgotamento": (0.1, 0.9),
 }
 
 

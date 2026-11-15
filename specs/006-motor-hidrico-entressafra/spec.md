@@ -46,4 +46,4 @@ Como produtor, quero comparar o risco de falta de água das alternativas permiti
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Qual estado inicial de água e regra de pousio/cobertura terão fonte para cada simulação?]
+- Resolvido em 15/11 (D-004), seguindo a recomendação do DUVIDAS (fonte ou hipótese visível e cenário editável): não há observação de umidade do solo na colheita. O estado inicial é a fração da CAD no dia da colheita da soja, com padrão 1,0 (capacidade de campo, período chuvoso), como hipótese editável. A entressafra é explícita: `pousio` (Kc 0,30) ou `palhada` (Kc 0,15), ambas hipótese com a FAO-56 como método e editáveis. O critério de falha severa usa os limites de ISNA da portaria ZARC (fonte).

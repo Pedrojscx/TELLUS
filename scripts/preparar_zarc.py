@@ -25,6 +25,7 @@ APELIDOS = {
     ("MT", "santo antonio do leverger"): "santo antonio de leverger",
     ("MG", "barao de monte alto"): "barao do monte alto",
     ("MG", "sao thome das letras"): "sao tome das letras",
+    ("TO", "couto de magalhaes"): "couto magalhaes",
 }
 
 

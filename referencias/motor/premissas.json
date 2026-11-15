@@ -1,0 +1,35 @@
+{
+  "versao": "2026-11-15",
+  "estado_inicial": {
+    "id": "armazenamento_inicial_frac",
+    "nome": "Água no solo no dia da colheita da soja (fração da CAD)",
+    "valor": 1.0,
+    "unidade": "fração da CAD (0 a 1)",
+    "status": "hipotese",
+    "motivo": "D-004: não há observação de umidade do solo na colheita. A soja é colhida no período chuvoso (jan a mar), então o padrão é o solo na capacidade de campo. É editável, e o resultado mostra a premissa."
+  },
+  "entressafra": {
+    "pousio": {
+      "nome": "Pousio (solo descoberto entre a colheita e o plantio)",
+      "kc": 0.30,
+      "unidade": "adimensional",
+      "status": "hipotese",
+      "metodo_referencia": "FAO-56",
+      "motivo": "Evaporação de solo descoberto: ordem de grandeza do Kc inicial da FAO-56 para solo com molhamento frequente. Sem validação local."
+    },
+    "palhada": {
+      "nome": "Palhada da soja mantida (cobertura morta, plantio direto)",
+      "kc": 0.15,
+      "unidade": "adimensional",
+      "status": "hipotese",
+      "metodo_referencia": "FAO-56",
+      "motivo": "A FAO-56 (cap. 11, coberturas orgânicas) indica redução de cerca de 5% da evaporação do solo a cada 10% de superfície coberta. Com cobertura total, metade do Kc do pousio. Sem validação local."
+    }
+  },
+  "intervalo_plantio_dias": {
+    "valor": 3,
+    "unidade": "dias após a colheita da soja",
+    "status": "hipotese",
+    "motivo": "Semeadura logo após a colheita é a prática da 2ª safra; o produtor pode informar a data de plantio."
+  }
+}
