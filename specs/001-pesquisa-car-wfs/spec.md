@@ -49,5 +49,5 @@ Como produtor, quero informar meu número do CAR para saber se o sistema pode lo
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: O WFS do SICAR permite consulta estável por código do imóvel e entrega geometria autorizada?]
+- Resolvido em 15/11 (D-001): o WFS público do SICAR (`geoserver.car.gov.br/geoserver/sicar/wfs`, camada `sicar:sicar_imoveis_<uf>`) aceita filtro por `cod_imovel` sem login e devolve o polígono do imóvel; código inexistente devolve zero feições. A geometria é a declarada no CAR (pode estar "aguardando análise") e continua exigindo confirmação do produtor.
 - A pesquisa não promete acesso automático até a validação.
