@@ -91,3 +91,24 @@ referencias/clima/rio_verde_go/{serie_diaria.csv, FONTE.md}
 ## Complexity Tracking
 
 Sem violações.
+
+## Nota de 2026-11-15: chuva ponderada por área (#35)
+
+- `servico.serie(...)` e `resumo(...)` aceitam `geometria` + `id_geometria` (o mesmo id da confirmação da
+  002/CAR, recalculado com `tellus.car.regras`). Rotas: `POST /api/clima/serie` e `POST /api/clima/resumo`.
+  O `GET` por ponto não mudou.
+- O peso de cada célula IMERG de 0,1° vem de `regras.pesos_celulas` (fração das amostras de 0,005° dentro
+  do polígono; soma 1). A chuva diária vem de `regras.chuva_ponderada`: se uma célula com peso > 0 não tem
+  valor, o dia inteiro fica `None`, com `celulas_sem_dado` e o aviso `dia_indisponivel_celula`. Nunca há
+  renormalização nem zero.
+- A proveniência (`localizacao.celulas[]`) traz, para cada célula, chave, centro, limites, peso, distância,
+  origem, data de obtenção e qualidade (dias válidos, dias sem dado, contagem média). Também traz
+  `soma_pesos`, `id_geometria`, `area_ha` e o método. O período inclui o fuso UTC.
+- Cada fonte é carregada por célula: primeiro o cache local, depois a série versionada da MESMA célula. Se
+  faltar qualquer célula, o resultado é o erro `sem_cache`, que nomeia a célula. O POWER usa a célula do
+  centro do retângulo envolvente da área.
+- Dado real: só a célula (−17,75; −50,95) tem série real. A geometria do CAR de teste cai em (−17,85; −51,05),
+  sem cache: o pedido falha com `sem_cache`, nomeando a célula. Por decisão do usuário (2026-11-15), as células
+  vizinhas não foram baixadas; o caso com várias células é provado só com cache sintético (`test_area.py`).
+- Motor (spec 006): `_serie_com_eto` recebe `geometria`/`id_geometria`, e `preparar()` os repassa a partir do
+  pedido. Sem geometria, nada muda (`tests/motor/test_geometria.py`).

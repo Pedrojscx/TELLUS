@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -17,6 +18,7 @@ RAIZ = Path(__file__).resolve().parents[4]
 DIR_CACHE = Path(os.environ.get("TELLUS_CACHE_CLIMA", RAIZ / "data" / "raw" / "clima"))
 DIR_REF = RAIZ / "referencias" / "clima"
 INMET_A025 = RAIZ / "data" / "processed" / "pesquisa_chuva" / "daily_all_sources.csv"
+PASSO_AMOSTRA = 0.005  # graus; amostragem da fração de área por célula (regras.pesos_celulas)
 A025 = {"codigo": "A025", "nome": "RIO VERDE-GO", "lat": -17.78527777, "lon": -50.965}
 
 AVISO_ESCALA = (
@@ -45,69 +47,145 @@ def _aviso(codigo: str, mensagem: str) -> dict:
 # ---------------------------------------------------------------- carga de dados
 
 
-def _referencia_versionada(chave_imerg: str, chave_power: str) -> tuple[dict, dict] | None:
-    """Série exportada (ex.: Rio Verde-GO) quando as células batem com as do pedido."""
+def _referencias() -> list[tuple[dict, Path]]:
     if not DIR_REF.exists():
-        return None
-    for meta_p in DIR_REF.glob("*/meta.json"):
-        meta = json.loads(meta_p.read_text(encoding="utf-8"))
-        if meta["imerg"]["celula"] == chave_imerg and meta["power"]["celula"] == chave_power:
-            imerg_l, power_d = {}, {}
-            with (meta_p.parent / "serie_diaria.csv").open(encoding="utf-8", newline="") as f:
-                for linha in csv.DictReader(f):
-                    imerg_l[linha["data"]] = {
-                        "data": linha["data"], "chuva_mm": linha["chuva_mm"],
-                        "contagem": linha["imerg_contagem"], "situacao": linha["imerg_situacao"],
-                        "obtido_em": meta["imerg"]["obtido_em"],
-                    }
-                    if linha["tmax_c"] != "" or linha["power_chuva_mm"] != "":
-                        power_d[linha["data"]] = {
-                            MAPA_POWER[k]: (float(linha[k]) if linha[k] != "" else None) for k in MAPA_POWER
-                        } | {"PRECTOTCORR": float(linha["power_chuva_mm"]) if linha["power_chuva_mm"] != "" else None}
-            power_info = {
-                "dias": power_d, "altitude_m": meta["power"]["altitude_m"], "fontes": meta["power"]["fontes"],
-                "obtido_em": meta["power"]["obtido_em"], "url": meta["power"]["url"],
-            }
-            return imerg_l, power_info
+        return []
+    return [(json.loads(m.read_text(encoding="utf-8")), m.parent) for m in sorted(DIR_REF.glob("*/meta.json"))]
+
+
+def _ref_imerg(chave: str) -> dict[str, dict] | None:
+    """Série IMERG versionada (referencias/clima/<local>/) da MESMA célula, ou None."""
+    for meta, pasta in _referencias():
+        if (meta.get("imerg") or {}).get("celula") != chave:
+            continue
+        esperado = meta["imerg"].get("sha256_serie")
+        if esperado and hashlib.sha256((pasta / "serie_diaria.csv").read_bytes()).hexdigest() != esperado:
+            continue  # série versionada alterada: não usa
+        linhas = {}
+        with (pasta / "serie_diaria.csv").open(encoding="utf-8", newline="") as f:
+            for l in csv.DictReader(f):
+                linhas[l["data"]] = {"data": l["data"], "chuva_mm": l["chuva_mm"], "contagem": l["imerg_contagem"],
+                                     "situacao": l["imerg_situacao"], "obtido_em": meta["imerg"]["obtido_em"]}
+        return linhas
     return None
 
 
-def _carregar(lat: float, lon: float, dir_cache: Path) -> tuple[dict, dict, dict, str]:
-    pesos = regras.pesos_celulas({"type": "Point", "coordinates": [lon, lat]})
-    (i_lat, i_lon), = pesos.keys()
-    cel = imerg.CelulaImerg(i_lat, i_lon)
+def _ref_power(chave: str) -> dict | None:
+    """Série POWER versionada da MESMA célula POWER, ou None."""
+    for meta, pasta in _referencias():
+        if (meta.get("power") or {}).get("celula") != chave:
+            continue
+        dias = {}
+        with (pasta / "serie_diaria.csv").open(encoding="utf-8", newline="") as f:
+            for l in csv.DictReader(f):
+                if l["tmax_c"] != "" or l["power_chuva_mm"] != "":
+                    dias[l["data"]] = {MAPA_POWER[k]: (float(l[k]) if l[k] != "" else None) for k in MAPA_POWER} | {
+                        "PRECTOTCORR": float(l["power_chuva_mm"]) if l["power_chuva_mm"] != "" else None}
+        return {"dias": dias, "altitude_m": meta["power"]["altitude_m"], "fontes": meta["power"]["fontes"],
+                "obtido_em": meta["power"]["obtido_em"], "url": meta["power"]["url"]}
+    return None
+
+
+def _carregar_imerg(cel: imerg.CelulaImerg, dir_cache: Path) -> tuple[dict[str, dict], str] | None:
+    linhas = imerg.ler_cache(dir_cache, cel)
+    if linhas:
+        return linhas, "cache"
+    ref = _ref_imerg(cel.chave)
+    return (ref, "referencia_versionada") if ref else None
+
+
+def _carregar_power(lat: float, lon: float, dir_cache: Path) -> tuple[dict, str, str] | None:
     chave_p, _, _ = power.chave_celula(lat, lon)
-    imerg_l = imerg.ler_cache(dir_cache, cel)
-    p_power = power.arquivo_cache(dir_cache, lat, lon)
-    power_info = power.ler(p_power) if p_power.exists() else None
-    origem = "cache"
-    if not imerg_l or power_info is None:
-        ref = _referencia_versionada(cel.chave, chave_p)
-        if ref is None:
-            faltam = [n for n, ok in (("NASA GPM IMERG Final", bool(imerg_l)), ("NASA POWER", power_info is not None)) if not ok]
-            raise ErroClima(
-                "sem_cache",
-                "Não há dados de clima guardados para este local. Rode os scripts de preparação "
-                "(scripts/baixar_imerg.py e scripts/baixar_power.py) com internet.",
-                " e ".join(faltam),
-            )
-        imerg_l, power_info = ref
-        origem = "referencia_versionada"
-    return {"celula": cel, "pesos": {(i_lat, i_lon): 1.0}, "linhas": imerg_l}, power_info, {"chave_power": chave_p}, origem
+    p = power.arquivo_cache(dir_cache, lat, lon)
+    if p.exists():
+        return power.ler(p), "cache", chave_p
+    ref = _ref_power(chave_p)
+    return (ref, "referencia_versionada", chave_p) if ref else None
+
+
+def _carregar_area(pesos: dict[tuple[int, int], float], lat: float, lon: float, dir_cache: Path) -> tuple[dict, dict, str, str]:
+    """IMERG de cada célula com peso > 0 e POWER do ponto de referência. Falta qualquer célula → erro.
+
+    Uma célula sem série alguma não pode ser renormalizada fora da conta: a área inteira fica sem chuva,
+    com erro que nomeia as células que faltam.
+    """
+    celulas, faltam_cel = {}, []
+    for (i_lat, i_lon), w in sorted(pesos.items()):
+        if w <= 0:
+            continue
+        cel = imerg.CelulaImerg(i_lat, i_lon)
+        lido = _carregar_imerg(cel, dir_cache)
+        if lido is None:
+            faltam_cel.append(cel.chave)
+        else:
+            celulas[(i_lat, i_lon)] = {"celula": cel, "linhas": lido[0], "origem": lido[1]}
+    pw = _carregar_power(lat, lon, dir_cache)
+    if faltam_cel or pw is None:
+        faltam = []
+        if faltam_cel:
+            faltam.append("NASA GPM IMERG Final")
+        if pw is None:
+            faltam.append("NASA POWER")
+        detalhe = f" Células IMERG sem dado guardado: {', '.join(faltam_cel)}." if faltam_cel else ""
+        raise ErroClima(
+            "sem_cache",
+            "Não há dados de clima guardados para este local. Rode os scripts de preparação "
+            "(scripts/baixar_imerg.py e scripts/baixar_power.py) com internet." + detalhe,
+            " e ".join(faltam),
+        )
+    origens = {c["origem"] for c in celulas.values()} | {pw[1]}
+    return celulas, pw[0], pw[2], "+".join(sorted(origens))
+
+
+def _carregar(lat: float, lon: float, dir_cache: Path) -> tuple[dict, dict, dict, str]:
+    """Ponto: uma célula IMERG, peso 1 (usado pela validação local)."""
+    pesos = regras.pesos_celulas({"type": "Point", "coordinates": [lon, lat]})
+    celulas, pw, chave_p, origem = _carregar_area(pesos, lat, lon, dir_cache)
+    (c,) = celulas.values()
+    return {"celula": c["celula"], "pesos": pesos, "linhas": c["linhas"]}, pw, {"chave_power": chave_p}, origem
+
+
+def _area_do_pedido(lat, lon, geometria: dict | None, id_geometria: str | None) -> dict:
+    """Ponto validado, ou geometria confirmada (mesmo id_geometria da confirmação da spec 002/CAR)."""
+    if geometria is None:
+        lat, lon = validar_coordenadas(lat, lon)
+        return {"tipo": "ponto", "lat": lat, "lon": lon,
+                "pesos": regras.pesos_celulas({"type": "Point", "coordinates": [lon, lat]})}
+    from tellus.car import regras as regras_car
+    from tellus.car.servico import CASAS as CASAS_ID, MAX_VERTICES  # referencias/car/limites.json
+
+    erros = regras_car.validar_poligono(geometria, MAX_VERTICES)
+    if erros:
+        raise ErroClima("geometria_invalida", "Geometria inválida: " + "; ".join(erros), "pedido", 422)
+    can = regras_car.canonica(geometria, CASAS_ID)
+    ident = regras_car.id_geometria(can, CASAS_ID)
+    if id_geometria != ident:
+        raise ErroClima("geometria_nao_confirmada", "A geometria precisa vir com o id_geometria da confirmação. "
+                        "Confirme a área antes de pedir a chuva.", "pedido", 422)
+    c_lat, c_lon = regras_car.centroide_bbox(can)
+    return {"tipo": "geometria", "lat": round(c_lat, 6), "lon": round(c_lon, 6), "id_geometria": ident,
+            "area_ha": round(regras_car.area_ha(can), 2), "pesos": regras.pesos_celulas(can, PASSO_AMOSTRA)}
 
 
 # ---------------------------------------------------------------- série
 
 
-def serie(lat, lon, inicio: str | None = None, fim: str | None = None, dir_cache: Path | None = None) -> dict:
-    lat, lon = validar_coordenadas(lat, lon)
+def serie(lat=None, lon=None, inicio: str | None = None, fim: str | None = None, dir_cache: Path | None = None,
+          geometria: dict | None = None, id_geometria: str | None = None) -> dict:
+    """Série diária. Ponto: uma célula IMERG (peso 1). Geometria confirmada: média ponderada pela fração
+    da área em cada célula de 0,1° (regras.pesos_celulas). Se uma célula com peso > 0 não tem valor num
+    dia, o dia inteiro fica sem chuva (None), com aviso; nunca há renormalização nem zero."""
+    area = _area_do_pedido(lat, lon, geometria, id_geometria)
+    lat, lon, pesos = area["lat"], area["lon"], area["pesos"]
     dir_cache = dir_cache or DIR_CACHE
-    im, pw, extra, origem = _carregar(lat, lon, dir_cache)
-    cel: imerg.CelulaImerg = im["celula"]
-    linhas = im["linhas"]
-    publicados = sorted(d for d, l in linhas.items() if l["situacao"] in ("ok", "sem_dado"))
+    celulas, pw, chave_p, origem = _carregar_area(pesos, lat, lon, dir_cache)
+    publicados_por_cel = [
+        {d for d, l in c["linhas"].items() if l["situacao"] in ("ok", "sem_dado")} for c in celulas.values()
+    ]
+    publicados = sorted(set.intersection(*publicados_por_cel)) if publicados_por_cel else []
     if not publicados:
-        raise ErroClima("sem_cache", "O cache do IMERG não tem nenhum dia publicado.", "NASA GPM IMERG Final")
+        raise ErroClima("sem_cache", "O cache do IMERG não tem nenhum dia publicado em comum nas células da área.",
+                        "NASA GPM IMERG Final")
     ultimo_imerg = publicados[-1]
     dias_power = sorted(pw["dias"])
     ini = max(inicio or publicados[0], publicados[0], dias_power[0])
@@ -122,37 +200,95 @@ def serie(lat, lon, inicio: str | None = None, fim: str | None = None, dir_cache
                 "foi cortado. Nenhuma outra fonte substitui a chuva.",
             )
         )
+    varias = len(celulas) > 1
     dias = []
     n_validos = n_ausentes = 0
     contagens = []
+    por_cel = {k: {"validos": 0, "sem_dado": 0, "contagens": []} for k in celulas}
+    dias_parciais: list[str] = []
     d = dt.date.fromisoformat(ini)
     fim_d = dt.date.fromisoformat(fim_ef)
     while d <= fim_d:
         k = d.isoformat()
-        l = linhas.get(k)
-        valor = float(l["chuva_mm"]) if l and l["situacao"] == "ok" and l["chuva_mm"] != "" else None
-        chuva = regras.chuva_ponderada({(cel.i_lat, cel.i_lon): valor}, im["pesos"])
+        valores: dict[tuple[int, int], float | None] = {}
+        for ck, c in celulas.items():
+            l = c["linhas"].get(k)
+            v = float(l["chuva_mm"]) if l and l["situacao"] == "ok" and l["chuva_mm"] != "" else None
+            valores[ck] = v
+            if v is None:
+                por_cel[ck]["sem_dado"] += 1
+            else:
+                por_cel[ck]["validos"] += 1
+                if l.get("contagem"):
+                    por_cel[ck]["contagens"].append(float(l["contagem"]))
+        chuva = regras.chuva_ponderada(valores, pesos)
         if chuva is None:
             n_ausentes += 1
         else:
             n_validos += 1
-            if l.get("contagem"):
-                contagens.append(float(l["contagem"]))
+            if not varias:
+                (l,) = (c["linhas"].get(k) for c in celulas.values())
+                if l.get("contagem"):
+                    contagens.append(float(l["contagem"]))
         p = pw["dias"].get(k, {})
-        dias.append({"data": k, "chuva_mm": None if chuva is None else round(chuva, 3)}
-                    | {campo: p.get(nome) for campo, nome in MAPA_POWER.items()})
+        item = {"data": k, "chuva_mm": None if chuva is None else round(chuva, 3)}
+        if varias and chuva is None:
+            sem = [celulas[ck]["celula"].chave for ck, v in valores.items() if v is None]
+            item["celulas_sem_dado"] = sem
+            if len(sem) < len(celulas):
+                dias_parciais.append(k)
+        dias.append(item | {campo: p.get(nome) for campo, nome in MAPA_POWER.items()})
         d += dt.timedelta(days=1)
-    nao_publicados = sum(1 for l in linhas.values() if l["situacao"] == "nao_publicado")
-    clat, clon = cel.centro
-    plat, plon = (float(x) for x in extra["chave_power"].split("_"))
-    obtido_imerg = max((l.get("obtido_em") or "") for l in linhas.values()) or None
+    if varias and n_ausentes:
+        exemplos = ", ".join(dias_parciais[:5]) + (" …" if len(dias_parciais) > 5 else "")
+        avisos.append(_aviso(
+            "dia_indisponivel_celula",
+            f"{n_ausentes} dia(s) sem chuva da área porque ao menos uma célula IMERG não tem valor"
+            + (f" ({len(dias_parciais)} com outras células válidas: {exemplos})" if dias_parciais else "")
+            + ". A média não é recalculada só com as células restantes nem vira zero.",
+        ))
+    nao_publicados = len({d for c in celulas.values() for d, l in c["linhas"].items() if l["situacao"] == "nao_publicado"})
+    plat, plon = (float(x) for x in chave_p.split("_"))
+    obtido_imerg = max(
+        (l.get("obtido_em") or "") for c in celulas.values() for l in c["linhas"].values()
+    ) or None
+    lista_cel = []
+    for ck, c in celulas.items():
+        cel: imerg.CelulaImerg = c["celula"]
+        clat, clon = cel.centro
+        q = por_cel[ck]
+        lista_cel.append({
+            "chave": cel.chave, "centro_lat": clat, "centro_lon": clon, "peso": round(pesos[ck], 6),
+            "limites": {"lat": [round(clat - 0.05, 4), round(clat + 0.05, 4)], "lon": [round(clon - 0.05, 4), round(clon + 0.05, 4)]},
+            "distancia_km": round(haversine_km(lat, lon, clat, clon), 2),
+            "origem_dados": c["origem"],
+            "obtido_em": max((l.get("obtido_em") or "") for l in c["linhas"].values()) or None,
+            "qualidade": {"dias_validos": q["validos"], "dias_sem_dado": q["sem_dado"],
+                          "contagem_media": round(sum(q["contagens"]) / len(q["contagens"]), 1) if q["contagens"] else None},
+        })
+    if varias:  # contagem média sobre as amostras de todas as células, nos dias com valor
+        contagens = [x for q in por_cel.values() for x in q["contagens"]]
+    if area["tipo"] == "ponto":
+        # Ponto: proveniência idêntica à de antes da #35 (contrato 011 gravado e motor dependem dela).
+        localizacao = {"celulas": [{k: c[k] for k in ("centro_lat", "centro_lon", "peso")} for c in lista_cel],
+                       "distancia_km": lista_cel[0]["distancia_km"]}
+    else:
+        localizacao = {"tipo": "geometria", "celulas": lista_cel}
+    if area["tipo"] == "geometria":
+        localizacao |= {
+            "id_geometria": area["id_geometria"], "area_ha": area["area_ha"],
+            "soma_pesos": round(sum(c["peso"] for c in lista_cel), 6),
+            "metodo": (f"fração da área em cada célula IMERG de 0,1°, por amostragem regular de {PASSO_AMOSTRA}° "
+                       "dentro do polígono (tellus.clima.regras.pesos_celulas)"),
+            "referencia": {"lat": lat, "lon": lon, "nota": "centro do retângulo envolvente; usado para a célula POWER"},
+        }
     prov_chuva = {
         "fonte": "NASA GPM IMERG Final (precipitação diária)",
         "versao": f"{imerg.PRODUTO} {imerg.VERSAO}",
-        "periodo": {"inicio": ini, "fim": fim_ef},
+        "periodo": {"inicio": ini, "fim": fim_ef} | (
+            {"fuso": "UTC (dia IMERG de 00:00 a 23:59:59 UTC)"} if area["tipo"] == "geometria" else {}),
         "unidade": {"chuva_mm": "mm/dia"},
-        "localizacao": {"celulas": [{"centro_lat": clat, "centro_lon": clon, "peso": 1.0}],
-                        "distancia_km": round(haversine_km(lat, lon, clat, clon), 2)},
+        "localizacao": localizacao,
         "qualidade": {"dias_validos": n_validos, "dias_ausentes": n_ausentes, "dias_nao_publicados": nao_publicados,
                       "contagem_media": round(sum(contagens) / len(contagens), 1) if contagens else None},
         "resolucao": "0,1° × 0,1° (≈ 11 km), diária (UTC)",
@@ -174,8 +310,10 @@ def serie(lat, lon, inicio: str | None = None, fim: str | None = None, dir_cache
         "obtido_em": pw.get("obtido_em"),
         "url": power.URL,
     }
+    local = {"lat": lat, "lon": lon} | ({"tipo": "geometria", "id_geometria": area["id_geometria"], "area_ha": area["area_ha"]}
+                                        if area["tipo"] == "geometria" else {})
     return {
-        "local": {"lat": lat, "lon": lon},
+        "local": local,
         "dias": dias,
         "proveniencia": {"chuva": prov_chuva, "power": prov_power},
         "ultimo_dia_publicado_imerg": ultimo_imerg,
@@ -185,8 +323,9 @@ def serie(lat, lon, inicio: str | None = None, fim: str | None = None, dir_cache
     }
 
 
-def resumo(lat, lon, dir_cache: Path | None = None) -> dict:
-    s = serie(lat, lon, dir_cache=dir_cache)
+def resumo(lat=None, lon=None, dir_cache: Path | None = None, geometria: dict | None = None,
+           id_geometria: str | None = None) -> dict:
+    s = serie(lat, lon, dir_cache=dir_cache, geometria=geometria, id_geometria=id_geometria)
     por_ano: dict[str, dict] = {}
     for d in s["dias"]:
         a = por_ano.setdefault(d["data"][:4], {"ano": int(d["data"][:4]), "dias": 0, "chuva_validos": 0, "chuva_mm": 0.0})
