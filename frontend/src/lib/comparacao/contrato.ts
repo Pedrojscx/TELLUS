@@ -141,14 +141,22 @@ export function paraAlternativa(a: AlternativaContrato, provs: Proveniencia[]): 
   };
 }
 
+/** Situação de cada produto do contexto (ex.: MODIS com 23 composições; HLS indisponível com o motivo). */
+export function produtos(conteudo: any): string[] {
+  return ((conteudo?.fontes ?? []) as any[]).map((f) => f.estado === "disponivel"
+    ? `${f.produto}: disponível (${(f.serie ?? []).length} composições).`
+    : `${f.produto}: indisponível${f.motivo?.mensagem ? ` (${f.motivo.mensagem})` : ""}.`);
+}
+
 function paraContexto(id: "vegetacao" | "umidade", c: RespostaContrato["contextos"]["vegetacao"]): ContextoOpcional {
-  const titulo = id === "vegetacao" ? "Vegetação (NDVI MODIS)" : "Umidade do solo (SMAP)";
+  const titulo = id === "vegetacao" ? "Vegetação (MODIS e HLS, contexto histórico)" : "Umidade do solo (SMAP)";
   const avisos = c.avisos ?? [];
   const escala = avisos.find((a) => /escala|regional|km/i.test(a.codigo + a.mensagem));
+  const base = c.estado === "disponivel" ? (avisos.find((a) => a !== escala)?.mensagem ?? "Série disponível; não entra no cálculo.")
+    : c.estado === "nao_solicitado" ? "Não solicitado." : "Indisponível nesta consulta.";
   return {
     id, titulo, disponivel: c.estado === "disponivel",
-    resumo: c.estado === "disponivel" ? (avisos.find((a) => a !== escala)?.mensagem ?? "Série disponível; não entra no cálculo.")
-      : c.estado === "nao_solicitado" ? "Não solicitado." : "Indisponível nesta consulta.",
+    resumo: [base, ...produtos(c.conteudo)].join(" "),
     aviso_escala: escala?.mensagem ?? "Produto de escala regional: não representa a lavoura.",
     proveniencia: null,
     erro: c.erro ? paraErro(c.erro) : null,
