@@ -21,7 +21,7 @@ Fontes testadas em 2026-11-14, por volta de 22h50 BRT, a partir da máquina do L
 - **Evidence**: malha com 5.570 polígonos, 3,6 MB, 0,4 s. País: 1 MultiPolygon, 12,7 KB. A
   qualidade intermediária tem 12,3 MB.
 - **Rationale**: 3,6 MB cabem no repositório como referência derivada. Python puro evita
-  dependência geoespacial (shapely/GDAL não estão instalados, segundo o REGISTRO) e mantém a regra
+  dependência geoespacial (shapely/GDAL não estão instalados, segundo o registro da equipe) e mantém a regra
   pura (Princípio IV).
 - **Risk**: a malha mínima simplifica as divisas, então perto delas o município pode sair errado.
   Mitigação: se o ponto estiver a menos de 2 km de outro polígono, a resposta mostra o vizinho
@@ -41,19 +41,19 @@ Fontes testadas em 2026-11-14, por volta de 22h50 BRT, a partir da máquina do L
 ## R4. Estações INMET
 
 - **Decision**: catálogo de estações automáticas `https://apitempo.inmet.gov.br/estacoes/T`, com
-  User-Agent de navegador (como registrado no REGISTRO). A busca é de vizinho mais próximo por
+  User-Agent de navegador (como registrado no registro da equipe). A busca é de vizinho mais próximo por
   distância de grande círculo, só entre as estações com `CD_SITUACAO = "Operante"`. As estações
   em pane aparecem só como informação.
 - **Evidence**: HTTP 200, 261 KB, 0,6 s. São 668 estações (534 operantes, 134 em pane). A A025
   vem como RIO VERDE, GO, -17,78527777, -50,965, 780,11 m, operante desde 16/05/2007, o que confere
-  com o REGISTRO.
+  com o registro da equipe.
 - **Alternatives**: a lista de estações do portal BDMEP (mesma informação, menos estável).
 
 ## R5. Célula do NASA POWER
 
 - **Decision**: grade de 0,5° de latitude por 0,625° de longitude, com centros em múltiplos
   inteiros do passo. Centro = (round(lat/0,5)·0,5; round(lon/0,625)·0,625).
-- **Evidence** (contra o REGISTRO, que conferiu os centros pela igualdade dos 31 valores de
+- **Evidence** (contra o registro da equipe, que conferiu os centros pela igualdade dos 31 valores de
   jan/2025):
   - a estação A025 (-17,785; -50,965) dá (-18,0; -51,25), igual ao registrado;
   - o ponto antigo (-17,80; -50,92) dá (-18,0; -50,625), igual ao registrado.

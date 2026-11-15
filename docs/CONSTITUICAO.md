@@ -125,7 +125,6 @@ nas specs; aqui passam a valer para todo o projeto.
 - Backend: Python gerenciado com uv.
 - Comunicação entre frontend e backend: só por contrato de API versionado. Mudança incompatível
   no contrato exige nova versão.
-- Implementação: Claude Code e Codex.
 - Idioma: specs, documentos, commits e textos da interface em PT-BR. As specs mantêm os nomes de
   seção dos templates do Spec Kit.
 - Specs descrevem o quê e o porquê. Specs MUST NOT citar framework, biblioteca ou detalhe de
@@ -149,7 +148,7 @@ nas specs; aqui passam a valer para todo o projeto.
 ## Governance
 
 Esta constituição vale acima de qualquer outro documento de prática do projeto. Em conflito, ela
-prevalece; `docs/PLANO.md` é histórico.
+prevalece; o plano inicial do projeto é histórico.
 
 - Emenda: proposta por escrito, com o motivo e o efeito nas specs e planos existentes; aprovada
   pelo responsável humano do projeto; registrada com nova versão e data.

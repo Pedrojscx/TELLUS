@@ -48,7 +48,7 @@ queda de fonte e segredos).
 
 - [X] T016 `scripts/exportar_clima_rio_verde.py` gera `referencias/clima/rio_verde_go/serie_diaria.csv` e o `FONTE.md` (fontes, versão, período, sha256 dos brutos)
 - [X] T017 [P] Teste de segredo em `backend/tests/clima/test_segredo.py`: com `EARTHDATA_TOKEN=tok-teste`, nenhum arquivo de cache, `.meta.json` ou resposta da API contém o valor
-- [X] T018 Rodar `quickstart.md`, registrar no `REGISTRO.md` e atualizar o status em `docs/sdd/MAPA_FEATURES.md`
+- [X] T018 Rodar `quickstart.md`, registrar no registro da equipe e atualizar o status em `docs/sdd/MAPA_FEATURES.md`
 
 ## Dependencies
 

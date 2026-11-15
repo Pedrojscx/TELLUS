@@ -25,7 +25,7 @@ por UF × cultura × portaria × grupo, e viram `referencias/zarc/<safra>/<UF>.j
 - referência derivada por UF em `referencias/zarc/2026-2027/<UF>.json`. Os riscos ficam
   codificados em 36 caracteres (`0`, `2`, `3`, `4`) por município × cultura × grupo × solo.
 
-**Testing**: pytest. Rio Verde é conferido contra os valores do REGISTRO e contra o XLS salvo
+**Testing**: pytest. Rio Verde é conferido contra os valores do registro da equipe e contra o XLS salvo
 (quando presente)
 
 **Performance Goals**: consulta em menos de 50 ms com a UF carregada; uma UF nova (4 culturas)

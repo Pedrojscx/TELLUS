@@ -30,4 +30,4 @@ Issues relacionadas: #44 (US-006), #45 (T-021), #66 (T-035), #78 (T-047), #79 (T
   - aviso de não previsão;
   - pousio × palhada;
   - API.
-- [X] T010 Registrar no REGISTRO e no MAPA_FEATURES; comentar e fechar as issues após o merge
+- [X] T010 Registrar no registro da equipe e no MAPA_FEATURES; comentar e fechar as issues após o merge

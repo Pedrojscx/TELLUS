@@ -26,6 +26,6 @@ Issues relacionadas: #40 (US-004), #41 (T-019), #60 (T-029), #61 (T-030), #62 (T
 
 ## Phase 5: Validação (#64)
 
-- [X] T011 `backend/tests/zarc/test_rio_verde.py`: milho G I (6 solos) e sorgo G I (3 solos) iguais ao REGISTRO; G II mais curto que G I; a referência é igual ao XLS salvo, linha a linha, para Rio Verde
+- [X] T011 `backend/tests/zarc/test_rio_verde.py`: milho G I (6 solos) e sorgo G I (3 solos) iguais ao registro da equipe; G II mais curto que G I; a referência é igual ao XLS salvo, linha a linha, para Rio Verde
 - [X] T012 `backend/tests/zarc/test_servico.py`: "não sei" com 3 grupos separados, só decêndios com risco, dentro/fora, bloqueio, UF ausente, combinação ausente simulada e API
-- [X] T013 Registrar no `REGISTRO.md` e no `MAPA_FEATURES.md`; comentar e fechar as issues #40, #41 e #60 a #64
+- [X] T013 Registrar no registro da equipe e no `MAPA_FEATURES.md`; comentar e fechar as issues #40, #41 e #60 a #64

@@ -29,7 +29,7 @@ Como produtor, quero ver apenas decêndios ZARC válidos para minha lavoura e cu
 ## Requirements *(mandatory)*
 
 - **FR-001**: O sistema MUST guardar safra, portaria, município, UF, manejo, cultura, grupo, classe AD, decêndio e risco ZARC.
-- **FR-002**: O sistema MUST obter os relatórios SISZARC sem login conforme a sequência documentada em REGISTRO.md.
+- **FR-002**: O sistema MUST obter os relatórios SISZARC sem login conforme a sequência documentada em registro da equipe.
 - **FR-003**: O sistema MUST manter data de obtenção e vigência de cada conjunto.
 - **FR-004**: O sistema MUST bloquear sugestão de plantio fora da janela ZARC.
 - **FR-005**: O sistema MUST separar risco ZARC de risco histórico de falta de água.

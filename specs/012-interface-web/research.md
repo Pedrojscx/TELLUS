@@ -17,9 +17,9 @@
 | NASA SMAP SPL3SMP_E (NSIDC) | 010 | **Sim, Earthdata.** | `data.nsidc.earthdatacloud.nasa.gov/...h5` → HTTP 302 para `urs.earthdata.nasa.gov/oauth/authorize`; OPeNDAP → HTTP 302 para `/login/urs` |
 | NASA MODIS MOD13Q1 v061 (LP DAAC) | 009 | **Sim, Earthdata.** | `data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD13Q1.061/...hdf` → HTTP 302 para URS |
 | NASA HLS L30 v2.0 (LP DAAC) | 009 | **Sim, Earthdata.** | `.../lp-prod-protected/HLSL30.020/...B11.tif` → HTTP 302 para URS |
-| NASA GPM IMERG Final (GES DISC) | 003 | Sim, Earthdata (`EARTHDATA_TOKEN`, já usado em `tellus.clima.imerg`) | REGISTRO.md, spec 003 |
+| NASA GPM IMERG Final (GES DISC) | 003 | Sim, Earthdata (`EARTHDATA_TOKEN`, já usado em `tellus.clima.imerg`) | registro da equipe, spec 003 |
 | NASA CMR (busca de metadados) | 009/010 | Não | consultas públicas usadas na spec 010 |
-| NASA POWER, IBGE, INMET, SISZARC, Conab, CAR WFS | 001–007 | Não, segundo o REGISTRO e a spec 004 FR-002 | REGISTRO.md |
+| NASA POWER, IBGE, INMET, SISZARC, Conab, CAR WFS | 001–007 | Não, segundo o registro da equipe e a spec 004 FR-002 | registro da equipe |
 
 **Conclusão sobre a viabilidade:**
 - O "sem login" **do produtor** continua viável. O login Earthdata é do **servidor**, não do usuário: o servidor guarda `EARTHDATA_TOKEN` no ambiente (Princípio VIII) ou já tem um cache e uma série versionada (como `referencias/clima/rio_verde_go/`).

@@ -41,7 +41,7 @@ As duas metodologias usam o mesmo motor e a mesma versão das premissas.
 O risco ZARC e a frequência histórica de falta de água são medidas distintas.
 Fontes, unidades e parâmetros pendentes constam na [base de referência](BASE_REFERENCIA_SOLO_CULTURAS.md).
 As dúvidas permanecem em [DUVIDAS_ETAPA1.md](DUVIDAS_ETAPA1.md), sem respostas presumidas.
-As decisões atuais substituem a arquitetura e as fontes provisórias de `docs/PLANO.md`.
+As decisões atuais substituem a arquitetura e as fontes provisórias do plano inicial.
 
 ## Estado da revisão
 

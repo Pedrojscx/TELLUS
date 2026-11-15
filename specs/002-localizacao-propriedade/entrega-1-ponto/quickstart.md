@@ -46,7 +46,7 @@ Resultado esperado:
 - a busca traz Rio Verde-GO e Rio Verde de Mato Grosso-MS;
 - Nova York dá HTTP 422 com `fora_do_brasil`.
 
-## 4. Tela (teste manual, anotar o resultado no REGISTRO.md)
+## 4. Tela (teste manual, anotar o resultado no registro da equipe)
 
 ```bash
 cd frontend && npm install && npm run dev

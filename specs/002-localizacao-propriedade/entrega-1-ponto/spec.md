@@ -6,7 +6,7 @@
 
 **Status**: Draft
 
-**Input**: User description: "001-localizacao: o usuário escolhe um local em qualquer ponto do Brasil (clicando no mapa, digitando lat/lon ou buscando um município). O sistema resolve esse local para tudo o que as specs seguintes precisam: município e UF com código IBGE (para ZARC e Conab), célula do NASA POWER, célula do IMERG, estação INMET mais próxima com distância e altitude, e a praça Conab mais próxima. Cada resolução traz fonte e distância, e avisa quando a referência fica longe ou não existe. Rio Verde-GO é o local padrão da demonstração e o caso de validação (estação A025 em -17.785,-50.965; células POWER e IMERG já conferidas no REGISTRO.md). Fora do Brasil é recusado com mensagem clara."
+**Input**: User description: "001-localizacao: o usuário escolhe um local em qualquer ponto do Brasil (clicando no mapa, digitando lat/lon ou buscando um município). O sistema resolve esse local para tudo o que as specs seguintes precisam: município e UF com código IBGE (para ZARC e Conab), célula do NASA POWER, célula do IMERG, estação INMET mais próxima com distância e altitude, e a praça Conab mais próxima. Cada resolução traz fonte e distância, e avisa quando a referência fica longe ou não existe. Rio Verde-GO é o local padrão da demonstração e o caso de validação (estação A025 em -17.785,-50.965; células POWER e IMERG já conferidas no registro da equipe). Fora do Brasil é recusado com mensagem clara."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -49,7 +49,7 @@ dependem dessas referências.
 
 **Independent Test**: escolher Rio Verde-GO e conferir as referências contra os valores já
 registrados (estação A025 a cerca de 4 km do ponto da estação; células POWER e IMERG com os
-centros conferidos no REGISTRO.md).
+centros conferidos no registro da equipe).
 
 **Acceptance Scenarios**:
 
@@ -135,7 +135,7 @@ anterior continua selecionado.
 - **FR-014**: Com as fontes fora do ar, o sistema MUST funcionar para locais já resolvidos antes
   e para Rio Verde-GO, usando os dados guardados e informando a data deles (Princípio V).
 - **FR-015**: Para Rio Verde-GO, o resultado MUST coincidir com os valores conferidos no
-  REGISTRO.md: estação A025 (-17,785; -50,965; 780 m), centro IMERG (-17,75; -50,95) e centro POWER
+  registro da equipe: estação A025 (-17,785; -50,965; 780 m), centro IMERG (-17,75; -50,95) e centro POWER
   da célula que contém a estação (-18; -51,25), com tolerância de 0,01° nas coordenadas.
 
 ### Key Entities
@@ -157,7 +157,7 @@ anterior continua selecionado.
 
 - **SC-001**: O usuário define o local da lavoura em menos de 30 segundos por qualquer um dos três
   meios.
-- **SC-002**: Para Rio Verde-GO, 100% das referências conferem com os valores do REGISTRO.md
+- **SC-002**: Para Rio Verde-GO, 100% das referências conferem com os valores do registro da equipe
   (FR-015).
 - **SC-003**: Num conjunto de teste com 10 pontos conhecidos (capitais de UF e Rio Verde-GO), o
   município identificado está correto em 10 de 10.
@@ -172,7 +172,7 @@ anterior continua selecionado.
 - Malha municipal e códigos: IBGE (malha e lista de municípios oficiais). Coordenadas em graus
   decimais, datum WGS84/SIRGAS 2000, tratados como equivalentes nessa escala.
 - Distâncias são em linha reta sobre a superfície da Terra (grande círculo), em km.
-- A célula do POWER é a que a própria fonte devolve para o ponto. O REGISTRO.md mostra centros em
+- A célula do POWER é a que a própria fonte devolve para o ponto. O registro da equipe mostra centros em
   passos de 0,5° de latitude e 0,625° de longitude; a spec 002 confirma isso na fonte.
 - O limite de 50 km para a estação INMET é um valor inicial marcado como hipótese, editável. Ele
   vem da comparação de chuva grade × estação, que só faz sentido com a estação perto.

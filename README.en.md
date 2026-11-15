@@ -102,7 +102,7 @@ local validation next to the result. Scripts, charts and full numbers are in
 
 The other sources were also tested with real data before entering the plan: Conab costs per market location, ZARC
 windows from SISZARC (which answers a plain POST, with no login), CAR properties through the SICAR WFS service, MODIS
-NDVI and SMAP soil moisture. Each test, with its date, result and blockers, is logged in [`REGISTRO.md`](REGISTRO.md).
+NDVI and SMAP soil moisture. Each test's result, with its date and blockers, is in the research file of the matching spec under [`specs/`](specs/).
 
 ### 3. What we decided
 
@@ -114,8 +114,9 @@ from Conab and the corn price from Cepea, and whatever has no source (sorghum Kc
 assumption together with the decision that created it (D-001 to D-011).
 
 Work was organized as specifications with GitHub Spec Kit: 14 specs, each with a plan, tasks, a checklist and issues,
-implemented with Claude Code and Codex and merged into `main`. `REGISTRO.md` served as a shared log that every agent
-read before acting.
+merged into `main` through pull requests. Product decisions (D-001 to D-011) are in
+[`docs/sdd/DUVIDAS_ETAPA1.md`](docs/sdd/DUVIDAS_ETAPA1.md) and the project principles in
+[`docs/CONSTITUICAO.md`](docs/CONSTITUICAO.md) (both in Portuguese).
 
 ### 4. How we implemented it
 
@@ -373,10 +374,10 @@ TELLUS/
 │   ├── testes-e2e/              # report, captures and API evidence
 │   ├── teste-usabilidade/       # report and session videos
 │   ├── marca/                   # brand guide and icon
+│   ├── sdd/                     # spec map, decisions and reference base
 │   ├── screenshots/ assets/     # images for both READMEs
-│   └── PLANO.md
+│   └── CONSTITUICAO.md          # project principles
 ├── data/                        # raw data kept out of Git, only provenance tracked
-├── REGISTRO.md                  # log of decisions, evidence and blockers
 ├── README.md                    # Portuguese README
 ├── README.en.md                 # this file
 └── LICENSE

@@ -33,7 +33,7 @@ grupo I; série 2001 a 2025.
 | 9 (21/03) | fora | 30% / 32% |
 
 O risco sobe com o plantio tardio e o sorgo aguenta cerca de um mês a mais que o milho, como no
-ZARC e no REGISTRO (14/11). Exemplo pontual: milho com plantio em 04/02 dá 25 anos válidos,
+ZARC e no registro da equipe (14/11). Exemplo pontual: milho com plantio em 04/02 dá 25 anos válidos,
 falha em 3 (12%), déficit mediano de 46 mm e perda mediana de 22%.
 
 ## R3. D-004: estado inicial e entressafra

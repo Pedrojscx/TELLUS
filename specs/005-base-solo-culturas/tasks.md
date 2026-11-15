@@ -27,4 +27,4 @@ Issues relacionadas: #42 (US-005), #43 (T-020), #65 (T-034), #74 (T-043), #75 (T
   - edições inválidas;
   - solo por granulometria, textura, tipo do sorgo e CAD;
   - API.
-- [X] T008 Registrar no REGISTRO e no MAPA_FEATURES (feito); comentar e fechar (após o merge) as issues #42, #43, #65 e #74 a #77
+- [X] T008 Registrar no registro da equipe e no MAPA_FEATURES (feito); comentar e fechar (após o merge) as issues #42, #43, #65 e #74 a #77

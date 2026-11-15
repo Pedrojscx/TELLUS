@@ -32,4 +32,4 @@ Issues relacionadas: #48 (US-008), #108 (US-008.2), #49 (T-023), #68 (T-037), #8
   - grupo informado;
   - erros;
   - API.
-- [X] T007 Registrar no REGISTRO e no MAPA_FEATURES; comentar e fechar as issues após o merge
+- [X] T007 Registrar no registro da equipe e no MAPA_FEATURES; comentar e fechar as issues após o merge

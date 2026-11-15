@@ -1,5 +1,3 @@
-graphify-out/graph.json merge=graphify
-
 # séries versionadas com sha256 conferido no código: manter LF em qualquer sistema
 referencias/clima/*/serie_diaria.csv text eol=lf
 referencias/clima_inmet/** text eol=lf

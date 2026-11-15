@@ -34,4 +34,4 @@ Issues relacionadas: #46 (US-007), #47 (T-022), #67 (T-036), #82 (T-051), #83 (T
   - edições inválidas;
   - versão;
   - API com simulação.
-- [X] T008 Registrar no REGISTRO e no MAPA_FEATURES; comentar e fechar as issues após o merge
+- [X] T008 Registrar no registro da equipe e no MAPA_FEATURES; comentar e fechar as issues após o merge

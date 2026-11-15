@@ -186,7 +186,7 @@
   "IBGE — código do município, usado na consulta ao ZARC (SISZARC/MAPA)": "IBGE — municipality code, used to query ZARC (SISZARC/MAPA)",
   "Ilha oceânica: podem faltar estação INMET próxima, ZARC e praça Conab.": "Ocean island: a nearby INMET station, ZARC and a Conab market location may be missing.",
   "NASA GPM IMERG Final — grade 0,1° (centro calculado; conferido na pesquisa de chuva)": "NASA GPM IMERG Final — 0.1° grid (computed center; checked in the rainfall research)",
-  "NASA POWER — grade 0,5° × 0,625° (centro calculado; conferido no REGISTRO.md)": "NASA POWER — 0.5° × 0.625° grid (computed center; checked in REGISTRO.md)",
+  "NASA POWER — grade 0,5° × 0,625° (centro calculado; conferido na spec 002)": "NASA POWER — 0.5° × 0.625° grid (computed center; checked in spec 002)",
   "Nenhuma estação INMET operante encontrada.": "No operating INMET station found.",
   "Nenhuma praça Conab com custo publicado.": "No Conab market location with published cost.",
   "O TELLUS cobre apenas o território brasileiro.": "TELLUS covers Brazilian territory only.",

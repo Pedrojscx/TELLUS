@@ -176,7 +176,7 @@ A correção não resolveu o viés recente nem produziu melhora ampla nos erros 
 
 ## Efeito na decisão agrícola
 
-A inspeção encontrou `docs/PLANO.md` com uma proposta de ETo FAO-56, Kc por fase e perda FAO-33, mas **não encontrou `app/regras/`, modelo executável ou parâmetros agronômicos rastreáveis**. Os scripts existentes fora desta pesquisa pertencem às skills de negócio. Não criamos um modelo novo para completar resultados.
+A inspeção encontrou o plano inicial do projeto com uma proposta de ETo FAO-56, Kc por fase e perda FAO-33, mas **não encontrou `app/regras/`, modelo executável ou parâmetros agronômicos rastreáveis**. Os scripts existentes fora desta pesquisa pertencem às skills de negócio. Não criamos um modelo novo para completar resultados.
 
 Faltam: capacidade de água disponível e profundidade efetiva de raízes por solo; regra de infiltração, drenagem e escoamento; estado inicial da água e período de aquecimento; data de plantio e duração das fases por cultivar; Kc e Ky com fontes regionais; cálculo e validação de ETo com dias alinhados; produtividade potencial e validação independente. Para margem, faltam preços locais datados e escopo de custos coerente. As produtividades das planilhas Conab são premissas de orçamento, não resposta medida à chuva. Cobertura ainda exige espécie, ciclo, custos e objetivo agronômico; não atribuímos receita ou benefício futuro fictício.
 

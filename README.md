@@ -101,7 +101,7 @@ validação local junto do resultado. Scripts, gráficos e números completos es
 
 As outras fontes também foram testadas com dado real antes de entrar no plano: custos da Conab por praça, janelas do
 SISZARC (que responde a POST simples, sem login), imóveis do CAR pelo WFS do SICAR, NDVI MODIS e umidade do solo SMAP.
-O registro de cada teste, com data, resultado e bloqueios, está em [`REGISTRO.md`](REGISTRO.md).
+O resultado de cada teste, com data e bloqueios, está na pesquisa da spec correspondente, em [`specs/`](specs/).
 
 ### 3. O que decidimos
 
@@ -113,8 +113,9 @@ custos da Conab e o preço do milho do Cepea, e o que não tem fonte (Kc do sorg
 hipótese com a decisão que a criou (D-001 a D-011).
 
 O trabalho foi organizado por especificações com o GitHub Spec Kit: 14 specs, cada uma com plano, tarefas, checklist e
-issues, implementadas com Claude Code e Codex e integradas na `main`. O `REGISTRO.md` funcionou como diário comum que
-todo agente lia antes de agir.
+issues, integradas na `main` por pull request. As decisões de produto (D-001 a D-011) estão em
+[`docs/sdd/DUVIDAS_ETAPA1.md`](docs/sdd/DUVIDAS_ETAPA1.md) e os princípios do projeto em
+[`docs/CONSTITUICAO.md`](docs/CONSTITUICAO.md).
 
 ### 4. Como implementamos
 
@@ -367,10 +368,10 @@ TELLUS/
 │   ├── testes-e2e/              # relatório, capturas e evidências da API
 │   ├── teste-usabilidade/       # relatório e vídeos das sessões
 │   ├── marca/                   # guia de marca e ícone
+│   ├── sdd/                     # mapa das specs, decisões e base de referência
 │   ├── screenshots/ assets/     # imagens deste README
-│   └── PLANO.md
+│   └── CONSTITUICAO.md          # princípios do projeto
 ├── data/                        # dados brutos fora do Git, só a procedência
-├── REGISTRO.md                  # diário de decisões, evidências e bloqueios
 ├── README.en.md                 # este README em inglês
 └── LICENSE
 ```

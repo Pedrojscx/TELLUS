@@ -155,7 +155,7 @@ Backend em `backend/src/tellus/`, testes em `backend/tests/`, referências em
 
 - [X] T033 [P] Fundo offline do mapa: se os tiles falharem, mostrar só o contorno do Brasil e um aviso discreto "mapa sem fundo (sem internet)" em `frontend/src/components/SeletorLocal.astro`
 - [X] T034 [P] Medir o tempo de `resolver` (alvo de menos de 200 ms) e da busca (alvo de menos de 100 ms) num teste em `backend/tests/localizacao/test_desempenho.py`
-- [ ] T035 Rodar o `quickstart.md` inteiro (passos 2 a 4), anotar o resultado e o cronômetro do SC-001 no `REGISTRO.md` e marcar a spec 001 como "implementada" em `docs/sdd/MAPA_SPECS.md`
+- [ ] T035 Rodar o `quickstart.md` inteiro (passos 2 a 4), anotar o resultado e o cronômetro do SC-001 no registro da equipe e marcar a spec 001 como "implementada" em `docs/sdd/MAPA_FEATURES.md`
 
 ---
 

@@ -17,7 +17,7 @@ Testes feitos em 2026-11-14, entre 23h45 e 23h55 BRT, na máquina do LK.
   - O array vem na ordem [time][lon][lat].
 - **Rejected**:
   - `.dap.csv`: HTTP 200, mas os valores vêm vazios.
-  - DAP2 `.dds`: dá 400 por causa de Int8 (já estava no REGISTRO).
+  - DAP2 `.dds`: dá 400 por causa de Int8 (já estava no registro da equipe).
   - Download do arquivo global: cerca de 30 MB por dia, contra 25 KB do recorte.
 - **Custo**: 2001-01-01 a 2025-09-30 são 9.039 dias. Com 16 conexões, leva uns 15 a 25 minutos
   por célula na primeira vez; depois vem do cache.

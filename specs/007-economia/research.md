@@ -18,7 +18,7 @@ Exemplo: aba "Rio Verde-GO-2026" do milho 2ª safra.
 - **Rio Verde-GO 2026 (março/2026, plantio direto)**:
   - milho 2ª: custo operacional 5.889,09, total 6.886,16, 6.000 kg/ha;
   - sorgo: operacional 3.806,76, total 4.788,11, 3.600 kg/ha;
-  - os valores conferem com o REGISTRO.
+  - os valores conferem com o registro da equipe.
 
 ## R2. Preços (D-005)
 

@@ -32,4 +32,4 @@ Issues relacionadas: #117 (US-014), #111 (T-077: T001–T002), #112 (T-078: T003
 
 - [X] T008 Teste do texto renderizado do resultado em inglês sem palavras portuguesas fora de uma lista de nomes próprios; palavras proibidas em inglês no guia de marca (SC-001, FR-010)
 - [ ] T009 `README.en.md` linkado no topo do `README.md` (FR-011)
-- [ ] T010 Roteiro manual em inglês no computador e no celular (caso de referência); registrar no REGISTRO e fechar as issues
+- [ ] T010 Roteiro manual em inglês no computador e no celular (caso de referência); registrar no registro da equipe e fechar as issues

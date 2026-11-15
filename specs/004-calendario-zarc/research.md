@@ -52,7 +52,7 @@ essa leitura: o tipo 1 tem a janela mais curta e o tipo 3 a mais longa, como reg
 | Soja | 198 | 03/07/2026 | I, II, III |
 
 Os 246 municípios do relatório foram ligados ao código IBGE pelo nome normalizado + UF, sem
-nenhuma falha. Rio Verde confere com o REGISTRO (milho G I/G II e sorgo G I/G II/G III).
+nenhuma falha. Rio Verde confere com o registro da equipe (milho G I/G II e sorgo G I/G II/G III).
 
 ## R5. Ligação nome → IBGE
 

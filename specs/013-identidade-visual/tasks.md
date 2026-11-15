@@ -20,5 +20,5 @@ Issues relacionadas: #58 (US-013), #59 (T-028), #73 (T-042), #105 (T-074), #106 
 ## Phase 4: Aplicação depois do fluxo funcional (#59, #107), bloqueada pela 012 (#56)
 
 - [X] T007 Com a `012-interface-web` na `main`: importar `marca.css` no `global.css` e usar `Selo.astro` nos estados das telas
-- [X] T008 Comparar as telas principais antes e depois: fonte, hipótese, aviso e erro visíveis; nenhum texto de previsão; registrar no REGISTRO
+- [X] T008 Comparar as telas principais antes e depois: fonte, hipótese, aviso e erro visíveis; nenhum texto de previsão; registrar no registro da equipe
 - [X] T009 Fechar #59, #107 e #58

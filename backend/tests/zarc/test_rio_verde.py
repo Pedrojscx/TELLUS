@@ -18,7 +18,7 @@ def janela(cultura, grupo, solo):
 
 
 def test_milho_grupo_i_como_no_registro():
-    # REGISTRO.md 14/11: dec 1–3 = 20% em todos os solos; dec 4: AD1 40, AD2–AD3 30, AD4–AD6 20;
+    # Conferência de 14/11 (spec 004): dec 1–3 = 20% em todos os solos; dec 4: AD1 40, AD2–AD3 30, AD4–AD6 20;
     # dec 5: AD4 40, AD5 30, AD6 20; dec 6: só AD6 (30%).
     esperado = {
         "AD1": {1: 20, 2: 20, 3: 20, 4: 40},

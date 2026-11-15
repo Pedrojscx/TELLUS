@@ -15,10 +15,8 @@ data/raw/**
 !data/raw/**/*.meta.json
 
 # Ferramentas e build
-graphify-out/cache/
 .astro/
 dist/
-.specify/extensions/.cache/
 graphify-out/
 
 # Apps
@@ -26,3 +24,14 @@ backend/.venv/
 frontend/node_modules/
 frontend/dist/
 frontend/.astro/
+
+# Ferramentas locais de cada pessoa (assistentes, grafo, Spec Kit): fora do repositório
+.claude/
+.codex/
+.agents/
+.specify/
+CLAUDE.md
+AGENTS.md
+frontend/AGENTS.md
+.graphifyignore
+founder/

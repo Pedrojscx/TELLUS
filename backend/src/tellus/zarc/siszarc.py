@@ -1,7 +1,7 @@
 """Cliente do SISZARC (MAPA), sem login: percorre os combos do formulário e baixa o relatório XLS.
 
 Um relatório = safra × cultura × UF × grupo de cultivar (todos os solos e municípios da UF).
-Sequência documentada no REGISTRO.md (14/11) e conferida em 15/11.
+Sequência documentada na spec 004 (14/11) e conferida em 15/11.
 """
 
 from __future__ import annotations

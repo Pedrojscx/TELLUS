@@ -7,7 +7,7 @@ import math
 from . import regras
 from .referencias import Procedencia, Referencias
 
-# Rio Verde-GO: ponto da estação INMET A025 (REGISTRO.md), local padrão da demonstração.
+# Rio Verde-GO: ponto da estação INMET A025 (spec 002, entrega 1), local padrão da demonstração.
 PADRAO_LAT = -17.785278
 PADRAO_LON = -50.965
 PADRAO_CODIGO = "5218805"
@@ -103,7 +103,7 @@ def _ref_power(ref: Referencias, lat: float, lon: float) -> dict:
         "distancia_km": _km(regras.haversine_km(lat, lon, clat, clon)),
         "detalhes": {"passo_lat": regras.PASSO_POWER_LAT, "passo_lon": regras.PASSO_POWER_LON},
         "procedencia": Procedencia(
-            fonte="NASA POWER — grade 0,5° × 0,625° (centro calculado; conferido no REGISTRO.md)",
+            fonte="NASA POWER — grade 0,5° × 0,625° (centro calculado; conferido na spec 002)",
             url="https://power.larc.nasa.gov/",
             obtido_em=ref.versao,
         ).como_dict(),

@@ -446,7 +446,7 @@ export const TRECHOS: [string, string][] = [
   ["código do município, usado na consulta ao ZARC", "municipality code, used to query ZARC"],
   ["catálogo de estações automáticas", "catalog of automatic weather stations"],
   ["centro calculado; conferido na pesquisa de chuva", "computed center; checked in the rainfall research"],
-  ["centro calculado; conferido no", "computed center; checked in"],
+  ["centro calculado; conferido na spec 002", "computed center; checked in spec 002"],
   ["Referências de", "References from"],
   ["Estimativas regionais; não representam o talhão.", "Regional estimates; they do not represent your field."],
   ["EXEMPLO", "EXAMPLE"],

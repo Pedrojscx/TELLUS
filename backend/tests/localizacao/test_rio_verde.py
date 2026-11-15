@@ -1,4 +1,4 @@
-"""FR-015 / SC-002: Rio Verde-GO confere com os valores do REGISTRO.md."""
+"""FR-015 / SC-002: Rio Verde-GO confere com os valores da spec 002 (entrega 1)."""
 
 import pytest
 
