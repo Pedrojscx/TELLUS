@@ -3,8 +3,8 @@
 Este mapa (numeração 001 a 012 do LK, de 14/11 às 22h30) foi substituído pelo
 [MAPA_FEATURES.md](MAPA_FEATURES.md), o plano oficial vindo da conversa de planejamento.
 
-As specs 002 a 007 do LK (branches `002-dados-clima` a `007-recomendacao`) ficam só como
-material de consulta para as specs oficiais equivalentes:
+As specs 002 a 007 do LK ficam só como material de consulta. As branches foram apagadas em 15/11 e o
+conteúdo (spec e checklist) está arquivado em [arquivo-specs-lk/](arquivo-specs-lk/):
 
 | Spec do LK (branch) | Spec oficial |
 |---|---|
