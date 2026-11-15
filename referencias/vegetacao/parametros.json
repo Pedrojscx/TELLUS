@@ -1,0 +1,48 @@
+{
+  "_sobre": "Parâmetros de uso da vegetação (spec 009). Respondem à decisão D-007 (issue #69) com uma HIPÓTESE OPERACIONAL do protótipo proposta pelo usuário em 2026-11-15: não são parâmetros científicos validados. Todos são parametrizáveis e saem na resposta com status 'hipotese'. Teste da proposta: specs/009-vegetacao-modis-hls/decisao-proposta.md.",
+  "decisao": {"id": "D-007", "issue": "#69", "estado": "proposta_em_teste", "pergunta": "Qual índice, período mínimo e regra de qualidade respondem à pergunta de contexto da área?"},
+  "produtos_modis": {
+    "valor": ["MOD13Q1"],
+    "opcoes": ["MOD13Q1", "MYD13Q1"],
+    "status": "hipotese",
+    "nota": "Hipótese operacional do protótipo: MODIS/Terra MOD13Q1 v061. MYD13Q1 (Aqua) é suportado, mas fica fora por padrão."
+  },
+  "indice": {
+    "valor": "ndvi",
+    "opcoes": ["ndvi", "evi"],
+    "status": "hipotese",
+    "nota": "Hipótese operacional do protótipo: NDVI. O pedido pode trocar para EVI."
+  },
+  "janela_meses": {
+    "valor": 12,
+    "status": "hipotese",
+    "nota": "Hipótese operacional: série inicial dos últimos 12 meses, contados a partir da última composição disponível no cache (não do relógio), para a mesma resposta com o mesmo cache. inicio/fim no pedido substituem a janela."
+  },
+  "minimo_composicoes_validas": {
+    "valor": 6,
+    "status": "hipotese",
+    "nota": "Mínimo provisório: com menos de 6 composições válidas na janela, a série é declarada 'insuficiente'. Nada é preenchido."
+  },
+  "regra_qualidade_modis": {
+    "valor": {
+      "pixel_reliability_aceitos": [0],
+      "pixel_reliability_condicionais": [1],
+      "condicional_modland_aceitos": [0, 1],
+      "condicional_bits_vi_quality_rejeitados": [8, 10, 14, 15]
+    },
+    "status": "hipotese",
+    "fonte": "Didan, K.; Barreto Munoz, A. MODIS Vegetation Index User's Guide (MOD13 Series), Collection 6.1, Version 3.10, setembro de 2019 — seção 5.5.2 'QA Science Data Sets', Tabela 4 (MOD13Q1/A1 Pixel Reliability) e Tabela 5 (VI Quality, bits 0–1, 8, 10, 14 e 15); faixa válida e preenchimento: seção 5.2, Tabela 1.",
+    "nota": "Aplicação da regra do produto: rank 0 ('Good Data — use with confidence') vira valor; rank 1 ('Marginal data — useful, but look at other QA information') só vira valor se a VI Quality disser 'VI produzido' (bits 0–1 = 00 ou 01) e não marcar nuvem adjacente (bit 8), nuvem mista (bit 10), possível neve/gelo (bit 14) nem possível sombra (bit 15); rank 2 (neve/gelo), 3 (nuvem) e −1 (sem dado) viram lacuna. A escolha dos bits consultados no rank 1 é hipótese do protótipo."
+  },
+  "regra_qualidade_hls": {
+    "valor": {"fmask_bits_rejeitados": [1, 2, 3, 4]},
+    "status": "hipotese",
+    "fonte": "Ju, J. et al. Harmonized Landsat and Sentinel-2 (HLS) Product User Guide, Product Version 2.0 (atualizado em abril de 2026) — seção 6.4 'Quality Assessment Layer', Tabela 9.",
+    "nota": "Nuvem (bit 1), adjacente a nuvem/sombra (bit 2), sombra (bit 3) e neve/gelo (bit 4) viram lacuna. Bit 0 (cirro) é reservado e não usado na v2.0. Banda com preenchimento (−9999) é sempre lacuna."
+  },
+  "cobertura_minima_area": {
+    "valor": 1.0,
+    "status": "hipotese",
+    "nota": "Fração (por peso de área) de pixels válidos exigida para a composição virar valor da área. 1,0 = qualquer pixel inválido vira lacuna da área inteira; nada é preenchido."
+  }
+}

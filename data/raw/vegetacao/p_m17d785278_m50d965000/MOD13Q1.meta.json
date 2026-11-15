@@ -1,0 +1,25 @@
+{
+ "consulta": "ORNL DAAC MODIS Web Service (https://modis.ornl.gov/rst/api/v1); 12 pedidos; ponto -17.785278, -50.965",
+ "obtido_em": "2026-11-15",
+ "pesos": {
+  "h13v10.l3736.c0705": 1.0
+ },
+ "produto": "MOD13Q1",
+ "sha256": "08d76b8bdae4c7263b4a8f9757df73fdd178a3046cc8ede145f23f9b2b58c5f6",
+ "sintetico": false,
+ "urls": [
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_NDVI&startDate=A2025305&endDate=A2026081&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_EVI&startDate=A2025305&endDate=A2026081&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_pixel_reliability&startDate=A2025305&endDate=A2026081&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_VI_Quality&startDate=A2025305&endDate=A2026081&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_NDVI&startDate=A2026097&endDate=A2026241&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_EVI&startDate=A2026097&endDate=A2026241&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_pixel_reliability&startDate=A2026097&endDate=A2026241&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_VI_Quality&startDate=A2026097&endDate=A2026241&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_NDVI&startDate=A2026257&endDate=A2026289&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_EVI&startDate=A2026257&endDate=A2026289&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_pixel_reliability&startDate=A2026257&endDate=A2026289&kmAboveBelow=0&kmLeftRight=0",
+  "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_VI_Quality&startDate=A2026257&endDate=A2026289&kmAboveBelow=0&kmLeftRight=0"
+ ],
+ "versao": "061"
+}
