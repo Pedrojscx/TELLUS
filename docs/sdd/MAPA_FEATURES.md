@@ -59,4 +59,5 @@ Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etap
 | 005 | Implementada: parâmetros com fonte (portarias ZARC GO, IN 1/2022) ou hipótese (Kc/Ky FAO como método, fases do sorgo, braquiária); classificação de solo oficial por granulometria; edições com antes e depois | `005-base-solo-culturas` | LK |
 | 006 | Implementada: balanço FAO-56 (ETo Penman-Monteith conferida com o Ex. 18), entressafra pousio/palhada, falha pelo ISNA da portaria, risco por decêndio da janela ZARC | `006-motor-hidrico-entressafra` | LK |
 | 007 | Implementada: custo Conab da praça mais próxima com itens recompostos, preço CEPEA do milho, sorgo sem preço = indisponível, margem nos 3 cenários com edição e antes/depois | `007-economia` | LK |
+| 008 | Implementada: duas metodologias (cultura escolhida e cálculo completo) sobre o mesmo motor, com paridade testada, ZARC em 100%, ordem pela margem conservadora e D-006 em quartis | `008-recomendacao` | LK |
 | 009, 010, 012 | Com o Pedro | — | Pedro |

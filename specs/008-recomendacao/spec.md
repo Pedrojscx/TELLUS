@@ -54,4 +54,4 @@ Como produtor, quero ordenar culturas e decêndios para ver o melhor par.
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Quais percentis nomeiam conservador, central e favorável?]
+- Resolvido em 15/11 (D-006): quartis da perda relativa simulada (006). Conservador = percentil 75 (pior em 1 de cada 4 anos), central = mediana, favorável = percentil 25. Não há fonte setorial obrigatória; é decisão de produto declarada (hipótese visível), editável pelo produtor (10/25/50/75/90) e mostrada em toda resposta.
