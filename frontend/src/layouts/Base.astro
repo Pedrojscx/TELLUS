@@ -12,8 +12,20 @@ const { titulo = "TELLUS" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>{titulo}</title>
+    <script is:inline>
+      // Em inglês, esconde a página até a tradução (evita piscar o português). Sem JS, nada muda.
+      try { var l = new URLSearchParams(location.search).get("lang");
+        if (l === "en" || (l !== "pt" && localStorage.getItem("tellus.idioma") === "en")) { document.documentElement.classList.add("traduzindo");
+          setTimeout(function () { document.documentElement.classList.remove("traduzindo"); }, 1500); }
+      } catch (e) {}
+    </script>
+    <style is:global>html.traduzindo body { visibility: hidden; }</style>
   </head>
   <body class="min-h-screen bg-tellus-fundo font-tellus text-tellus-texto antialiased">
     <slot />
+    <script>
+      import { iniciarIdioma } from "../lib/i18n/cliente";
+      try { iniciarIdioma(); } finally { document.documentElement.classList.remove("traduzindo"); }
+    </script>
   </body>
 </html>
