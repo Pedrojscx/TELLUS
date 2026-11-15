@@ -119,3 +119,9 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - 50 testes pytest passando: Rio Verde confere com o REGISTRO (A025 a 0 km, IMERG -17,75/-50,95, POWER -18/-51,25, praça Rio Verde com as 3 culturas), 10 capitais certas, recusas, determinismo, desempenho.
 - A malha mínima simplifica costa e ilhas: um ponto até 2 km fora do contorno usa o município mais próximo, com aviso.
 - Pendente: teste de tela manual do quickstart (passo 4) e cronômetro do SC-001.
+
+## Reconciliação dos planos (14/11, 23h40, LK + Claude Code)
+- O LK e o Pedro escreveram specs em paralelo. Decisão do LK: o plano do Pedro (`sdd/etapa-1`, 13 specs, 59 issues) é o oficial e foi mergeado na `main`.
+- Constituição 1.1.0 = a do Pedro + "Decisões de Dados e Escopo" (chuva do POWER fora do balanço, cobertura nacional com referência mais próxima declarada, escopo até o prazo).
+- A antiga 001-localizacao do LK virou `specs/002-localizacao-propriedade/entrega-1-ponto/` (código e testes na `main`). As specs 002 a 007 do LK ficam como consulta (`docs/sdd/MAPA_SPECS.md`).
+- Divisão proposta em `docs/sdd/SINCRONIA_PEDRO.md`: LK fica com a 003 dados-clima; Pedro com a 004 e a 005.
