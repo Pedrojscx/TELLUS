@@ -1,0 +1,36 @@
+{
+ "estacao": {
+  "codigo": "A026",
+  "nome": "MINEIROS",
+  "uf": "GO",
+  "lat": -17.45472222,
+  "lon": -52.60111111,
+  "altitude_m": 862.0
+ },
+ "fonte": "INMET, estação automática (dados históricos anuais do portal)",
+ "arquivos": [
+  {
+   "ano": 2024,
+   "zip": "2024.zip",
+   "arquivo": "INMET_CO_GO_A026_MINEIROS_01-01-2024_A_31-12-2024.CSV",
+   "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2024.zip",
+   "sha256_zip": "0a7f89de57427f79b6f82943b2f7f2e932202d9253e34bf25629ed088d108ae7"
+  },
+  {
+   "ano": 2025,
+   "zip": "2025.zip",
+   "arquivo": "2025/INMET_CO_GO_A026_MINEIROS_01-01-2025_A_31-12-2025.CSV",
+   "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2025.zip",
+   "sha256_zip": "14988d0b736ba969b48881589f602f3a6d7e97b95bd1de934456851fdac2cb89"
+  }
+ ],
+ "metodo": "dia UTC D = soma das horas de 01:00 de D a 00:00 de D+1; só com 24 horas válidas (docs/pesquisa_chuva/RELATORIO.md)",
+ "periodo": [
+  "2024-01-01",
+  "2025-12-31"
+ ],
+ "dias_completos": 170,
+ "dias_total": 731,
+ "obtido_em": "2026-11-15",
+ "sha256_serie": "45b2de27d92f7c3c4caf302231aa78832c5ff5c7e8127d765afbb230a2493f37"
+}

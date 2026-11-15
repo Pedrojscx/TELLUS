@@ -260,3 +260,14 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - 013 parte 2: marca no layout e nos selos de proveniência e erro. Verificação #107 nas 8 telas: rótulos Fonte/Hipótese/Aviso/Erro presentes e nenhum "previsão".
 - Testes: 461 backend + 158 frontend.
 - Issues fechadas: #57, #100, #101, #59, #107, #58. Abertas com comentário: #102 (só o preço do sorgo chega ao backend; premissas do milho no editor ainda são de exemplo) e #103 (indicador de etapas ainda do exemplo). Continuam com humanos: #104 (teste com 5 pessoas), #72 (D-010), #56.
+
+## #102, #103, #53/#95, D-010, #51 e #110 (15/11, 05h–06h30, LK + Claude Code)
+- #102: as premissas editadas (preço, custo e produtividade do milho; CAD; cotação do sorgo) vão ao cálculo real, e o resultado mostra padrão → novo valor. Bug corrigido: CAD digitada sem classe ZARC (sorgo usa tipo de solo) derrubava a recomendação inteira; agora só a cultura afetada fica indisponível.
+- #103: resultado real com etapa atual durante o cálculo, `estado_geral` do backend (incompleto e erro aparecem como PARCIAL), lista de fontes com data da cópia guardada e erros com origem, cache e ação.
+- #53/#95: teste com a recomendação real e a série SMAP real, com e sem umidade: resultado principal idêntico. #52 fechada.
+- D-010 (#72): computador e celular, sem login, servidor local. Telas conferidas em 390 px; o menu de etapas passou a quebrar linha. LICENSE MIT na raiz; busca no INPI dispensada.
+- #51: o contexto de vegetação mostra MODIS (23 composições em Rio Verde) e HLS separados; HLS indisponível sem credencial, com o motivo, sem bloquear o fluxo.
+- #110:
+  - IMERG com 2 células reais: célula vizinha `-17.85_-50.95` (2025-01-01 a 2025-09-30, 273 dias) versionada em `referencias/clima/rio_verde_go_sul/` (`scripts/exportar_imerg_celula.py`). Teste: retângulo que cruza -17,8°, pesos 0,5/0,5 somando 1, e a média de cada dia confere com a conta independente.
+  - Validação INMET fora da A025: arquivos anuais do portal (`scripts/preparar_inmet_validacao.py`, mesmo método da pesquisa; conferido contra a série da A025 de 2025: 357 dias, 0 divergências). A016 Jataí está em pane no catálogo e foi descartada; usada a A026 Mineiros-GO (operante, 170 de 731 dias completos em 2024–2025, todos em 2024). Jan–jun/2024, 103 dias pareados: IMERG −21,7% de viés, MAE 1,74 mm/dia; POWER −48,6% (só comparação). Série em `referencias/clima_inmet/A026/`, IMERG da célula em `referencias/clima/mineiros_go/`. Sem POWER guardado, a validação mostra só o IMERG e avisa.
+- Testes: 469 backend + 168 frontend.
