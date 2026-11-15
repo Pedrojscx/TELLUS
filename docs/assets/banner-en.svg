@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="TELLUS: second-crop decisions with NASA data">
+<title>TELLUS</title>
+<defs>
+<clipPath id="c"><rect width="1280" height="400" rx="48" ry="48"/></clipPath>
+<linearGradient id="bg" gradientUnits="userSpaceOnUse" x1="200" y1="-200" x2="1080" y2="600"><stop offset="0" stop-color="#2f6b2f"/><stop offset=".55" stop-color="#1f4a1f"/><stop offset="1" stop-color="#112b12"/></linearGradient>
+<radialGradient id="glow" cx="330" cy="200" r="420" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4f8f3f" stop-opacity=".55"/><stop offset="1" stop-color="#4f8f3f" stop-opacity="0"/></radialGradient>
+<radialGradient id="sol" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#f3d27a"/><stop offset="1" stop-color="#e0b84a"/></radialGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#06150a" flood-opacity=".5"/></filter>
+<clipPath id="ic"><rect width="240" height="240" rx="44"/></clipPath>
+</defs>
+<g clip-path="url(#c)">
+<rect width="1280" height="400" fill="url(#bg)"/>
+<rect width="1280" height="400" fill="url(#glow)"/>
+<g opacity=".08" stroke="#fffdf7" stroke-width="1.5" fill="none">
+<path d="M560 330c180-40 520-40 720 10M560 360c180-40 520-40 720 10M560 300c180-40 520-40 720 10"/>
+</g>
+<g filter="url(#sh)" transform="translate(140 80)">
+<g clip-path="url(#ic)">
+<rect width="240" height="240" fill="#2f6b2f"/>
+<rect width="240" height="240" fill="#234f23" opacity=".35"/>
+<path d="M30 168c40-24 140-24 180 0M30 200c40-24 140-24 180 0M30 136c40-24 140-24 180 0" fill="none" stroke="#fffdf7" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="172" cy="64" rx="58" ry="20" fill="none" stroke="#e0b84a" stroke-width="2.5" opacity=".55" transform="rotate(-18 172 64)"/>
+<circle cx="172" cy="64" r="19" fill="url(#sol)"/>
+</g>
+<rect x="1" y="1" width="238" height="238" rx="43" fill="none" stroke="#e0b84a" stroke-opacity=".6" stroke-width="2"/>
+</g>
+<text x="450" y="188" font-family="Georgia, 'DejaVu Serif', 'Times New Roman', serif" font-size="96" letter-spacing="8" fill="#fffdf7">TELLUS</text>
+<text x="454" y="238" font-family="Georgia, 'DejaVu Serif', 'Times New Roman', serif" font-size="32" font-style="italic" fill="#e8dfc8">Second-crop decisions with NASA data</text>
+<line x1="454" y1="268" x2="1120" y2="268" stroke="#e0b84a" stroke-opacity=".55" stroke-width="1.5"/>
+<text x="454" y="302" font-family="'DejaVu Sans', Verdana, Arial, sans-serif" font-size="17" letter-spacing="3.2" fill="#e0b84a">NASA SPACE APPS 2026 · PYTHON · FASTAPI · ASTRO</text>
+</g>
+<rect x="14" y="14" width="1252" height="372" rx="36" ry="36" fill="none" stroke="#e0b84a" stroke-opacity=".7" stroke-width="1.5"/>
+</svg>

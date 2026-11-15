@@ -4,6 +4,8 @@
 
 **Apoio à decisão da segunda safra com dados da NASA e fontes oficiais.**
 
+**Português** · [English](README.en.md)
+
 <img src="https://img.shields.io/badge/Python-3.12%2B-3776ab?style=flat-square&logo=python&logoColor=white" alt="Python 3.12+">
 <img src="https://img.shields.io/badge/FastAPI-0.163%2B-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI 0.163+">
 <img src="https://img.shields.io/badge/Astro-7-bc52ee?style=flat-square&logo=astro&logoColor=white" alt="Astro 7">
@@ -369,6 +371,7 @@ TELLUS/
 │   └── PLANO.md
 ├── data/                        # dados brutos fora do Git, só a procedência
 ├── REGISTRO.md                  # diário de decisões, evidências e bloqueios
+├── README.en.md                 # este README em inglês
 └── LICENSE
 ```
 
@@ -381,6 +384,10 @@ TELLUS/
   confirmada, o seletor grava o ponto padrão do município como lavoura, e o cálculo pode rodar sobre um local que o
   produtor não escolheu. A tela avisa "ponto do município (sem talhão)", mas o correto é não gravar nada até ele
   localizar a área, ou mostrar o padrão só como sugestão.
+- **Versão em inglês com lacunas.** A linha da área usada no cálculo (que veio no `97cdc1c`), o botão "Usar a lavoura
+  confirmada", alguns cabeçalhos de tabela e trechos das descrições de fonte continuam em português, e numa delas a
+  troca de palavras deixa "portaria do corn". A correção é levar esses textos ao catálogo de i18n e incluí-los no teste
+  e2e de idioma.
 - **Sem teste com produtores reais.** O teste de usabilidade seguiu o roteiro da equipe com um agente que age como
   pessoa; o critério SC-001 da spec 012 pede cinco participantes. Próximo passo: sessões com produtores ou agrônomos de
   Rio Verde.
