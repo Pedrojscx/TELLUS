@@ -112,7 +112,7 @@ export const TEXTO_ESTADO_GERAL: Record<RespostaContrato["estado_geral"], { text
   final: { texto: "Resultado completo.", tipo: "fonte" },
   final_com_cache: { texto: "Resultado completo, mas parte dos dados veio de cópia guardada. Veja as datas abaixo.", tipo: "aviso" },
   incompleto: { texto: "Resultado PARCIAL: algumas partes não puderam ser calculadas. Não é o resultado final; veja o que faltou.", tipo: "aviso" },
-  erro: { texto: "Não foi possível calcular o resultado. Veja os erros e o que fazer.", tipo: "erro" },
+  erro: { texto: "Resultado PARCIAL com erro: uma parte obrigatória não pôde ser calculada. Não é o resultado final; veja os erros e o que fazer.", tipo: "erro" },
 };
 
 /** Erro acionável: o que houve, de onde veio, se há cópia guardada (e de quando) e o que fazer. */
