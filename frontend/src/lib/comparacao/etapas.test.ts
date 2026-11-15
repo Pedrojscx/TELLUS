@@ -149,3 +149,40 @@ describe("simular (tela de exemplo)", () => {
     expect(simular("degradado", 4)).toEqual(simular("degradado", 4));
   });
 });
+
+// ---------------------------------------------------------------- resposta real (#103)
+import resposta from "../../../../specs/011-contrato-api/contracts/exemplos/resposta_rio_verde.json";
+import type { RespostaContrato } from "./contrato";
+import { TEXTO_ESTADO_GERAL, etapasDaResposta, etapasEmAndamento, textoErro } from "./etapas";
+
+const real = resposta as unknown as RespostaContrato;
+
+describe("#103: etapas da resposta real", () => {
+  it("carregamento informa a etapa atual e não é final", () => {
+    const et = etapasEmAndamento("calculando");
+    expect(etapaAtual(et)?.id).toBe("calculando");
+    expect(podeMostrarComoFinal(et)).toBe(false);
+  });
+  it("fonte com cache mostra a data; cada fonte aparece uma vez", () => {
+    const fontes = etapasDaResposta(real).filter((e) => e.id.startsWith("fonte:"));
+    expect(fontes.length).toBe(new Set(real.fontes!.map((f) => f.fonte)).size);
+    expect(fontes.every((f) => f.estado === "cache" && f.detalhe?.includes("2026-11-14"))).toBe(true);
+  });
+  it("seção indisponível aparece como indisponível com motivo; resposta incompleta não é final", () => {
+    const brq = etapasDaResposta(real).find((e) => e.id === "braquiaria_cobertura:economia")!;
+    expect(brq.estado).toBe("falha");
+    expect(real.final).toBe(false);
+    expect(TEXTO_ESTADO_GERAL[real.estado_geral].texto).toMatch(/PARCIAL/);
+  });
+  it("falha sem cache e sucesso", () => {
+    const falha = { ...real, fontes: [{ fonte: "NASA POWER", estado: "falha" as const, obtido_em: null, secao: "risco_hidrico" }] };
+    expect(etapasDaResposta(falha)[0]).toMatchObject({ estado: "falha", detalhe: "fonte fora do ar, sem cópia guardada" });
+    const ok = { ...real, fontes: [{ fonte: "NASA POWER", estado: "ok" as const, obtido_em: "2026-11-15", secao: "risco_hidrico" }] };
+    expect(etapasDaResposta(ok)[0]).toMatchObject({ estado: "ok" });
+  });
+  it("erro acionável traz origem, cópia guardada e o que fazer", () => {
+    expect(textoErro({ codigo: "x", mensagem: "Chuva indisponível.", origem: "NASA IMERG", cache_obtido_em: "2026-11-14", acao: "Tente mais tarde." }))
+      .toBe("Chuva indisponível. Origem: NASA IMERG. Usando cópia guardada de 2026-11-14. O que fazer: Tente mais tarde.");
+    expect(textoErro({ codigo: "x", mensagem: "Falhou.", origem: "SICAR", cache_obtido_em: null, acao: null })).toContain("Sem cópia guardada");
+  });
+});

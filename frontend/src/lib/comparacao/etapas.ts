@@ -1,7 +1,10 @@
 // Indicador de carga por etapas (#103). Puro.
 // Regra: o resultado só é "final" quando TODAS as etapas obrigatórias terminaram (ok ou com
 // cache). Qualquer etapa pendente, rodando ou com falha impede mostrar o resultado como final.
-// Os nomes das etapas são provisórios; a lista real virá do contrato da 011.
+// A lista real vem da resposta do contrato 1.1.0 (etapasDaResposta); a provisória fica para a tela de exemplo.
+
+import { NOME_CULTURA, type RespostaContrato } from "./contrato";
+import type { ErroFonte } from "./contrato-provisorio";
 
 export type EstadoEtapa = "pendente" | "rodando" | "ok" | "cache" | "falha";
 
@@ -59,4 +62,61 @@ export function simular(cenario: "sucesso" | "degradado" | "falha", passo: numbe
     if (cenario === "falha" && i > 2 && i <= passo) estado = "pendente";
     return { ...e, estado };
   });
+}
+
+// ---------------------------------------------------------------- resposta real (contrato 1.1.0)
+
+/** Etapas enquanto o pedido está no servidor: uma chamada só, então a etapa atual é "cálculo no servidor". */
+export function etapasEmAndamento(fase: "enviando" | "calculando" | "montando"): Etapa[] {
+  const ordem = ["enviando", "calculando", "montando"] as const;
+  const i = ordem.indexOf(fase);
+  return [
+    { id: "enviando", rotulo: "Enviando a lavoura e as premissas", obrigatoria: true },
+    { id: "calculando", rotulo: "Cálculo no servidor (clima NASA, ZARC, solo, custo e preço)", obrigatoria: true },
+    { id: "montando", rotulo: "Montando o resultado", obrigatoria: true },
+  ].map((e, k) => ({ ...e, estado: k < i ? "ok" : k === i ? "rodando" : "pendente" }));
+}
+
+const estadoSecao = (s?: { estado: string }): EstadoEtapa => (!s ? "pendente" : s.estado === "disponivel" ? "ok" : "falha");
+
+/** O que cada parte da resposta real trouxe: fonte por fonte (com data do cache) e seção por seção. */
+export function etapasDaResposta(r: RespostaContrato): Etapa[] {
+  const etapas: Etapa[] = [];
+  const vistas = new Set<string>();
+  for (const f of r.fontes ?? []) {
+    if (vistas.has(f.fonte)) continue;
+    vistas.add(f.fonte);
+    const estado: EstadoEtapa = f.estado === "ok" ? "ok" : f.estado;
+    const detalhe = f.estado === "cache" ? `cópia guardada de ${f.obtido_em ?? "data desconhecida"}` : f.estado === "falha" ? "fonte fora do ar, sem cópia guardada" : undefined;
+    etapas.push({ id: `fonte:${f.fonte}`, rotulo: f.fonte, obrigatoria: true, estado, detalhe });
+  }
+  for (const c of r.culturas ?? []) {
+    const nome = NOME_CULTURA[c.cultura] ?? c.cultura;
+    for (const [k, rot] of [["risco_hidrico", "risco hídrico"], ["economia", "margem"]] as const) {
+      const s = c[k];
+      if (!s) continue;
+      etapas.push({ id: `${c.cultura}:${k}`, rotulo: `${nome}: ${rot}`, obrigatoria: s.obrigatoria ?? true, estado: estadoSecao(s), detalhe: s.erro?.mensagem });
+    }
+  }
+  etapas.push({ id: "recomendacao", rotulo: "Recomendação (ordem das alternativas)", obrigatoria: true, estado: estadoSecao(r.recomendacao), detalhe: r.recomendacao.erro?.mensagem });
+  for (const k of ["vegetacao", "umidade"] as const) {
+    const c = r.contextos[k];
+    if (c.estado === "nao_solicitado") continue;
+    etapas.push({ id: k, rotulo: k === "vegetacao" ? "Vegetação (NDVI MODIS)" : "Umidade do solo (SMAP)", obrigatoria: false, estado: estadoSecao(c), detalhe: c.erro?.mensagem });
+  }
+  return etapas;
+}
+
+/** O backend decide se é final (estado_geral); a tela só repete, sem promover parcial a final. */
+export const TEXTO_ESTADO_GERAL: Record<RespostaContrato["estado_geral"], { texto: string; tipo: "fonte" | "aviso" | "erro" }> = {
+  final: { texto: "Resultado completo.", tipo: "fonte" },
+  final_com_cache: { texto: "Resultado completo, mas parte dos dados veio de cópia guardada. Veja as datas abaixo.", tipo: "aviso" },
+  incompleto: { texto: "Resultado PARCIAL: algumas partes não puderam ser calculadas. Não é o resultado final; veja o que faltou.", tipo: "aviso" },
+  erro: { texto: "Não foi possível calcular o resultado. Veja os erros e o que fazer.", tipo: "erro" },
+};
+
+/** Erro acionável: o que houve, de onde veio, se há cópia guardada (e de quando) e o que fazer. */
+export function textoErro(e: ErroFonte): string {
+  const cache = e.cache_obtido_em ? `usando cópia guardada de ${e.cache_obtido_em}` : "sem cópia guardada";
+  return `${e.mensagem} Origem: ${e.origem}. ${cache[0].toUpperCase()}${cache.slice(1)}.${e.acao ? ` O que fazer: ${e.acao}` : ""}`;
 }

@@ -83,13 +83,14 @@ interface AlternativaContrato {
 }
 interface Secao { estado: string; conteudo: any; proveniencia: ProvContrato[]; avisos: AvisoContrato[]; erro: ErroContrato | null }
 export interface RespostaContrato {
-  versao_contrato: string; estado_geral: string; final: boolean;
+  versao_contrato: string; estado_geral: "final" | "final_com_cache" | "incompleto" | "erro"; final: boolean;
   recomendacao: Secao;
   contextos: Record<"vegetacao" | "umidade", { estado: string; conteudo: any; avisos: AvisoContrato[]; erro: ErroContrato | null }>;
   avisos: AvisoContrato[]; erros: ErroContrato[]; hipoteses: string[];
   premissas_editadas?: { modulo: string; id: string; valor_novo: number; unidade: string; cultura: string | null;
                          valor_padrao: number | null; origem_informada?: string | null; data_informada?: string | null }[];
   fontes?: { fonte: string; estado: "ok" | "cache" | "falha"; obtido_em: string | null; secao: string }[];
+  culturas?: ({ cultura: string } & Partial<Record<"risco_hidrico" | "economia", { estado: string; obrigatoria?: boolean; erro: ErroContrato | null }>>)[];
 }
 
 const num = (v: number) => v.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
