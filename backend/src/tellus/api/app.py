@@ -21,6 +21,8 @@ app = FastAPI(title="TELLUS", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:4321", "http://127.0.0.1:4321"],
+    # D-010: celular na mesma rede Wi-Fi abre o site pelo IP do computador (só rede local, sem deploy)
+    allow_origin_regex=r"http://(192\.168|10|172\.(1[6-9]|2\d|3[01]))(\.\d{1,3}){2,3}:4321",
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )

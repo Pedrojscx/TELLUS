@@ -1,6 +1,9 @@
 // Cliente do contrato da spec 001 (specs/001-localizacao/contracts/localizacao.openapi.yaml).
 
-export const API_URL: string = import.meta.env.PUBLIC_API_URL ?? "http://localhost:8000";
+// Sem PUBLIC_API_URL, usa o mesmo computador que serviu a página (porta 8000): funciona em localhost e no
+// celular aberto pelo IP do computador na rede local (D-010).
+export const API_URL: string = import.meta.env.PUBLIC_API_URL ??
+  (typeof location !== "undefined" && location.hostname ? `${location.protocol}//${location.hostname}:8000` : "http://localhost:8000");
 
 export interface MunicipioResumo {
   codigo_ibge: string;

@@ -45,4 +45,4 @@ Como produtor, quero informar dados da lavoura e entender a recomendação com s
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Quais requisitos de acesso e dispositivos são obrigatórios no lançamento inicial?]
+- Acesso e dispositivos (D-010, #72): navegador de computador e de celular, sem login, servidor local (sem deploy); layout responsivo.

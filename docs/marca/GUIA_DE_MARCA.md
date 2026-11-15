@@ -11,8 +11,8 @@ faz frequência histórica parecer previsão (constituição: rastreabilidade e 
 - **TELLUS**, em maiúsculas na marca, e "TELLUS" ou "Tellus" no texto corrido.
 - Por extenso: *Terrestrial Environmental Learning & Land Utilization System*.
 - Linha de apoio: "Milho, sorgo ou cobertura depois da soja: risco e margem com dados NASA e fontes oficiais."
-- O nome não foi pesquisado em base de marcas (INPI). Para uso além do hackathon, fazer essa busca
-  antes.
+- O nome não foi pesquisado em base de marcas (INPI). A equipe dispensou a busca porque é um projeto
+  de hackathon; fazê-la antes de qualquer uso além disso.
 
 ## 2. Ícone
 
@@ -97,9 +97,8 @@ Regras:
 **Elementos de terceiros incorporados à identidade: nenhum.** Nenhum elemento com licença indefinida
 entrou.
 
-**Pendência humana:** o repositório não tem arquivo `LICENSE`. "Da equipe" significa que os
-direitos são dos autores até a equipe escolher uma licença (ex.: MIT para o código e CC BY 4.0
-para a marca e os textos).
+**Licença:** o repositório inteiro (código, ícone e textos) está sob a licença MIT, no arquivo `LICENSE`
+da raiz (decisão da equipe, 15/11).
 
 ## 8. Aplicação nas telas (#59, #107)
 

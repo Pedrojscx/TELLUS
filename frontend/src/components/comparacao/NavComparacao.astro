@@ -7,11 +7,11 @@ const passos = [
 ];
 ---
 <nav aria-label="Etapas da comparação" class="mx-auto max-w-5xl overflow-x-auto px-4">
-  <ol class="flex gap-1 py-2 text-sm whitespace-nowrap">
+  <ol class="flex flex-wrap gap-1 py-2 text-sm">
     {passos.map(([id, rotulo]) => (
       <li>
         <a href={`/comparacao/${id}`} aria-current={id === atual ? "page" : undefined}
-          class:list={["block rounded-md px-3 py-1.5", id === atual ? "bg-emerald-700 font-semibold text-white" : "text-stone-700 hover:bg-stone-200"]}>{rotulo}</a>
+          class:list={["block whitespace-nowrap rounded-md px-3 py-1.5", id === atual ? "bg-emerald-700 font-semibold text-white" : "text-stone-700 hover:bg-stone-200"]}>{rotulo}</a>
       </li>
     ))}
   </ol>

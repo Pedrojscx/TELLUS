@@ -18,6 +18,7 @@ RAIZ = Path(__file__).resolve().parents[4]
 DIR_CACHE = Path(os.environ.get("TELLUS_CACHE_CLIMA", RAIZ / "data" / "raw" / "clima"))
 DIR_REF = RAIZ / "referencias" / "clima"
 INMET_A025 = RAIZ / "data" / "processed" / "pesquisa_chuva" / "daily_all_sources.csv"
+DIR_REF_INMET = RAIZ / "referencias" / "clima_inmet"  # outras estações (scripts/preparar_inmet_validacao.py)
 PASSO_AMOSTRA = 0.005  # graus; amostragem da fração de área por célula (regras.pesos_celulas)
 A025 = {"codigo": "A025", "nome": "RIO VERDE-GO", "lat": -17.78527777, "lon": -50.965}
 
@@ -351,10 +352,13 @@ def validacao(lat, lon, recorte: str = "jan-jun", dir_cache: Path | None = None)
     est = next(r for r in loc["referencias"] if r["tipo"] == "estacao_inmet")
     base = {"estacao": {"codigo": est["identificador"], "nome": est["nome"], "distancia_km": est["distancia_km"]},
             "recorte": recorte}
+    if est["identificador"] != A025["codigo"] and (DIR_REF_INMET / est["identificador"] / "meta.json").exists():
+        return base | _validacao_estacao(est["identificador"], recorte, dir_cache or DIR_CACHE)
     if est["identificador"] != A025["codigo"] or not INMET_A025.exists():
         return base | {"disponivel": False,
-                       "motivo": "Série diária validada só existe para a estação A025 (Rio Verde-GO). A API de dados do "
-                                 "INMET não está aberta; para outras estações é preciso preparar os arquivos anuais do portal."}
+                       "motivo": "Não há série diária preparada para esta estação (há para A025 Rio Verde-GO e as de "
+                                 "referencias/clima_inmet/). A API de dados do INMET não está aberta; prepare os arquivos "
+                                 "anuais do portal com scripts/preparar_inmet_validacao.py."}
     dir_cache = dir_cache or DIR_CACHE
     # chuva sempre no ponto da estação (célula da estação), como na pesquisa
     s = serie(A025["lat"], A025["lon"], dir_cache=dir_cache)
@@ -396,4 +400,64 @@ def validacao(lat, lon, recorte: str = "jan-jun", dir_cache: Path | None = None)
             "metodo": "docs/pesquisa_chuva/RELATORIO.md",
         },
         "nota": "A chuva do POWER aparece só nesta comparação; ela nunca entra no cálculo.",
+    }
+
+
+def _validacao_estacao(codigo: str, recorte: str, dir_cache: Path) -> dict:
+    """Validação com a série diária preparada dos arquivos anuais do INMET (fora da A025).
+
+    Chuva IMERG da célula da estação (cache ou referência versionada). A chuva do POWER entra na comparação
+    só se o POWER da célula estiver disponível; senão a métrica fica ausente, com motivo.
+    """
+    pasta = DIR_REF_INMET / codigo
+    meta = json.loads((pasta / "meta.json").read_text(encoding="utf-8"))
+    if hashlib.sha256((pasta / "serie_diaria.csv").read_bytes()).hexdigest() != meta.get("sha256_serie"):
+        return {"disponivel": False, "motivo": f"A série preparada da estação {codigo} foi alterada (sha256 não confere)."}
+    e = meta["estacao"]
+    cel = imerg.CelulaImerg.do_ponto(e["lat"], e["lon"])
+    lido = _carregar_imerg(cel, dir_cache)
+    if lido is None:
+        return {"disponivel": False, "motivo": f"Sem chuva IMERG guardada para a célula {cel.chave} da estação {codigo}."}
+    linhas_im = lido[0]
+    pw = _carregar_power(e["lat"], e["lon"], dir_cache)
+    ref, im, pwc, datas = [], [], [], []
+    excl = {"sem_par_inmet": 0, "imerg_ausente": 0}
+    with (pasta / "serie_diaria.csv").open(encoding="utf-8", newline="") as f:
+        for l in csv.DictReader(f):
+            if recorte == "jan-jun" and int(l["data"][5:7]) > 6:
+                continue
+            if l["chuva_mm"] == "":
+                excl["sem_par_inmet"] += 1
+                continue
+            li = linhas_im.get(l["data"])
+            if not li or li["situacao"] != "ok" or li["chuva_mm"] == "":
+                excl["imerg_ausente"] += 1
+                continue
+            datas.append(l["data"])
+            ref.append(float(l["chuva_mm"]))
+            im.append(float(li["chuva_mm"]))
+            vp = pw[0]["dias"].get(l["data"], {}).get("PRECTOTCORR") if pw else None
+            pwc.append(vp)
+    if not ref:
+        return {"disponivel": False, "motivo": "Nenhum dia pareado entre a estação e a chuva de satélite guardada."}
+    metricas = {"imerg": regras.metricas(ref, im)}
+    if pw and all(v is not None for v in pwc):
+        metricas["power_chuva"] = regras.metricas(ref, pwc)
+    return {
+        "disponivel": True,
+        "periodo": {"inicio": min(datas), "fim": max(datas), "anos": sorted({d[:4] for d in datas})},
+        "dias_pareados": len(ref),
+        "dias_excluidos": excl,
+        "metricas": metricas,
+        "celula_imerg": cel.chave,
+        "fonte_estacao": {
+            "fonte": f"INMET, estação automática {codigo} ({e['nome']}-{e['uf']}), soma diária de 24 horas válidas",
+            "arquivo": f"referencias/clima_inmet/{codigo}/serie_diaria.csv",
+            "urls": [a["url"] for a in meta["arquivos"]],
+            "obtido_em": meta["obtido_em"],
+            "metodo": meta["metodo"],
+        },
+        "avisos": [] if "power_chuva" in metricas else [
+            {"codigo": "power_sem_cache", "mensagem": "Sem POWER guardado para a célula da estação: a comparação mostra só o IMERG."}],
+        "nota": "A série da estação só confere a chuva de satélite; ela nunca entra no cálculo. A chuva do POWER também não.",
     }

@@ -1,0 +1,26 @@
+{
+ "local": {
+  "nome": "Célula da estação INMET A026 (Mineiros-GO), para a validação local",
+  "ponto_pedido": [
+   -17.45472222,
+   -52.60111111
+  ]
+ },
+ "imerg": {
+  "celula": "-17.45_-52.65",
+  "centro": [
+   -17.45,
+   -52.65
+  ],
+  "versao": "GPM_3IMERGDF V07B",
+  "obtido_em": "2026-11-15",
+  "periodo_ok": [
+   "2024-01-01",
+   "2025-09-30"
+  ],
+  "dias_ok": 639,
+  "sha256_cache": "8754230264e20fb1ddb56367de7d7597eb4e470decb8b021731bd1f47ab0da69",
+  "sha256_serie": "0f08a1e1e63eac162e041f79458f279b1fcea8f558c230de14e2b2b575d9b84c"
+ },
+ "gerado_em": "2026-11-15"
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import resposta from "../../../../specs/011-contrato-api/contracts/exemplos/resposta_rio_verde.json";
-import { montarPedido, paraResultado, textoAlteracao, type RespostaContrato } from "./contrato";
+import { montarPedido, paraResultado, produtos, textoAlteracao, type RespostaContrato } from "./contrato";
 import { premissasParaPedido } from "./contrato-provisorio";
 import type { EntradasComparacao, Premissa } from "./contrato-provisorio";
 import type { LavouraConfirmada } from "./lavoura";
@@ -92,5 +92,20 @@ describe("#102: premissas do editor chegam ao backend", () => {
   it("resultado mostra padrão e edição lado a lado", () => {
     expect(textoAlteracao({ modulo: "economia", id: "preco_r_saca", valor_novo: 70, unidade: "R$/saca de 60 kg", cultura: "milho_2a_safra", valor_padrao: 67.34 }))
       .toBe("preco_r_saca (Milho 2ª safra): padrão 67,34 → 70 R$/saca de 60 kg (editado pelo produtor)");
+  });
+});
+
+describe("#51: vegetação só como contexto histórico", () => {
+  it("cada produto aparece com a situação; HLS indisponível não bloqueia e diz o motivo", () => {
+    const t = produtos({ fontes: [
+      { produto: "MOD13Q1", estado: "disponivel", serie: [{}, {}] },
+      { produto: "HLS", estado: "indisponivel", serie: [], motivo: { mensagem: "Sem credencial Earthdata." } },
+    ] });
+    expect(t).toEqual(["MOD13Q1: disponível (2 composições).", "HLS: indisponível (Sem credencial Earthdata.)."]);
+  });
+  it("nenhum texto do resultado fala em produtividade derivada da vegetação", () => {
+    const res = paraResultado(r, "comparar_alternativas");
+    const veg = res.contextos_opcionais.find((c) => c.id === "vegetacao")!;
+    expect(`${veg.titulo} ${veg.resumo}`.toLowerCase()).not.toMatch(/produtividade|previs/);
   });
 });

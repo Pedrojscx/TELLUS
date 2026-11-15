@@ -1,0 +1,26 @@
+{
+ "local": {
+  "nome": "Célula vizinha ao sul de Rio Verde-GO (área que cruza duas células)",
+  "ponto_pedido": [
+   -17.85,
+   -50.95
+  ]
+ },
+ "imerg": {
+  "celula": "-17.85_-50.95",
+  "centro": [
+   -17.85,
+   -50.95
+  ],
+  "versao": "GPM_3IMERGDF V07B",
+  "obtido_em": "2026-11-15",
+  "periodo_ok": [
+   "2025-01-01",
+   "2025-09-30"
+  ],
+  "dias_ok": 273,
+  "sha256_cache": "d0d4b706303eb153a4dbe72569bb22b70574dbf5714da4e3149475b0b2cede3d",
+  "sha256_serie": "fcca266f955e6d7dfb674ce8a52c2e9d47d5042ec757f378ecab941c86889c54"
+ },
+ "gerado_em": "2026-11-15"
+}
