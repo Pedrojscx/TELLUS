@@ -1,0 +1,7 @@
+{
+  "url": "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo%2Bjson&qualidade=minima",
+  "obtido_em": "2026-11-14",
+  "status_http": 200,
+  "bytes": 12699,
+  "sha256": "e17588442e53f5f59afad8be290efe0ae9181dc856bb83a36745460112eb912c"
+}

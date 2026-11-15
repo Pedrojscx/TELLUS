@@ -1,0 +1,184 @@
+---
+// Seletor de local (spec 001, US1 e US3): busca de município, coordenadas e mapa.
+import fs from "node:fs";
+import path from "node:path";
+
+// Contorno do Brasil embutido na página: funciona sem internet (FR-014).
+const brasil = fs.readFileSync(
+  path.resolve(process.cwd(), "../referencias/localizacao/brasil.geojson"),
+  "utf-8",
+);
+---
+
+<section aria-labelledby="titulo-local" class="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <h2 id="titulo-local" class="text-lg font-semibold">Onde fica a lavoura?</h2>
+      <p class="text-sm text-stone-600">Busque o município, digite as coordenadas ou clique no mapa.</p>
+    </div>
+    <div id="local-atual" class="text-right" aria-live="polite">
+      <p class="text-sm text-stone-500">Carregando local…</p>
+    </div>
+  </div>
+
+  <div class="mt-4 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+    <div class="space-y-5">
+      <div class="relative">
+        <label for="busca" class="mb-1 block text-sm font-medium">Município</label>
+        <input
+          id="busca"
+          type="search"
+          autocomplete="off"
+          placeholder="ex.: Rio Verde"
+          class="w-full rounded-md border border-stone-300 px-3 py-2 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/30 focus:outline-none"
+          aria-controls="sugestoes"
+        />
+        <ul
+          id="sugestoes"
+          role="listbox"
+          class="absolute z-[1000] mt-1 hidden max-h-64 w-full overflow-auto rounded-md border border-stone-200 bg-white shadow-lg"
+        ></ul>
+      </div>
+
+      <form id="form-coord" class="space-y-2" novalidate>
+        <span class="block text-sm font-medium">Coordenadas (graus decimais)</span>
+        <div class="flex flex-wrap gap-2">
+          <input id="lat" inputmode="decimal" placeholder="latitude, ex.: -17.785" aria-label="Latitude"
+            class="min-w-0 flex-1 rounded-md border border-stone-300 px-3 py-2" />
+          <input id="lon" inputmode="decimal" placeholder="longitude, ex.: -50.965" aria-label="Longitude"
+            class="min-w-0 flex-1 rounded-md border border-stone-300 px-3 py-2" />
+          <button type="submit" class="rounded-md bg-emerald-700 px-4 py-2 font-medium text-white hover:bg-emerald-800">
+            Usar
+          </button>
+        </div>
+      </form>
+
+      <p id="erro-local" role="alert" class="hidden rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"></p>
+    </div>
+
+    <div>
+      <div id="mapa" class="h-80 w-full rounded-lg border border-stone-200 bg-stone-100" aria-label="Mapa do Brasil"></div>
+      <p id="aviso-mapa" class="mt-1 hidden text-xs text-stone-500">Mapa sem fundo (sem internet): o contorno do Brasil continua clicável.</p>
+    </div>
+  </div>
+</section>
+
+<script type="application/json" id="brasil-geojson" set:html={brasil} />
+
+<script>
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+  import { api, FalhaApi, type ResultadoLocalizacao } from "../lib/api";
+  import { esc, renderReferencias } from "../lib/referencias";
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const busca = $<HTMLInputElement>("busca");
+  const sugestoes = $<HTMLUListElement>("sugestoes");
+  const erro = $<HTMLParagraphElement>("erro-local");
+  const localAtual = $<HTMLDivElement>("local-atual");
+  const refs = document.getElementById("referencias");
+
+  // --- mapa ---
+  const mapa = L.map("mapa", { zoomControl: true, attributionControl: true }).setView([-14.5, -52], 4);
+  const fundo = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "© OpenStreetMap",
+  }).addTo(mapa);
+  let falhasTile = 0;
+  fundo.on("tileerror", () => {
+    if (++falhasTile >= 3) $("aviso-mapa").classList.remove("hidden");
+  });
+  const brasil = JSON.parse($("brasil-geojson").textContent || "{}");
+  L.geoJSON(brasil, { style: { color: "#047857", weight: 1.5, fillOpacity: 0.04 }, interactive: false }).addTo(mapa);
+  let marcador: L.CircleMarker | null = null;
+
+  // --- estado: só troca o local quando a resposta vem sem erro (US3) ---
+  function mostrarErro(msg: string | null) {
+    erro.textContent = msg ?? "";
+    erro.classList.toggle("hidden", !msg);
+  }
+
+  function aplicar(res: ResultadoLocalizacao) {
+    mostrarErro(null);
+    const { municipio, lat, lon } = res.local;
+    const selo = res.eh_demo
+      ? `<span class="ml-2 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">local da demonstração</span>`
+      : "";
+    localAtual.innerHTML = `
+      <p class="font-semibold">${esc(municipio.nome)}-${esc(municipio.uf)}${selo}</p>
+      <p class="text-sm tabular-nums text-stone-600">IBGE ${esc(municipio.codigo_ibge)} · ${lat.toFixed(4)}; ${lon.toFixed(4)}</p>`;
+    if (refs) refs.innerHTML = renderReferencias(res);
+    marcador?.remove();
+    marcador = L.circleMarker([lat, lon], { radius: 8, color: "#065f46", fillColor: "#10b981", fillOpacity: 0.9 }).addTo(mapa);
+    mapa.setView([lat, lon], Math.max(mapa.getZoom(), 7));
+  }
+
+  async function executar(acao: () => Promise<ResultadoLocalizacao>) {
+    try {
+      aplicar(await acao());
+    } catch (e) {
+      mostrarErro(e instanceof FalhaApi ? e.erro.mensagem : "Erro inesperado.");
+    }
+  }
+
+  // --- busca de município ---
+  let temporizador: number | undefined;
+  busca.addEventListener("input", () => {
+    clearTimeout(temporizador);
+    const texto = busca.value.trim();
+    if (texto.length < 2) return sugestoes.classList.add("hidden");
+    temporizador = window.setTimeout(async () => {
+      try {
+        const lista = await api.buscarMunicipios(texto);
+        sugestoes.innerHTML = lista.length
+          ? lista
+              .map(
+                (m) =>
+                  `<li role="option" tabindex="0" data-codigo="${esc(m.codigo_ibge)}" class="cursor-pointer px-3 py-2 hover:bg-emerald-50 focus:bg-emerald-50 focus:outline-none">${esc(m.nome)}-${esc(m.uf)}</li>`,
+              )
+              .join("")
+          : `<li class="px-3 py-2 text-sm text-stone-500">Nenhum município encontrado</li>`;
+        sugestoes.classList.remove("hidden");
+      } catch (e) {
+        mostrarErro(e instanceof FalhaApi ? e.erro.mensagem : "Erro na busca.");
+      }
+    }, 200);
+  });
+
+  function escolher(li: HTMLElement) {
+    const codigo = li.dataset.codigo;
+    if (!codigo) return;
+    busca.value = li.textContent ?? "";
+    sugestoes.classList.add("hidden");
+    executar(() => api.porMunicipio(codigo));
+  }
+  sugestoes.addEventListener("click", (e) => {
+    const li = (e.target as HTMLElement).closest("li");
+    if (li) escolher(li);
+  });
+  sugestoes.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") escolher(e.target as HTMLElement);
+  });
+  busca.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") (sugestoes.querySelector("li[data-codigo]") as HTMLElement | null)?.focus();
+  });
+  document.addEventListener("click", (e) => {
+    if (!(e.target as HTMLElement).closest("#sugestoes, #busca")) sugestoes.classList.add("hidden");
+  });
+
+  // --- coordenadas ---
+  $<HTMLFormElement>("form-coord").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const lat = $<HTMLInputElement>("lat").value.trim().replace(",", ".");
+    const lon = $<HTMLInputElement>("lon").value.trim().replace(",", ".");
+    executar(() => api.porPonto(lat, lon, "coordenadas"));
+  });
+
+  // --- clique no mapa ---
+  mapa.on("click", (e: L.LeafletMouseEvent) => {
+    executar(() => api.porPonto(e.latlng.lat.toFixed(5), e.latlng.lng.toFixed(5), "mapa"));
+  });
+
+  // --- local padrão ---
+  executar(() => api.padrao());
+</script>

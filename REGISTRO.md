@@ -109,3 +109,13 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Recomendação desta pesquisa atualiza a hipótese do plano: INMET como referência local com controle; IMERG Final como melhor candidato de grade para simular o histórico, com viés local e falhas visíveis; não adotar POWER corrigido automaticamente. Frequência histórica não é previsão.
 - Não há modelo agrícola executável ou parâmetros rastreáveis de solo/Kc/Ky/fases/inicialização neste estado do projeto. Não calculados déficit, produtividade, margem nem ranking milho/sorgo/cobertura. Faltam validação da estação e vizinhas, continuidade histórica, parâmetros agronômicos e preços locais. Não foi demonstrado se a fonte muda a escolha agrícola.
 - Verificações passaram: unidades, datas/horas únicas e calendário, ausências, contagens IMERG, somas pareadas, separação de ajuste/teste, checagem independente de quatro dias INMET e igualdade do recorte IMERG com o arquivo global. Gráficos revisados. Reprodução sem rede: executar `chuva_analise.py`, `chuva_comparar_imerg.py`, `chuva_verificar.py` e `chuva_relatorio.py` com o ambiente de `scripts/requirements-chuva.txt`.
+
+## Spec 001 — localização (14/11, 23h10, LK + Claude Code)
+- Constituição v1.0.0 e mapa das specs 001 a 012 em `docs/sdd/MAPA_SPECS.md`. Specs 002 a 007 escritas, cada uma na sua branch.
+- 001 implementada na branch `001-localizacao`: backend FastAPI em `backend/` (pacote `tellus`, uv), frontend Astro 7 + Tailwind 4 + Leaflet em `frontend/`, referências em `referencias/localizacao/` geradas por `scripts/preparar_localizacao.py`.
+- Fontes testadas: IBGE localidades (5.571 municípios) e malha mínima (5.570 polígonos; falta Boa Esperança do Norte-MT, 5101837, município novo); INMET `estacoes/T` (668 automáticas, 534 operantes); Conab soja, milho 2ª safra e sorgo (27 praças com planilha de 2025/26; sorgo só em 4: Barreiras-BA, Rio Verde-GO, Uberaba-MG, Pedro Afonso-TO).
+- A planilha de milho 2ª safra fica em `.../agricolas/milho/milho_2a_safra_serie_historica_2005-2026.xls`; o link da página termina em `/view` e devolve HTML.
+- Células: POWER = round(lat/0,5)·0,5 e round(lon/0,625)·0,625; IMERG = centro da célula de 0,1°. Ambas conferem com os centros do REGISTRO e da pesquisa de chuva.
+- 50 testes pytest passando: Rio Verde confere com o REGISTRO (A025 a 0 km, IMERG -17,75/-50,95, POWER -18/-51,25, praça Rio Verde com as 3 culturas), 10 capitais certas, recusas, determinismo, desempenho.
+- A malha mínima simplifica costa e ilhas: um ponto até 2 km fora do contorno usa o município mais próximo, com aviso.
+- Pendente: teste de tela manual do quickstart (passo 4) e cronômetro do SC-001.

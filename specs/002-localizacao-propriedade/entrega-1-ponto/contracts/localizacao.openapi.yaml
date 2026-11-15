@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  title: TELLUS — Localização (spec 001)
+  version: 0.1.0
+  description: >
+    Parte do contrato da API referente à localização. A spec 008 consolida o contrato completo.
+    Todas as respostas são determinísticas para o mesmo conjunto de referências (FR-013).
+paths:
+  /api/localizacao/padrao:
+    get:
+      summary: Local padrão da demonstração (Rio Verde-GO)
+      responses:
+        "200":
+          description: Resultado de localização de Rio Verde-GO
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ResultadoLocalizacao" }
+  /api/localizacao:
+    get:
+      summary: Resolve um ponto (coordenadas ou clique no mapa)
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number } }
+        - { name: lon, in: query, required: true, schema: { type: number } }
+        - name: meio
+          in: query
+          required: false
+          schema: { type: string, enum: [coordenadas, mapa], default: coordenadas }
+      responses:
+        "200":
+          description: Resultado de localização
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ResultadoLocalizacao" }
+        "422":
+          description: coordenada_invalida, fora_do_brasil ou fora_de_municipio
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Erro" }
+  /api/localizacao/municipio/{codigo_ibge}:
+    get:
+      summary: Resolve um município escolhido na busca (ponto = centroide)
+      parameters:
+        - name: codigo_ibge
+          in: path
+          required: true
+          schema: { type: string, pattern: "^[0-9]{7}$" }
+      responses:
+        "200":
+          description: Resultado de localização
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ResultadoLocalizacao" }
+        "404":
+          description: municipio_nao_encontrado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Erro" }
+  /api/municipios:
+    get:
+      summary: Busca de município por nome (sem acento, parcial)
+      parameters:
+        - { name: busca, in: query, required: true, schema: { type: string, minLength: 2 } }
+        - { name: limite, in: query, required: false, schema: { type: integer, default: 10, maximum: 50 } }
+      responses:
+        "200":
+          description: Lista ordenada (começa com o texto primeiro, depois contém o texto; empate em ordem alfabética)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [resultados]
+                properties:
+                  resultados:
+                    type: array
+                    items: { $ref: "#/components/schemas/MunicipioResumo" }
+components:
+  schemas:
+    MunicipioResumo:
+      type: object
+      required: [codigo_ibge, nome, uf]
+      properties:
+        codigo_ibge: { type: string, pattern: "^[0-9]{7}$" }
+        nome: { type: string }
+        uf: { type: string, minLength: 2, maxLength: 2 }
+    Ponto:
+      type: object
+      required: [lat, lon]
+      properties:
+        lat: { type: number }
+        lon: { type: number }
+    Procedencia:
+      type: object
+      required: [fonte, url, obtido_em, status]
+      properties:
+        fonte: { type: string }
+        url: { type: string }
+        obtido_em: { type: string, format: date }
+        status: { type: string, enum: [fonte, hipotese] }
+    Aviso:
+      type: object
+      required: [codigo, mensagem]
+      properties:
+        codigo:
+          type: string
+          enum: [estacao_distante, praca_outro_municipio, divisa_ambigua, referencia_inexistente,
+                 estacao_em_pane_ignorada, ilha_oceanica]
+        mensagem: { type: string }
+        referencia: { type: [string, "null"] }
+    Referencia:
+      type: object
+      required: [tipo, identificador, lat, lon, distancia_km, detalhes, procedencia, avisos]
+      properties:
+        tipo:
+          type: string
+          enum: [celula_power, celula_imerg, estacao_inmet, praca_conab, municipio_zarc]
+        identificador: { type: string }
+        nome: { type: [string, "null"] }
+        lat: { type: number }
+        lon: { type: number }
+        distancia_km: { type: number }
+        detalhes: { type: object }
+        procedencia: { $ref: "#/components/schemas/Procedencia" }
+        avisos:
+          type: array
+          items: { $ref: "#/components/schemas/Aviso" }
+    LocalEscolhido:
+      type: object
+      required: [lat, lon, meio, municipio]
+      properties:
+        lat: { type: number }
+        lon: { type: number }
+        meio: { type: string, enum: [busca, coordenadas, mapa, padrao] }
+        municipio: { $ref: "#/components/schemas/MunicipioResumo" }
+        municipio_alternativo:
+          oneOf:
+            - { $ref: "#/components/schemas/MunicipioResumo" }
+            - { type: "null" }
+    ResultadoLocalizacao:
+      type: object
+      required: [local, referencias, avisos, versao_referencias, eh_demo]
+      properties:
+        local: { $ref: "#/components/schemas/LocalEscolhido" }
+        referencias:
+          type: array
+          minItems: 5
+          maxItems: 5
+          items: { $ref: "#/components/schemas/Referencia" }
+        avisos:
+          type: array
+          items: { $ref: "#/components/schemas/Aviso" }
+        versao_referencias: { type: string, format: date }
+        eh_demo: { type: boolean }
+    Erro:
+      type: object
+      required: [erro]
+      properties:
+        erro:
+          type: object
+          required: [codigo, mensagem]
+          properties:
+            codigo:
+              type: string
+              enum: [coordenada_invalida, fora_do_brasil, fora_de_municipio, municipio_nao_encontrado, parametro_invalido]
+            mensagem: { type: string }
+            campo: { type: [string, "null"] }

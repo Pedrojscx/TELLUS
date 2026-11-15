@@ -1,0 +1,14 @@
+{
+  "estacao_distante_km": {
+    "valor": 50,
+    "unidade": "km",
+    "status": "hipotese",
+    "motivo": "comparação de chuva grade × estação só faz sentido com a estação perto (spec 001)"
+  },
+  "divisa_km": {
+    "valor": 2,
+    "unidade": "km",
+    "status": "hipotese",
+    "motivo": "malha IBGE de qualidade mínima simplifica as divisas (research R2)"
+  }
+}
