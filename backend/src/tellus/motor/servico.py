@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime as dt
 import hashlib
 import json
+from functools import lru_cache
 from pathlib import Path
 
 from tellus.clima import servico as clima
@@ -68,7 +69,9 @@ def _cultura(params: dict, grupo: str | None, cultura: str) -> tuple[balanco.Cul
     return c, chave
 
 
+@lru_cache(maxsize=16)
 def _serie_com_eto(lat: float, lon: float) -> tuple[list[dict], dict]:
+    """Série com ETo; em cache por ponto (as referências e o cache de clima não mudam durante a execução)."""
     s = clima.serie(lat, lon)
     alt = s["proveniencia"]["power"]["localizacao"].get("altitude_m") or 0.0
     dias = []

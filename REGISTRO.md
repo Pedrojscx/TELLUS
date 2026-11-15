@@ -216,3 +216,10 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Todos os modos de área usam a validação, o resumo (área ha, municípios, `id_geometria` igual entre formatos) e a confirmação do CAR. Limites da D-009 do arquivo único.
 - Uma lavoura por arquivo. Erros nomeados: formato_nao_aceito, arquivo_invalido, projecao_nao_suportada, sem_geometria, varias_lavouras, geometria_invalida, vertices_excedidos, area_excedida e arquivo_grande (413). Nunca simplifica.
 - 419 testes passando.
+
+## Spec 008 recomendação (15/11, 03h20, LK + Claude Code)
+- `tellus.recomendacao`: `avaliar_cultura` (grupos do ZARC; decêndios da janela; `motor.simular` + `economia.margem` por decêndio), `ordenar` (critério público) e `recomendar` (cultura_escolhida | calculo_completo). O cálculo completo é a mesma avaliação juntada, então a paridade vale por construção (e é testada). `POST /api/recomendacao`.
+- D-006 confirmada: quartis da perda (conservador P75, central P50, favorável P25), editável.
+- Ordem: maior margem conservadora, depois menor risco histórico, depois menor risco ZARC, depois plantio mais cedo.
+- Exemplo em Rio Verde (argilosa, colheita em 20/01, sorgo a R$ 50/sc e braquiária a R$ 400/ha informados): 32 alternativas, 7 indisponíveis. A braquiária lidera pelo critério conservador (−400) contra o milho (−925 conservador, +224 central, +749 favorável).
+- 198 testes passando; o cálculo completo leva cerca de 1 s.

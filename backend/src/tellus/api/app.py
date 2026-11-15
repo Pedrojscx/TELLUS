@@ -7,12 +7,13 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from tellus.api import car, clima, contrato, culturas, economia, localizacao, motor, umidade, vegetacao, zarc
+from tellus.api import car, clima, contrato, culturas, economia, localizacao, motor, recomendacao, umidade, vegetacao, zarc
 from tellus.car.servico import ErroCar
 from tellus.zarc.servico import ErroZarc
 from tellus.culturas.servico import ErroPremissa
 from tellus.motor.servico import ErroMotor
 from tellus.economia.servico import ErroEconomia
+from tellus.recomendacao.servico import ErroRecomendacao
 from tellus.clima.servico import ErroClima
 from tellus.localizacao.servico import ErroLocalizacao
 
@@ -73,7 +74,13 @@ async def _erro_economia(_: Request, exc: ErroEconomia) -> JSONResponse:
     return _erro(exc.status, exc.codigo, exc.mensagem, exc.campo, "spec 007")
 
 
+@app.exception_handler(ErroRecomendacao)
+async def _erro_recomendacao(_: Request, exc: ErroRecomendacao) -> JSONResponse:
+    return _erro(exc.status, exc.codigo, exc.mensagem, exc.campo, "spec 008")
+
+
 app.include_router(localizacao.router)
+app.include_router(recomendacao.router)
 app.include_router(economia.router)
 app.include_router(motor.router)
 app.include_router(culturas.router)
