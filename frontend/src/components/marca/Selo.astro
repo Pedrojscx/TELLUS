@@ -1,0 +1,34 @@
+---
+// Selo de estado da identidade TELLUS (spec 013, #106): texto + ícone, nunca só cor.
+// Ícones desenhados pela equipe (SVG inline, sem biblioteca de terceiros).
+interface Props {
+  tipo: "fonte" | "hipotese" | "aviso" | "erro";
+  texto?: string; // complemento opcional, ex.: "IMERG Final V07B, 2001–2025"
+}
+const { tipo, texto } = Astro.props;
+const ROTULO = { fonte: "Fonte", hipotese: "Hipótese", aviso: "Aviso", erro: "Erro" } as const;
+---
+
+<span class={`tellus-selo tellus-selo--${tipo}`} role={tipo === "erro" ? "alert" : undefined}>
+  {tipo === "fonte" && (
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="8" cy="8" r="6.5" /><path d="M8 7.2v4.3M8 4.6v.4" stroke-linecap="round" />
+    </svg>
+  )}
+  {tipo === "hipotese" && (
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M8 1.8 14.4 13.6H1.6Z" stroke-linejoin="round" stroke-dasharray="2.2 1.6" />
+    </svg>
+  )}
+  {tipo === "aviso" && (
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M8 1.8 14.4 13.6H1.6Z" stroke-linejoin="round" /><path d="M8 6.2v3.6M8 11.6v.3" stroke-linecap="round" />
+    </svg>
+  )}
+  {tipo === "erro" && (
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="8" cy="8" r="6.5" /><path d="m5.6 5.6 4.8 4.8m0-4.8-4.8 4.8" stroke-linecap="round" />
+    </svg>
+  )}
+  <span>{ROTULO[tipo]}{texto ? `: ${texto}` : ""}</span>
+</span>

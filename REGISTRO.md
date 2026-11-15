@@ -240,3 +240,11 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Cotação informada (pedido do Pedro): `origem_informada` e `data_informada` nas premissas editadas, juntos. Chegam a `alteracoes` e `premissas.preco.informado` na 007 (o sorgo passa a `informado_pelo_produtor`), viram proveniência `informado_*` na seção da economia e na da 008, e entram nas hipóteses da alternativa. Implementado direto a partir dos tipos da `012-interface-web` (a branch de backend do recado não foi publicada).
 - Isolamento do SMAP mantido: o contrato não importa umidade nem vegetação. O `app.py` pluga os provedores de contexto (`contrato.PROVEDORES_CONTEXTO`).
 - 451 testes passando.
+
+## Spec 013 identidade visual, parte 1 (15/11, 04h20, LK + Claude Code)
+- D-011: o LK escolheu a paleta "Safra" e o tom técnico e direto, entre três paletas com contraste AA calculado.
+- `frontend/src/styles/marca.css` (tokens do Tailwind 4 e `.tellus-selo`), `frontend/src/components/marca/Selo.astro` (texto + ícone próprio, nunca só cor) e `docs/marca/GUIA_DE_MARCA.md` (uso, tom com palavras proibidas, inventário de licenças).
+- Contraste: 20 de 20 pares ≥ 4,5:1 (`scripts/verificar_contraste.py`, também em `backend/tests/marca`).
+- O favicon padrão do Astro (elemento de terceiros) foi trocado pelo ícone TELLUS da equipe.
+- Pendências humanas: arquivo LICENSE do repositório e busca de marca no INPI.
+- Falta aplicar nas telas (#59, #107), que depende da 012 do Pedro na `main`.

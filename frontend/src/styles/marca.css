@@ -1,0 +1,55 @@
+/*
+ * Identidade visual TELLUS (spec 013, D-011): paleta "Safra", tom técnico e direto.
+ * Guia completo: docs/marca/GUIA_DE_MARCA.md. Contraste verificado por scripts/verificar_contraste.py.
+ *
+ * Uso: importe depois do Tailwind (@import "tailwindcss"; @import "./marca.css";).
+ * Gera utilitários Tailwind 4 como bg-tellus-primaria, text-tellus-hipotese, border-tellus-erro.
+ * Regra: estado crítico (fonte, hipótese, aviso, erro) NUNCA só por cor — sempre com o selo (texto + ícone).
+ */
+
+@theme {
+  --color-tellus-fundo: #fffdf7;      /* marfim */
+  --color-tellus-superficie: #ffffff;
+  --color-tellus-borda: #e7e1d3;
+  --color-tellus-texto: #1a1a1a;      /* 17,1:1 sobre o fundo */
+  --color-tellus-texto-suave: #57534e; /* 7,4:1 */
+  --color-tellus-primaria: #2f6b2f;   /* verde-folha, 6,3:1; texto branco sobre ela 6,4:1 */
+  --color-tellus-primaria-escura: #234f23;
+  --color-tellus-destaque: #7a5c00;   /* dourado escuro, 6,1:1 */
+
+  /* estados (texto colorido sobre fundo claro; todos ≥ 4,5:1) */
+  --color-tellus-fonte: #155e75;      /* azul-petróleo, 7,1:1 */
+  --color-tellus-hipotese: #7a5c00;   /* dourado, 6,1:1 */
+  --color-tellus-aviso: #9a3412;      /* laranja-escuro, 7,2:1 */
+  --color-tellus-erro: #b91c1c;       /* vermelho, 6,4:1 */
+  --color-tellus-ok: #2f6b2f;
+
+  /* fundos claros dos selos (o texto do estado sobre eles mantém ≥ 4,5:1) */
+  --color-tellus-fonte-fundo: #e6f2f5;
+  --color-tellus-hipotese-fundo: #fbf3dc;
+  --color-tellus-aviso-fundo: #fbebe4;
+  --color-tellus-erro-fundo: #fbe8e8;
+
+  --font-tellus: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-tellus-numeros: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+}
+
+/* Selo de estado: texto obrigatório + ícone + borda à esquerda (lê-se em monocromia). */
+.tellus-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-left: 4px solid currentColor;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.tellus-selo--fonte    { color: var(--color-tellus-fonte);    background: var(--color-tellus-fonte-fundo); }
+.tellus-selo--hipotese { color: var(--color-tellus-hipotese); background: var(--color-tellus-hipotese-fundo); border-left-style: dashed; }
+.tellus-selo--aviso    { color: var(--color-tellus-aviso);    background: var(--color-tellus-aviso-fundo); }
+.tellus-selo--erro     { color: var(--color-tellus-erro);     background: var(--color-tellus-erro-fundo); border-left-width: 6px; }
+
+/* Números de resultado: algarismos tabulares para comparar colunas. */
+.tellus-numero { font-variant-numeric: tabular-nums; }

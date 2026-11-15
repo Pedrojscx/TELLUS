@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TELLUS">
+  <!-- Marca TELLUS (spec 013): quadrado verde-folha com três faixas de lavoura e um ponto de satélite.
+       Criação da equipe TELLUS, sem elementos de terceiros. -->
+  <rect width="64" height="64" rx="12" fill="#2f6b2f"/>
+  <path d="M10 44c10-6 34-6 44 0M10 52c10-6 34-6 44 0M10 36c10-6 34-6 44 0" fill="none" stroke="#fffdf7" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="46" cy="17" r="5" fill="#e0b84a"/>
+</svg>
