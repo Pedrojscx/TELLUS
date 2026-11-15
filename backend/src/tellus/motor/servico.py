@@ -69,10 +69,20 @@ def _cultura(params: dict, grupo: str | None, cultura: str) -> tuple[balanco.Cul
     return c, chave
 
 
+def _serie_com_eto(lat: float, lon: float, geometria: dict | None = None,
+                   id_geometria: str | None = None) -> tuple[list[dict], dict]:
+    """Série com ETo. Ponto: em cache por (lat, lon). Área (geometria): sem cache, calculada a cada pedido."""
+    if geometria is None:
+        return _serie_ponto(lat, lon)
+    return _com_eto(clima.serie(geometria=geometria, id_geometria=id_geometria), lat)
+
+
 @lru_cache(maxsize=16)
-def _serie_com_eto(lat: float, lon: float) -> tuple[list[dict], dict]:
-    """Série com ETo; em cache por ponto (as referências e o cache de clima não mudam durante a execução)."""
-    s = clima.serie(lat, lon)
+def _serie_ponto(lat: float, lon: float) -> tuple[list[dict], dict]:
+    return _com_eto(clima.serie(lat, lon), lat)
+
+
+def _com_eto(s: dict, lat: float) -> tuple[list[dict], dict]:
     alt = s["proveniencia"]["power"]["localizacao"].get("altitude_m") or 0.0
     dias = []
     for d in s["dias"]:
@@ -128,6 +138,7 @@ def preparar(pedido: dict) -> dict:
         "chave_fases": chave_fases, "cultura_motor": c, "params": params, "solo": solo,
         "entressafra": {"manejo": manejo, **ent}, "estado_inicial": estado_inicial,
         "colheita": colheita, "plantio": plantio, "localizacao": loc,
+        "geometria": pedido.get("geometria"), "id_geometria": pedido.get("id_geometria"),
     }
 
 
@@ -156,7 +167,7 @@ def simular(pedido: dict) -> dict:
         raise ErroMotor("fora_da_janela_zarc",
                         f"Plantio em {e['plantio']} (decêndio {ref_zarc['decendio']}) está fora da janela do ZARC "
                         f"(portaria {ref_zarc['portaria']}) para {e['cultura']}, {e['grupo']}, solo {ref_zarc['solo']}.", "data_plantio")
-    dias, serie = _serie_com_eto(e["lat"], e["lon"])
+    dias, serie = _serie_com_eto(e["lat"], e["lon"], e["geometria"], e["id_geometria"])
     sim = simulacao.simular(dias, e["cultura_motor"], e["solo"]["cad_mm"], e["colheita"], e["plantio"],
                             e["entressafra"]["kc"], e["estado_inicial"]["valor"])
     entradas = {
@@ -215,7 +226,7 @@ def simular_janela(pedido: dict) -> dict:
     if not cal["disponivel"] or not cal["grupos"] or not cal["grupos"][0].get("disponivel"):
         raise ErroMotor("zarc_indisponivel", cal.get("motivo") or "ZARC indisponível para esta combinação.", "zarc", 409)
     janela = cal["grupos"][0]["solos"][0]["janela"] if cal["grupos"][0]["solos"] else []
-    dias, serie = _serie_com_eto(e["lat"], e["lon"])
+    dias, serie = _serie_com_eto(e["lat"], e["lon"], e["geometria"], e["id_geometria"])
     colheita = dt.date.fromisoformat(f"{SAFRA_ZARC_ANO}-{e['colheita']}")
     linhas = []
     for j in janela:

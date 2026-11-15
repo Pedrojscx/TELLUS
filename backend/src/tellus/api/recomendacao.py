@@ -20,6 +20,8 @@ class PedidoRecomendacao(BaseModel):
     lat: float
     lon: float
     codigo_ibge: str | None = None
+    geometria: dict | None = None  # área confirmada da lavoura (002); chuva ponderada por área (003)
+    id_geometria: str | None = None
     solo: Solo
     data_colheita_soja: str
     entressafra: Entressafra | None = None

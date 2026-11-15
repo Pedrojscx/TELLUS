@@ -42,7 +42,8 @@ def _grupos_zarc(pedido: dict, cultura: str) -> list[str]:
 
 def _pedido_motor(pedido: dict, cultura: str, grupo: str) -> dict:
     base = {k: copy.deepcopy(v) for k, v in pedido.items()
-            if k in ("lat", "lon", "codigo_ibge", "solo", "data_colheita_soja", "entressafra", "armazenamento_inicial_frac")}
+            if k in ("lat", "lon", "codigo_ibge", "solo", "data_colheita_soja", "entressafra", "armazenamento_inicial_frac",
+                     "geometria", "id_geometria")}
     ed = (pedido.get("edicoes_cultura") or {}).get(cultura)
     return base | {"cultura": cultura, "grupo": grupo} | ({"edicoes": ed} if ed else {})
 

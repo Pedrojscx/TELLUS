@@ -223,3 +223,9 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Ordem: maior margem conservadora, depois menor risco histórico, depois menor risco ZARC, depois plantio mais cedo.
 - Exemplo em Rio Verde (argilosa, colheita em 20/01, sorgo a R$ 50/sc e braquiária a R$ 400/ha informados): 32 alternativas, 7 indisponíveis. A braquiária lidera pelo critério conservador (−400) contra o milho (−925 conservador, +224 central, +749 favorável).
 - 198 testes passando; o cálculo completo leva cerca de 1 s.
+## #35 chuva ponderada por área (15/11, A1 - Maestro #2 + Claude Code, integrada pelo Maestro)
+- A geometria confirmada (`id_geometria` da 002/CAR) é cruzada com as células IMERG de 0,1° (amostragem de 0,005°). A chuva diária é a média ponderada pela fração de área.
+- Uma célula sem valor deixa o dia indisponível, com aviso, sem renormalizar nem zerar. A resposta lista cada célula com peso (soma 1), limites, origem, data e qualidade, e o período em UTC.
+- Rotas `POST /api/clima/serie` e `/resumo`. O ponto não muda, e a proveniência do ponto ficou idêntica (exemplo gravado da 011 preservado).
+- O motor (006) repassa a geometria ao clima (mudança mínima, +6/−4 linhas, autorizada pelo usuário). Os testes antigos do motor passam sem alteração.
+- O caso com várias células está provado só com cache SINTÉTICO (caso à mão 0,7 × 3,5 + 0,3 × 20 = 8,45 mm). Por decisão do usuário, as células IMERG vizinhas não foram baixadas. Só a célula da A025 (−17,75; −50,95) tem série real versionada.
