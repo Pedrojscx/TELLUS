@@ -46,4 +46,4 @@ Como produtor, quero ver a margem de cada cenário e editar preço ou custo para
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Qual série e praça CEPEA/ESALQ cobrem sorgo e planta de cobertura?]
+- Resolvido em 15/11 (D-005), seguindo a recomendação (não inventar preço): o CEPEA publica o Indicador do Milho ESALQ/BM&FBovespa (Campinas-SP, R$/saca de 60 kg, à vista), usado para o milho. Não há indicador CEPEA de sorgo (a lista de indicadores não inclui sorgo), e o portal de preços da Conab apresenta certificado inválido, então não há fonte segura. O preço do sorgo fica indisponível até o produtor informar, sem margem factual. A planta de cobertura não é comercializada: a receita é zero e o custo deve ser informado (não há planilha Conab).
