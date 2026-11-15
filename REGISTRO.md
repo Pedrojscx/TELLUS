@@ -162,3 +162,14 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
   - Sorgo (Port. 273): solos tipo 1/2/3 = arenoso/médio/argiloso com CAD 35/55/75 mm; Ze 50 cm; ISNA 0,6 e 0,45.
   - Soja (Port. 198): CAD 24/32/42/55/72/95 mm; Ze 60 cm.
   - Faixas AD em mm/cm (IN SPA/MAPA nº 1/2022, citada na Port. 198): AD1 0,34–0,46; AD2 0,46–0,61; AD3 0,61–0,80; AD4 0,80–1,06; AD5 1,06–1,40; AD6 1,40–1,84.
+
+## Spec 005 base de solo e culturas (15/11, 01h20, LK + Claude Code)
+- D-003 respondida: a IN SPA/MAPA nº 1/2022 (com a IN nº 2/2022) traz as classes AD1 a AD6 em mm/cm (Art. 2º) e a equação de pedotransferência pela granulometria de 0 a 40 cm (Art. 3º). A CAD em mm por classe vem da portaria de cada cultura e UF.
+- `referencias/culturas/parametros.json`:
+  - com fonte (Port. 322 e 273 de GO): Ze, CAD, fases do milho e ISNA;
+  - hipótese: Kc e Ky (FAO-56/33 só como método), fases do sorgo e toda a braquiária.
+  - Fora de GO, os parâmetros da portaria viram hipótese ("fora da validade regional").
+- `tellus.culturas`: `solo.py` (equação e classes, puro), `servico.py` (parâmetros, premissas com edição validada e antes/depois, classificação de solo com passos e status) e rotas `/api/culturas*` e `/api/solo/classificar`.
+- A equação oficial não é monotônica na argila (60/15/25 → 0,909; 30/15/55 → 1,043; 15/15/70 → 0,940). Por isso a textura sozinha só dá hipótese.
+- 158 testes passando.
+- ZARC multi-UF: MG tinha duas grafias diferentes do IBGE ("Barão de/do Monte Alto", "São Thomé/Tomé das Letras"); apelidos acrescentados. MG será refeito com os XLS já baixados.

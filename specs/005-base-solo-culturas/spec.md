@@ -46,4 +46,4 @@ Como produtor, quero informar textura e ajustar água disponível em milímetros
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Qual fonte liga textura informada pelo produtor a classe AD e mm para cada cultura e UF?]
+- Resolvido em 15/11 (D-003): a conversão oficial é a equação de pedotransferência da IN SPA/MAPA nº 1/2022 (Art. 3º, redação da IN nº 2/2022), que vai da granulometria (areia, silte e argila, 0 a 40 cm) para a AD em mm/cm, e as classes AD1 a AD6 do Art. 2º. A CAD em mm por classe vem da portaria ZARC de cada cultura e UF (ex.: milho 2ª safra GO, Port. 322: 24 a 95,4 mm com Ze de 60 cm). No sorgo, a Port. 273 liga textura arenosa/média/argilosa aos tipos 1/2/3. Textura sem granulometria, nas culturas que usam classes AD, é hipótese.
