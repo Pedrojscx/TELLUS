@@ -47,4 +47,4 @@ Issues relacionadas: #1 a #18 (US-001, T-001 a T-006).
   - polígono no mapa, área, municípios, condição no CAR e fonte;
   - botão "Confirmar esta área" e, quando não há geometria, o upload do shapefile SICAR.
 - [X] T014 (feito como conferência manual em 15/11 00h, não como teste automático) Teste de integração com o WFS real: o código de exemplo de Rio Verde volta `encontrado`
-- [X] T015 Registrar no `REGISTRO.md` e no `MAPA_FEATURES.md`; comentar nas issues #1 a #18 o que foi entregue
+- [ ] T015 Registrar no `REGISTRO.md` e no `MAPA_FEATURES.md` (feito); comentar nas issues #1 a #18 o que foi entregue (pendente, aguarda autorização)
