@@ -47,18 +47,3 @@ As decisões atuais substituem a arquitetura e as fontes provisórias de `docs/P
 
 As specs são rascunhos para revisão humana. As checklists registram as lacunas reais.
 Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etapa.
-
-## Andamento da implementação (15/11)
-
-| ID | Situação | Branch | Responsável |
-|---|---|---|---|
-| 001 | Implementada: consulta pelo número do CAR (WFS SICAR), 6 estados distintos, upload do shapefile SICAR, confirmação da área | `001-pesquisa-car-wfs` | LK |
-| 002 | Entrega 1 (ponto e referências) na `main`. Com a 001: área pelo CAR ou pelo shapefile SICAR, validação, área em ha, municípios atingidos e confirmação. Faltam desenho no mapa e KML/KMZ/GeoJSON | `main` | LK |
-| 003 | Implementada: IMERG 2001 a set/2025 e POWER com proveniência, validação A025 (viés -1,03%, MAE 4,13), Rio Verde offline | `003-dados-clima` | LK |
-| 004 | Implementada: calendário ZARC (milho 2ª, sorgo 2ª, milho+braquiária, soja; safra 2026/27) por município, grupo e solo, com bloqueio fora da janela. 11 UFs baixadas: GO, MT, MS, MG, PR, BA, TO, MA, PI, SP, DF (3.362 municípios) | `004-calendario-zarc` | LK |
-| 005 | Implementada: parâmetros com fonte (portarias ZARC GO, IN 1/2022) ou hipótese (Kc/Ky FAO como método, fases do sorgo, braquiária); classificação de solo oficial por granulometria; edições com antes e depois | `005-base-solo-culturas` | LK |
-| 006 | Implementada: balanço FAO-56 (ETo Penman-Monteith conferida com o Ex. 18), entressafra pousio/palhada, falha pelo ISNA da portaria, risco por decêndio da janela ZARC | `006-motor-hidrico-entressafra` | LK |
-| 007 | Implementada: custo Conab da praça mais próxima com itens recompostos, preço CEPEA do milho, sorgo sem preço = indisponível, margem nos 3 cenários com edição e antes/depois | `007-economia` | LK |
-| 008 | Implementada: duas metodologias (cultura escolhida e cálculo completo) sobre o mesmo motor, com paridade testada, ZARC em 100%, ordem pela margem conservadora e D-006 em quartis | `008-recomendacao` | LK |
-| 009, 010, 012 | Com o Pedro | — | Pedro |
-| 013 | Parte 1: decisão D-011 (paleta Safra, tom técnico), guia, tokens, selos e contraste AA; aplicação nas telas aguarda a 012 | `013-identidade-visual` | LK |
