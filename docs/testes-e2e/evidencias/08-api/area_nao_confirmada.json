@@ -1,0 +1,11 @@
+{
+ "erro": {
+  "codigo": "pedido_invalido",
+  "mensagem": "Pedido inválido: area: a área precisa estar confirmada pelo produtor antes do cálculo",
+  "origem": "pedido",
+  "campo": "area",
+  "detalhes": [
+   "area: a área precisa estar confirmada pelo produtor antes do cálculo"
+  ]
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "erro": {
+  "codigo": "versao_incompativel",
+  "mensagem": "O servidor fala o contrato 1.2.0 e não aceita a versão 2.0.0. Versões aceitas: 1.0.x, 1.1.x, 1.2.x.",
+  "origem": "pedido",
+  "campo": "versao_contrato",
+  "versoes_aceitas": [
+   "1.0.x",
+   "1.1.x",
+   "1.2.x"
+  ]
+ }
+}
