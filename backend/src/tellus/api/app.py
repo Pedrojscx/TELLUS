@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
+import json
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+
+from tellus import i18n
 
 from tellus.api import car, clima, contrato, culturas, economia, localizacao, motor, recomendacao, umidade, vegetacao, zarc
 from tellus.car.servico import ErroCar
@@ -26,6 +30,24 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def _idioma(request: Request, call_next):
+    """Spec 014 (FR-005): com Accept-Language: en, os campos de texto das respostas JSON saem em inglês.
+    Rota que já traduziu (Content-Language na resposta, ex.: o contrato) passa direto."""
+    resposta = await call_next(request)
+    idioma = i18n.normalizar_idioma(request.headers.get("accept-language"))
+    if idioma != "en" or "content-language" in resposta.headers or \
+            not resposta.headers.get("content-type", "").startswith("application/json"):
+        return resposta
+    corpo = b"".join([parte async for parte in resposta.body_iterator])
+    try:
+        dados = i18n.traduzir_resposta(json.loads(corpo), idioma)
+    except ValueError:
+        return Response(content=corpo, status_code=resposta.status_code, headers=dict(resposta.headers))
+    cabecalhos = {k: v for k, v in resposta.headers.items() if k.lower() not in ("content-length", "content-type")}
+    return JSONResponse(content=dados, status_code=resposta.status_code, headers=cabecalhos | {"Content-Language": "en"})
 
 
 def _erro(status: int, codigo: str, mensagem: str, campo: str | None = None, origem: str | None = None) -> JSONResponse:

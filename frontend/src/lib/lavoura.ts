@@ -2,6 +2,7 @@
 // A confirmação continua em apiCar.confirmar (/api/lavoura/confirmar), a mesma do CAR.
 
 import { API_URL, FalhaApi, type CandidatoLavoura } from "./api";
+import { comIdioma } from "./i18n/cliente";
 
 export interface RespostaLavoura {
   candidato: CandidatoLavoura;
@@ -14,7 +15,7 @@ export type PoligonoGeoJSON = { type: "Polygon"; coordinates: number[][][] };
 async function postar<T>(caminho: string, init: RequestInit): Promise<T> {
   let resp: Response;
   try {
-    resp = await fetch(`${API_URL}${caminho}`, { method: "POST", ...init });
+    resp = await fetch(`${API_URL}${caminho}`, comIdioma({ method: "POST", ...init }));
   } catch {
     throw new FalhaApi({ codigo: "sem_conexao", mensagem: "Não foi possível falar com o servidor do TELLUS. Ele está rodando?" });
   }

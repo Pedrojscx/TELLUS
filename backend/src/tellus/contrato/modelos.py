@@ -99,6 +99,7 @@ class PedidoCalculo(_Estrito):
     cultura: Cultura | None = None
     premissas_editadas: list[PremissaEditada] = []
     contextos: Contextos = Contextos()
+    idioma: Literal["pt-BR", "en"] = "pt-BR"  # 1.2.0 (spec 014): idioma dos textos da resposta; não muda números
 
     @model_validator(mode="after")
     def _regras(self) -> "PedidoCalculo":
@@ -228,6 +229,7 @@ class RespostaCalculo(_Estrito):
     hipoteses: list[str]
     premissas_editadas: list[PremissaEditada]
     versoes: Versoes
+    idioma: Literal["pt-BR", "en"] = "pt-BR"
 
     @model_validator(mode="after")
     def _final_coerente(self) -> "RespostaCalculo":

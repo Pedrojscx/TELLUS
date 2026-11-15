@@ -72,7 +72,7 @@ def test_008_disponivel_com_saida_real(resposta_real):
 
 def test_versoes_de_entradas_e_contrato(resposta_real):
     v = resposta_real["versoes"]
-    assert v["contrato"] == versao.VERSAO == "1.1.0"
+    assert v["contrato"] == versao.VERSAO == "1.2.0"
     assert v["hash_pedido"] == resposta_real["pedido"]["hash_pedido"]
     assert all(v["modulos"][k] for k in v["modulos"])
     assert len(v["modulos"]) == 6

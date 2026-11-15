@@ -1,3 +1,4 @@
+import { comIdioma } from "./i18n/cliente";
 // Cliente do contrato da spec 001 (specs/001-localizacao/contracts/localizacao.openapi.yaml).
 
 // Sem PUBLIC_API_URL, usa o mesmo computador que serviu a página (porta 8000): funciona em localhost e no
@@ -72,7 +73,7 @@ export class FalhaApi extends Error {
 async function obter<T>(caminho: string): Promise<T> {
   let resp: Response;
   try {
-    resp = await fetch(`${API_URL}${caminho}`);
+    resp = await fetch(`${API_URL}${caminho}`, comIdioma());
   } catch {
     throw new FalhaApi({
       codigo: "sem_conexao",
@@ -133,7 +134,7 @@ export interface Lavoura extends CandidatoLavoura {
 async function enviar<T>(caminho: string, init: RequestInit): Promise<T> {
   let resp: Response;
   try {
-    resp = await fetch(`${API_URL}${caminho}`, init);
+    resp = await fetch(`${API_URL}${caminho}`, comIdioma(init));
   } catch {
     throw new FalhaApi({ codigo: "sem_conexao", mensagem: "Não foi possível falar com o servidor do TELLUS. Ele está rodando?" });
   }

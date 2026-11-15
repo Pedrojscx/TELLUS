@@ -22,6 +22,18 @@ export function idiomaAtual(): Idioma {
   }
 }
 
+/** Cabeçalho para o backend responder no idioma ativo (spec 014, FR-005). Vazio em português. */
+export function cabecalhoIdioma(): Record<string, string> {
+  return idiomaAtual() === "en" ? { "Accept-Language": "en" } : {};
+}
+
+/** Junta o cabeçalho de idioma a um RequestInit (headers como objeto simples). */
+export function comIdioma(init: RequestInit = {}): RequestInit {
+  const cab = cabecalhoIdioma();
+  if (!Object.keys(cab).length) return init;
+  return { ...init, headers: { ...((init.headers as Record<string, string>) ?? {}), ...cab } };
+}
+
 export function definirIdioma(i: Idioma): void {
   try { localStorage.setItem(CHAVE, i); } catch { /* sem armazenamento: vale só pela URL */ }
   const u = new URL(location.href);

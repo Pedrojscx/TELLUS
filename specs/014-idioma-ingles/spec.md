@@ -69,7 +69,7 @@ Como avaliador, quero ler o README, a explicação da metodologia e as fontes em
 - **FR-003**: O atributo `lang` do `<html>` MUST acompanhar o idioma (`pt-BR` ou `en`).
 - **FR-004**: Todo texto fixo do frontend MUST sair de um dicionário por idioma (`pt`, `en`) com as mesmas chaves. Um teste MUST falhar se uma chave existir num idioma e faltar no outro.
 - **FR-005**: O pedido do contrato MUST aceitar um campo opcional `idioma` (`pt-BR` padrão, `en`). As demais rotas da API MUST aceitar o cabeçalho `Accept-Language`. Mudança aditiva: contrato passa a 1.2.0 e continua aceitando pedidos 1.1.0.
-- **FR-006**: O backend MUST traduzir as mensagens pelo código (aviso, erro, motivo, hipótese, critério de ordem) a partir de um catálogo versionado por idioma. Mensagem com valores variáveis MUST usar modelo com campos nomeados (ex.: `{estacao}`, `{distancia_km}`).
+- **FR-006**: O backend MUST traduzir as mensagens (aviso, erro, motivo, hipótese, critério de ordem) a partir de um catálogo versionado por idioma, chaveado pelo texto em português (o mesmo código aparece com textos diferentes). Mensagem com valores variáveis MUST usar modelo com campos nomeados (ex.: `{estacao}`, `{distancia_km}`).
 - **FR-007**: Mensagem sem tradução MUST cair no português com a marca "(PT)" e MUST ser listada por um teste de cobertura do catálogo.
 - **FR-008**: Números, moedas e datas MUST ser formatados pelo idioma ativo no frontend. Os valores numéricos da resposta da API MUST continuar iguais nos dois idiomas.
 - **FR-009**: O resultado do mesmo pedido em `pt-BR` e em `en` MUST ter as mesmas alternativas, a mesma ordem e os mesmos números. Só o texto muda.
@@ -94,4 +94,4 @@ Como avaliador, quero ler o README, a explicação da metodologia e as fontes em
 - Só dois idiomas: português (padrão) e inglês. Espanhol fica fora.
 - Sem tradução automática em tempo real: todos os textos são escritos e revisados pela equipe.
 - Os dados das fontes (nomes de estação, municípios, portarias do ZARC) ficam no original.
-- A implementação NÃO entra na entrega de 15/11/2026 12h. A spec foi aberta às 10h20, depois do congelamento das 08h (docs/PLANO.md). Ela é trabalho para depois da entrega, salvo decisão contrária da equipe.
+- O prazo real da entrega é 15/11/2026 23h59 (o 12h do plano era engano). A equipe decidiu implementar a spec no mesmo dia.

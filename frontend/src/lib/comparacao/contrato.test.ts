@@ -23,7 +23,8 @@ const sorgo: Premissa = {
 describe("montarPedido (contrato 1.1.0)", () => {
   it("ponto, grupo e cotação informada no formato do contrato", () => {
     const p = montarPedido(entradas, ponto, [sorgo]) as any;
-    expect(p.versao_contrato).toBe("1.1.0");
+    expect(p.versao_contrato).toBe("1.2.0");
+    expect(p.idioma).toBe("pt-BR");
     expect(p.area).toEqual({ tipo: "ponto", lat: -17.785278, lon: -50.965, confirmada: true, codigo_ibge: "5218805" });
     expect(p.grupo).toBe("GRUPO I");
     expect(p.solo).toEqual({ textura: "argilosa" });
@@ -44,7 +45,7 @@ describe("paraResultado (resposta real gravada de Rio Verde)", () => {
   const res = paraResultado(r, "comparar_alternativas");
   it("não é exemplo e traz as alternativas reais da 008, na ordem", () => {
     expect(res.exemplo).toBe(false);
-    expect(res.versao_contrato).toBe("1.1.0");
+    expect(res.versao_contrato).toBe("1.2.0");
     expect(res.alternativas.length).toBe((r.recomendacao.conteudo.alternativas as unknown[]).length);
     expect(res.alternativas.length).toBeGreaterThan(0);
     expect(res.criterio_ordem).toContain("margem no cenário conservador");

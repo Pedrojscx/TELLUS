@@ -68,6 +68,6 @@ def test_rota_calcular():
     r = c.post("/api/contrato/calcular", json=exemplos.PEDIDO_VALIDO)
     assert r.status_code == 200
     j = r.json()
-    assert j["versao_contrato"] == "1.1.0" and j["recomendacao"]["estado"] == "disponivel"
+    assert j["versao_contrato"] == "1.2.0" and j["recomendacao"]["estado"] == "disponivel"
     r = c.post("/api/contrato/calcular", json=exemplos.PEDIDO_VALIDO | {"versao_contrato": "2.0.0"})
     assert r.status_code == 422 and r.json()["erro"]["codigo"] == "versao_incompativel"
