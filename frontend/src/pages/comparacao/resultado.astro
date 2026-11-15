@@ -8,7 +8,7 @@ const r = ex.resultado;
 const e = ex.entradas;
 const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textura].toLowerCase()}` : e.solo ? `${e.solo.cad_mm} mm` : "—";
 ---
-<LayoutComparacao titulo="Resultado da comparação" atual="resultado" subtitulo="Abra uma alternativa para ver risco, margem, cenários, premissas e fontes.">
+<LayoutComparacao exemplo titulo="Resultado da comparação" atual="resultado" subtitulo="Abra uma alternativa para ver risco, margem, cenários, premissas e fontes.">
   <div id="resultado-estado" role="status" class="hidden rounded-xl border border-stone-200 bg-white p-4 text-sm"></div>
   <div id="resultado-real" class="hidden space-y-6"></div>
   <div id="resultado-exemplo" class="space-y-6">
