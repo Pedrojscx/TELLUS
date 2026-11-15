@@ -2,6 +2,7 @@
 // Seletor de local (spec 001, US1 e US3): busca de município, coordenadas e mapa.
 import fs from "node:fs";
 import path from "node:path";
+import ConsultaCar from "./ConsultaCar.astro";
 
 // Contorno do Brasil embutido na página: funciona sem internet (FR-014).
 const brasil = fs.readFileSync(
@@ -53,6 +54,8 @@ const brasil = fs.readFileSync(
         </div>
       </form>
 
+      <ConsultaCar />
+
       <p id="erro-local" role="alert" class="hidden rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"></p>
     </div>
 
@@ -68,7 +71,7 @@ const brasil = fs.readFileSync(
 <script>
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
-  import { api, FalhaApi, type ResultadoLocalizacao } from "../lib/api";
+  import { api, apiCar, FalhaApi, type CandidatoLavoura, type ConsultaCar, type ResultadoLocalizacao } from "../lib/api";
   import { esc, renderReferencias } from "../lib/referencias";
 
   const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -177,6 +180,90 @@ const brasil = fs.readFileSync(
   // --- clique no mapa ---
   mapa.on("click", (e: L.LeafletMouseEvent) => {
     executar(() => api.porPonto(e.latlng.lat.toFixed(5), e.latlng.lng.toFixed(5), "mapa"));
+  });
+
+  // --- CAR e shapefile SICAR (spec 001) ---
+  const resultadoCar = $<HTMLDivElement>("resultado-car");
+  let camadaArea: L.GeoJSON | null = null;
+  let candidatoAtual: CandidatoLavoura | null = null;
+
+  const ESTADOS: Record<ConsultaCar["estado"], string> = {
+    encontrado: "Imóvel encontrado no CAR",
+    geometria_invalida: "Limite do CAR inválido para cálculo",
+    sem_geometria: "Imóvel sem limite na resposta do CAR",
+    inexistente: "Número não encontrado no CAR",
+    codigo_invalido: "Número do CAR em formato inválido",
+    fonte_indisponivel: "CAR fora do ar",
+  };
+
+  function mostrarCandidato(c: CandidatoLavoura, cabecalho: string, extra = "") {
+    candidatoAtual = c;
+    camadaArea?.remove();
+    camadaArea = L.geoJSON(c.geometria as any, { style: { color: "#b45309", weight: 2, fillOpacity: 0.15 } }).addTo(mapa);
+    mapa.fitBounds(camadaArea.getBounds(), { maxZoom: 15 });
+    const munis = c.municipios.map((m) => `${esc(m.nome)}-${esc(m.uf)}${c.municipios.length > 1 ? ` (${Math.round(m.fracao * 100)}%)` : ""}`).join(", ");
+    resultadoCar.innerHTML = `
+      <p class="font-semibold">${esc(cabecalho)}</p>
+      <p class="mt-1">Área: <strong class="tabular-nums">${c.area_ha.toLocaleString("pt-BR")} ha</strong> · ${munis}</p>
+      ${extra}
+      <p class="mt-1 text-xs text-stone-500">Fonte: ${esc(c.proveniencia.fonte ?? "")} · ${esc(c.proveniencia.obtido_em ?? "")}</p>
+      <button id="confirmar-area" class="mt-2 rounded-md bg-emerald-700 px-3 py-1.5 font-medium text-white hover:bg-emerald-800">Confirmar esta área</button>`;
+    resultadoCar.classList.remove("hidden");
+    $("confirmar-area").addEventListener("click", confirmarArea);
+  }
+
+  async function confirmarArea() {
+    if (!candidatoAtual) return;
+    try {
+      const lav = await apiCar.confirmar(candidatoAtual);
+      aplicar(lav.localizacao);
+      camadaArea?.setStyle({ color: "#047857", fillOpacity: 0.2 });
+      if (camadaArea) mapa.fitBounds(camadaArea.getBounds(), { maxZoom: 15 });
+      resultadoCar.insertAdjacentHTML("beforeend", `<p class="mt-2 font-medium text-emerald-800">Área confirmada (${lav.area_ha.toLocaleString("pt-BR")} ha).</p>`);
+      $("confirmar-area").remove();
+    } catch (e) {
+      mostrarErro(e instanceof FalhaApi ? e.erro.mensagem : "Erro ao confirmar a área.");
+    }
+  }
+
+  $<HTMLFormElement>("form-car").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    mostrarErro(null);
+    const codigo = $<HTMLInputElement>("car").value;
+    if (!codigo.trim()) return;
+    resultadoCar.innerHTML = `<p class="text-stone-500">Consultando o CAR…</p>`;
+    resultadoCar.classList.remove("hidden");
+    try {
+      const r = await apiCar.consultar(codigo);
+      const avisos = r.avisos.map((a) => `<p class="mt-1 text-amber-800">${esc(a.mensagem)}</p>`).join("");
+      if (r.estado === "encontrado" && r.candidato) {
+        const q = r.qualidade ?? {};
+        const extra = `<p class="mt-1 text-stone-600">Situação no CAR: ${esc(q.condicao ?? "—")} · atualizado em ${esc(q.data_atualizacao ?? "—")} · área declarada ${esc(q.area_declarada_ha ?? "—")} ha</p>${avisos}`;
+        mostrarCandidato(r.candidato, ESTADOS[r.estado], extra);
+      } else {
+        candidatoAtual = null;
+        camadaArea?.remove();
+        const erros = r.erros_geometria.length ? `<ul class="mt-1 list-disc pl-5">${r.erros_geometria.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+        const alt = r.alternativa ? `<p class="mt-1">${esc(r.alternativa.mensagem)}</p>` : "";
+        resultadoCar.innerHTML = `<p class="font-semibold">${esc(ESTADOS[r.estado])}</p><p class="mt-1">${esc(r.mensagem)}</p>${erros}${avisos}${alt}`;
+      }
+    } catch (err) {
+      resultadoCar.classList.add("hidden");
+      mostrarErro(err instanceof FalhaApi ? err.erro.mensagem : "Erro ao consultar o CAR.");
+    }
+  });
+
+  $<HTMLInputElement>("arquivo-sicar").addEventListener("change", async (e) => {
+    const arquivo = (e.target as HTMLInputElement).files?.[0];
+    if (!arquivo) return;
+    mostrarErro(null);
+    try {
+      const r = await apiCar.upload(arquivo);
+      const avisos = r.avisos.map((a) => `<p class="mt-1 text-amber-800">${esc(a.mensagem)}</p>`).join("");
+      mostrarCandidato(r.candidato, `Área lida do arquivo ${arquivo.name}`, avisos);
+    } catch (err) {
+      mostrarErro(err instanceof FalhaApi ? err.erro.mensagem : "Erro ao ler o arquivo.");
+    }
   });
 
   // --- local padrão ---
