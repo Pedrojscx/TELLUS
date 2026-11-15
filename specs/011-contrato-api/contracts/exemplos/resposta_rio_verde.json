@@ -3647,7 +3647,8 @@
   "cultura": null,
   "data_colheita_soja": "2027-01-20",
   "grupo": "GRUPO I",
-  "hash_pedido": "74187706df344869",
+  "hash_pedido": "e7efbdd88602d8db",
+  "idioma": "pt-BR",
   "metodologia": "comparar_alternativas",
   "premissas_editadas": [
    {
@@ -3667,7 +3668,7 @@
    "granulometria": null,
    "textura": "argilosa"
   },
-  "versao_contrato": "1.1.0"
+  "versao_contrato": "1.2.0"
  },
  "premissas_editadas": [
   {
@@ -5053,10 +5054,10 @@
   "spec": "008 (#48)",
   "versao_modulo": "8631e7e8e1829550"
  },
- "versao_contrato": "1.1.0",
+ "versao_contrato": "1.2.0",
  "versoes": {
-  "contrato": "1.1.0",
-  "hash_pedido": "74187706df344869",
+  "contrato": "1.2.0",
+  "hash_pedido": "e7efbdd88602d8db",
   "hash_principal": "7d2d430689d9fd70",
   "modulos": {
    "braquiaria_cobertura.economia": "7930343cc8ece6af",

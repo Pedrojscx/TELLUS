@@ -8,17 +8,26 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, Request
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
+from tellus import i18n
 from tellus.contrato import regras, secoes, versao
 from tellus.contrato.modelos import PedidoCalculo, RespostaCalculo
 
 router = APIRouter(prefix="/api/contrato")
 
 
-def _erro(e: versao.ErroContrato) -> JSONResponse:
-    return JSONResponse(status_code=e.status, content={"erro": e.como_dict()})
+def _idioma(pedido: Any, request: Request) -> str:
+    """Campo `idioma` do pedido (1.2.0) ou, sem ele, o cabeçalho Accept-Language (spec 014, FR-005)."""
+    campo = pedido.get("idioma") if isinstance(pedido, dict) else None
+    return i18n.normalizar_idioma(campo or request.headers.get("accept-language"))
+
+
+def _erro(e: versao.ErroContrato, idioma: str = i18n.PADRAO) -> JSONResponse:
+    return JSONResponse(status_code=e.status, content={"erro": i18n.traduzir_resposta(e.como_dict(), idioma)},
+                        headers={"Content-Language": idioma})
 
 
 @router.get("/versao")
@@ -60,19 +69,24 @@ def _contexto_real(modulo: str, pedido: dict) -> dict | None:
 
 
 @router.post("/calcular")
-def calcular(pedido: Any = Body(...)):
-    """Pedido do contrato → resposta rastreável (#54). Erros no envelope único; seções com erro não derrubam a resposta."""
+def calcular(request: Request, pedido: Any = Body(...)):
+    """Pedido do contrato → resposta rastreável (#54). Erros no envelope único; seções com erro não derrubam a resposta.
+    Em inglês (spec 014), só os campos de texto mudam; números, códigos e ordem são os mesmos."""
+    idioma = _idioma(pedido, request)
     try:
         p = regras.normalizar_pedido(pedido)
         ctx = {m: _contexto_real(m, p) for m in ("vegetacao", "umidade")}
-        return secoes.calcular(p, ctx)
+        resp = secoes.calcular(p, ctx)
     except versao.ErroContrato as e:
-        return _erro(e)
+        return _erro(e, idioma)
+    corpo = i18n.traduzir_resposta(jsonable_encoder(resp), idioma)
+    corpo["idioma"] = idioma
+    return JSONResponse(content=corpo, headers={"Content-Language": idioma})
 
 
 @router.post("/pedido/validar")
-def validar(pedido: Any = Body(...)):
+def validar(request: Request, pedido: Any = Body(...)):
     try:
         return {"valido": True, "versao_contrato": versao.VERSAO, "pedido": regras.normalizar_pedido(pedido)}
     except versao.ErroContrato as e:
-        return _erro(e)
+        return _erro(e, _idioma(pedido, request))

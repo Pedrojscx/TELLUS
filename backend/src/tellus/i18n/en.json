@@ -1,0 +1,900 @@
+{
+ "exatos": {
+  "desempate final": "final tie-break",
+  "maior margem no cenário conservador": "highest margin in the conservative scenario",
+  "menor risco histórico de falha severa": "lowest historical risk of severe failure",
+  "menor risco oficial do ZARC": "lowest official ZARC risk",
+  "plantio mais cedo": "earliest planting",
+  "Valor de pixel de satélite (250 m nominal (pixel de 231,66 m na grade senoidal)) na área pedida; não é medição da lavoura nem da fazenda.": "Satellite pixel value (250 m nominal (231.66 m pixel on the sinusoidal grid)) in the requested area; it is not a measurement of the field or the farm.",
+  "grade de 9 km × 9 km (EASE-Grid 2.0); resolução nativa do radiômetro ≈ 36 km, domínio de interpolação ≈ 33 km": "9 km × 9 km grid (EASE-Grid 2.0); native radiometer resolution ≈ 36 km, interpolation domain ≈ 33 km",
+  "250 m nominal (pixel de 231,66 m na grade senoidal)": "250 m nominal (231.66 m pixel on the sinusoidal grid)",
+  "D-006 (decisão de produto do TELLUS, editável)": "D-006 (TELLUS product decision, editable)",
+  "TELLUS economia (spec 007): custo Conab da praça mais próxima e preço com fonte ou informado": "TELLUS economics (spec 007): Conab cost from the nearest market location and a sourced or farmer-provided price",
+  "TELLUS motor hídrico (spec 006), mesmas entradas versionadas da seção risco_hidrico": "TELLUS water-balance engine (spec 006), same versioned inputs as the risco_hidrico section",
+  "Coeficiente de cultura (inicial, médio, final)": "Crop coefficient (initial, mid, final)",
+  "Fator de resposta da produtividade à água (total e por fase)": "Yield response factor to water (total and by stage)",
+  "Fração de esgotamento sem estresse (p)": "Depletion fraction without stress (p)",
+  "Classe de solo estimada pela textura": "Soil class estimated from texture",
+  "Água no solo no dia da colheita da soja (fração da CAD)": "Soil water on the soybean harvest day (fraction of available water capacity)",
+  "Kc da entressafra (palhada)": "Off-season Kc (straw mulch)",
+  "Duração das fases I a IV por grupo": "Length of stages I to IV by group",
+  "Profundidade efetiva do sistema radicular": "Effective root depth",
+  "Capacidade de água disponível por classe de solo": "Available water capacity by soil class",
+  "Duração das fases I a IV (estabelecimento até a dessecação)": "Length of stages I to IV (establishment to desiccation)",
+  "Limite de ISNA para falha de estabelecimento (fase I)": "ISNA threshold for establishment failure (stage I)",
+  "Percentis dos cenários (D-006)": "Scenario percentiles (D-006)",
+  "Premissas econômicas editadas pelo produtor": "Economic assumptions edited by the farmer",
+  "Pixel de 250 m mistura lavoura, estrada, mata e solo exposto; cada valor é o melhor dia de uma janela de 16 dias, não uma medição diária da fazenda.": "A 250 m pixel mixes field, road, forest and bare soil; each value is the best day of a 16-day window, not a daily measurement of the farm.",
+  "alternativas desta resposta": "options in this response",
+  "município do pedido": "municipality in the request",
+  "não se aplica (regra de leitura dos cenários)": "not applicable (rule for reading the scenarios)",
+  "ponto ou área do pedido": "point or area in the request",
+  "praça Conab mais próxima com a cultura": "nearest Conab market location with the crop",
+  "Contexto histórico de cobertura vegetal: mostra como a área esteve no passado. Não estima colheita e não indica o que vai acontecer na próxima safra.": "Historical vegetation cover context: it shows how the area was in the past. It does not estimate the harvest and does not indicate what will happen next season.",
+  "Contexto regional opcional. Este valor não entra em nenhum cálculo do TELLUS, não substitui dados da sua área e não muda o resultado principal.": "Optional regional context. This value is not used in any TELLUS calculation, does not replace data from your area and does not change the main result.",
+  "D-006: cenários pelos quartis da perda simulada — conservador = percentil 75 (pior em 1 de cada 4 anos), central = mediana, favorável = percentil 25. Decisão de produto, sem fonte setorial; editável.": "D-006: scenarios from the quartiles of simulated loss — conservative = 75th percentile (worst in 1 of every 4 years), central = median, favorable = 25th percentile. Product decision, no industry source; editable.",
+  "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra.": "Historical frequency computed from the observed series (IMERG and POWER), one simulation per year. It is not a prediction for the next season.",
+  "Grupo 'não sei': a margem de cada grupo testado está na seção recomendacao (008).": "Group 'I don't know': the margin of each tested group is in the recomendacao section (008).",
+  "Grupo 'não sei': o risco de cada grupo testado está na seção recomendacao (008), em alternativas e grupos_testados.": "Group 'I don't know': the risk of each tested group is in the recomendacao section (008), under alternativas and grupos_testados.",
+  "MODIS tem pixel de 250 m e HLS de 30 m: os valores descrevem a vizinhança, não a lavoura.": "MODIS has a 250 m pixel and HLS a 30 m pixel: the values describe the surroundings, not the field.",
+  "O HLS exige conta NASA Earthdata e não há credencial configurada (EARTHDATA_TOKEN). O contexto segue só com MODIS.": "HLS requires a NASA Earthdata account and no credential is configured (EARTHDATA_TOKEN). The context continues with MODIS only.",
+  "O produto SMAP e a regra de período ainda não foram decididos (D-008, https://github.com/Pedrojscx/TELLUS/issues/70). Este contexto usa SPL3SMP_E (hipótese operacional do protótipo); produto e período são hipóteses, não parâmetros validados.": "The SMAP product and the period rule have not been decided yet (D-008, https://github.com/Pedrojscx/TELLUS/issues/70). This context uses SPL3SMP_E (operational assumption of the prototype); product and period are assumptions, not validated parameters.",
+  "Produto, índice, janela de 12 meses, mínimo de 6 composições válidas e regra de qualidade são hipótese operacional do protótipo (D-007, issue #69), não parâmetro validado. Veja 'parametros'.": "Product, index, 12-month window, minimum of 6 valid composites and quality rule are an operational assumption of the prototype (D-007, issue #69), not a validated parameter. See 'parametros'.",
+  "risco_zarc_pct é o risco oficial da portaria; risco_historico_falha_severa é a frequência simulada pelo TELLUS; margem_r_ha é econômica. São medidas distintas.": "risco_zarc_pct is the official risk from the ZARC ordinance; risco_historico_falha_severa is the frequency simulated by TELLUS; margem_r_ha is economic. They are different measures.",
+  "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).": "No Conab cost sheet for this crop (cover crop). Enter the cost in R$/ha (custo_r_ha).",
+  "decêndio da janela termina antes da colheita da soja": "this 10-day window ends before the soybean harvest",
+  "observação de satélite (radiômetro em banda L) interpolada por Backus-Gilbert para a grade de 9 km; o pé do radiômetro é de ≈ 36 km": "satellite observation (L-band radiometer) interpolated by Backus-Gilbert onto the 9 km grid; the radiometer footprint is ≈ 36 km",
+  "Aplicação da regra do produto: rank 0 ('Good Data — use with confidence') vira valor; rank 1 ('Marginal data — useful, but look at other QA information') só vira valor se a VI Quality disser 'VI produzido' (bits 0–1 = 00 ou 01) e não marcar nuvem adjacente (bit 8), nuvem mista (bit 10), possível neve/gelo (bit 14) nem possível sombra (bit 15); rank 2 (neve/gelo), 3 (nuvem) e −1 (sem dado) viram lacuna. A escolha dos bits consultados no rank 1 é hipótese do protótipo.": "Product rule applied: rank 0 ('Good Data — use with confidence') becomes a value; rank 1 ('Marginal data — useful, but look at other QA information') becomes a value only if VI Quality says 'VI produced' (bits 0–1 = 00 or 01) and does not flag adjacent cloud (bit 8), mixed clouds (bit 10), possible snow/ice (bit 14) or possible shadow (bit 15); rank 2 (snow/ice), 3 (cloud) and −1 (no data) become gaps. The choice of bits checked for rank 1 is a prototype assumption.",
+  "Fração (por peso de área) de pixels válidos exigida para a composição virar valor da área. 1,0 = qualquer pixel inválido vira lacuna da área inteira; nada é preenchido.": "Fraction (by area weight) of valid pixels required for a composite to become the area value. 1.0 = any invalid pixel makes the whole area a gap; nothing is filled in.",
+  "Hipótese operacional do protótipo: MODIS/Terra MOD13Q1 v061. MYD13Q1 (Aqua) é suportado, mas fica fora por padrão.": "Operational assumption of the prototype: MODIS/Terra MOD13Q1 v061. MYD13Q1 (Aqua) is supported but off by default.",
+  "Hipótese operacional do protótipo: NDVI. O pedido pode trocar para EVI.": "Operational assumption of the prototype: NDVI. The request can switch to EVI.",
+  "Hipótese operacional: série inicial dos últimos 12 meses, contados a partir da última composição disponível no cache (não do relógio), para a mesma resposta com o mesmo cache. inicio/fim no pedido substituem a janela.": "Operational assumption: initial series of the last 12 months, counted from the latest composite available in the cache (not from the clock), so the same cache gives the same response. inicio/fim in the request replace the window.",
+  "Mínimo provisório: com menos de 6 composições válidas na janela, a série é declarada 'insuficiente'. Nada é preenchido.": "Provisional minimum: with fewer than 6 valid composites in the window, the series is declared 'insufficient'. Nothing is filled in.",
+  "Nuvem (bit 1), adjacente a nuvem/sombra (bit 2), sombra (bit 3) e neve/gelo (bit 4) viram lacuna. Bit 0 (cirro) é reservado e não usado na v2.0. Banda com preenchimento (−9999) é sempre lacuna.": "Cloud (bit 1), adjacent to cloud/shadow (bit 2), shadow (bit 3) and snow/ice (bit 4) become gaps. Bit 0 (cirrus) is reserved and not used in v2.0. A band with fill value (−9999) is always a gap.",
+  "hipótese operacional do protótipo proposta pelo usuário em resposta à #70; parametrizável": "operational assumption of the prototype proposed by the user in reply to #70; configurable",
+  "Qual produto SMAP e regra de período serão usados como contexto regional?": "Which SMAP product and period rule will be used as regional context?",
+  "Qual índice, período mínimo e regra de qualidade respondem à pergunta de contexto da área?": "Which index, minimum period and quality rule answer the area context question?",
+  "mês de referência da planilha Conab e data do preço (ver versoes.economia)": "reference month of the Conab sheet and price date (see versoes.economia)",
+  "não se aplica (ordem das alternativas desta resposta)": "not applicable (ranking of the options in this response)",
+  "série histórica IMERG/POWER usada pelo motor (ver versoes.motor de cada alternativa)": "IMERG/POWER historical series used by the engine (see versoes.motor of each option)",
+  "série histórica do motor": "engine historical series",
+  "critério público em criterio_ordem": "public criterion in criterio_ordem",
+  "frequência histórica, não previsão": "historical frequency, not a prediction",
+  "hipotese — conservador P75, central P50, favorável P25": "assumption — conservative P75, central P50, favorable P25",
+  "informada pelo produtor; sem indicador oficial (D-005)": "provided by the farmer; no official indicator (D-005)",
+  "margem nos cenários conservador, central e favorável": "margin in the conservative, central and favorable scenarios",
+  "só decêndios dentro da janela oficial entram (FR-002)": "only 10-day periods inside the official window are included (FR-002)",
+  "lacunas contadas; nunca preenchidas": "gaps counted; never filled in",
+  "média só das observações válidas do mês em todos os anos; lacunas não entram": "mean of the month's valid observations across all years only; gaps are excluded",
+  "fração dos anos": "fraction of years",
+  "composição de 16 dias": "16-day composite",
+  "diária, com passagens separadas às ~6h (AM, descendente) e ~18h (PM, ascendente) hora solar local": "daily, with separate passes at ~6 am (AM, descending) and ~6 pm (PM, ascending) local solar time",
+  "Retrato de um momento (diária, com passagens separadas às ~6h (AM, descendente) e ~18h (PM, ascendente) hora solar local); a umidade muda em horas com chuva ou sol e este valor não diz como o solo estará nos próximos dias.": "A snapshot of one moment (daily, with separate passes at ~6 am (AM, descending) and ~6 pm (PM, ascending) local solar time); moisture changes within hours with rain or sun and this value does not say how the soil will be in the coming days.",
+  "Qualidade recomendada pela NASA (bit 0 = 0).": "Quality recommended by NASA (bit 0 = 0).",
+  "Didan, K.; Barreto Munoz, A. MODIS Vegetation Index User's Guide (MOD13 Series), Collection 6.1, Version 3.10, setembro de 2019 — seção 5.5.2 'QA Science Data Sets', Tabela 4 (MOD13Q1/A1 Pixel Reliability) e Tabela 5 (VI Quality, bits 0–1, 8, 10, 14 e 15); faixa válida e preenchimento: seção 5.2, Tabela 1.": "Didan, K.; Barreto Munoz, A. MODIS Vegetation Index User's Guide (MOD13 Series), Collection 6.1, Version 3.10, September 2019 — section 5.5.2 'QA Science Data Sets', Table 4 (MOD13Q1/A1 Pixel Reliability) and Table 5 (VI Quality, bits 0–1, 8, 10, 14 and 15); valid range and fill value: section 5.2, Table 1.",
+  "Ju, J. et al. Harmonized Landsat and Sentinel-2 (HLS) Product User Guide, Product Version 2.0 (atualizado em abril de 2026) — seção 6.4 'Quality Assessment Layer', Tabela 9.": "Ju, J. et al. Harmonized Landsat and Sentinel-2 (HLS) Product User Guide, Product Version 2.0 (updated April 2026) — section 6.4 'Quality Assessment Layer', Table 9.",
+  "O pedido precisa ser um objeto JSON.": "The request must be a JSON object.",
+  "area: a área precisa estar confirmada pelo produtor antes do cálculo": "area: the area must be confirmed by the farmer before the calculation",
+  "cultura: não se informa cultura em comparar_alternativas": "cultura: do not send a crop with comparar_alternativas",
+  "cultura: obrigatória na metodologia cultura_escolhida": "cultura: required with the cultura_escolhida method",
+  "data_informada não pode ser no futuro": "data_informada cannot be in the future",
+  "informe origem_informada e data_informada juntas (cotação rastreável)": "send origem_informada and data_informada together (traceable quote)",
+  "origem_informada não pode ser vazia": "origem_informada cannot be empty",
+  "origem_informada/data_informada só valem para a premissa de preço (economia.preco_r_saca)": "origem_informada/data_informada only apply to the price assumption (economia.preco_r_saca)",
+  "premissas_editadas: premissa repetida": "premissas_editadas: repeated assumption",
+  "solo.granulometria: areia, silte e argila em % somando 100": "solo.granulometria: sand, silt and clay in % adding up to 100",
+  "solo: informe exatamente um entre textura, cad_mm, classe ou granulometria": "solo: send exactly one of textura, cad_mm, classe or granulometria",
+  "a geometria precisa ser um GeoJSON Polygon ou MultiPolygon": "the geometry must be a GeoJSON Polygon or MultiPolygon",
+  "Parâmetro inválido.": "Invalid parameter.",
+  "O arquivo passa de 20 MB.": "The file is larger than 20 MB.",
+  "Sem planilha de custo da Conab para esta cultura.": "No Conab cost sheet for this crop.",
+  "Envie um GeoJSON Point, Polygon ou MultiPolygon em 'geometria'.": "Send a GeoJSON Point, Polygon or MultiPolygon in 'geometria'.",
+  "data de semeadura AAAA-MM-DD": "sowing date YYYY-MM-DD",
+  "ex.: GRUPO I; vazio = não sei (todos os grupos)": "e.g. GRUPO I; empty = I don't know (all groups)",
+  "A geometria enviada não é a mesma que foi conferida. Confira de novo.": "The geometry sent is not the one that was checked. Check it again.",
+  "Arquivo enviado pelo produtor (shapefile exportado do SICAR)": "File uploaded by the farmer (shapefile exported from SICAR)",
+  "Imóvel encontrado no CAR. Confira o limite no mapa e confirme.": "Property found in CAR. Check the boundary on the map and confirm.",
+  "Nenhum imóvel com esse número no CAR público.": "No property with that number in the public CAR.",
+  "O imóvel existe no CAR, mas a resposta não trouxe o limite.": "The property exists in CAR, but the response did not include the boundary.",
+  "O limite do imóvel no CAR não é uma área válida para cálculo.": "The property boundary in CAR is not a valid area for calculation.",
+  "O limite vem do CAR, declarado pelo proprietário; não é medição. Confira antes de confirmar.": "The boundary comes from CAR, declared by the owner; it is not a survey. Check it before confirming.",
+  "O número do CAR deve ter o formato UF-0000000-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (sigla da UF, código IBGE do município e 32 letras/números).": "The CAR number must have the format UF-0000000-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (state code, IBGE municipality code and 32 letters/digits).",
+  "SICAR — Cadastro Ambiental Rural (WFS público)": "SICAR — Rural Environmental Registry (public WFS)",
+  "Você pode enviar o shapefile do imóvel exportado do SICAR (.zip com .shp, .shx, .dbf e .prj) ou desenhar a área no mapa.": "You can upload the property shapefile exported from SICAR (.zip with .shp, .shx, .dbf and .prj) or draw the area on the map.",
+  "O arquivo enviado não é um .zip válido.": "The uploaded file is not a valid .zip.",
+  "O shapefile está em coordenadas projetadas (ex.: UTM). Exporte do SICAR em coordenadas geográficas.": "The shapefile is in projected coordinates (e.g. UTM). Export it from SICAR in geographic coordinates.",
+  "O shapefile não tem nenhum polígono.": "The shapefile has no polygon.",
+  "WFS do SICAR devolveu um formato inesperado": "The SICAR WFS returned an unexpected format",
+  "EARTHDATA_TOKEN não definido no ambiente; a chuva IMERG não pode ser baixada.": "EARTHDATA_TOKEN is not set in the environment; IMERG rainfall cannot be downloaded.",
+  "séries pareadas precisam ter o mesmo tamanho e não ser vazias": "paired series must have the same length and not be empty",
+  "0,1° × 0,1° (≈ 11 km), diária (UTC)": "0.1° × 0.1° (≈ 11 km), daily (UTC)",
+  "0,5° × 0,625° (≈ 55 km), diária (UTC)": "0.5° × 0.625° (≈ 55 km), daily (UTC)",
+  "A chuva do POWER aparece só nesta comparação; ela nunca entra no cálculo.": "POWER rainfall appears only in this comparison; it is never used in the calculation.",
+  "A geometria precisa vir com o id_geometria da confirmação. Confirme a área antes de pedir a chuva.": "The geometry must come with the id_geometria from the confirmation. Confirm the area before requesting rainfall.",
+  "A série da estação só confere a chuva de satélite; ela nunca entra no cálculo. A chuva do POWER também não.": "The station series only checks the satellite rainfall; it is never used in the calculation. POWER rainfall is not either.",
+  "INMET, estação automática A025 (soma diária de 24 horas válidas)": "INMET, automatic station A025 (daily sum of 24 valid hours)",
+  "NASA GPM IMERG Final (precipitação diária)": "NASA GPM IMERG Final (daily precipitation)",
+  "NASA POWER (variáveis diárias para ETo)": "NASA POWER (daily variables for ETo)",
+  "Nenhum dia pareado entre a estação e a chuva de satélite guardada.": "No paired day between the station and the saved satellite rainfall.",
+  "Nenhum dia pareado entre a estação e o cache de satélite.": "No paired day between the station and the satellite cache.",
+  "Não há dados de clima guardados para este local. Rode os scripts de preparação (scripts/baixar_imerg.py e scripts/baixar_power.py) com internet.": "There is no saved weather data for this location. Run the preparation scripts (scripts/baixar_imerg.py and scripts/baixar_power.py) with internet access.",
+  "Não há série diária preparada para esta estação (há para A025 Rio Verde-GO e as de referencias/clima_inmet/). A API de dados do INMET não está aberta; prepare os arquivos anuais do portal com scripts/preparar_inmet_validacao.py.": "There is no prepared daily series for this station (there is for A025 Rio Verde-GO and those in referencias/clima_inmet/). The INMET data API is not open; prepare the yearly files from the portal with scripts/preparar_inmet_validacao.py.",
+  "O cache do IMERG não tem nenhum dia publicado em comum nas células da área.": "The IMERG cache has no published day in common across the area's cells.",
+  "Sem POWER guardado para a célula da estação: a comparação mostra só o IMERG.": "No POWER saved for the station's cell: the comparison shows IMERG only.",
+  "UTC (dia IMERG de 00:00 a 23:59:59 UTC)": "UTC (IMERG day from 00:00 to 23:59:59 UTC)",
+  "Valores de grade de satélite e reanálise representam a média de uma célula de quilômetros, não a lavoura. Frequência histórica não é previsão.": "Satellite grid and reanalysis values represent the mean of a cell kilometers wide, not the field. Historical frequency is not a prediction.",
+  "centro do retângulo envolvente; usado para a célula POWER": "center of the bounding box; used for the POWER cell",
+  "A margem depende do risco hídrico desta cultura, que falhou.": "The margin depends on the water risk of this crop, which failed.",
+  "A recomendação (spec 008, #48) não foi calculada nesta resposta. Ela traz risco hídrico e margem por cultura, mas não ordena nem recomenda alternativas.": "The recommendation (spec 008, #48) was not calculated in this response. It provides water risk and margin per crop, but does not rank or recommend options.",
+  "D-006 (hipótese do TELLUS, editável)": "D-006 (TELLUS assumption, editable)",
+  "O resultado principal não depende deste contexto.": "The main result does not depend on this context.",
+  "Pedido do produtor normalizado pelo motor (spec 006)": "Farmer's request normalized by the engine (spec 006)",
+  "Produtor (premissas_editadas do pedido)": "Farmer (premissas_editadas in the request)",
+  "Sem a recomendação, as seções por cultura continuam válidas.": "Without the recommendation, the per-crop sections remain valid.",
+  "Sem estes dados o risco e a margem desta cultura não são calculados.": "Without this data, the risk and margin of this crop are not calculated.",
+  "TELLUS motor hídrico (spec 006), quantis da perda relativa FAO-33": "TELLUS water-balance engine (spec 006), quantiles of FAO-33 relative loss",
+  "TELLUS motor hídrico (spec 006): balanço FAO-56 cap. 8 e perda FAO-33 por fase; ETo FAO-56 Penman-Monteith com POWER; chuva IMERG": "TELLUS water-balance engine (spec 006): FAO-56 ch. 8 balance and FAO-33 loss by stage; FAO-56 Penman-Monteith ETo with POWER; IMERG rainfall",
+  "Uma fonte obrigatória falhou sem cópia guardada: nenhum número desta resposta é final.": "A required source failed without a saved copy: no number in this response is final.",
+  "calculado com as premissas acima": "calculated with the assumptions above",
+  "contrato (processamento síncrono, D-009)": "contract (synchronous processing, D-009)",
+  "decêndio (1 a 36); % (risco oficial)": "10-day period (1 to 36); % (official risk)",
+  "fração 0–1 (risco, perda); mm; anos": "fraction 0–1 (risk, loss); mm; years",
+  "informado e confirmado pelo produtor": "provided and confirmed by the farmer",
+  "informado pelo produtor; o valor anterior fica ao lado": "provided by the farmer; the previous value is shown next to it",
+  "lavoura do pedido": "field in the request",
+  "mm; fração 0–1 (perda, ISNA, risco); ano": "mm; fraction 0–1 (loss, ISNA, risk); year",
+  "não se aplica": "not applicable",
+  "não se aplica (valor informado)": "not applicable (provided value)",
+  "percentil da perda relativa": "percentile of relative loss",
+  "posição (1 = primeira)": "position (1 = first)",
+  "quartis da perda": "loss quartiles",
+  "risco oficial da portaria (medida distinta do risco histórico)": "official risk from the ordinance (a different measure from historical risk)",
+  "spec 006 (motor hídrico)": "spec 006 (water-balance engine)",
+  "spec 008 (recomendação)": "spec 008 (recommendation)",
+  "ver unidade de cada alteração": "see the unit of each change",
+  "Aceita pedidos com o mesmo número MAIOR e MENOR menor ou igual ao do servidor. Mudança incompatível (remover/renomear campo, mudar tipo, unidade ou significado) sobe o MAIOR.": "Accepts requests with the same MAJOR number and a MINOR less than or equal to the server's. An incompatible change (removing/renaming a field, changing type, unit or meaning) bumps MAJOR.",
+  "AD abaixo de 0,34 mm/cm: fora das classes do ZARC. Informe a CAD em mm se tiver laudo.": "AD below 0.34 mm/cm: outside the ZARC classes. Enter the available water capacity in mm if you have a soil report.",
+  "CAD informada pelo produtor": "Available water capacity provided by the farmer",
+  "Classe estimada só pela textura (hipótese). Para usar a equação oficial, informe a análise granulométrica (0 a 40 cm).": "Class estimated from texture only (assumption). To use the official equation, enter the particle-size analysis (0 to 40 cm).",
+  "Informe textura, granulometria, classe de solo ou CAD em mm.": "Enter texture, particle-size analysis, soil class or available water capacity in mm.",
+  "Valor abaixo da menor classe do ZARC (AD1 ≥ 0,34 mm/cm).": "Value below the lowest ZARC class (AD1 ≥ 0.34 mm/cm).",
+  "areia + silte + argila deve somar 100% (tolerância de 2 pontos)": "sand + silt + clay must add up to 100% (2-point tolerance)",
+  "cabeçalho DISCRIMINAÇÃO não encontrado": "DISCRIMINAÇÃO header not found",
+  "ex-ante (premissa da Conab)": "ex-ante (Conab assumption)",
+  "A planta de cobertura não é comercializada; a receita é zero.": "The cover crop is not sold; revenue is zero.",
+  "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.": "Scenarios from the simulated relative loss (006): conservative = 75th percentile of loss (3 in every 4 years lost less), central = median, favorable = 25th percentile. Assumption D-006, editable.",
+  "Cobertura sem produção de grão.": "Cover crop without grain production.",
+  "D-005: o CEPEA não publica indicador de sorgo e o portal de preços da Conab não oferece conexão segura (certificado inválido). Informe o preço negociado para ver a margem.": "D-005: CEPEA does not publish a sorghum indicator and the Conab price portal does not offer a secure connection (invalid certificate). Enter the negotiated price to see the margin.",
+  "Percentis devem ser conservador/central/favoravel com 10, 25, 50, 75 ou 90.": "Percentiles must be conservador/central/favoravel with 10, 25, 50, 75 or 90.",
+  "Preço de venda": "Sale price",
+  "Preço à vista na região de Campinas-SP; não desconta o frete até a fazenda (o transporte externo já é item de custo da Conab).": "Spot price in the Campinas-SP region; freight to the farm is not deducted (external transport is already a Conab cost item).",
+  "Produtividade de referência": "Reference yield",
+  "Produtividade de referência (sem estresse hídrico)": "Reference yield (no water stress)",
+  "Sem simulação hídrica (006) para os cenários de produtividade.": "No water simulation (006) for the yield scenarios.",
+  "margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)": "margin = reference yield × (1 − scenario loss) ÷ 60 × price − cost of the level (R$/ha)",
+  "preço indisponível": "price unavailable",
+  "O KML traz declarações DOCTYPE/ENTITY, que não são aceitas.": "The KML contains DOCTYPE/ENTITY declarations, which are not accepted.",
+  "O KMZ não contém nenhum arquivo .kml.": "The KMZ does not contain any .kml file.",
+  "O arquivo não é GeoJSON (falta 'type').": "The file is not GeoJSON (missing 'type').",
+  "O arquivo não é um .zip/.kmz válido.": "The file is not a valid .zip/.kmz.",
+  "O arquivo não é um KML (falta o elemento <kml>).": "The file is not a KML (missing the <kml> element).",
+  "O conteúdo descompactado passa do limite de tamanho de arquivo.": "The uncompressed content exceeds the file size limit.",
+  "Polígono KML sem contorno (outerBoundaryIs).": "KML polygon without an outline (outerBoundaryIs).",
+  "Desenho do produtor no mapa": "Farmer's drawing on the map",
+  "Envie um polígono (Polygon ou MultiPolygon).": "Send a polygon (Polygon or MultiPolygon).",
+  "Conab — séries históricas de custos de produção (soja, milho 2ª safra, sorgo), praças de 2025/2026": "Conab — historical production cost series (soybean, second-crop corn, sorghum), market locations for 2025/2026",
+  "IBGE — código do município, usado na consulta ao ZARC (SISZARC/MAPA)": "IBGE — municipality code, used to query ZARC (SISZARC/MAPA)",
+  "Ilha oceânica: podem faltar estação INMET próxima, ZARC e praça Conab.": "Ocean island: a nearby INMET station, ZARC and a Conab market location may be missing.",
+  "NASA GPM IMERG Final — grade 0,1° (centro calculado; conferido na pesquisa de chuva)": "NASA GPM IMERG Final — 0.1° grid (computed center; checked in the rainfall research)",
+  "NASA POWER — grade 0,5° × 0,625° (centro calculado; conferido no REGISTRO.md)": "NASA POWER — 0.5° × 0.625° grid (computed center; checked in REGISTRO.md)",
+  "Nenhuma estação INMET operante encontrada.": "No operating INMET station found.",
+  "Nenhuma praça Conab com custo publicado.": "No Conab market location with published cost.",
+  "O TELLUS cobre apenas o território brasileiro.": "TELLUS covers Brazilian territory only.",
+  "O ponto não está em nenhum município brasileiro (fica no mar).": "The point is not in any Brazilian municipality (it is in the sea).",
+  "O ponto não está em nenhum município brasileiro.": "The point is not in any Brazilian municipality.",
+  "informe ea ou a umidade relativa média": "provide ea or the mean relative humidity",
+  "A CAD informada não corresponde a uma classe do ZARC; sem classe não há janela oficial.": "The provided available water capacity does not match a ZARC class; without a class there is no official window.",
+  "Chuva do IMERG toda efetiva (sem escoamento superficial); drenagem além da capacidade de campo.": "All IMERG rainfall is effective (no surface runoff); drainage beyond field capacity.",
+  "FAO-56 Penman-Monteith diária com variáveis do POWER (UR média, eq. 19), altitude da célula POWER": "Daily FAO-56 Penman-Monteith with POWER variables (mean RH, eq. 19), altitude of the POWER cell",
+  "ISNA (ETa/ETc) da fase I ou III abaixo ou igual ao limite da portaria ZARC (ou hipótese, na cobertura)": "ISNA (ETa/ETc) in stage I or III at or below the ZARC ordinance threshold (or an assumption, for the cover crop)",
+  "Kc da entressafra deve estar entre 0 e 1,2.": "Off-season Kc must be between 0 and 1.2.",
+  "Não foi possível obter a CAD do solo.": "Could not obtain the soil's available water capacity.",
+  "ZARC indisponível para esta combinação.": "ZARC unavailable for this combination.",
+  "cobertura com braquiária usa o ZARC de milho 2ª safra com braquiária (referência mais próxima)": "brachiaria cover crop uses the ZARC for second-crop corn with brachiaria (closest reference)",
+  "risco_historico_falha_severa é calculado pelo TELLUS com a série histórica; risco_zarc_pct é o risco oficial da portaria. São medidas distintas.": "risco_historico_falha_severa is calculated by TELLUS from the historical series; risco_zarc_pct is the official risk from the ordinance. They are different measures.",
+  "a fração inicial deve estar entre 0 e 1": "the initial fraction must be between 0 and 1",
+  "a série não cobre o período inteiro (colheita até a maturação)": "the series does not cover the whole period (harvest to maturity)",
+  "o plantio não pode ser antes da colheita da soja": "planting cannot be before the soybean harvest",
+  "Nenhuma combinação tem dados completos dentro da janela ZARC; não há recomendação. Veja 'indisponiveis'.": "No combination has complete data inside the ZARC window; there is no recommendation. See 'indisponiveis'.",
+  "EARTHDATA_TOKEN não definido no ambiente; os arquivos SMAP não podem ser baixados.": "EARTHDATA_TOKEN is not set in the environment; SMAP files cannot be downloaded.",
+  "Qualidade desconhecida: o arquivo não trouxe a flag de qualidade.": "Quality unknown: the file did not include the quality flag.",
+  "Sem qualidade recomendada pela NASA (bit 0 = 1): use com cautela.": "Not NASA-recommended quality (bit 0 = 1): use with caution.",
+  "Dados SINTÉTICOS de teste; não são observações da NASA.": "SYNTHETIC test data; not NASA observations.",
+  "Há período ou célula sem dado SMAP. Ele aparece como indisponível, sem substituição.": "There is a period or cell without SMAP data. It shows as unavailable, without substitution.",
+  "Não há umidade SMAP guardada para esta célula. Rode scripts/preparar_umidade.py com EARTHDATA_TOKEN e internet.": "There is no SMAP moisture saved for this cell. Run scripts/preparar_umidade.py with EARTHDATA_TOKEN and internet access.",
+  "O fim do período vem antes do início.": "The end of the period comes before the start.",
+  "Sem valor para avaliar.": "No value to evaluate.",
+  "Use datas no formato AAAA-MM-DD.": "Use dates in YYYY-MM-DD format.",
+  "fora_da_grade: o ponto fica fora da grade EASE-Grid 2.0 global (latitude além de ≈ ±85°).": "fora_da_grade: the point is outside the global EASE-Grid 2.0 grid (latitude beyond ≈ ±85°).",
+  "hipótese operacional do protótipo": "operational assumption of the prototype",
+  "sem_dado_na_celula: o arquivo SMAP traz valor de preenchimento (sem recuperação) para esta célula; nenhuma célula vizinha ou estimativa é usada no lugar.": "sem_dado_na_celula: the SMAP file has a fill value (no retrieval) for this cell; no neighboring cell or estimate is used instead.",
+  "sem_registro: não há passagem/arquivo guardado para esta célula neste dia; nenhuma célula vizinha ou estimativa é usada no lugar.": "sem_registro: there is no saved pass/file for this cell on this day; no neighboring cell or estimate is used instead.",
+  "sem_registro: o cache desta célula não tem as variantes pedidas.": "sem_registro: this cell's cache does not have the requested variants.",
+  "A geometria precisa vir com o id_geometria da confirmação. Confirme a área antes de abrir o contexto.": "The geometry must come with the id_geometria from the confirmation. Confirm the area before opening the context.",
+  "Não há série de vegetação guardada para esta área. Rode scripts/preparar_vegetacao.py com internet. A falta deste contexto não bloqueia o restante da análise.": "There is no vegetation series saved for this area. Run scripts/preparar_vegetacao.py with internet access. Missing this context does not block the rest of the analysis.",
+  "Produto MODIS não suportado.": "MODIS product not supported.",
+  "série versionada do repositório": "versioned series from the repository",
+  "decêndio deve estar entre 1 e 36": "10-day period must be between 1 and 36",
+  "são 36 decêndios": "there are 36 10-day periods",
+  "Data no formato AAAA-MM-DD.": "Date in YYYY-MM-DD format.",
+  "Grupo sem ZARC neste município.": "Group without ZARC in this municipality.",
+  "MAPA — Zoneamento Agrícola de Risco Climático (SISZARC, relatório de publicações)": "MAPA — Agricultural Climate Risk Zoning (ZARC; SISZARC, publications report)",
+  "Risco ZARC = probabilidade oficial de perda de produtividade (20, 30 ou 40%) definida pela portaria do MAPA para o decêndio de semeadura. Não é o risco histórico de falta de água calculado pelo TELLUS.": "ZARC risk = official probability of yield loss (20, 30 or 40%) set by the MAPA ordinance for the sowing 10-day period. It is not the historical water-shortage risk calculated by TELLUS.",
+  "Sem ZARC publicado para esta cultura neste município na safra vigente. Nenhuma janela foi inferida de município vizinho.": "No ZARC published for this crop in this municipality for the current season. No window was inferred from a neighboring municipality.",
+  "Tipo 2 (textura média)": "Type 2 (medium texture)",
+  "SISZARC não devolveu uma planilha XLS": "SISZARC did not return an XLS sheet",
+  "Conab — custos de produção, série histórica": "Conab — production costs, historical series"
+ },
+ "modelos": [
+  [
+   "Não há dados de clima guardados para este local. Rode os scripts de preparação (scripts/baixar_imerg.py e scripts/baixar_power.py) com internet. Células IMERG sem dado guardado: {celulas}.",
+   "There is no saved weather data for this location. Run the preparation scripts (scripts/baixar_imerg.py and scripts/baixar_power.py) with internet access. IMERG cells without saved data: {celulas}."
+  ],
+  [
+   "{n} dia(s) sem chuva da área porque ao menos uma célula IMERG não tem valor ({k} com outras células válidas: {ex}). A média não é recalculada só com as células restantes nem vira zero.",
+   "{n} day(s) without area rainfall because at least one IMERG cell has no value ({k} with other valid cells: {ex}). The mean is not recomputed from the remaining cells and does not become zero."
+  ],
+  [
+   "{n} dia(s) sem chuva da área porque ao menos uma célula IMERG não tem valor. A média não é recalculada só com as células restantes nem vira zero.",
+   "{n} day(s) without area rainfall because at least one IMERG cell has no value. The mean is not recomputed from the remaining cells and does not become zero."
+  ],
+  [
+   "{a} observações válidas na janela; mínimo provisório {b} ({c}, issue {d}). Série insuficiente para descrever a sazonalidade; as lacunas não foram preenchidas.",
+   "{a} valid observations in the window; provisional minimum {b} ({c}, issue {d}). Series too short to describe seasonality; gaps were not filled in."
+  ],
+  [
+   "Valor médio de uma célula de satélite (grade de 9 km × 9 km (EASE-Grid 2.0); resolução nativa do radiômetro ≈ 36 km, domínio de interpolação ≈ 33 km), muito maior que um talhão: descreve a região, não o solo do seu ponto. O centro da célula fica a {dist} km do ponto informado.",
+   "Mean value of a satellite cell (9 km × 9 km grid (EASE-Grid 2.0); native radiometer resolution ≈ 36 km, interpolation domain ≈ 33 km), much larger than a field: it describes the region, not the soil at your point. The cell center is {dist} km from the given point."
+  ],
+  [
+   "O cálculo passou do prazo de {a} s (parou em {b} s) e foi interrompido; nenhum resultado parcial é devolvido. Tente de novo: os dados já baixados ficam em cache e a segunda chamada é mais rápida. Se persistir, reduza a área ou peça uma cultura por vez.",
+   "The calculation exceeded the {a} s time limit (stopped at {b} s) and was interrupted; no partial result is returned. Try again: data already downloaded stays in the cache and the second call is faster. If it persists, reduce the area or request one crop at a time."
+  ],
+  [
+   "Produto, índice, janela de {a} meses, mínimo de {b} composições válidas e regra de qualidade são hipótese operacional do protótipo ({c}, issue {d}), não parâmetro validado. Veja 'parametros'.",
+   "Product, index, {a}-month window, minimum of {b} valid composites and quality rule are an operational assumption of the prototype ({c}, issue {d}), not a validated parameter. See 'parametros'."
+  ],
+  [
+   "O produto SMAP e a regra de período ainda não foram decididos (D-008, {a}). Este contexto usa {b} ({c}); produto e período são hipóteses, não parâmetros validados.",
+   "The SMAP product and the period rule have not been decided yet (D-008, {a}). This context uses {b} ({c}); product and period are assumptions, not validated parameters."
+  ],
+  [
+   "fração da área em cada célula IMERG de 0,1°, por amostragem regular de {a}° dentro do polígono (tellus.clima.regras.pesos_celulas)",
+   "fraction of the area in each 0.1° IMERG cell, by regular sampling every {a}° inside the polygon (tellus.clima.regras.pesos_celulas)"
+  ],
+  [
+   "O arquivo tem {a} polígonos separados. Envie uma lavoura por arquivo (um polígono, ou um MultiPolygon para uma lavoura em partes).",
+   "The file has {a} separate polygons. Send one field per file (one polygon, or one MultiPolygon for a field in parts)."
+  ],
+  [
+   "Retrato de um momento ({a}); a umidade muda em horas com chuva ou sol e este valor não diz como o solo estará nos próximos dias.",
+   "A snapshot of one moment ({a}); moisture changes within hours with rain or sun and this value does not say how the soil will be in the coming days."
+  ],
+  [
+   "sem_observacao_valida: nenhuma observação válida na janela de {a} dias; nenhuma célula vizinha ou estimativa é usada no lugar.",
+   "sem_observacao_valida: no valid observation in the {a}-day window; no neighboring cell or estimate is used instead."
+  ],
+  [
+   "Valor médio de uma célula de satélite ({a}), muito maior que um talhão: descreve a região, não o solo do seu ponto.",
+   "Mean value of a satellite cell ({a}), much larger than a field: it describes the region, not the soil at your point."
+  ],
+  [
+   "O IMERG Final publicado termina em {a}; o período pedido até {b} foi cortado. Nenhuma outra fonte substitui a chuva.",
+   "Published IMERG Final ends on {a}; the requested period up to {b} was cut. No other source replaces the rainfall."
+  ],
+  [
+   "Mostrando {n} observações válidas de {ini} a {fim} (janela de {d} dias, hipótese do protótipo). Cada valor traz a sua data.",
+   "Showing {n} valid observations from {ini} to {fim} ({d}-day window, prototype assumption). Each value carries its date."
+  ],
+  [
+   "Mostrando {a} observações válidas de {b} a {c} (janela de {d} dias, hipótese do protótipo). Cada valor traz a sua data.",
+   "Showing {a} valid observations from {b} to {c} ({d}-day window, prototype assumption). Each value carries its date."
+  ],
+  [
+   "Não há planilha de custo da Conab para {a}-{b}. A praça mais próxima é {c}-{d}, a {e} km: os custos são de outra região.",
+   "There is no Conab cost sheet for {a}-{b}. The nearest market location is {c}-{d}, {e} km away: the costs are from another region."
+  ],
+  [
+   "A estação INMET mais próxima ({a}, {b}) fica a {c} km. Acima de {d} km a comparação local de chuva perde validade.",
+   "The nearest INMET station ({a}, {b}) is {c} km away. Beyond {d} km the local rainfall comparison loses validity."
+  ],
+  [
+   "A fonte vale para {a}; aplicada em {b} fora da validade regional até haver a portaria equivalente da UF.",
+   "The source applies to {a}; applied to {b} outside its regional validity until the equivalent state ordinance exists."
+  ],
+  [
+   "O ponto ficou {a} km fora do contorno simplificado do IBGE; usamos o município mais próximo, {b}-{c}.",
+   "The point was {a} km outside the simplified IBGE outline; we used the nearest municipality, {b}-{c}."
+  ],
+  [
+   "A geometria tem {n} vértices; o limite é {m}. Simplifique o contorno ou divida a área em partes.",
+   "The geometry has {n} vertices; the limit is {m}. Simplify the outline or split the area into parts."
+  ],
+  [
+   "A geometria tem {a} vértices; o limite é {b}. Simplifique o contorno ou divida a área em partes.",
+   "The geometry has {a} vertices; the limit is {b}. Simplify the outline or split the area into parts."
+  ],
+  [
+   "Não há série de {a} guardada para esta área. Rode scripts/preparar_vegetacao.py com internet.",
+   "There is no {a} series saved for this area. Run scripts/preparar_vegetacao.py with internet access."
+  ],
+  [
+   "a planilha não traz a unidade da produtividade ({a}); assumido kg/ha, como nas demais abas",
+   "the sheet does not state the yield unit ({a}); kg/ha assumed, as in the other tabs"
+  ],
+  [
+   "Valor de pixel de satélite ({a}) na área pedida; não é medição da lavoura nem da fazenda.",
+   "Satellite pixel value ({a}) in the requested area; it is not a measurement of the field or the farm."
+  ],
+  [
+   "O produto {a} não traz flag de qualidade por célula neste cache; qualidade desconhecida.",
+   "The product {a} has no per-cell quality flag in this cache; quality unknown."
+  ],
+  [
+   "Sem cache local desta célula: mostrando a série versionada em {pasta}, obtida da NASA em {data}.",
+   "No local cache for this cell: showing the versioned series in {pasta}, obtained from NASA on {data}."
+  ],
+  [
+   "Sem cache local desta célula: mostrando a série versionada em {a}, obtida da NASA em {b}.",
+   "No local cache for this cell: showing the versioned series in {a}, obtained from NASA on {b}."
+  ],
+  [
+   "O ZARC de {a} ainda não foi baixado neste ambiente (rode scripts/preparar_zarc.py {b}).",
+   "The ZARC for {a} has not been downloaded in this environment yet (run scripts/preparar_zarc.py {b})."
+  ],
+  [
+   "Plantio em {a} (decêndio {b}) está fora da janela do ZARC (portaria {c}) para {d}, {e}, solo {f}.",
+   "Planting on {a} (10-day period {b}) is outside the ZARC window (ordinance {c}) for {d}, {e}, soil {f}."
+  ],
+  [
+   "Earthdata recusou o acesso (HTTP {a}). Confira o token e a autorização GES DISC.",
+   "Earthdata refused access (HTTP {a}). Check the token and the GES DISC authorization."
+  ],
+  [
+   "{n} observações válidas na janela; mínimo provisório {m} (hipotese, issue #69).",
+   "{n} valid observations in the window; provisional minimum {m} (assumption, issue #69)."
+  ],
+  [
+   "{a} dia(s) sem chuva da área porque ao menos uma célula IMERG não tem valor",
+   "{a} day(s) without area rainfall because at least one IMERG cell has no value"
+  ],
+  [
+   "Não há série de {a} guardada para esta área. O contexto segue só com MODIS.",
+   "There is no {a} series saved for this area. The context continues with MODIS only."
+  ],
+  [
+   "O servidor fala o contrato {v} e não aceita a versão {p}. Versões aceitas: {aceitas}.",
+   "The server speaks contract {v} and does not accept version {p}. Accepted versions: {aceitas}."
+  ],
+  [
+   "O servidor fala o contrato {a} e não aceita a versão {b}. Versões aceitas: {c}.",
+   "The server speaks contract {a} and does not accept version {b}. Accepted versions: {c}."
+  ],
+  [
+   "Granulometria típica da textura {a} ({b}/{c}/{d}% areia/silte/argila), não medida",
+   "Typical particle sizes for {a} texture ({b}/{c}/{d}% sand/silt/clay), not measured"
+  ],
+  [
+   "O GeoJSON declara o sistema {a}. Use coordenadas geográficas (WGS 84).",
+   "The GeoJSON declares the system {a}. Use geographic coordinates (WGS 84)."
+  ],
+  [
+   "O ponto fica perto da divisa com {a}-{b}; confira se a lavoura está em {c}-{d}.",
+   "The point is near the border with {a}-{b}; check whether the field is in {c}-{d}."
+  ],
+  [
+   "A área tem {a} ha; o limite é {m} ha. Divida a área em lavouras menores.",
+   "The area is {a} ha; the limit is {m} ha. Split the area into smaller fields."
+  ],
+  [
+   "A área tem {a} ha; o limite é {b} ha. Divida a área em lavouras menores.",
+   "The area is {a} ha; the limit is {b} ha. Split the area into smaller fields."
+  ],
+  [
+   "Município {a} não encontrado (ou ainda sem limite na malha do IBGE).",
+   "Municipality {a} not found (or not yet bounded in the IBGE mesh)."
+  ],
+  [
+   "A série preparada da estação {a} foi alterada (sha256 não confere).",
+   "The prepared series of station {a} was changed (sha256 does not match)."
+  ],
+  [
+   "INMET, estação automática {a} ({b}-{c}), soma diária de 24 horas válidas",
+   "INMET, automatic station {a} ({b}-{c}), daily sum of 24 valid hours"
+  ],
+  [
+   "Textura '{a}' estimada da granulometria (regra SiBCS simplificada)",
+   "Texture '{a}' estimated from particle sizes (simplified SiBCS rule)"
+  ],
+  [
+   "A fonte SMAP não respondeu ({a}) e não há cache para esta célula.",
+   "The SMAP source did not respond ({a}) and there is no cache for this cell."
+  ],
+  [
+   "{a} observações válidas na janela; mínimo provisório {b} ({c}, issue {d}).",
+   "{a} valid observations in the window; provisional minimum {b} ({c}, issue {d})."
+  ],
+  [
+   "O WFS do SICAR não respondeu; usando a consulta guardada de {a}.",
+   "The SICAR WFS did not respond; using the saved query from {a}."
+  ],
+  [
+   "{a} anos válidos, {b} excluídos; frequência histórica, não previsão",
+   "{a} valid years, {b} excluded; historical frequency, not a prediction"
+  ],
+  [
+   "O arquivo {a} não tem nenhum polígono (Polygon ou MultiPolygon).",
+   "The file {a} has no polygon (Polygon or MultiPolygon)."
+  ],
+  [
+   "{a}: coordenada fora da faixa geográfica (use graus decimais)",
+   "{a}: coordinate outside the geographic range (use decimal degrees)"
+  ],
+  [
+   "O arquivo de cache de {produto} não confere com o hash registrado.",
+   "The cache file of {produto} does not match the recorded hash."
+  ],
+  [
+   "O arquivo de cache de {a} não confere com o hash registrado.",
+   "The cache file of {a} does not match the recorded hash."
+  ],
+  [
+   "{produto}: dados de série versionada do repositório obtidos em {data}.",
+   "{produto}: versioned series data from the repository obtained on {data}."
+  ],
+  [
+   "A fonte {a} não respondeu; mostrando o cache obtido em {b}.",
+   "The source {a} did not respond; showing the cache obtained on {b}."
+  ],
+  [
+   "O arquivo tem {a} polígonos; foram unidos numa área só.",
+   "The file has {a} polygons; they were merged into a single area."
+  ],
+  [
+   "Sem chuva IMERG guardada para a célula {a} da estação {b}.",
+   "No IMERG rainfall saved for cell {a} of station {b}."
+  ],
+  [
+   "O valor de {a} não tem qualidade recomendada pela NASA.",
+   "The value on {a} does not have NASA-recommended quality."
+  ],
+  [
+   "Parte dos dados veio de cópia guardada (cache) de {data}.",
+   "Part of the data came from a saved copy (cache) from {data}."
+  ],
+  [
+   "A estação {a} ({b}), a {c} km, está em pane e não foi usada.",
+   "Station {a} ({b}), {c} km away, is out of order and was not used."
+  ],
+  [
+   "versao_contrato '{v}' não segue MAIOR.MENOR.CORREÇÃO.",
+   "versao_contrato '{v}' does not follow MAJOR.MINOR.PATCH."
+  ],
+  [
+   "ORNL DAAC MODIS Web Service ({url}); {n} pedidos; ponto {lat}, {lon}",
+   "ORNL DAAC MODIS Web Service ({url}); {n} requests; point {lat}, {lon}"
+  ],
+  [
+   "Não foi possível consultar o CAR agora: {a}. Fonte: {b}.",
+   "Could not query CAR right now: {a}. Source: {b}."
+  ],
+  [
+   "colheita {a}, plantio {b} (mês-dia, aplicado a cada ano)",
+   "harvest {a}, planting {b} (month-day, applied to each year)"
+  ],
+  [
+   "versao_contrato '{a}' não segue MAIOR.MENOR.CORREÇÃO.",
+   "versao_contrato '{a}' does not follow MAJOR.MINOR.PATCH."
+  ],
+  [
+   "O módulo da spec {a} não respondeu nesta instalação.",
+   "The spec {a} module did not respond in this installation."
+  ],
+  [
+   "{a} anos válidos; frequência histórica, não previsão",
+   "{a} valid years; historical frequency, not a prediction"
+  ],
+  [
+   "índice da grade não confere: calculado {a}, arquivo {b}",
+   "grid index does not match: computed {a}, file {b}"
+  ],
+  [
+   "Geometria inválida; o cálculo não foi iniciado: {motivos_lista}",
+   "Invalid geometry; the calculation was not started: {motivos_lista}"
+  ],
+  [
+   "OPeNDAP da NASA respondeu HTTP {a} sem arquivo HDF5",
+   "NASA OPeNDAP responded HTTP {a} without an HDF5 file"
+  ],
+  [
+   "Produto SMAP '{a}' não está na ficha de candidatos.",
+   "SMAP product '{a}' is not in the candidates sheet."
+  ],
+  [
+   "{a} ano(s) fora do cálculo; veja anos_excluidos.",
+   "{a} year(s) left out of the calculation; see anos_excluidos."
+  ],
+  [
+   "dia climático ausente em {a}; série interrompida",
+   "missing weather day on {a}; series interrupted"
+  ],
+  [
+   "{a}: série SINTÉTICA de teste, não é dado real.",
+   "{a}: SYNTHETIC test series, not real data."
+  ],
+  [
+   "custo_item.{a} deve ser um valor ≥ 0 em R$/ha.",
+   "custo_item.{a} must be a value ≥ 0 in R$/ha."
+  ],
+  [
+   "O cache é da versão {a}; a ficha descreve a {b}.",
+   "The cache is from version {a}; the product sheet describes {b}."
+  ],
+  [
+   "ORNL DAAC MODIS Web Service indisponível: {a}",
+   "ORNL DAAC MODIS Web Service unavailable: {a}"
+  ],
+  [
+   "Formato não aceito ({a}). Envie um destes: {b}.",
+   "Format not accepted ({a}). Send one of these: {b}."
+  ],
+  [
+   "{a} precisa ser um número em graus decimais.",
+   "{a} must be a number in decimal degrees."
+  ],
+  [
+   "Informe versao_contrato (versão atual {v}).",
+   "Send versao_contrato (current version {v})."
+  ],
+  [
+   "Informe versao_contrato (versão atual {a}).",
+   "Send versao_contrato (current version {a})."
+  ],
+  [
+   "Na cultura escolhida, informe cultura: {a}.",
+   "With the chosen-crop method, send cultura: {a}."
+  ],
+  [
+   "Índice não suportado: {a}. Use ndvi ou evi.",
+   "Unsupported index: {a}. Use ndvi or evi."
+  ],
+  [
+   "Município {a} não existe na lista do IBGE.",
+   "Municipality {a} does not exist in the IBGE list."
+  ],
+  [
+   "AD = {a} mm/cm pela equação do Art. 3º → {b}",
+   "AD = {a} mm/cm by the equation in Art. 3 → {b}"
+  ],
+  [
+   "Classe {a} não existe para {b}. Use uma de {c}.",
+   "Class {a} does not exist for {b}. Use one of {c}."
+  ],
+  [
+   "NSIDC respondeu HTTP {a} sem arquivo HDF5",
+   "NSIDC responded HTTP {a} without an HDF5 file"
+  ],
+  [
+   "estimativa ex-ante da Conab, {a}, nível {b}",
+   "Conab ex-ante estimate, {a}, level {b}"
+  ],
+  [
+   "{a} deve ser um percentual entre 0 e 100",
+   "{a} must be a percentage between 0 and 100"
+  ],
+  [
+   "A geometria do arquivo não é válida: {motivos_lista}",
+   "The file geometry is not valid: {motivos_lista}"
+  ],
+  [
+   "Cultura desconhecida: {a}. Use uma de {b}.",
+   "Unknown crop: {a}. Use one of {b}."
+  ],
+  [
+   "{a} tem itens; edite um deles (ex.: {b}.{c}).",
+   "{a} has items; edit one of them (e.g. {b}.{c})."
+  ],
+  [
+   "Grupo {a} não existe para {b}. Use um de {c}.",
+   "Group {a} does not exist for {b}. Use one of {c}."
+  ],
+  [
+   "AD = {a} mm/cm pela equação do Art. 3º",
+   "AD = {a} mm/cm by the equation in Art. 3"
+  ],
+  [
+   "Preço informado pelo produtor ({origem}, {data})",
+   "Price provided by the farmer ({origem}, {data})"
+  ],
+  [
+   "mês de referência não encontrado: {a}",
+   "reference month not found: {a}"
+  ],
+  [
+   "{a} = {b} fora do domínio aceito ({c} a {d} {e}).",
+   "{a} = {b} outside the accepted range ({c} to {d} {e})."
+  ],
+  [
+   "O GeoJSON não é um JSON válido ({a}).",
+   "The GeoJSON is not valid JSON ({a})."
+  ],
+  [
+   "Nenhuma praça Conab com custo de {a}.",
+   "No Conab market location with cost for {a}."
+  ],
+  [
+   "Preço informado pelo produtor ({a}, {b})",
+   "Price provided by the farmer ({a}, {b})"
+  ],
+  [
+   "Data inválida em {a}: use AAAA-MM-DD.",
+   "Invalid date in {a}: use YYYY-MM-DD."
+  ],
+  [
+   "O arquivo passa do limite de {a} MB.",
+   "The file is larger than the {a} MB limit."
+  ],
+  [
+   "tipo de geometria não suportado: {a}",
+   "unsupported geometry type: {a}"
+  ],
+  [
+   "{a}{b} = {c} fora do domínio aceito ({d} a {e}).",
+   "{a}{b} = {c} outside the accepted range ({d} to {e})."
+  ],
+  [
+   "TELLUS recomendação (spec 008): {criterios_lista}",
+   "TELLUS recommendation (spec 008): {criterios_lista}"
+  ],
+  [
+   "decêndios de semeadura da safra {safra}",
+   "sowing 10-day periods of the {safra} season"
+  ],
+  [
+   "Coordenada KML não numérica: '{a}'.",
+   "Non-numeric KML coordinate: '{a}'."
+  ],
+  [
+   "Arquivo enviado pelo produtor ({a})",
+   "File uploaded by the farmer ({a})"
+  ],
+  [
+   "SISZARC falhou ao gerar o XLS ({a})",
+   "SISZARC failed to generate the XLS ({a})"
+  ],
+  [
+   "sem resposta do WFS do SICAR ({a})",
+   "no response from the SICAR WFS ({a})"
+  ],
+  [
+   "OPeNDAP da NASA não respondeu: {a}",
+   "NASA OPeNDAP did not respond: {a}"
+  ],
+  [
+   "AD{a} (classe de água disponível {b})",
+   "AD{a} (available water class {b})"
+  ],
+  [
+   "nível de custo deve ser um de {a}",
+   "cost level must be one of {a}"
+  ],
+  [
+   "produtividade não encontrada: {a}",
+   "yield not found: {a}"
+  ],
+  [
+   "Item {a} não existe na planilha {b}.",
+   "Item {a} does not exist in sheet {b}."
+  ],
+  [
+   "{base_t}; inclui premissas do produtor",
+   "{base_t}; includes the farmer's assumptions"
+  ],
+  [
+   "{a}{b}: valor precisa ser numérico.",
+   "{a}{b}: the value must be numeric."
+  ],
+  [
+   "totais ausentes na planilha: {a}",
+   "totals missing in the sheet: {a}"
+  ],
+  [
+   "O KML não é um XML válido ({a}).",
+   "The KML is not valid XML ({a})."
+  ],
+  [
+   "Peça no máximo {a} dias por vez.",
+   "Request at most {a} days at a time."
+  ],
+  [
+   "Variante '{a}' não existe em {b}: {c}.",
+   "Variant '{a}' does not exist in {b}: {c}."
+  ],
+  [
+   "O resultado usa hipóteses: {hipoteses_lista}.",
+   "The result uses assumptions: {hipoteses_lista}."
+  ],
+  [
+   "WFS do SICAR devolveu erro: {a}",
+   "The SICAR WFS returned an error: {a}"
+  ],
+  [
+   "WFS do SICAR respondeu HTTP {a}",
+   "The SICAR WFS responded HTTP {a}"
+  ],
+  [
+   "nivel_custo deve ser um de {a}.",
+   "nivel_custo must be one of {a}."
+  ],
+  [
+   "Faltam no .zip os arquivos: {arquivos}",
+   "Files missing from the .zip: {arquivos}"
+  ],
+  [
+   "praça Conab {a} a {b} km do ponto",
+   "Conab market location {a} {b} km from the point"
+  ],
+  [
+   "CMR da NASA não respondeu: {a}",
+   "NASA CMR did not respond: {a}"
+  ],
+  [
+   "CMR da NASA respondeu HTTP {a}",
+   "NASA CMR responded HTTP {a}"
+  ],
+  [
+   "informado pelo produtor ({origem})",
+   "provided by the farmer ({origem})"
+  ],
+  [
+   "informado pelo produtor ({a})",
+   "provided by the farmer ({a})"
+  ],
+  [
+   "A geometria não é válida: {motivos_lista}",
+   "The geometry is not valid: {motivos_lista}"
+  ],
+  [
+   "Informado pelo produtor: {origem}",
+   "Provided by the farmer: {origem}"
+  ],
+  [
+   "geometria não suportada: {a}",
+   "unsupported geometry: {a}"
+  ],
+  [
+   "Informado pelo produtor: {a}",
+   "Provided by the farmer: {a}"
+  ],
+  [
+   "CAD da classe {a} para {b}: {c} mm",
+   "Available water capacity of class {a} for {b}: {c} mm"
+  ],
+  [
+   "Parâmetro desconhecido: {a}.",
+   "Unknown parameter: {a}."
+  ],
+  [
+   "Cultura deve ser uma de {a}.",
+   "Crop must be one of {a}."
+  ],
+  [
+   "{a}: dados de {b} obtidos em {c}.",
+   "{a}: {b} data obtained on {c}."
+  ],
+  [
+   "SISZARC sem resposta ({a})",
+   "SISZARC no response ({a})"
+  ],
+  [
+   "índice não suportado: {a}",
+   "unsupported index: {a}"
+  ],
+  [
+   "{a}: coordenada inválida",
+   "{a}: invalid coordinate"
+  ],
+  [
+   "{a}: menos de 4 posições",
+   "{a}: fewer than 4 positions"
+  ],
+  [
+   "cotação informada em {a}",
+   "quote provided on {a}"
+  ],
+  [
+   "{a} precisa de {b} valores.",
+   "{a} needs {b} values."
+  ],
+  [
+   "NSIDC não respondeu: {a}",
+   "NSIDC did not respond: {a}"
+  ],
+  [
+   "SISZARC falhou em {a} ({b})",
+   "SISZARC failed at {a} ({b})"
+  ],
+  [
+   "Kc da entressafra ({a})",
+   "Off-season Kc ({a})"
+  ],
+  [
+   "Geometria inválida: {motivos_lista}",
+   "Invalid geometry: {motivos_lista}"
+  ],
+  [
+   "{a}: mais de {b} vértices",
+   "{a}: more than {b} vertices"
+  ],
+  [
+   "município {a}, solo {b}, {c}",
+   "municipality {a}, soil {b}, {c}"
+  ],
+  [
+   "{a}: anel não fechado",
+   "{a}: ring not closed"
+  ],
+  [
+   "Pedido inválido: {msgs_lista}",
+   "Invalid request: {msgs_lista}"
+  ],
+  [
+   "parte {a}: sem anéis",
+   "part {a}: no rings"
+  ],
+  [
+   "safra {a}, decêndio {b}",
+   "season {a}, 10-day period {b}"
+  ],
+  [
+   "{a} não tem o item {b}.",
+   "{a} does not have the item {b}."
+  ],
+  [
+   "{a} sem coordenadas.",
+   "{a} without coordinates."
+  ],
+  [
+   "Só {a} anos válidos.",
+   "Only {a} valid years."
+  ],
+  [
+   "{a}, {b} (município {c})",
+   "{a}, {b} (municipality {c})"
+  ],
+  [
+   "coleção CMR {id}",
+   "CMR collection {id}"
+  ],
+  [
+   "coleção CMR {a}",
+   "CMR collection {a}"
+  ],
+  [
+   "{base_t}; resolução {res}",
+   "{base_t}; resolution {res}"
+  ],
+  [
+   "cotação de {a}",
+   "quote from {a}"
+  ],
+  [
+   "{base_t} · período {periodo_t}",
+   "{base_t} · period {periodo_t}"
+  ],
+  [
+   "{campo}: {msg_t}",
+   "{campo}: {msg_t}"
+  ]
+ ]
+}

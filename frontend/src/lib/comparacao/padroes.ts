@@ -3,6 +3,7 @@
 // a água disponível vem de POST /api/solo/classificar (classe AD do ZARC). Falhou: o editor fica no exemplo.
 
 import { API_URL } from "../api";
+import { comIdioma } from "../i18n/cliente";
 import type { EntradasComparacao, Proveniencia } from "./contrato-provisorio";
 import type { LavouraConfirmada } from "./lavoura";
 
@@ -38,7 +39,7 @@ export function mapearPadroes(margemMilho: any, solo: any | null): Padroes {
 
 export async function carregarPadroes(lav: LavouraConfirmada, e: EntradasComparacao | undefined): Promise<Padroes> {
   const post = (rota: string, corpo: unknown) =>
-    fetch(`${API_URL}${rota}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) })
+    fetch(`${API_URL}${rota}`, comIdioma({ method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) }))
       .then((r) => (r.ok ? r.json() : null)).catch(() => null);
   const textura = e?.solo && e.solo.modo !== "mm" ? e.solo.textura : null;
   const [margem, solo] = await Promise.all([

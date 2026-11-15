@@ -631,6 +631,15 @@
    "title": "Hipoteses",
    "type": "array"
   },
+  "idioma": {
+   "default": "pt-BR",
+   "enum": [
+    "pt-BR",
+    "en"
+   ],
+   "title": "Idioma",
+   "type": "string"
+  },
   "pedido": {
    "additionalProperties": true,
    "title": "Pedido",
@@ -647,7 +656,7 @@
    "$ref": "#/$defs/Secao"
   },
   "versao_contrato": {
-   "default": "1.1.0",
+   "default": "1.2.0",
    "title": "Versao Contrato",
    "type": "string"
   },

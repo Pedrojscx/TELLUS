@@ -320,6 +320,15 @@
    "title": "Grupo",
    "type": "string"
   },
+  "idioma": {
+   "default": "pt-BR",
+   "enum": [
+    "pt-BR",
+    "en"
+   ],
+   "title": "Idioma",
+   "type": "string"
+  },
   "metodologia": {
    "enum": [
     "cultura_escolhida",

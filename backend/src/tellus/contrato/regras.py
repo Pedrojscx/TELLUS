@@ -92,7 +92,8 @@ def normalizar_pedido(bruto: Mapping) -> dict:
             raise versao.ErroContrato(excedidos[0][0], " ".join(m for _, m in excedidos), campo="geometria",
                                       detalhes=[m for _, m in excedidos])
     d = p.model_dump(mode="json")
-    return d | {"hash_pedido": hash_estavel(d)}
+    # O idioma só muda o texto da resposta (spec 014): o mesmo cálculo tem o mesmo hash em PT e em EN.
+    return d | {"hash_pedido": hash_estavel({k: v for k, v in d.items() if k != "idioma"})}
 
 
 # ---------------------------------------------------------------- proveniência (#97, SC-002)

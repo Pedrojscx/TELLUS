@@ -3,6 +3,7 @@
 // (contrato-provisorio.ts). Os tipos de resposta abaixo cobrem só os campos lidos aqui.
 
 import { API_URL } from "../api";
+import { idiomaAtual } from "../i18n/cliente";
 import {
   premissasParaPedido,
   type Alternativa, type Aviso, type ContextoOpcional, type EntradasComparacao, type ErroFonte,
@@ -10,7 +11,7 @@ import {
 } from "./contrato-provisorio";
 import type { LavouraConfirmada } from "./lavoura";
 
-export const VERSAO_CONTRATO = "1.1.0";
+export const VERSAO_CONTRATO = "1.2.0"; // 1.2.0: campo idioma (spec 014)
 
 export const NOME_CULTURA: Record<string, string> = {
   milho_2a_safra: "Milho 2ª safra",
@@ -46,6 +47,7 @@ export function montarPedido(e: EntradasComparacao, lavoura: LavouraConfirmada, 
     metodologia: e.metodologia ?? "comparar_alternativas",
     premissas_editadas: premissasParaPedido(premissas),
     contextos: { vegetacao: true, umidade: true },
+    idioma: idiomaAtual(), // textos da resposta no idioma do site; os números não mudam
   };
   if (e.metodologia === "cultura_escolhida" && e.cultura) pedido.cultura = e.cultura;
   return pedido;
@@ -83,7 +85,7 @@ interface AlternativaContrato {
 }
 interface Secao { estado: string; conteudo: any; proveniencia: ProvContrato[]; avisos: AvisoContrato[]; erro: ErroContrato | null }
 export interface RespostaContrato {
-  versao_contrato: string; estado_geral: "final" | "final_com_cache" | "incompleto" | "erro"; final: boolean;
+  versao_contrato: string; idioma?: "pt-BR" | "en"; estado_geral: "final" | "final_com_cache" | "incompleto" | "erro"; final: boolean;
   recomendacao: Secao;
   contextos: Record<"vegetacao" | "umidade", { estado: string; conteudo: any; avisos: AvisoContrato[]; erro: ErroContrato | null }>;
   avisos: AvisoContrato[]; erros: ErroContrato[]; hipoteses: string[];
