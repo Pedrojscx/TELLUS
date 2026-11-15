@@ -1,0 +1,19 @@
+---
+// Desenho da área no mapa (spec 002, #21). Leaflet puro, sem plugin: cada clique no mapa marca um vértice.
+// A lógica fica no script do SeletorLocal, que é dono do mapa.
+---
+<div class="space-y-2 border-t border-stone-200 pt-4" aria-labelledby="titulo-desenho">
+  <p id="titulo-desenho" class="text-sm font-medium">Ou desenhe a área no mapa</p>
+  <div class="flex flex-wrap gap-2 text-sm">
+    <button type="button" id="desenho-iniciar" aria-pressed="false"
+      class="rounded-md border border-emerald-700 px-3 py-1.5 font-medium text-emerald-800 hover:bg-emerald-50 aria-pressed:bg-emerald-700 aria-pressed:text-white">
+      Desenhar área
+    </button>
+    <button type="button" id="desenho-desfazer" disabled class="rounded-md border border-stone-300 px-3 py-1.5 disabled:opacity-40">Desfazer ponto</button>
+    <button type="button" id="desenho-fechar" disabled class="rounded-md border border-stone-300 px-3 py-1.5 disabled:opacity-40">Fechar e conferir</button>
+    <button type="button" id="desenho-limpar" disabled class="rounded-md border border-stone-300 px-3 py-1.5 disabled:opacity-40">Limpar</button>
+  </div>
+  <p id="desenho-estado" aria-live="polite" class="text-xs text-stone-600">
+    Clique em “Desenhar área” e depois no mapa, um ponto em cada canto da lavoura (mínimo 3). A área não é simplificada.
+  </p>
+</div>

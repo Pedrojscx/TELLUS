@@ -151,6 +151,12 @@ def confirmar(geometria: dict, id_geometria: str, origem: str, proveniencia: dic
     erros = regras.validar_poligono(geometria, MAX_VERTICES)
     if erros:
         raise ErroCar("geometria_invalida", "Geometria inválida: " + "; ".join(erros), "geometria")
+    if origem in ("desenho", "arquivo"):  # spec 002: limites da D-009 também na confirmação (CAR e SICAR inalterados)
+        from tellus.contrato.regras import limites_excedidos
+
+        excedidos = limites_excedidos(geometria)
+        if excedidos:
+            raise ErroCar(excedidos[0][0], " ".join(m for _, m in excedidos), "geometria")
     if regras.id_geometria(geometria, CASAS) != id_geometria:
         raise ErroCar("geometria_alterada", "A geometria enviada não é a mesma que foi conferida. Confira de novo.", "id_geometria")
     can = candidato(geometria, origem, proveniencia or {})

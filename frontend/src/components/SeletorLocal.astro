@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import ConsultaCar from "./ConsultaCar.astro";
+import DesenhoArea from "./lavoura/DesenhoArea.astro";
+import EnvioArquivo from "./lavoura/EnvioArquivo.astro";
 
 // Contorno do Brasil embutido na página: funciona sem internet (FR-014).
 const brasil = fs.readFileSync(
@@ -55,6 +57,8 @@ const brasil = fs.readFileSync(
       </form>
 
       <ConsultaCar />
+      <EnvioArquivo />
+      <DesenhoArea />
 
       <p id="erro-local" role="alert" class="hidden rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"></p>
     </div>
@@ -73,6 +77,7 @@ const brasil = fs.readFileSync(
   import "leaflet/dist/leaflet.css";
   import { api, apiCar, FalhaApi, type CandidatoLavoura, type ConsultaCar, type ResultadoLocalizacao } from "../lib/api";
   import { esc, renderReferencias } from "../lib/referencias";
+  import { apiLavoura, poligonoDosVertices } from "../lib/lavoura";
 
   const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
   const busca = $<HTMLInputElement>("busca");
@@ -177,8 +182,10 @@ const brasil = fs.readFileSync(
     executar(() => api.porPonto(lat, lon, "coordenadas"));
   });
 
-  // --- clique no mapa ---
+  // --- clique no mapa (no modo desenho, o clique marca um vértice) ---
+  let desenhando = false;
   mapa.on("click", (e: L.LeafletMouseEvent) => {
+    if (desenhando) return adicionarVertice(e.latlng);
     executar(() => api.porPonto(e.latlng.lat.toFixed(5), e.latlng.lng.toFixed(5), "mapa"));
   });
 
@@ -263,6 +270,78 @@ const brasil = fs.readFileSync(
       mostrarCandidato(r.candidato, `Área lida do arquivo ${arquivo.name}`, avisos);
     } catch (err) {
       mostrarErro(err instanceof FalhaApi ? err.erro.mensagem : "Erro ao ler o arquivo.");
+    }
+  });
+
+  // --- arquivo da lavoura: KML, KMZ, GeoJSON ou Shapefile .zip (spec 002, #22) ---
+  $<HTMLInputElement>("arquivo-lavoura").addEventListener("change", async (e) => {
+    const entrada = e.target as HTMLInputElement;
+    const arquivo = entrada.files?.[0];
+    if (!arquivo) return;
+    mostrarErro(null);
+    try {
+      const r = await apiLavoura.arquivo(arquivo);
+      const fmt = r.arquivo ? ` (${esc(r.arquivo.nome_formato)})` : "";
+      mostrarCandidato(r.candidato, `Área lida do arquivo ${arquivo.name}${fmt}`);
+    } catch (err) {
+      mostrarErro(err instanceof FalhaApi ? `${err.erro.mensagem} [${err.erro.codigo}]` : "Erro ao ler o arquivo.");
+    } finally {
+      entrada.value = "";
+    }
+  });
+
+  // --- desenho da área no mapa: Leaflet puro, sem plugin (spec 002, #21) ---
+  const btnIniciar = $<HTMLButtonElement>("desenho-iniciar");
+  const btnDesfazer = $<HTMLButtonElement>("desenho-desfazer");
+  const btnFechar = $<HTMLButtonElement>("desenho-fechar");
+  const btnLimpar = $<HTMLButtonElement>("desenho-limpar");
+  const estadoDesenho = $<HTMLParagraphElement>("desenho-estado");
+  const vertices: L.LatLng[] = [];
+  const camadaDesenho = L.layerGroup().addTo(mapa);
+
+  function redesenhar() {
+    camadaDesenho.clearLayers();
+    if (vertices.length >= 2) {
+      L.polyline(vertices.length >= 3 ? [...vertices, vertices[0]] : vertices,
+        { color: "#b45309", weight: 2, dashArray: vertices.length >= 3 ? "4 4" : undefined }).addTo(camadaDesenho);
+    }
+    vertices.forEach((v, i) =>
+      L.circleMarker(v, { radius: i === 0 ? 6 : 4, color: "#b45309", fillColor: "#fbbf24", fillOpacity: 1, interactive: false }).addTo(camadaDesenho));
+    btnDesfazer.disabled = vertices.length === 0;
+    btnLimpar.disabled = vertices.length === 0;
+    btnFechar.disabled = vertices.length < 3;
+    estadoDesenho.textContent = desenhando
+      ? `${vertices.length} ponto(s) marcado(s).` + (vertices.length < 3 ? " Marque pelo menos 3." : " Clique em “Fechar e conferir” quando terminar.")
+      : vertices.length ? `${vertices.length} ponto(s) marcado(s). Desenho pausado.` : "Clique em “Desenhar área” e depois no mapa, um ponto em cada canto da lavoura (mínimo 3). A área não é simplificada.";
+  }
+
+  function modoDesenho(ativo: boolean) {
+    desenhando = ativo;
+    btnIniciar.setAttribute("aria-pressed", String(ativo));
+    btnIniciar.textContent = ativo ? "Pausar desenho" : "Desenhar área";
+    mapa.getContainer().style.cursor = ativo ? "crosshair" : "";
+    redesenhar();
+  }
+
+  function adicionarVertice(p: L.LatLng) {
+    vertices.push(p);
+    redesenhar();
+  }
+
+  btnIniciar.addEventListener("click", () => modoDesenho(!desenhando));
+  btnDesfazer.addEventListener("click", () => { vertices.pop(); redesenhar(); });
+  btnLimpar.addEventListener("click", () => { vertices.length = 0; modoDesenho(false); });
+  btnFechar.addEventListener("click", async () => {
+    if (vertices.length < 3) return;
+    mostrarErro(null);
+    try {
+      const r = await apiLavoura.desenho(poligonoDosVertices(vertices));
+      vertices.length = 0;
+      modoDesenho(false);
+      mostrarCandidato(r.candidato, "Área desenhada no mapa");
+    } catch (err) {
+      // mantém os vértices para o produtor corrigir (ex.: contorno que cruza a si mesmo)
+      mostrarErro(err instanceof FalhaApi ? `${err.erro.mensagem} [${err.erro.codigo}]` : "Erro ao conferir o desenho.");
     }
   });
 
