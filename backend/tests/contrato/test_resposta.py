@@ -3,7 +3,7 @@
 import json
 import re
 
-from tellus.contrato import regras
+from tellus.contrato import regras, versao
 from tellus.contrato.modelos import RespostaCalculo
 
 
@@ -68,7 +68,8 @@ def test_008_pendente_sem_campos_inventados(resposta_real):
 
 def test_versoes_de_entradas_e_contrato(resposta_real):
     v = resposta_real["versoes"]
-    assert v["contrato"] == "1.0.0" and v["hash_pedido"] == resposta_real["pedido"]["hash_pedido"]
+    assert v["contrato"] == versao.VERSAO == "1.1.0"
+    assert v["hash_pedido"] == resposta_real["pedido"]["hash_pedido"]
     assert all(v["modulos"][k] for k in v["modulos"])
     assert len(v["modulos"]) == 6
 

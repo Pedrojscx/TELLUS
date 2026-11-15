@@ -272,6 +272,19 @@
      "default": null,
      "title": "Cultura"
     },
+    "data_informada": {
+     "anyOf": [
+      {
+       "format": "date",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Data Informada"
+    },
     "id": {
      "minLength": 1,
      "title": "Id",
@@ -285,6 +298,18 @@
      ],
      "title": "Modulo",
      "type": "string"
+    },
+    "origem_informada": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Origem Informada"
     },
     "unidade": {
      "minLength": 1,
@@ -369,7 +394,8 @@
       "editado",
       "calculado",
       "pedido",
-      "nao_se_aplica"
+      "nao_se_aplica",
+      "informada_pelo_produtor"
      ],
      "title": "Situacao",
      "type": "string"
@@ -621,7 +647,7 @@
    "$ref": "#/$defs/Secao"
   },
   "versao_contrato": {
-   "default": "1.0.0",
+   "default": "1.1.0",
    "title": "Versao Contrato",
    "type": "string"
   },

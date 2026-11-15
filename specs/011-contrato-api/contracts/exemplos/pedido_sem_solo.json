@@ -17,12 +17,14 @@
   "premissas_editadas": [
    {
     "cultura": "sorgo_granifero_2a_safra",
+    "data_informada": "2025-01-15",
     "id": "preco_r_saca",
     "modulo": "economia",
+    "origem_informada": "Cooperativa local de Rio Verde/GO",
     "unidade": "R$/saca de 60 kg",
     "valor_novo": 55.0
    }
   ],
-  "versao_contrato": "1.0.0"
+  "versao_contrato": "1.1.0"
  }
 }

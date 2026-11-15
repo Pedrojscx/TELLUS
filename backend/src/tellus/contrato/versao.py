@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-VERSAO = "1.0.0"
+VERSAO = "1.1.0"  # 1.1.0: origem_informada/data_informada opcionais na premissa de preço (MENOR, compatível com 1.0.x)
 REGRA = ("Aceita pedidos com o mesmo número MAIOR e MENOR menor ou igual ao do servidor. "
          "Mudança incompatível (remover/renomear campo, mudar tipo, unidade ou significado) sobe o MAIOR.")
 _SEMVER = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")
