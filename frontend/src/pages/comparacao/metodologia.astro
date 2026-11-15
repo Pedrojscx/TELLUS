@@ -31,6 +31,6 @@ import Metodologias from "../../components/comparacao/Metodologias.astro";
     const p = document.getElementById("erro-metodologia")!;
     p.textContent = erros.map((x) => x.mensagem).join(" ");
     p.classList.toggle("hidden", !erros.length);
-    if (!erros.length) location.href = "/comparacao/carga";
+    if (!erros.length) location.href = "/comparacao/resultado"; // cálculo real com etapas (#103); /carga é a simulação
   });
 </script>
