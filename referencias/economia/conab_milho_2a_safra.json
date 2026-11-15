@@ -1,0 +1,6681 @@
+{
+ "cultura": "milho_2a_safra",
+ "fonte": "Conab — custos de produção, série histórica",
+ "arquivo": "conab_milho_2a_safra.xls",
+ "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/milho/milho_2a_safra_serie_historica_2005-2026.xls",
+ "obtido_em": "2026-11-14",
+ "sha256": "30c923d8f92d1bbc1995f13b568fe24b7349e38f752e0491157a1f2adc59df1b",
+ "planilhas": [
+  {
+   "aba": "Crateús-CE-2025",
+   "ano": 2025,
+   "codigo_ibge": "2304103",
+   "praca": "Crateús",
+   "uf": "CE",
+   "lat": -5.1998,
+   "lon": -40.71827,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO CONVENCIONAL - MÉDIA TECNOLOGIA",
+   "sistema": "PLANTIO CONVENCIONAL",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 1800.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 301.23
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 594.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 106.28
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 285.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 120.0
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 105.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 45.35
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 33.72
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 54.78
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 13.51
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 56.22
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 49.68
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 58.72
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 48.45
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 8.05
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 78.69
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 65.97
+    }
+   ],
+   "totais": {
+    "custeio": 1511.51,
+    "outras_despesas": 79.07,
+    "despesas_financeiras": 54.78,
+    "custo_variavel": 1645.36,
+    "depreciacoes": 119.41,
+    "outros_custos_fixos": 115.22,
+    "custo_fixo": 234.63,
+    "custo_operacional": 1879.99,
+    "renda_fatores": 144.66,
+    "custo_total": 2024.65
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Crateús-CE-2026",
+   "ano": 2026,
+   "codigo_ibge": "2304103",
+   "praca": "Crateús",
+   "uf": "CE",
+   "lat": -5.1998,
+   "lon": -40.71827,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO CONVENCIONAL - MÉDIA TECNOLOGIA",
+   "sistema": "PLANTIO CONVENCIONAL",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 1800.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 307.04
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 660.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 113.48
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 290.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 100.0
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 66.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 46.1
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 61.67
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 14.33
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 56.19
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 47.84
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 62.3
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 51.74
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 8.12
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 90.06
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 87.36
+    }
+   ],
+   "totais": {
+    "custeio": 1536.52,
+    "outras_despesas": 46.1,
+    "despesas_financeiras": 61.67,
+    "custo_variavel": 1644.29,
+    "depreciacoes": 118.36,
+    "outros_custos_fixos": 122.16,
+    "custo_fixo": 240.52,
+    "custo_operacional": 1884.81,
+    "renda_fatores": 177.42,
+    "custo_total": 2062.23
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Rio Verde-GO-2025",
+   "ano": 2025,
+   "codigo_ibge": "5218805",
+   "praca": "Rio Verde",
+   "uf": "GO",
+   "lat": -17.73971,
+   "lon": -51.03782,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 221.87
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 14.88
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 700.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1640.08
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 480.31
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 264.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 91.71
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 224.96
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 42.8
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 61.14
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 106.88
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 112.05
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 92.38
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 154.93
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 120.47
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 16.49
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 6.78
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 16.14
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 562.5
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 157.75
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 641.38
+    }
+   ],
+   "totais": {
+    "custeio": 3057.14,
+    "outras_despesas": 791.49,
+    "despesas_financeiras": 112.05,
+    "custo_variavel": 3960.68,
+    "depreciacoes": 367.78,
+    "outros_custos_fixos": 601.91,
+    "custo_fixo": 969.69,
+    "custo_operacional": 4930.37,
+    "renda_fatores": 799.13,
+    "custo_total": 5729.5
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Rio Verde-GO-2026",
+   "ano": 2026,
+   "codigo_ibge": "5218805",
+   "praca": "Rio Verde",
+   "uf": "GO",
+   "lat": -17.73971,
+   "lon": -51.03782,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 269.51
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 16.32
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 900.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 2170.58
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 447.28
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 300.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 114.11
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 233.75
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 53.25
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 76.07
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 80.25
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 157.42
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 96.14
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 174.74
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 156.88
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 17.53
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 7.44
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 19.57
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 598.25
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 217.07
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 780.0
+    }
+   ],
+   "totais": {
+    "custeio": 3803.69,
+    "outras_despesas": 857.43,
+    "despesas_financeiras": 157.42,
+    "custo_variavel": 4818.54,
+    "depreciacoes": 427.76,
+    "outros_custos_fixos": 642.79,
+    "custo_fixo": 1070.55,
+    "custo_operacional": 5889.09,
+    "renda_fatores": 997.07,
+    "custo_total": 6886.16
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Cristalina-GO-2025",
+   "ano": 2025,
+   "codigo_ibge": "5206206",
+   "praca": "Cristalina",
+   "uf": "GO",
+   "lat": -16.69764,
+   "lon": -47.51669,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 4800.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 278.74
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 60.0
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 1220.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 350.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 427.25
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 240.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 70.08
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 177.92
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 75.3
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 144.99
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 172.14
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 87.11
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 235.2
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 51.11
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 27.35
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 18.96
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 49.84
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 185.35
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 487.45
+    }
+   ],
+   "totais": {
+    "custeio": 2335.99,
+    "outras_despesas": 563.3,
+    "despesas_financeiras": 144.99,
+    "custo_variavel": 3044.28,
+    "depreciacoes": 494.45,
+    "outros_custos_fixos": 147.26,
+    "custo_fixo": 641.71,
+    "custo_operacional": 3685.99,
+    "renda_fatores": 672.8,
+    "custo_total": 4358.79
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Balsas-MA-2025",
+   "ano": 2025,
+   "codigo_ibge": "2101400",
+   "praca": "Balsas",
+   "uf": "MA",
+   "lat": -8.23669,
+   "lon": -46.34246,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 4250.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 542.69
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 3.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 28.71
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 630.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 710.64
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 422.97
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 70.14
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 159.34
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 58.45
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 75.67
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 69.56
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 44.45
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 251.4
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 394.4
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 50.9
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 13.09
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 38.52
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 376.46
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 500.27
+    }
+   ],
+   "totais": {
+    "custeio": 2338.01,
+    "outras_despesas": 363.6,
+    "despesas_financeiras": 69.56,
+    "custo_variavel": 2771.17,
+    "depreciacoes": 690.25,
+    "outros_custos_fixos": 102.51,
+    "custo_fixo": 792.76,
+    "custo_operacional": 3563.93,
+    "renda_fatores": 876.73,
+    "custo_total": 4440.66
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Balsas-MA-2026",
+   "ano": 2026,
+   "codigo_ibge": "2101400",
+   "praca": "Balsas",
+   "uf": "MA",
+   "lat": -8.23669,
+   "lon": -46.34246,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 4250.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 626.03
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 3.3
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 26.55
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 350.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 713.4
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 530.24
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 67.49
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 166.5
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 56.24
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 65.76
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 72.53
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 47.89
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 195.22
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 397.62
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 54.84
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 12.1
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 35.26
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 391.16
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 582.4
+    }
+   ],
+   "totais": {
+    "custeio": 2249.52,
+    "outras_despesas": 355.99,
+    "despesas_financeiras": 72.53,
+    "custo_variavel": 2678.04,
+    "depreciacoes": 640.73,
+    "outros_custos_fixos": 102.2,
+    "custo_fixo": 742.93,
+    "custo_operacional": 3420.97,
+    "renda_fatores": 973.56,
+    "custo_total": 4394.53
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Unaí-MG-2025",
+   "ano": 2025,
+   "codigo_ibge": "3170404",
+   "praca": "Unaí",
+   "uf": "MG",
+   "lat": -16.37553,
+   "lon": -46.81979,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 18.8
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 422.94
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 96.73
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 1254.24
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1300.3
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 508.84
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 150.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 108.06
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 227.52
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 144.07
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 72.04
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 119.7
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 264.73
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 29.37
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 221.47
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 166.9
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 211.0
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 44.1
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 27.59
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 170.33
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 269.62
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 481.03
+    }
+   ],
+   "totais": {
+    "custeio": 3601.85,
+    "outras_despesas": 821.39,
+    "despesas_financeiras": 264.73,
+    "custo_variavel": 4687.97,
+    "depreciacoes": 417.74,
+    "outros_custos_fixos": 453.02,
+    "custo_fixo": 870.76,
+    "custo_operacional": 5558.73,
+    "renda_fatores": 750.65,
+    "custo_total": 6309.38
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Unaí-MG-2026",
+   "ano": 2026,
+   "codigo_ibge": "3170404",
+   "praca": "Unaí",
+   "uf": "MG",
+   "lat": -16.37553,
+   "lon": -46.81979,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 28.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 457.89
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 110.0
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 1260.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1382.68
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 422.81
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 150.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 109.84
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 234.56
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 146.46
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 73.23
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 90.38
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 320.12
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 37.67
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 205.9
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 165.79
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 270.6
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 50.15
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 28.08
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 191.81
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 311.47
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 624.0
+    }
+   ],
+   "totais": {
+    "custeio": 3661.38,
+    "outras_despesas": 804.47,
+    "despesas_financeiras": 320.12,
+    "custo_variavel": 4785.97,
+    "depreciacoes": 409.36,
+    "outros_custos_fixos": 540.64,
+    "custo_fixo": 950.0,
+    "custo_operacional": 5735.97,
+    "renda_fatores": 935.47,
+    "custo_total": 6671.44
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Chapadão do Sul-MS-2025",
+   "ano": 2025,
+   "codigo_ibge": "5002951",
+   "praca": "Chapadão do Sul",
+   "uf": "MS",
+   "lat": -18.99409,
+   "lon": -52.69848,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 55.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 204.68
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 8.84
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 770.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1677.4
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 743.44
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.34
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 270.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 103.79
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 69.19
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 112.13
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 194.86
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 5.38
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 45.99
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 134.34
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 7.4
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 4.03
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 10.78
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 105.35
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1832.5
+    }
+   ],
+   "totais": {
+    "custeio": 3459.7,
+    "outras_despesas": 555.11,
+    "despesas_financeiras": 194.86,
+    "custo_variavel": 4209.67,
+    "depreciacoes": 185.71,
+    "outros_custos_fixos": 22.21,
+    "custo_fixo": 207.92,
+    "custo_operacional": 4417.59,
+    "renda_fatores": 1937.85,
+    "custo_total": 6355.44
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Dourados-MS-2025",
+   "ano": 2025,
+   "codigo_ibge": "5003702",
+   "praca": "Dourados",
+   "uf": "MS",
+   "lat": -22.14359,
+   "lon": -54.83755,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 5100.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 223.06
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 78.48
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 805.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 630.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 431.62
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 240.98
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 65.04
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 212.57
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 32.52
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 59.41
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 93.39
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 159.6
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 8.16
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 161.35
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 95.41
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 40.69
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 35.78
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 17.43
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 284.08
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 170.39
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1612.6
+    }
+   ],
+   "totais": {
+    "custeio": 2168.16,
+    "outras_despesas": 703.91,
+    "despesas_financeiras": 159.6,
+    "custo_variavel": 3031.67,
+    "depreciacoes": 264.92,
+    "outros_custos_fixos": 377.98,
+    "custo_fixo": 642.9,
+    "custo_operacional": 3674.57,
+    "renda_fatores": 1782.99,
+    "custo_total": 5457.56
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Dourados-MS-2026",
+   "ano": 2026,
+   "codigo_ibge": "5003702",
+   "praca": "Dourados",
+   "uf": "MS",
+   "lat": -22.14359,
+   "lon": -54.83755,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 5100.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 252.16
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 78.48
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 800.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 830.55
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 359.31
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 267.75
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 69.61
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 220.55
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 34.81
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 59.41
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 71.4
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 197.62
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 8.16
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 161.35
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 95.41
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 40.69
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 35.78
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 17.43
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 283.14
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 193.4
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1830.4
+    }
+   ],
+   "totais": {
+    "custeio": 2320.5,
+    "outras_despesas": 723.53,
+    "despesas_financeiras": 197.62,
+    "custo_variavel": 3241.65,
+    "depreciacoes": 264.92,
+    "outros_custos_fixos": 377.04,
+    "custo_fixo": 641.96,
+    "custo_operacional": 3883.61,
+    "renda_fatores": 2023.8,
+    "custo_total": 5907.41
+   },
+   "avisos": []
+  },
+  {
+   "aba": "P. do Leste-MT-2025",
+   "ano": 2025,
+   "codigo_ibge": "5107040",
+   "praca": "Primavera do Leste",
+   "uf": "MT",
+   "lat": -15.09512,
+   "lon": -54.2198,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 55.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 245.17
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 16.2
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 700.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1160.85
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 461.16
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.71
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 270.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 79.17
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 226.38
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 52.78
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 114.0
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 160.54
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 114.63
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 219.73
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 184.54
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 22.76
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 7.39
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 25.58
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 250.0
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1191.13
+    }
+   ],
+   "totais": {
+    "custeio": 2639.09,
+    "outras_despesas": 742.33,
+    "despesas_financeiras": 160.54,
+    "custo_variavel": 3541.96,
+    "depreciacoes": 518.9,
+    "outros_custos_fixos": 55.73,
+    "custo_fixo": 574.63,
+    "custo_operacional": 4116.59,
+    "renda_fatores": 1441.13,
+    "custo_total": 5557.72
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Campo Verde-MT-2025",
+   "ano": 2025,
+   "codigo_ibge": "5102678",
+   "praca": "Campo Verde",
+   "uf": "MT",
+   "lat": -15.34558,
+   "lon": -54.95931,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 414.36
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 29.04
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 640.8
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1228.25
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 538.8
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 2.32
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 318.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 85.61
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 216.35
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 57.07
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 114.0
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 192.61
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 286.91
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 231.73
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 254.82
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 30.61
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 13.24
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 31.12
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 256.2
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 304.1
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1953.45
+    }
+   ],
+   "totais": {
+    "custeio": 2853.57,
+    "outras_despesas": 791.03,
+    "despesas_financeiras": 192.61,
+    "custo_variavel": 3837.21,
+    "depreciacoes": 773.46,
+    "outros_custos_fixos": 331.17,
+    "custo_fixo": 1104.63,
+    "custo_operacional": 4941.84,
+    "renda_fatores": 2257.55,
+    "custo_total": 7199.39
+   },
+   "avisos": []
+  },
+  {
+   "aba": "C. Novo do Parecis-MT-2025",
+   "ano": 2025,
+   "codigo_ibge": "5102637",
+   "praca": "Campo Novo do Parecis",
+   "uf": "MT",
+   "lat": -13.68719,
+   "lon": -57.93165,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 480.79
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 9.08
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 700.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 791.1
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 559.16
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 282.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 76.2
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 223.72
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 100.68
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 127.47
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 43.87
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 250.88
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 452.38
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 38.17
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 4.14
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 47.83
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 278.4
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 467.5
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 725.67
+    }
+   ],
+   "totais": {
+    "custeio": 2540.13,
+    "outras_despesas": 682.6,
+    "despesas_financeiras": 127.47,
+    "custo_variavel": 3350.2,
+    "depreciacoes": 747.13,
+    "outros_custos_fixos": 368.54,
+    "custo_fixo": 1115.67,
+    "custo_operacional": 4465.87,
+    "renda_fatores": 1193.17,
+    "custo_total": 5659.04
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Sorriso-MT-2025",
+   "ano": 2025,
+   "codigo_ibge": "5107925",
+   "praca": "Sorriso",
+   "uf": "MT",
+   "lat": -12.73697,
+   "lon": -55.68066,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 7200.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 250.96
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 507.6
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 8.24
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 717.8
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 828.1
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 683.21
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 89.88
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 269.68
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 59.92
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 126.9
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 167.04
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 25.06
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 254.67
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 67.28
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 33.7
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 3.76
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 25.73
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 105.75
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 251.51
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 0.0
+    }
+   ],
+   "totais": {
+    "custeio": 2995.91,
+    "outras_despesas": 546.38,
+    "despesas_financeiras": 167.04,
+    "custo_variavel": 3709.33,
+    "depreciacoes": 347.01,
+    "outros_custos_fixos": 168.94,
+    "custo_fixo": 515.95,
+    "custo_operacional": 4225.28,
+    "renda_fatores": 251.51,
+    "custo_total": 4476.79
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Sorriso-MT-2026",
+   "ano": 2026,
+   "codigo_ibge": "5107925",
+   "praca": "Sorriso",
+   "uf": "MT",
+   "lat": -12.73697,
+   "lon": -55.68066,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 7200.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 286.79
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 353.3
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 9.04
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 761.6
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 875.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 703.29
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 89.67
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 276.79
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 59.78
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 85.05
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 196.57
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 27.13
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 266.16
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 69.74
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 36.48
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 4.12
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 27.04
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 73.61
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 300.01
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 0.0
+    }
+   ],
+   "totais": {
+    "custeio": 2989.02,
+    "outras_despesas": 511.29,
+    "despesas_financeiras": 196.57,
+    "custo_variavel": 3696.88,
+    "depreciacoes": 363.03,
+    "outros_custos_fixos": 141.25,
+    "custo_fixo": 504.28,
+    "custo_operacional": 4201.16,
+    "renda_fatores": 300.01,
+    "custo_total": 4501.17
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Tucumã-PA-2025",
+   "ano": 2025,
+   "codigo_ibge": "1508084",
+   "praca": "Tucumã",
+   "uf": "PA",
+   "lat": -6.81853,
+   "lon": -51.3892,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA FAMILIAR - MILHO - PLANTIO CONVENCIONAL - ALTA TECNOLOGIA",
+   "sistema": "PLANTIO CONVENCIONAL",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 5700.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 156.26
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 380.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 91.08
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 900.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 2655.0
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 100.0
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 153.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 342.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 133.06
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 443.53
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 88.71
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 122.91
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 241.66
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 401.46
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 130.6
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 47.49
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 255.83
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 41.52
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 12.15
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 36.68
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 118.78
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 503.56
+    }
+   ],
+   "totais": {
+    "custeio": 4435.34,
+    "outras_despesas": 1130.21,
+    "despesas_financeiras": 241.66,
+    "custo_variavel": 5807.21,
+    "depreciacoes": 579.55,
+    "outros_custos_fixos": 346.18,
+    "custo_fixo": 925.73,
+    "custo_operacional": 6732.94,
+    "renda_fatores": 622.34,
+    "custo_total": 7355.28
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Cascavel-PR-2026",
+   "ano": 2026,
+   "codigo_ibge": "4104808",
+   "praca": "Cascavel",
+   "uf": "PR",
+   "lat": -25.02654,
+   "lon": -53.37869,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA FAMILIAR - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 256.27
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 200.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 113.48
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 1190.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1294.2
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 553.0
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 2.5
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 770.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 131.38
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 455.46
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 65.69
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 80.18
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 294.8
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 11.84
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 251.28
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 33.47
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 313.71
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 51.74
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 17.06
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 236.1
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 189.23
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 2712.32
+    }
+   ],
+   "totais": {
+    "custeio": 4379.45,
+    "outras_despesas": 732.71,
+    "despesas_financeiras": 294.8,
+    "custo_variavel": 5406.96,
+    "depreciacoes": 296.59,
+    "outros_custos_fixos": 618.61,
+    "custo_fixo": 915.2,
+    "custo_operacional": 6322.16,
+    "renda_fatores": 2901.55,
+    "custo_total": 9223.71
+   },
+   "avisos": [
+    "a planilha não traz a unidade da produtividade ('Produtividade Média: 6000,00 ha'); assumido kg/ha, como nas demais abas"
+   ]
+  },
+  {
+   "aba": "Londrina-PR-2025",
+   "ano": 2025,
+   "codigo_ibge": "4113700",
+   "praca": "Londrina",
+   "uf": "PR",
+   "lat": -23.51502,
+   "lon": -51.11023,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 5700.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 642.57
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 16.37
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 427.12
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 949.22
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1255.82
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 552.1
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 115.3
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 326.67
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 98.25
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 215.59
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 10.18
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 296.74
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 279.04
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 108.18
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 194.72
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 30.38
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 661.98
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 296.95
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1021.58
+    }
+   ],
+   "totais": {
+    "custeio": 3843.2,
+    "outras_despesas": 540.22,
+    "despesas_financeiras": 215.59,
+    "custo_variavel": 4599.01,
+    "depreciacoes": 585.96,
+    "outros_custos_fixos": 995.26,
+    "custo_fixo": 1581.22,
+    "custo_operacional": 6180.23,
+    "renda_fatores": 1318.53,
+    "custo_total": 7498.76
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Londrina-PR-2026",
+   "ano": 2026,
+   "codigo_ibge": "4113700",
+   "praca": "Londrina",
+   "uf": "PR",
+   "lat": -23.51502,
+   "lon": -51.11023,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 5700.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 725.22
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 17.53
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 465.92
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 904.13
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1282.02
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 509.96
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 117.14
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 331.91
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 77.66
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 246.61
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 10.69
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 265.32
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 249.72
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 113.59
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 212.41
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 26.97
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 661.3
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 299.23
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 1159.56
+    }
+   ],
+   "totais": {
+    "custeio": 3904.78,
+    "outras_despesas": 526.71,
+    "despesas_financeiras": 246.61,
+    "custo_variavel": 4678.1,
+    "depreciacoes": 525.73,
+    "outros_custos_fixos": 1014.27,
+    "custo_fixo": 1540.0,
+    "custo_operacional": 6218.1,
+    "renda_fatores": 1458.79,
+    "custo_total": 7676.89
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Campo Mourão-PR-2025",
+   "ano": 2025,
+   "codigo_ibge": "4104303",
+   "praca": "Campo Mourão",
+   "uf": "PR",
+   "lat": -24.10404,
+   "lon": -52.3804,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6500.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 262.12
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 305.08
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 1003.1
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1400.91
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 798.82
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 328.25
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 113.1
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 320.45
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 75.4
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 112.04
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 219.65
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 4.09
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 138.83
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 140.77
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 63.52
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 139.09
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 17.04
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 407.65
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 166.53
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 2043.42
+    }
+   ],
+   "totais": {
+    "custeio": 3770.03,
+    "outras_despesas": 949.24,
+    "despesas_financeiras": 219.65,
+    "custo_variavel": 4938.92,
+    "depreciacoes": 283.69,
+    "outros_custos_fixos": 627.3,
+    "custo_fixo": 910.99,
+    "custo_operacional": 5849.91,
+    "renda_fatores": 2209.95,
+    "custo_total": 8059.86
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Ubiratã-PR-2025",
+   "ano": 2025,
+   "codigo_ibge": "4128005",
+   "praca": "Ubiratã",
+   "uf": "PR",
+   "lat": -24.50535,
+   "lon": -53.01937,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 6000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 403.56
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 427.12
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 983.87
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1227.9
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 809.51
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 303.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 115.35
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 192.26
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 38.45
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 103.43
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 244.7
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 12.74
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 258.29
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 214.59
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 174.09
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 194.72
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 29.21
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 371.76
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 285.53
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 2347.07
+    }
+   ],
+   "totais": {
+    "custeio": 3851.96,
+    "outras_despesas": 752.49,
+    "despesas_financeiras": 244.7,
+    "custo_variavel": 4849.15,
+    "depreciacoes": 485.62,
+    "outros_custos_fixos": 769.78,
+    "custo_fixo": 1255.4,
+    "custo_operacional": 6104.55,
+    "renda_fatores": 2632.6,
+    "custo_total": 8737.15
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Francisco Beltrão-PR-2025",
+   "ano": 2025,
+   "codigo_ibge": "4108403",
+   "praca": "Francisco Beltrão",
+   "uf": "PR",
+   "lat": -26.04812,
+   "lon": -53.13039,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA FAMILIAR - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 7000.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 190.02
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 679.82
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 106.28
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 924.69
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1706.74
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 497.6
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 301.7
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 123.15
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 348.94
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 82.1
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 127.47
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 169.92
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 12.14
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 105.72
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 31.96
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 390.45
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 48.45
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 10.09
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 261.87
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 98.59
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 2858.7
+    }
+   ],
+   "totais": {
+    "custeio": 4105.15,
+    "outras_despesas": 983.36,
+    "despesas_financeiras": 169.92,
+    "custo_variavel": 5258.43,
+    "depreciacoes": 149.82,
+    "outros_custos_fixos": 710.86,
+    "custo_fixo": 860.68,
+    "custo_operacional": 6119.11,
+    "renda_fatores": 2957.29,
+    "custo_total": 9076.4
+   },
+   "avisos": []
+  },
+  {
+   "aba": "M. Cândido Rondon-PR-2025",
+   "ano": 2025,
+   "codigo_ibge": "4114609",
+   "praca": "Marechal Cândido Rondon",
+   "uf": "PR",
+   "lat": -24.572,
+   "lon": -54.13597,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA FAMILIAR - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 5500.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 133.19
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 520.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 106.28
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 813.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1051.94
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 690.64
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 222.25
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 99.45
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 298.35
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 66.3
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 94.81
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 132.82
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 9.34
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 61.08
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 21.44
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 261.45
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 48.45
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 5.91
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 157.96
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 57.74
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 2139.11
+    }
+   ],
+   "totais": {
+    "custeio": 3315.05,
+    "outras_despesas": 781.16,
+    "despesas_financeiras": 132.82,
+    "custo_variavel": 4229.03,
+    "depreciacoes": 91.86,
+    "outros_custos_fixos": 473.77,
+    "custo_fixo": 565.63,
+    "custo_operacional": 4794.66,
+    "renda_fatores": 2196.85,
+    "custo_total": 6991.51
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Pedro Afonso-TO-2025",
+   "ano": 2025,
+   "codigo_ibge": "1716505",
+   "praca": "Pedro Afonso",
+   "uf": "TO",
+   "lat": -9.22649,
+   "lon": -48.03321,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2025-03",
+   "produtividade_kg_ha": 4800.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 420.84
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 10.96
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 900.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1617.5
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 410.05
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 235.2
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 100.78
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 76.8
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 70.41
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 5.89
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 140.57
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 203.61
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 13.75
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 5.0
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 20.56
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 200.97
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 252.89
+    }
+   ],
+   "totais": {
+    "custeio": 3359.35,
+    "outras_despesas": 412.78,
+    "despesas_financeiras": 70.41,
+    "custo_variavel": 3842.54,
+    "depreciacoes": 350.07,
+    "outros_custos_fixos": 39.31,
+    "custo_fixo": 389.38,
+    "custo_operacional": 4231.92,
+    "renda_fatores": 453.86,
+    "custo_total": 4685.78
+   },
+   "avisos": []
+  },
+  {
+   "aba": "Pedro Afonso-TO-2026",
+   "ano": 2026,
+   "codigo_ibge": "1716505",
+   "praca": "Pedro Afonso",
+   "uf": "TO",
+   "lat": -9.22649,
+   "lon": -48.03321,
+   "ogm": false,
+   "divergencias": [],
+   "titulo": "AGRICULTURA EMPRESARIAL - MILHO - PLANTIO DIRETO - ALTA TECNOLOGIA - OGM",
+   "sistema": "PLANTIO DIRETO",
+   "mes_referencia": "2026-03",
+   "produtividade_kg_ha": 4800.0,
+   "tipo_produtividade": "ex-ante (premissa da Conab)",
+   "itens": [
+    {
+     "codigo": "1",
+     "nome": "Operação com animal",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "2",
+     "nome": "Operação com Avião",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "3.1",
+     "nome": "Tratores e Colheitadeiras",
+     "grupo": "custeio",
+     "valor_r_ha": 466.98
+    },
+    {
+     "codigo": "3.2",
+     "nome": "Conjunto de Irrigação",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "4",
+     "nome": "Aluguel de Máquinas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "5",
+     "nome": "Aluguel de Animais",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "6",
+     "nome": "Mão de obra",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "7",
+     "nome": "Administrador",
+     "grupo": "custeio",
+     "valor_r_ha": 11.36
+    },
+    {
+     "codigo": "8",
+     "nome": "Sementes e mudas",
+     "grupo": "custeio",
+     "valor_r_ha": 898.0
+    },
+    {
+     "codigo": "9",
+     "nome": "Fertilizantes",
+     "grupo": "custeio",
+     "valor_r_ha": 1593.25
+    },
+    {
+     "codigo": "10",
+     "nome": "Agrotóxicos",
+     "grupo": "custeio",
+     "valor_r_ha": 410.38
+    },
+    {
+     "codigo": "11",
+     "nome": "Receita",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.1",
+     "nome": "Embalagens/Utensílios",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.2",
+     "nome": "Análise de Solo",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "12.3",
+     "nome": "Demais Despesas",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "13",
+     "nome": "Serviços Diversos",
+     "grupo": "custeio",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "14",
+     "nome": "Transporte Externo",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 264.0
+    },
+    {
+     "codigo": "15",
+     "nome": "Despesas Administrativas",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 101.4
+    },
+    {
+     "codigo": "16",
+     "nome": "Despesas de armazenagem",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "17",
+     "nome": "Beneficiamento",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "18",
+     "nome": "Seguro da Produção",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "19",
+     "nome": "Seguro do crédito",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "20",
+     "nome": "Assistência Técnica",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "21",
+     "nome": "Classificação",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "22",
+     "nome": "Outros",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "23",
+     "nome": "CESSR",
+     "grupo": "outras_despesas",
+     "valor_r_ha": 66.11
+    },
+    {
+     "codigo": "24",
+     "nome": "Juros do Financiamento",
+     "grupo": "despesas_financeiras",
+     "valor_r_ha": 80.28
+    },
+    {
+     "codigo": "25",
+     "nome": "Depreciação de benfeitorias/instalações",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 5.72
+    },
+    {
+     "codigo": "26",
+     "nome": "Depreciação de implementos",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 125.45
+    },
+    {
+     "codigo": "27",
+     "nome": "Depreciação de Máquinas",
+     "grupo": "depreciacoes",
+     "valor_r_ha": 200.2
+    },
+    {
+     "codigo": "28",
+     "nome": "Manutenção Periódica Benfeitorias/Instalações",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 13.33
+    },
+    {
+     "codigo": "29",
+     "nome": "Encargos Sociais",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 5.18
+    },
+    {
+     "codigo": "30",
+     "nome": "Seguro do capital fixo",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 19.4
+    },
+    {
+     "codigo": "31",
+     "nome": "Arrendamento",
+     "grupo": "outros_custos_fixos",
+     "valor_r_ha": 0.0
+    },
+    {
+     "codigo": "32",
+     "nome": "Remuneração esperada sobre o capital fixo",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 215.18
+    },
+    {
+     "codigo": "33",
+     "nome": "Terra Própria",
+     "grupo": "renda_fatores",
+     "valor_r_ha": 301.6
+    }
+   ],
+   "totais": {
+    "custeio": 3379.97,
+    "outras_despesas": 431.51,
+    "despesas_financeiras": 80.28,
+    "custo_variavel": 3891.76,
+    "depreciacoes": 331.37,
+    "outros_custos_fixos": 37.91,
+    "custo_fixo": 369.28,
+    "custo_operacional": 4261.04,
+    "renda_fatores": 516.78,
+    "custo_total": 4777.82
+   },
+   "avisos": []
+  }
+ ]
+}

@@ -184,3 +184,13 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
   - O sorgo aguenta cerca de um mês a mais, como no ZARC.
 - 174 testes passando.
 - ZARC multi-UF: BA (417 municípios) e PR prontos. TO tinha uma grafia diferente ("Couto de Magalhães" contra "Couto Magalhães"); apelido acrescentado; MG e TO serão refeitos com os XLS em cache.
+
+## Spec 007 economia (15/11, 02h40, LK + Claude Code)
+- `tellus.economia`:
+  - `conab.py` lê a aba da praça (itens por seção, totais A a J, mês, sistema, produtividade ex-ante) e confere a recomposição. As 65 abas de 2025/26 dão zero divergência. Três abas da Conab omitem "kg/" na produtividade; a unidade é assumida com aviso.
+  - `servico.py` calcula a margem nos 3 cenários.
+- Preço (D-005): Indicador CEPEA do milho ESALQ/BM&FBovespa (Campinas-SP, R$/sc 60 kg, à vista), último valor em 13/11/2026 de R$ 67,34. O XLS do CEPEA tem a tabela OLE inconsistente; é lido com `ignore_workbook_corruption`. Não há indicador CEPEA de sorgo. O portal de preços da Conab tem certificado inválido. Sorgo fica indisponível e editável. Cobertura tem receita zero e custo informado.
+- Cenários (D-006, provisória): perda P75/P50/P25 = conservador/central/favorável; editável; a confirmação fica com a 008.
+- Rio Verde, milho, custo operacional de R$ 5.889,09/ha: o empate com R$ 67,34/sc fica em cerca de 87,5 sc/ha.
+- 188 testes passando.
+- ZARC multi-UF: MA (217) e PI (224) prontos. SP tem erro de codificação no próprio SISZARC ("Santa Cruz da Conceic?o"); apelido acrescentado.
