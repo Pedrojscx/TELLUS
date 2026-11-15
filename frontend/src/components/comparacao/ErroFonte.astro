@@ -6,8 +6,8 @@ const { e } = Astro.props;
 const comCache = Boolean(e.cache_obtido_em);
 ---
 <div role={comCache ? "status" : "alert"}
-  class:list={["rounded-md border p-3 text-sm", comCache ? "border-amber-300 bg-amber-50 text-amber-950" : "border-red-300 bg-red-50 text-red-900"]}>
-  <p class="font-semibold">{comCache ? "Fonte fora do ar — usando cópia guardada" : "Fonte fora do ar — sem cópia guardada"}</p>
+  class:list={["rounded-md border p-3 text-sm", comCache ? "border-tellus-aviso border-l-4 bg-tellus-aviso-fundo text-tellus-aviso" : "border-tellus-erro border-l-[6px] bg-tellus-erro-fundo text-tellus-erro"]}>
+  <p class="font-semibold">{comCache ? "Aviso: fonte fora do ar — usando cópia guardada" : "Erro: fonte fora do ar — sem cópia guardada"}</p>
   <p class="mt-1">{e.mensagem}</p>
   <dl class="mt-2 grid grid-cols-[auto_1fr] gap-x-3 text-xs">
     <dt class="font-medium">Origem</dt><dd class="break-words">{e.origem}</dd>

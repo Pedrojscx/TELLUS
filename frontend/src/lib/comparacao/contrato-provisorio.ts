@@ -49,7 +49,8 @@ export type Metodologia = "cultura_escolhida" | "comparar_alternativas";
 
 /** Entradas que a 012 coleta (FR-002). O formato final do pedido é da 011 (#96). */
 export interface EntradasComparacao {
-  area: { id_geometria: string; area_ha: number; municipio: string; uf: string; confirmada: boolean } | null;
+  /** `real: true` = lavoura confirmada na tela inicial (lavoura.ts); sem ela, é a área de exemplo identificada. */
+  area: { id_geometria: string; area_ha: number; municipio: string; uf: string; confirmada: boolean; real?: boolean } | null;
   colheita_soja: string | null; // AAAA-MM-DD
   solo: { modo: "textura"; textura: Textura } | { modo: "mm"; cad_mm: number } | null;
   grupo: Grupo | null;
