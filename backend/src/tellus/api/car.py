@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from typing import Literal
 
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, Body, File, UploadFile
 from pydantic import BaseModel
 
 from tellus.car import servico
+from tellus.lavoura import servico as lavoura
 
 router = APIRouter(prefix="/api")
 
@@ -26,6 +27,27 @@ async def upload_sicar(arquivo: UploadFile = File(...)) -> dict:
     if len(conteudo) > MAX_UPLOAD:
         raise servico.ErroCar("arquivo_grande", "O arquivo passa de 20 MB.", "arquivo", status=413)
     return servico.upload_sicar(conteudo, arquivo.filename or "")
+
+
+@router.post("/lavoura/arquivo")
+async def lavoura_arquivo(arquivo: UploadFile = File(...)) -> dict:
+    """Spec 002: KML, KMZ, GeoJSON ou Shapefile .zip; uma lavoura por envio; mesmo resumo e mesma confirmação."""
+    conteudo = await arquivo.read()
+    if len(conteudo) > MAX_UPLOAD:
+        raise servico.ErroCar("arquivo_grande", f"O arquivo passa do limite de {MAX_UPLOAD // (1024 * 1024)} MB.", "arquivo", status=413)
+    return lavoura.de_arquivo(conteudo, arquivo.filename or "")
+
+
+@router.post("/lavoura/desenho")
+def lavoura_desenho(geometria: dict = Body(..., embed=True)) -> dict:
+    """Spec 002: polígono desenhado no mapa → mesma validação, mesmo resumo territorial, mesma confirmação."""
+    return lavoura.de_desenho(geometria)
+
+
+@router.get("/lavoura/limites")
+def lavoura_limites() -> dict:
+    lim = lavoura.limites()
+    return {k: lim[k] for k in ("arquivo_max_bytes", "arquivo_formatos", "lavouras_por_envio", "vertices_total_max", "area_max_ha")}
 
 
 class PedidoConfirmacao(BaseModel):

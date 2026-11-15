@@ -1,0 +1,10 @@
+---
+// Envio de arquivo da lavoura (spec 002, #22): KML, KMZ, GeoJSON ou Shapefile .zip; uma lavoura por arquivo.
+// Os limites vêm do arquivo único da D-009 (mostrados aqui como texto; a API é quem decide).
+---
+<div class="space-y-1 border-t border-stone-200 pt-4">
+  <label for="arquivo-lavoura" class="block text-sm font-medium">Ou envie o arquivo da lavoura (KML, KMZ, GeoJSON ou Shapefile .zip)</label>
+  <input id="arquivo-lavoura" type="file" accept=".kml,.kmz,.geojson,.json,.zip"
+    class="block w-full text-sm text-stone-700 file:mr-3 file:rounded-md file:border-0 file:bg-stone-200 file:px-3 file:py-1.5" />
+  <p class="text-xs text-stone-500">Uma lavoura por arquivo (um polígono ou um MultiPolygon), até 20 MB, 10.000 vértices e 100.000 ha. Coordenadas geográficas.</p>
+</div>
