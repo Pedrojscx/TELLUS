@@ -8,7 +8,7 @@ import { API, DIR_CAPTURAS, DIR_EVIDENCIAS, DIR_REGISTRO } from "./auditoria";
 const sh = (c: string) => { try { return execSync(c, { encoding: "utf-8" }).trim(); } catch { return "—"; } };
 
 export default async function preparar(): Promise<void> {
-  for (const d of [DIR_CAPTURAS, DIR_EVIDENCIAS, DIR_REGISTRO]) fs.rmSync(d, { recursive: true, force: true });
+  for (const d of [DIR_CAPTURAS, DIR_EVIDENCIAS, DIR_REGISTRO]) fs.rmSync(d, { recursive: true, force: true, maxRetries: 5, retryDelay: 300 }); // Windows: arquivo aberto por outro programa
   fs.mkdirSync(DIR_REGISTRO, { recursive: true });
   const versao = await fetch(`${API}/api/contrato/versao`).then((r) => r.json()).catch(() => null);
   const meta = {
