@@ -1,0 +1,18 @@
+---
+interface Props { atual: string }
+const { atual } = Astro.props;
+const passos = [
+  ["entradas", "1. Entradas"], ["metodologia", "2. Metodologia"], ["carga", "3. Cálculo"],
+  ["resultado", "4. Resultado"], ["premissas", "5. Premissas"], ["erros", "Erros e fontes"],
+];
+---
+<nav aria-label="Etapas da comparação" class="mx-auto max-w-5xl overflow-x-auto px-4">
+  <ol class="flex gap-1 py-2 text-sm whitespace-nowrap">
+    {passos.map(([id, rotulo]) => (
+      <li>
+        <a href={`/comparacao/${id}`} aria-current={id === atual ? "page" : undefined}
+          class:list={["block rounded-md px-3 py-1.5", id === atual ? "bg-emerald-700 font-semibold text-white" : "text-stone-700 hover:bg-stone-200"]}>{rotulo}</a>
+      </li>
+    ))}
+  </ol>
+</nav>

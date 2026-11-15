@@ -1,0 +1,36 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+import CartaoAlternativa from "../../components/comparacao/CartaoAlternativa.astro";
+import ContextoOpcional from "../../components/comparacao/ContextoOpcional.astro";
+import { carregarExemplo, ROTULO_GRUPO, ROTULO_TEXTURA } from "../../lib/comparacao/contrato-provisorio";
+const ex = carregarExemplo();
+const r = ex.resultado;
+const e = ex.entradas;
+const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textura].toLowerCase()}` : e.solo ? `${e.solo.cad_mm} mm` : "—";
+---
+<LayoutComparacao titulo="Resultado da comparação" atual="resultado" subtitulo="Abra uma alternativa para ver risco, margem, cenários, premissas e fontes.">
+  <section class="rounded-xl border border-stone-200 bg-white p-4 text-sm">
+    <h2 class="font-semibold">Entradas usadas</h2>
+    <p class="mt-1 text-stone-700">{e.area?.municipio}-{e.area?.uf}, {e.area?.area_ha.toLocaleString("pt-BR")} ha · colheita da soja em {e.colheita_soja?.split("-").reverse().join("/")} · {solo} · {e.grupo ? ROTULO_GRUPO[e.grupo] : "—"} · metodologia: {r.metodologia === "comparar_alternativas" ? "comparar alternativas" : "cultura escolhida"}</p>
+    <p class="mt-2 text-xs text-stone-500">Contrato {r.versao_contrato} (provisório). Dados de exemplo.</p>
+  </section>
+
+  <section aria-labelledby="t-alt" class="space-y-3">
+    <h2 id="t-alt" class="text-lg font-semibold">Alternativas dentro do ZARC</h2>
+    <p class="rounded-md bg-stone-100 px-3 py-2 text-sm text-stone-700"><strong>Critério de ordem:</strong> {r.criterio_ordem}</p>
+    {r.alternativas.map((a, i) => <CartaoAlternativa a={a} posicao={i + 1} />)}
+  </section>
+
+  {r.avisos.length > 0 && (
+    <section class="space-y-2" aria-labelledby="t-avisos">
+      <h2 id="t-avisos" class="font-semibold">Avisos</h2>
+      <ul class="space-y-1 text-sm">{r.avisos.map((a) => <li class="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-amber-950">{a.mensagem}</li>)}</ul>
+    </section>
+  )}
+
+  <section class="space-y-3" aria-labelledby="t-ctx">
+    <h2 id="t-ctx" class="font-semibold">Contexto da região (opcional)</h2>
+    <p class="text-sm text-stone-600">Ajuda a interpretar, mas <strong>não entra no cálculo</strong>. O resultado acima é o mesmo com ou sem estes blocos.</p>
+    {r.contextos_opcionais.map((c) => <ContextoOpcional c={c} />)}
+  </section>
+</LayoutComparacao>

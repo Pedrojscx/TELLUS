@@ -1,0 +1,56 @@
+---
+// Alternativa (#56 cenário 2; spec 008 FR-003/FR-005): risco ZARC, risco histórico e margem separados.
+import type { Alternativa } from "../../lib/comparacao/contrato-provisorio";
+import { ROTULO_CENARIO } from "../../lib/comparacao/contrato-provisorio";
+import BlocoProveniencia from "./BlocoProveniencia.astro";
+interface Props { a: Alternativa; posicao: number }
+const { a, posicao } = Astro.props;
+const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+---
+<details class="group rounded-xl border border-stone-200 bg-white shadow-sm open:ring-1 open:ring-emerald-700/30">
+  <summary class="flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-2 p-4">
+    <span><span class="mr-2 text-stone-400 tabular-nums">{posicao}.</span><strong>{a.cultura}</strong>
+      <span class="text-sm text-stone-600"> · grupo {a.grupo} · {a.decendio}</span></span>
+    <span class="text-sm tabular-nums text-stone-700">margem central {brl(a.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? 0)}/ha
+      <span class="ml-1 text-emerald-700 group-open:hidden">▸ abrir</span></span>
+  </summary>
+  <div class="space-y-4 border-t border-stone-100 p-4">
+    <div class="grid gap-3 sm:grid-cols-2">
+      <div class="rounded-md bg-stone-50 p-3">
+        <p class="text-xs font-medium text-stone-500">Risco oficial (ZARC)</p>
+        <p class="text-2xl font-semibold tabular-nums">{a.risco_zarc_pct}%</p>
+        <p class="text-xs text-stone-600">Risco do zoneamento do MAPA para o decêndio.</p>
+      </div>
+      <div class="rounded-md bg-stone-50 p-3">
+        <p class="text-xs font-medium text-stone-500">Risco histórico de falta de água</p>
+        <p class="text-2xl font-semibold tabular-nums">{a.risco_historico_falta_agua_pct}%</p>
+        <p class="text-xs text-stone-600">Frequência nos anos passados; não diz como será esta safra.</p>
+      </div>
+    </div>
+    <div>
+      <p class="text-sm font-medium">Margem por hectare nos cenários</p>
+      <table class="mt-1 w-full text-sm">
+        <thead><tr class="text-left text-xs text-stone-500"><th class="py-1 font-medium">Cenário</th><th class="py-1 text-right font-medium">Margem (R$/ha)</th></tr></thead>
+        <tbody>
+          {a.cenarios.map((c) => (
+            <tr class="border-t border-stone-100"><td class="py-1">{ROTULO_CENARIO[c.cenario]}</td>
+              <td class:list={["py-1 text-right tabular-nums", c.margem_r_ha < 0 && "text-red-700"]}>{brl(c.margem_r_ha)}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    {a.avisos.length > 0 && (
+      <ul class="space-y-1 text-sm">
+        {a.avisos.map((v) => <li class="rounded-md border border-amber-200 bg-amber-50 px-3 py-1.5 text-amber-950">{v.mensagem}</li>)}
+      </ul>
+    )}
+    <div>
+      <p class="text-sm font-medium">Premissas usadas</p>
+      <p class="text-sm text-stone-700">{a.premissas_usadas.join(", ")} · <a href="/comparacao/premissas" class="text-emerald-800 underline">editar premissas</a></p>
+    </div>
+    <div class="space-y-2">
+      <p class="text-sm font-medium">Fontes</p>
+      {a.proveniencia.map((p) => <BlocoProveniencia p={p} compacto />)}
+    </div>
+  </div>
+</details>

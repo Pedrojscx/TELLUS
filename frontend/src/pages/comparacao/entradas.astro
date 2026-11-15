@@ -1,0 +1,15 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+import FormEntradas from "../../components/comparacao/FormEntradas.astro";
+import SeletorLocal from "../../components/SeletorLocal.astro";
+---
+<LayoutComparacao titulo="Dados da lavoura" atual="entradas" subtitulo="Confirme a área e informe colheita, solo e grupo.">
+  <details class="rounded-xl border border-stone-200 bg-white">
+    <summary class="cursor-pointer p-4 font-medium">Localizar a lavoura (busca, coordenadas, mapa, CAR ou arquivo SICAR)</summary>
+    <div class="border-t border-stone-100 p-2 sm:p-4">
+      <p class="mb-3 rounded-md bg-stone-100 px-3 py-2 text-xs text-stone-700">Componente existente da localização (spec 001/002), reaproveitado sem mudanças. Ele usa a API local. Nesta tela de exemplo, a área confirmada ali ainda não chega ao formulário abaixo (ver plano: gancho de confirmação).</p>
+      <SeletorLocal />
+    </div>
+  </details>
+  <FormEntradas />
+</LayoutComparacao>

@@ -1,0 +1,95 @@
+---
+// Premissas editáveis (#102, FR-004): padrão e editado visíveis, unidade e faixa validadas,
+// origem preservada. O "efeito no resultado" exige o motor da 008, por isso aparece como pendente.
+import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+const premissas = carregarExemplo().premissas;
+const grupos = [["solo", "Solo"], ["economica", "Economia"], ["cultura", "Cultura"]] as const;
+---
+<div id="editor-premissas" class="space-y-5">
+  {grupos.map(([tipo, titulo]) => premissas.some((p) => p.tipo === tipo) && (
+    <section class="rounded-xl border border-stone-200 bg-white p-4">
+      <h2 class="font-semibold">{titulo}</h2>
+      <ul class="mt-2 divide-y divide-stone-100">
+        {premissas.filter((p) => p.tipo === tipo).map((p) => (
+          <li class="grid gap-2 py-3 sm:grid-cols-[1fr_auto]" data-premissa={p.id}>
+            <div>
+              <label for={`p-${p.id}`} class="font-medium">{p.nome}</label>
+              <p class="text-xs text-stone-600">Padrão: <strong class="tabular-nums">{p.padrao.toLocaleString("pt-BR")} {p.unidade}</strong>
+                · faixa aceita {p.minimo.toLocaleString("pt-BR")} a {p.maximo.toLocaleString("pt-BR")} <span class="text-amber-800">(faixa de exemplo)</span></p>
+              <p class="text-xs text-stone-500">Fonte do padrão: {p.proveniencia.fonte}{p.proveniencia.situacao === "hipotese" ? " · hipótese" : ""}</p>
+            </div>
+            <div class="sm:w-56">
+              <div class="flex items-center gap-2">
+                <input id={`p-${p.id}`} inputmode="decimal" placeholder={p.padrao.toLocaleString("pt-BR")}
+                  class="w-full min-w-0 rounded-md border border-stone-300 px-2 py-1.5 tabular-nums" aria-describedby={`d-${p.id}`} />
+                <span class="shrink-0 text-xs text-stone-600">{p.unidade}</span>
+              </div>
+              <p id={`d-${p.id}`} data-saida class="mt-1 text-xs text-stone-600" aria-live="polite">Usando o padrão.</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <section class="rounded-xl border border-stone-200 bg-white p-4" aria-live="polite">
+    <h2 class="font-semibold">Padrão × editado</h2>
+    <div id="comparativo" class="mt-2 text-sm text-stone-700">Nenhuma premissa editada.</div>
+    <p class="mt-3 rounded-md bg-stone-100 px-3 py-2 text-xs text-stone-700">
+      Recalcular com as premissas editadas depende do motor (spec 008) e do contrato (spec 011). Por enquanto a tela só guarda e compara os valores.
+    </p>
+    <button type="button" id="restaurar" class="mt-2 text-sm text-stone-600 underline">Voltar tudo ao padrão</button>
+  </section>
+</div>
+
+<script>
+  import { carregarExemplo, type Premissa } from "../../lib/comparacao/contrato-provisorio";
+  import { aplicarEdicao, diferenca, editadas, fmt } from "../../lib/comparacao/premissas";
+  import * as sessao from "../../lib/comparacao/sessao";
+
+  const s = sessao.ler();
+  let premissas: Premissa[] = s?.premissas ?? carregarExemplo().premissas;
+
+  function salvar() {
+    const atual = sessao.ler();
+    sessao.gravar({ exemplo: true, entradas: atual?.entradas ?? { ...sessao.VAZIA }, premissas });
+  }
+
+  function comparativo() {
+    const ed = editadas(premissas);
+    document.getElementById("comparativo")!.innerHTML = ed.length
+      ? `<table class="w-full"><thead><tr class="text-left text-xs text-stone-500"><th class="py-1">Premissa</th><th class="py-1 text-right">Padrão</th><th class="py-1 text-right">Editado</th><th class="py-1 text-right">Diferença</th></tr></thead><tbody>${ed
+          .map((p) => { const d = diferenca(p)!; return `<tr class="border-t border-stone-100"><td class="py-1">${p.nome}</td><td class="py-1 text-right tabular-nums">${fmt(p.padrao)}</td><td class="py-1 text-right tabular-nums font-medium text-sky-800">${fmt(p.editado!)}</td><td class="py-1 text-right tabular-nums">${d.absoluta > 0 ? "+" : ""}${fmt(d.absoluta)} ${p.unidade}${d.percentual != null ? ` (${d.percentual > 0 ? "+" : ""}${fmt(d.percentual, 1)}%)` : ""}</td></tr>`; })
+          .join("")}</tbody></table>`
+      : "Nenhuma premissa editada.";
+  }
+
+  document.querySelectorAll<HTMLLIElement>("[data-premissa]").forEach((li) => {
+    const id = li.dataset.premissa!;
+    const input = li.querySelector("input")!;
+    const saida = li.querySelector<HTMLElement>("[data-saida]")!;
+    const p0 = premissas.find((p) => p.id === id)!;
+    if (p0.editado != null) input.value = fmt(p0.editado);
+    const mostrar = (p: Premissa, erro: string | null) => {
+      input.setAttribute("aria-invalid", erro ? "true" : "false");
+      input.classList.toggle("border-red-500", Boolean(erro));
+      saida.className = `mt-1 text-xs ${erro ? "text-red-700" : p.editado != null ? "text-sky-800" : "text-stone-600"}`;
+      saida.textContent = erro ?? (p.editado != null ? `Editado por você (padrão ${fmt(p.padrao)} ${p.unidade}).` : "Usando o padrão.");
+    };
+    mostrar(p0, null);
+    input.addEventListener("input", () => {
+      const i = premissas.findIndex((p) => p.id === id);
+      const { premissa, erro } = aplicarEdicao(premissas[i], input.value);
+      if (!erro) { premissas[i] = premissa; salvar(); comparativo(); }
+      mostrar(premissa, erro);
+    });
+  });
+
+  document.getElementById("restaurar")!.addEventListener("click", () => {
+    premissas = premissas.map((p) => ({ ...p, editado: null }));
+    salvar();
+    document.querySelectorAll<HTMLLIElement>("[data-premissa] input").forEach((i) => ((i as HTMLInputElement).value = "", i.dispatchEvent(new Event("input"))));
+    comparativo();
+  });
+
+  comparativo();
+</script>

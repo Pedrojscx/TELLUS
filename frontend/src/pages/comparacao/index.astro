@@ -1,0 +1,24 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+const telas = [
+  ["entradas", "1. Entradas", "Área, colheita da soja, solo e grupo, com validação (#57, #100)."],
+  ["metodologia", "2. Metodologia", "Já sei a cultura × comparar alternativas, com explicação (#101)."],
+  ["carga", "3. Cálculo por etapas", "Etapa atual e nunca resultado parcial como final (#103)."],
+  ["resultado", "4. Resultado", "Alternativas com risco ZARC, risco histórico, margem, premissas, fontes e contextos opcionais."],
+  ["premissas", "5. Premissas", "Editar premissa comparando padrão e novo valor (#102)."],
+  ["erros", "Erros e fontes", "Sucesso, fonte com cache e falha sem cache (#103, SC-002)."],
+];
+---
+<LayoutComparacao titulo="Comparação da segunda safra" atual="" subtitulo="Protótipo navegável da spec 012 com dados de exemplo identificados.">
+  <p class="rounded-md border border-stone-200 bg-white p-4 text-sm text-stone-700">
+    Estas telas mostram o fluxo do produtor no caso de referência Rio Verde/GO. <strong>Nenhum número é real.</strong>
+    O cálculo depende do motor (spec 008, #48) e do contrato da API (spec 011, #54). Quando eles existirem, os dados de
+    exemplo saem por um ponto só: <code>src/lib/comparacao/contrato-provisorio.ts</code>.
+  </p>
+  <ul class="grid gap-3 sm:grid-cols-2">
+    {telas.map(([id, t, d]) => (
+      <li><a href={`/comparacao/${id}`} class="block h-full rounded-xl border border-stone-200 bg-white p-4 hover:border-emerald-700">
+        <p class="font-semibold text-emerald-800">{t}</p><p class="mt-1 text-sm text-stone-600">{d}</p></a></li>
+    ))}
+  </ul>
+</LayoutComparacao>

@@ -1,0 +1,70 @@
+---
+// Carga por etapas (#103, edge case da spec 012): mostra a etapa atual e nunca exibe parcial como final.
+// Nesta tela de exemplo as etapas são SIMULADAS localmente (nenhuma chamada de rede).
+---
+<section class="rounded-xl border border-stone-200 bg-white p-4" aria-labelledby="t-etapas">
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <h2 id="t-etapas" class="font-semibold">Andamento do cálculo</h2>
+    <div class="flex flex-wrap gap-2 text-sm" role="group" aria-label="Simular cenário">
+      <button type="button" data-cenario="sucesso" class="rounded-md border border-stone-300 px-2.5 py-1 hover:bg-stone-100">Simular: tudo certo</button>
+      <button type="button" data-cenario="degradado" class="rounded-md border border-stone-300 px-2.5 py-1 hover:bg-stone-100">Simular: fonte com cache</button>
+      <button type="button" data-cenario="falha" class="rounded-md border border-stone-300 px-2.5 py-1 hover:bg-stone-100">Simular: falha sem cache</button>
+    </div>
+  </div>
+  <p id="situacao-carga" aria-live="polite" class="mt-3 rounded-md px-3 py-2 text-sm font-medium"></p>
+  <ol id="lista-etapas" class="mt-3 space-y-1.5 text-sm"></ol>
+  <div id="area-resultado" class="mt-4"></div>
+</section>
+
+<script>
+  import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+  import { ETAPAS_PROVISORIAS, TEXTO_SITUACAO, etapaAtual, podeMostrarComoFinal, simular, situacao, type Etapa } from "../../lib/comparacao/etapas";
+
+  const ex = carregarExemplo();
+  const lista = document.getElementById("lista-etapas")!;
+  const sit = document.getElementById("situacao-carga")!;
+  const area = document.getElementById("area-resultado")!;
+  const icone: Record<string, string> = { pendente: "○", rodando: "◌", ok: "✓", cache: "◐", falha: "✕" };
+  const texto: Record<string, string> = { pendente: "aguardando", rodando: "em andamento", ok: "pronto", cache: "pronto com cópia guardada", falha: "falhou" };
+  const cor: Record<string, string> = { pendente: "text-stone-400", rodando: "text-sky-700 font-semibold", ok: "text-emerald-700", cache: "text-amber-700", falha: "text-red-700 font-semibold" };
+  const corSit: Record<string, string> = { carregando: "bg-sky-50 text-sky-900", final: "bg-emerald-50 text-emerald-900", final_com_cache: "bg-amber-50 text-amber-950", bloqueado: "bg-red-50 text-red-900" };
+  let timer: number | undefined;
+
+  function desenhar(etapas: Etapa[], cenario: string) {
+    const s = situacao(etapas);
+    const atual = etapaAtual(etapas);
+    sit.className = `mt-3 rounded-md px-3 py-2 text-sm font-medium ${corSit[s]}`;
+    sit.textContent = TEXTO_SITUACAO[s] + (s === "carregando" && atual ? ` Etapa atual: ${atual.rotulo}.` : "");
+    lista.innerHTML = etapas.map((e) => `<li class="flex gap-2 ${cor[e.estado]}"><span aria-hidden="true" class="w-4">${icone[e.estado]}</span>
+      <span>${e.rotulo}${e.obrigatoria ? "" : " (opcional)"} — ${texto[e.estado]}</span></li>`).join("");
+    if (podeMostrarComoFinal(etapas)) {
+      const n = ex.resultado.alternativas.length;
+      const aviso = s === "final_com_cache" ? ex.estados_fonte.degradado[0] : null;
+      area.innerHTML = `<p class="text-sm">${n} alternativas prontas${aviso ? ` · chuva do cache de ${aviso.cache_obtido_em}` : ""}.</p>
+        <a href="/comparacao/resultado" class="mt-2 inline-block rounded-md bg-emerald-700 px-4 py-2 font-medium text-white hover:bg-emerald-800">Ver resultado</a>`;
+    } else if (s === "bloqueado") {
+      const f = ex.estados_fonte.falha[1];
+      area.innerHTML = `<div role="alert" class="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-900"><p class="font-semibold">Fonte fora do ar, sem cópia guardada</p>
+        <p>${f.mensagem}</p><p class="mt-1 text-xs"><strong>Origem:</strong> ${f.origem} · <strong>O que fazer:</strong> ${f.acao}</p>
+        <p class="mt-1 text-xs">Nenhum resultado parcial é mostrado.</p></div>`;
+    } else {
+      area.innerHTML = `<p class="text-sm text-stone-500">O resultado aparece aqui quando todas as etapas obrigatórias terminarem.</p>`;
+    }
+  }
+
+  function rodar(cenario: "sucesso" | "degradado" | "falha") {
+    window.clearInterval(timer);
+    let passo = 0;
+    desenhar(simular(cenario, passo), cenario);
+    timer = window.setInterval(() => {
+      passo += 1;
+      const etapas = simular(cenario, passo);
+      desenhar(etapas, cenario);
+      if (passo >= ETAPAS_PROVISORIAS.length || situacao(etapas) === "bloqueado") window.clearInterval(timer);
+    }, 700);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-cenario]").forEach((b) =>
+    b.addEventListener("click", () => rodar(b.dataset.cenario as any)));
+  rodar("sucesso");
+</script>
