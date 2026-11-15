@@ -38,7 +38,7 @@
   "idioma": "pt-BR",
   "hash_pedido": "6c24e1c2231a175e"
  },
- "estado_geral": "final",
+ "estado_geral": "final_com_cache",
  "final": true,
  "culturas": [
   {
@@ -6491,8 +6491,28 @@
    "erro": null
   }
  },
- "fontes": [],
- "avisos": [],
+ "fontes": [
+  {
+   "fonte": "NASA GPM IMERG Final (precipitação diária)",
+   "estado": "cache",
+   "obtido_em": "2026-11-14",
+   "secao": "recomendacao"
+  },
+  {
+   "fonte": "NASA POWER (variáveis diárias para ETo)",
+   "estado": "cache",
+   "obtido_em": "2026-11-14",
+   "secao": "recomendacao"
+  }
+ ],
+ "avisos": [
+  {
+   "tipo": "aviso",
+   "codigo": "cache_usado",
+   "mensagem": "Parte dos dados veio de cópia guardada (cache) de 2026-11-14.",
+   "origem": "fontes"
+  }
+ ],
  "erros": [],
  "hipoteses": [],
  "premissas_editadas": [

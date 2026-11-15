@@ -7,22 +7,14 @@
 
 | Item | Valor |
 |---|---|
-| Resultado | **21 de 21 testes conforme o esperado** (2 deles são defeitos conhecidos, abaixo) |
-| Verificações | 127 de 129 atendidas (as não atendidas são as dos defeitos conhecidos) |
+| Resultado | **21 de 21 testes conforme o esperado** (0 deles são defeitos conhecidos, abaixo) |
+| Verificações | 131 de 131 atendidas (as não atendidas são as dos defeitos conhecidos) |
 | Capturas de tela | 45 |
-| Início da execução | 15/11/2026, 15:49:40 (horário de Brasília) |
-| Commit testado | `b399ebb` (branch `testes-e2e-playwright`, sem alterações locais) |
+| Início da execução | 15/11/2026, 16:35:48 (horário de Brasília) |
+| Commit testado | `b00a3b0` (branch `corrige-grupo-nao-sei`, com 51 arquivo(s) alterado(s) fora do commit) |
 | Navegador | Microsoft Edge 157.0.4341.60 (Playwright 1.64.1, Node v24.20.0) |
 | Contrato da API | 1.2.0 |
 | Dados | API local com as séries e caches versionados do repositório (sem login NASA) |
-
-## Defeitos conhecidos encontrados pela bateria
-
-Testes marcados com `test.fail`: descrevem o comportamento correto e falham enquanto o defeito existir.
-Quando o defeito for corrigido, o Playwright acusa "passou inesperadamente" e a marca deve sair.
-
-- [Defeito conhecido: "O que foi consultado" com grupo "não sei" lista as fontes e não marca culturas como falha](#03-calculo-real-defeito-conhecido-o-que-foi-consultado-com-grupo-nao-sei-lista-as-fontes-e-nao-marca-culturas-como-falha): Com grupo "não sei", fontes vem vazio e as seções por cultura aparecem como ✕ indisponível. (`frontend/e2e/03-calculo-real.e2e.ts`)
-- [Defeito conhecido: com grupo "não sei", o resultado mostra o padrão ao lado do preço editado](#04-premissas-defeito-conhecido-com-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado): Com grupo "não sei", valor_padrao vem nulo e a tela diz "sem padrão com fonte". (`frontend/e2e/04-premissas.e2e.ts`)
 
 ## Testes
 
@@ -38,9 +30,9 @@ Quando o defeito for corrigido, o Playwright acusa "passou inesperadamente" e a 
 | 2. Entradas e validação | [Caso de referência preenchido segue para a metodologia](#02-entradas-caso-de-referencia-preenchido-segue-para-a-metodologia) | ✅ passou | 2 | 6/6 |
 | 2. Entradas e validação | [Metodologia sem escolha não calcula](#02-entradas-metodologia-sem-escolha-nao-calcula) | ✅ passou | 1 | 7/7 |
 | 3. Cálculo real (Rio Verde-GO) | [Caso de referência: Rio Verde-GO, colheita 20/01/2027, argilosa, grupo "não sei"](#03-calculo-real-caso-de-referencia-rio-verde-go-colheita-20-01-2027-argilosa-grupo-nao-sei-) | ✅ passou | 6 | 19/19 |
-| 3. Cálculo real (Rio Verde-GO) | [Defeito conhecido: "O que foi consultado" com grupo "não sei" lista as fontes e não marca culturas como falha](#03-calculo-real-defeito-conhecido-o-que-foi-consultado-com-grupo-nao-sei-lista-as-fontes-e-nao-marca-culturas-como-falha) | ⚠️ defeito conhecido (falhou como esperado) | 2 | 6/7 |
+| 3. Cálculo real (Rio Verde-GO) | [Grupo "não sei": "O que foi consultado" lista as fontes de clima e as culturas calculadas por grupo](#03-calculo-real-grupo-nao-sei-o-que-foi-consultado-lista-as-fontes-de-clima-e-as-culturas-calculadas-por-grupo) | ✅ passou | 2 | 9/9 |
 | 4. Premissas editadas e recálculo | [Premissas mostram os padrões reais e a edição chega ao cálculo](#04-premissas-premissas-mostram-os-padroes-reais-e-a-edicao-chega-ao-calculo) | ✅ passou | 5 | 16/16 |
-| 4. Premissas editadas e recálculo | [Defeito conhecido: com grupo "não sei", o resultado mostra o padrão ao lado do preço editado](#04-premissas-defeito-conhecido-com-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado) | ⚠️ defeito conhecido (falhou como esperado) | 1 | 6/7 |
+| 4. Premissas editadas e recálculo | [Grupo "não sei": o resultado mostra o padrão ao lado do preço editado](#04-premissas-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado) | ✅ passou | 1 | 7/7 |
 | 5. Versão em inglês (spec 014) | [Trocar para inglês no topo vale em todas as telas e no resultado real](#05-idioma-trocar-para-ingles-no-topo-vale-em-todas-as-telas-e-no-resultado-real) | ✅ passou | 5 | 10/10 |
 | 5. Versão em inglês (spec 014) | [Link com ?lang=en abre direto em inglês](#05-idioma-link-com-lang-en-abre-direto-em-ingles) | ✅ passou | 1 | 1/1 |
 | 6. Celular (390 × 844) | [Fluxo completo no celular sem nada cortado na lateral](#06-celular-fluxo-completo-no-celular-sem-nada-cortado-na-lateral) | ✅ passou | 4 | 11/11 |
@@ -55,7 +47,7 @@ Quando o defeito for corrigido, o Playwright acusa "passou inesperadamente" e a 
 <a id="01-tela-inicial-tela-inicial-abre-com-marca-passo-a-passo-e-seletor-de-local"></a>
 ### Tela inicial abre com marca, passo a passo e seletor de local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:41 → 15/11/2026, 15:49:42
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:49 → 15/11/2026, 16:35:49
 
 #### Etapa 1: tela inicial
 
@@ -74,7 +66,7 @@ URL: `/`
 <a id="01-tela-inicial-escolher-rio-verde-go-pela-busca-mostra-as-fontes-do-local"></a>
 ### Escolher Rio Verde-GO pela busca mostra as fontes do local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:42 → 15/11/2026, 15:49:43
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:50 → 15/11/2026, 16:35:51
 
 #### Etapa 1: busca por Rio Verde
 
@@ -114,7 +106,7 @@ URL: `/`
 <a id="01-tela-inicial-coordenadas-digitadas-tambem-escolhem-o-local"></a>
 ### Coordenadas digitadas também escolhem o local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:43 → 15/11/2026, 15:49:44
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:52 → 15/11/2026, 16:35:52
 
 #### Etapa 1: coordenadas digitadas
 
@@ -135,7 +127,7 @@ URL: `/`
 <a id="01-tela-inicial-coordenada-fora-do-brasil-e-recusada-com-mensagem-em-portugues"></a>
 ### Coordenada fora do Brasil é recusada com mensagem em português
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:44 → 15/11/2026, 15:49:45
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:53 → 15/11/2026, 16:35:53
 
 #### Etapa 1: ponto fora do Brasil recusado
 
@@ -150,7 +142,7 @@ URL: `/`
 <a id="01-tela-inicial-botao-da-tela-inicial-leva-a-comparacao"></a>
 ### Botão da tela inicial leva à comparação
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:45 → 15/11/2026, 15:49:47
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:54 → 15/11/2026, 16:35:55
 
 #### Etapa 1: entradas com a lavoura escolhida
 
@@ -171,7 +163,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-entradas-vazias-nao-seguem-e-explicam-o-que-falta"></a>
 ### Entradas vazias não seguem e explicam o que falta
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:47 → 15/11/2026, 15:49:47
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:56 → 15/11/2026, 16:35:56
 
 #### Etapa 1: erros de entradas vazias
 
@@ -187,7 +179,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-agua-disponivel-em-mm-aceita-so-numero-positivo"></a>
 ### Água disponível em mm aceita só número positivo
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:47 → 15/11/2026, 15:49:49
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:57 → 15/11/2026, 16:35:58
 
 #### Etapa 1: agua disponivel negativa recusada
 
@@ -205,7 +197,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-caso-de-referencia-preenchido-segue-para-a-metodologia"></a>
 ### Caso de referência preenchido segue para a metodologia
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:49 → 15/11/2026, 15:49:50
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:35:59 → 15/11/2026, 16:36:01
 
 #### Etapa 1: entradas preenchidas
 
@@ -234,7 +226,7 @@ URL: `/comparacao/metodologia`
 <a id="02-entradas-metodologia-sem-escolha-nao-calcula"></a>
 ### Metodologia sem escolha não calcula
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:51 → 15/11/2026, 15:49:52
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:01 → 15/11/2026, 16:36:03
 
 #### Etapa 1: metodologia sem escolha
 
@@ -257,7 +249,7 @@ URL: `/comparacao/metodologia`
 <a id="03-calculo-real-caso-de-referencia-rio-verde-go-colheita-20-01-2027-argilosa-grupo-nao-sei-"></a>
 ### Caso de referência: Rio Verde-GO, colheita 20/01/2027, argilosa, grupo "não sei"
 
-✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:52 → 15/11/2026, 15:49:56
+✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:03 → 15/11/2026, 16:36:08
 
 #### Etapa 1: metodologia: comparar as alternativas
 
@@ -307,7 +299,7 @@ URL: `/comparacao/resultado`
 
 | | Verificação | Esperado | Obtido |
 |---|---|---|---|
-| ✅ | Recomendação listada como pronta | "Recomendação (ordem das alternativas): pronto" | O que foi consultado e calculado ✕ Milho 2ª safra: risco hídrico (opcional): indisponível ✕ Milho 2ª safra: margem (opcional): indisponível ✕ Sorgo granífero 2ª safra: risco hídrico (opcional): indisponível ✕ Sorgo granífero 2ª safra: margem (opcional): indisponível ✕ Braquiária (cobertura): risco hídrico (opcional): indisponível ✕ Braquiária (cobertura): margem (opcional): indisponível ✓ Recomendação (ordem das alternativas): pronto ✓ Vegetação (NDVI MODIS) (opcional): pronto ✓ Umidade do solo (SMAP) (opcional): pronto |
+| ✅ | Recomendação listada como pronta | "Recomendação (ordem das alternativas): pronto" | O que foi consultado e calculado ◐ NASA GPM IMERG Final (precipitação diária): pronto com cópia guardada (cópia guardada de 2026-11-14) ◐ NASA POWER (variáveis diárias para ETo): pronto com cópia guardada (cópia guardada de 2026-11-14) ✓ Milho 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Milho 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): margem (opcional): pronto (por grupo, na recomendação) ✓ Recomendação (ordem das alternativas): pronto ✓ Vegetação (NDVI MODIS) (opcional): pronto ✓ Umidade do solo (SMAP) (opcional): pronto |
 
 ![o que foi consultado e calculado](capturas/03-calculo-real/caso-de-referencia-rio-verde-go-colheita-20-01-2027-argilosa/04-o-que-foi-consultado-e-calculado.png)
 
@@ -332,18 +324,10 @@ URL: `/comparacao/resultado`
 
 ![verificações finais](capturas/03-calculo-real/caso-de-referencia-rio-verde-go-colheita-20-01-2027-argilosa/06-verificacoes-finais.png)
 
-<a id="03-calculo-real-defeito-conhecido-o-que-foi-consultado-com-grupo-nao-sei-lista-as-fontes-e-nao-marca-culturas-como-falha"></a>
-### Defeito conhecido: "O que foi consultado" com grupo "não sei" lista as fontes e não marca culturas como falha
+<a id="03-calculo-real-grupo-nao-sei-o-que-foi-consultado-lista-as-fontes-de-clima-e-as-culturas-calculadas-por-grupo"></a>
+### Grupo "não sei": "O que foi consultado" lista as fontes de clima e as culturas calculadas por grupo
 
-⚠️ defeito conhecido (falhou como esperado) · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 15:49:56 → 15/11/2026, 15:50:02
-
-**Defeito conhecido:** Com grupo "não sei", fontes vem vazio e as seções por cultura aparecem como ✕ indisponível.
-
-**Falha registrada (esperada):**
-
-```
-Error: expect(locator).toContainText(expected) failed  Locator: locator('#resultado-real details').first()
-```
+✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:08 → 15/11/2026, 16:36:17
 
 #### Etapa 1: metodologia: comparar as alternativas
 
@@ -357,25 +341,27 @@ URL: `/comparacao/metodologia`
 | ✅ | Área confirmada a partir da lavoura da tela inicial | estado da área com Rio Verde | Área confirmada: Rio Verde-GO (ponto) |
 | ✅ | Entradas válidas levam à metodologia | URL /comparacao/metodologia | http://localhost:4321/comparacao/metodologia |
 
-![metodologia: comparar as alternativas](capturas/03-calculo-real/defeito-conhecido-o-que-foi-consultado-com-grupo-nao-sei-lis/01-metodologia-comparar-as-alternativas.png)
+![metodologia: comparar as alternativas](capturas/03-calculo-real/grupo-nao-sei-o-que-foi-consultado-lista-as-fontes-de-clima-/01-metodologia-comparar-as-alternativas.png)
 
-#### Etapa 2: FALHA Fontes de dados listadas
+#### Etapa 2: o que foi consultado com grupo nao sei
 
 URL: `/comparacao/resultado`
 
 | | Verificação | Esperado | Obtido |
 |---|---|---|---|
 | ✅ | Cálculo real termina e mostra o estado do resultado | "Resultado calculado" ou "Resultado parcial" | Resultado calculado |
-| ❌ | Fontes de dados listadas | NASA GPM IMERG e NASA POWER entre as etapas | O que foi consultado e calculado ✕ Milho 2ª safra: risco hídrico (opcional): indisponível ✕ Milho 2ª safra: margem (opcional): indisponível ✕ Sorgo granífero 2ª safra: risco hídrico (opcional): indisponível ✕ Sorgo granífero 2ª safra: margem (opcional): indisponível ✕ Braquiária (cobertura): risco hídrico (opcional): indisponível ✕ Braquiária (cobertura): margem (opcional): indisponível ✓ Recomendação (ordem das alternativas): pronto ✓ Vegetação (NDVI MODIS) (opcional): pronto ✓ Umidade do solo (SMAP) (opcional): pronto |
+| ✅ | Fontes de dados listadas | NASA GPM IMERG e NASA POWER entre as etapas | O que foi consultado e calculado ◐ NASA GPM IMERG Final (precipitação diária): pronto com cópia guardada (cópia guardada de 2026-11-14) ◐ NASA POWER (variáveis diárias para ETo): pronto com cópia guardada (cópia guardada de 2026-11-14) ✓ Milho 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Milho 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): margem (opcional): pronto (por grupo, na recomendação) ✓ Recomendação (ordem das alternativas): pronto ✓ Vegetação (NDVI MODIS) (opcional): pronto ✓ Umidade do solo (SMAP) (opcional): pronto |
+| ✅ | Culturas não aparecem como falha | nenhum "✕" nas culturas | O que foi consultado e calculado ◐ NASA GPM IMERG Final (precipitação diária): pronto com cópia guardada (cópia guardada de 2026-11-14) ◐ NASA POWER (variáveis diárias para ETo): pronto com cópia guardada (cópia guardada de 2026-11-14) ✓ Milho 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Milho 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Sorgo granífero 2ª safra: margem (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): risco hídrico (opcional): pronto (por grupo, na recomendação) ✓ Braquiária (cobertura): margem (opcional): pronto (por grupo, na recomendação) ✓ Recomendação (ordem das alternativas): pronto ✓ Vegetação (NDVI MODIS) (opcional): pronto ✓ Umidade do solo (SMAP) (opcional): pronto |
+| ✅ | Culturas indicadas como calculadas por grupo | "por grupo, na recomendação" | conforme o esperado |
 
-![FALHA Fontes de dados listadas](capturas/03-calculo-real/defeito-conhecido-o-que-foi-consultado-com-grupo-nao-sei-lis/02-falha-fontes-de-dados-listadas.png)
+![o que foi consultado com grupo nao sei](capturas/03-calculo-real/grupo-nao-sei-o-que-foi-consultado-lista-as-fontes-de-clima-/02-o-que-foi-consultado-com-grupo-nao-sei.png)
 
 ## 4. Premissas editadas e recálculo
 
 <a id="04-premissas-premissas-mostram-os-padroes-reais-e-a-edicao-chega-ao-calculo"></a>
 ### Premissas mostram os padrões reais e a edição chega ao cálculo
 
-✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:03 → 15/11/2026, 15:50:07
+✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:18 → 15/11/2026, 16:36:29
 
 #### Etapa 1: padroes reais de Rio Verde-GO
 
@@ -423,7 +409,7 @@ URL: `/comparacao/resultado`
 | | Verificação | Esperado | Obtido |
 |---|---|---|---|
 | ✅ | Cálculo real termina e mostra o estado do resultado | "Resultado calculado" ou "Resultado parcial" | Resultado calculado |
-| ✅ | Preço editado chega ao cálculo do milho | hipótese "preco_r_saca (Milho 2ª safra): … → 70 … (editado pelo produtor)" | Hipótese: preco_r_saca (Milho 2ª safra): sem padrão com fonte → 70 R$/saca 60 kg (editado pelo produtor) |
+| ✅ | Preço editado chega ao cálculo do milho | hipótese "preco_r_saca (Milho 2ª safra): … → 70 … (editado pelo produtor)" | Hipótese: preco_r_saca (Milho 2ª safra): padrão 67,34 → 70 R$/saca 60 kg (editado pelo produtor) |
 
 ![milho com o preco editado](capturas/04-premissas/premissas-mostram-os-padroes-reais-e-a-edicao-chega-ao-calcu/04-milho-com-o-preco-editado.png)
 
@@ -438,20 +424,12 @@ URL: `/comparacao/resultado`
 
 ![sorgo com a cotacao informada](capturas/04-premissas/premissas-mostram-os-padroes-reais-e-a-edicao-chega-ao-calcu/05-sorgo-com-a-cotacao-informada.png)
 
-<a id="04-premissas-defeito-conhecido-com-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado"></a>
-### Defeito conhecido: com grupo "não sei", o resultado mostra o padrão ao lado do preço editado
+<a id="04-premissas-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado"></a>
+### Grupo "não sei": o resultado mostra o padrão ao lado do preço editado
 
-⚠️ defeito conhecido (falhou como esperado) · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:07 → 15/11/2026, 15:50:14
+✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:29 → 15/11/2026, 16:36:40
 
-**Defeito conhecido:** Com grupo "não sei", valor_padrao vem nulo e a tela diz "sem padrão com fonte".
-
-**Falha registrada (esperada):**
-
-```
-Error: expect(locator).toContainText(expected) failed  Locator: locator('#resultado-real details.group').filter({ hasText: 'Milho' }).first()
-```
-
-#### Etapa 1: FALHA Padrão aparece ao lado do novo valor
+#### Etapa 1: padrao ao lado do preco editado
 
 URL: `/comparacao/resultado`
 
@@ -463,16 +441,16 @@ URL: `/comparacao/resultado`
 | ✅ | Área confirmada a partir da lavoura da tela inicial | estado da área com Rio Verde | Área confirmada: Rio Verde-GO (ponto) |
 | ✅ | Entradas válidas levam à metodologia | URL /comparacao/metodologia | http://localhost:4321/comparacao/metodologia |
 | ✅ | Cálculo real termina e mostra o estado do resultado | "Resultado calculado" ou "Resultado parcial" | Resultado calculado |
-| ❌ | Padrão aparece ao lado do novo valor | "padrão 67,34 → 70" (ou o padrão vigente) | Hipótese: preco_r_saca (Milho 2ª safra): sem padrão com fonte → 70 R$/saca 60 kg (editado pelo produtor) |
+| ✅ | Padrão aparece ao lado do novo valor | "padrão 67,34 → 70" (ou o padrão vigente) | Hipótese: preco_r_saca (Milho 2ª safra): padrão 67,34 → 70 R$/saca 60 kg (editado pelo produtor) |
 
-![FALHA Padrão aparece ao lado do novo valor](capturas/04-premissas/defeito-conhecido-com-grupo-nao-sei-o-resultado-mostra-o-pad/01-falha-padrao-aparece-ao-lado-do-novo-valor.png)
+![padrao ao lado do preco editado](capturas/04-premissas/grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-e/01-padrao-ao-lado-do-preco-editado.png)
 
 ## 5. Versão em inglês (spec 014)
 
 <a id="05-idioma-trocar-para-ingles-no-topo-vale-em-todas-as-telas-e-no-resultado-real"></a>
 ### Trocar para inglês no topo vale em todas as telas e no resultado real
 
-✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:14 → 15/11/2026, 15:50:20
+✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:40 → 15/11/2026, 16:36:46
 
 #### Etapa 1: tela inicial em ingles
 
@@ -529,7 +507,7 @@ URL: `/comparacao/resultado`
 <a id="05-idioma-link-com-lang-en-abre-direto-em-ingles"></a>
 ### Link com ?lang=en abre direto em inglês
 
-✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:20 → 15/11/2026, 15:50:20
+✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:46 → 15/11/2026, 16:36:47
 
 #### Etapa 1: link com lang en
 
@@ -546,7 +524,7 @@ URL: `/comparacao/metodologia?lang=en`
 <a id="06-celular-fluxo-completo-no-celular-sem-nada-cortado-na-lateral"></a>
 ### Fluxo completo no celular sem nada cortado na lateral
 
-✅ passou · arquivo `frontend/e2e/06-celular.e2e.ts` · tela 390×844 · 15/11/2026, 15:50:20 → 15/11/2026, 15:50:24
+✅ passou · arquivo `frontend/e2e/06-celular.e2e.ts` · tela 390×844 · 15/11/2026, 16:36:47 → 15/11/2026, 16:36:51
 
 #### Etapa 1: tela inicial no celular
 
@@ -597,7 +575,7 @@ URL: `/comparacao/resultado`
 <a id="07-erros-simulados-tela-de-calculo-simula-sucesso-fonte-com-copia-guardada-e-falha-sem-copia"></a>
 ### Tela de cálculo simula sucesso, fonte com cópia guardada e falha sem cópia
 
-✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:24 → 15/11/2026, 15:50:31
+✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:51 → 15/11/2026, 16:36:58
 
 #### Etapa 1: simulacao tudo certo
 
@@ -643,7 +621,7 @@ URL: `/comparacao/carga`
 <a id="07-erros-simulados-tela-de-erros-mostra-os-tres-estados-de-uma-fonte"></a>
 ### Tela de erros mostra os três estados de uma fonte
 
-✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:31 → 15/11/2026, 15:50:31
+✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:58 → 15/11/2026, 16:36:58
 
 #### Etapa 1: tres estados de uma fonte
 
@@ -663,7 +641,7 @@ URL: `/comparacao/erros`
 <a id="08-api-mesmo-pedido-em-pt-e-en-da-os-mesmos-numeros-ordem-e-hash"></a>
 ### Mesmo pedido em PT e EN dá os mesmos números, ordem e hash
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:31 → 15/11/2026, 15:50:34
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:36:58 → 15/11/2026, 16:37:01
 
 #### Etapa 1: pt e en com os mesmos numeros
 
@@ -683,7 +661,7 @@ URL: `about:blank`
 <a id="08-api-versoes-do-contrato-1-1-0-aceita-2-0-0-recusada-com-as-versoes-aceitas"></a>
 ### Versões do contrato: 1.1.0 aceita, 2.0.0 recusada com as versões aceitas
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:34 → 15/11/2026, 15:50:34
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:01 → 15/11/2026, 16:37:01
 
 #### Etapa 1: versoes do contrato
 
@@ -700,7 +678,7 @@ URL: `about:blank`
 <a id="08-api-pedido-sem-area-confirmada-nao-comeca-o-calculo"></a>
 ### Pedido sem área confirmada não começa o cálculo
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 15:50:34 → 15/11/2026, 15:50:34
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:01 → 15/11/2026, 16:37:01
 
 #### Etapa 1: area nao confirmada recusada
 
