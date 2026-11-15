@@ -55,4 +55,6 @@ Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etap
 | 001 | Implementada: consulta pelo número do CAR (WFS SICAR), 6 estados distintos, upload do shapefile SICAR, confirmação da área | `001-pesquisa-car-wfs` | LK |
 | 002 | Entrega 1 (ponto e referências) na `main`. Com a 001: área pelo CAR ou pelo shapefile SICAR, validação, área em ha, municípios atingidos e confirmação. Faltam desenho no mapa e KML/KMZ/GeoJSON | `main` | LK |
 | 003 | Implementada: IMERG 2001 a set/2025 e POWER com proveniência, validação A025 (viés -1,03%, MAE 4,13), Rio Verde offline | `003-dados-clima` | LK |
-| 004, 005 | Propostas para o Pedro | — | Pedro |
+| 004 | Implementada: calendário ZARC (milho 2ª, sorgo 2ª, milho+braquiária, soja; safra 2026/27) por município, grupo e solo, com bloqueio fora da janela. GO, MT e MS baixados; demais UFs produtoras em andamento | `004-calendario-zarc` | LK |
+| 005 | Em implementação | `005-base-solo-culturas` | LK |
+| 009, 010, 012 | Com o Pedro | — | Pedro |

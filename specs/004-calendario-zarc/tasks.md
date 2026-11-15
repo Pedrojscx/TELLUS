@@ -17,7 +17,7 @@ Issues relacionadas: #40 (US-004), #41 (T-019), #60 (T-029), #61 (T-030), #62 (T
 - [X] T005 [US1] `scripts/preparar_zarc.py <UF...>`: baixa as 4 culturas, liga o nome do município ao IBGE (falha se algum ficar sem código) e grava `referencias/zarc/2026-2027/<UF>.json`
 - [X] T006 [US1] `backend/src/tellus/zarc/servico.py`: `calendario` (grupos separados quando "não sei"; proveniência com portaria, data da portaria, safra, vigente e obtenção), `consultar_data` e `permitido`
 - [X] T007 [US1] Rotas `/api/zarc/culturas`, `/api/zarc/calendario` e `/api/zarc/consulta`, com erro no formato padrão
-- [ ] T008 [US1] Rodar a preparação para GO (validação) e para as UFs produtoras de grão (MT, MS, MG, PR, BA, TO, MA, PI, SP, DF)
+- [X] T008 [US1] Rodar a preparação para GO (validação), MT e MS; MG, PR, BA, TO, MA, PI, SP e DF em andamento (entram em commit separado; UF não baixada responde `disponivel: false` com o comando para baixar)
 
 ## Phase 4: Bloqueio e separação de riscos (#62, #63)
 
@@ -28,4 +28,4 @@ Issues relacionadas: #40 (US-004), #41 (T-019), #60 (T-029), #61 (T-030), #62 (T
 
 - [X] T011 `backend/tests/zarc/test_rio_verde.py`: milho G I (6 solos) e sorgo G I (3 solos) iguais ao REGISTRO; G II mais curto que G I; a referência é igual ao XLS salvo, linha a linha, para Rio Verde
 - [X] T012 `backend/tests/zarc/test_servico.py`: "não sei" com 3 grupos separados, só decêndios com risco, dentro/fora, bloqueio, UF ausente, combinação ausente simulada e API
-- [ ] T013 Registrar no `REGISTRO.md` e no `MAPA_FEATURES.md`; comentar e fechar as issues #40, #41 e #60 a #64
+- [X] T013 Registrar no `REGISTRO.md` e no `MAPA_FEATURES.md`; comentar e fechar as issues #40, #41 e #60 a #64
