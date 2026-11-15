@@ -1,4 +1,4 @@
-"""Modelos do contrato 1.0.0 (data-model.md). Pedido (#96) e resposta (#97, #98, #99)."""
+"""Modelos do contrato 1.1.0 (data-model.md). Pedido (#96) e resposta (#97, #98, #99)."""
 
 from __future__ import annotations
 
@@ -53,6 +53,9 @@ class Solo(_Estrito):
         return self
 
 
+PREMISSAS_DE_PRECO = {("economia", "preco_r_saca")}  # onde a cotação informada (1.1.0) é aceita
+
+
 class PremissaEditada(_Estrito):
     modulo: Literal["motor", "culturas", "economia"]
     id: str = Field(min_length=1)
@@ -60,6 +63,25 @@ class PremissaEditada(_Estrito):
     unidade: str = Field(min_length=1)
     cultura: Cultura | None = None  # None = vale para todas as culturas calculadas
     valor_padrao: float | None = None  # preenchido na resposta; o pedido pode omitir
+    # 1.1.0 (D-005): cotação local rastreável, ex.: sorgo sem indicador CEPEA. Só em premissa de preço, os dois juntos.
+    origem_informada: str | None = None
+    data_informada: dt.date | None = None
+
+    @model_validator(mode="after")
+    def _cotacao(self) -> "PremissaEditada":
+        if self.origem_informada is None and self.data_informada is None:
+            return self
+        if (self.modulo, self.id) not in PREMISSAS_DE_PRECO:
+            raise ValueError("origem_informada/data_informada só valem para a premissa de preço (economia.preco_r_saca)")
+        if self.origem_informada is None or self.data_informada is None:
+            raise ValueError("informe origem_informada e data_informada juntas (cotação rastreável)")
+        origem = " ".join(self.origem_informada.split())
+        if not origem:
+            raise ValueError("origem_informada não pode ser vazia")
+        if self.data_informada > dt.date.today():
+            raise ValueError("data_informada não pode ser no futuro")
+        self.origem_informada = origem
+        return self
 
 
 class Contextos(_Estrito):
@@ -105,7 +127,8 @@ class Proveniencia(_Estrito):
     unidade: str
     localizacao: str
     qualidade: str
-    situacao: Literal["fonte", "cache", "hipotese", "editado", "calculado", "pedido", "nao_se_aplica"]
+    situacao: Literal["fonte", "cache", "hipotese", "editado", "calculado", "pedido", "nao_se_aplica",
+                      "informada_pelo_produtor"]  # 1.1.0
     url: str | None = None
     obtido_em: str | None = None
     cobre: list[str] = Field(min_length=1)

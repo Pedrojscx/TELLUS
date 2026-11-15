@@ -102,6 +102,35 @@ def test_premissas_editadas_preservam_padrao(resposta_real):
     (p,) = resposta_real["premissas_editadas"]
     assert p["id"] == "preco_r_saca" and p["valor_novo"] == 55.0
     assert p["valor_padrao"] is None  # sorgo: preço padrão indisponível (D-005), nunca inventado
+    assert p["origem_informada"] == "Cooperativa local de Rio Verde/GO"
+    assert str(p["data_informada"]) == "2025-01-15"
+
+
+def test_cotacao_informada_somente_na_premissa_de_preco(pedido_valido):
+    cotacao = pedido_valido["premissas_editadas"][0]
+    cotacao |= {"origem_informada": "  Cooperativa   local  ", "data_informada": "2025-01-15"}
+    normalizada = regras.normalizar_pedido(pedido_valido)
+    assert normalizada["premissas_editadas"][0]["origem_informada"] == "Cooperativa local"
+
+    cotacao["id"] = "custo_item.1"
+    assert "só valem para a premissa de preço" in _erro(pedido_valido).mensagem
+
+
+@pytest.mark.parametrize("ausente", ["origem_informada", "data_informada"])
+def test_cotacao_informada_exige_origem_e_data_juntas(pedido_valido, ausente):
+    pedido_valido["premissas_editadas"][0] |= {
+        "origem_informada": "Cooperativa local", "data_informada": "2025-01-15"
+    }
+    del pedido_valido["premissas_editadas"][0][ausente]
+    assert "juntas" in _erro(pedido_valido).mensagem
+
+
+def test_cotacao_informada_vira_proveniencia_rastreavel(resposta_real):
+    sorgo = next(c for c in resposta_real["culturas"] if c["cultura"] == "sorgo_granifero_2a_safra")
+    prov = next(p for p in sorgo["economia"]["proveniencia"] if p["id"] == "preco_informado")
+    assert prov["fonte"] == "Cooperativa local de Rio Verde/GO"
+    assert prov["periodo"] == prov["obtido_em"] == "2025-01-15"
+    assert prov["situacao"] == "informada_pelo_produtor"
 
 
 def test_padrao_preenchido_quando_existe(pedido_valido):

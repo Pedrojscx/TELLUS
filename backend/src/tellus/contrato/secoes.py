@@ -114,8 +114,11 @@ def secao_risco_hidrico(s: Mapping) -> tuple[dict, list[dict], list[str]]:
 # ---------------------------------------------------------------- 007
 
 
-def secao_economia(r: Mapping, s: Mapping | None) -> dict:
-    """Seção 007. `s` é a saída da 006 que deu a perda relativa (ou None)."""
+def secao_economia(r: Mapping, s: Mapping | None, cotacao: Mapping | None = None) -> dict:
+    """Seção 007. `s` é a saída da 006 que deu a perda relativa (ou None).
+
+    `cotacao` (1.1.0): a premissa de preço do PEDIDO com origem/data informadas. Se a 007 não repassar esses campos,
+    a proveniência do preço é montada a partir do próprio pedido, sem inventar nada."""
     pr = r["premissas"]
     cc = r.get("custo_conab")
     provs = []
@@ -174,6 +177,15 @@ def secao_economia(r: Mapping, s: Mapping | None) -> dict:
                       "localizacao": "lavoura do pedido", "qualidade": "informado pelo produtor; o valor anterior fica ao lado",
                       "situacao": "editado", "cobre": ["alteracoes.*", "premissas.*.valor_usado", "premissas.custo.valor_usado_r_ha",
                                 "custo_conab.itens.*.valor_usado_r_ha", "cenarios.*.custo_r_ha"]})
+    if cotacao and cotacao.get("origem_informada") and cotacao.get("data_informada"):
+        alt = next((x for x in r["alteracoes"] if x.get("premissa") == "preco_r_saca"), {})
+        origem = alt.get("origem_informada") or cotacao["origem_informada"]
+        data = str(alt.get("data_informada") or cotacao["data_informada"])
+        provs.append({"id": "preco_informado", "fonte": origem, "versao": f"cotação informada em {data}", "periodo": data,
+                      "unidade": cotacao.get("unidade") or preco["unidade"], "localizacao": origem,
+                      "qualidade": "informada pelo produtor; sem indicador oficial (D-005)",
+                      "situacao": "informada_pelo_produtor", "obtido_em": data,
+                      "cobre": ["premissas.preco.valor_usado", "alteracoes.*"]})
     avisos = [_aviso("margem_indisponivel", m, "spec 007") for m in r["motivos_indisponivel"]]
     if perc.get("status") == "hipotese":
         avisos.append(_aviso("percentis_hipotese", perc["descricao"], "spec 007 (D-006)"))
@@ -331,7 +343,8 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
                 perdas = s["resultado"]["perda_relativa_quantis"] if s else None
                 r = margem(lat, lon, c, perdas, ed_econ or None)
                 conferir_prazo()
-                ec = secao_economia(r, s)
+                cot = next((p for p in mine if p["modulo"] == "economia" and p["id"] == "preco_r_saca" and p.get("origem_informada")), None)
+                ec = secao_economia(r, s, cot)
             except versao.ErroContrato:
                 raise
             except Exception as exc:  # noqa: BLE001
