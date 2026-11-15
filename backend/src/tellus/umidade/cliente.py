@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
+import hashlib
 import io
 import json
 import os
@@ -50,6 +51,27 @@ def ler_cache(dir_cache: Path, produto: str, grade: str, linha: int, coluna: int
     with p.open(encoding="utf-8", newline="") as f:
         linhas = list(csv.DictReader(f))
     return linhas, json.loads(m.read_text(encoding="utf-8"))
+
+
+def ler_referencia(dir_ref: Path, produto: str, grade: str, linha: int, coluna: int) -> tuple[list[dict], dict] | None:
+    """Série derivada versionada (referencias/umidade/<nome>/serie.csv + meta.json) da mesma célula.
+
+    Serve à demonstração sem rede. O sha256 registrado tem de conferir; senão a série é ignorada.
+    """
+    dir_ref = Path(dir_ref)
+    if not dir_ref.exists():
+        return None
+    for m in sorted(dir_ref.glob("*/meta.json")):
+        meta = json.loads(m.read_text(encoding="utf-8"))
+        cel = meta.get("celula") or {}
+        if meta.get("produto") != produto or (cel.get("grade"), cel.get("linha"), cel.get("coluna")) != (grade, linha, coluna):
+            continue
+        serie = m.parent / "serie.csv"
+        if not serie.exists() or hashlib.sha256(serie.read_bytes()).hexdigest() != meta.get("sha256_serie"):
+            continue
+        with serie.open(encoding="utf-8", newline="") as f:
+            return list(csv.DictReader(f)), meta | {"_origem": "referencia_versionada", "_caminho": f"referencias/umidade/{m.parent.name}"}
+    return None
 
 
 def gravar_cache(dir_cache: Path, produto: str, grade: str, linha: int, coluna: int,
@@ -154,8 +176,12 @@ def buscar_granulos(ficha: dict, inicio: dt.date, fim: dt.date, cliente: httpx.C
         h5 = [l["href"] for l in e.get("links", []) if l.get("href", "").endswith(".h5") and l["href"].startswith("https")]
         if not h5:
             continue
+        # O OPeNDAP identifica o grânulo pelo GranuleUR do CMR (`title`, ex.: "..._001.h5_1MMe51bJ"),
+        # não pelo nome do arquivo .h5. Usa o link OPeNDAP que o próprio CMR publica.
+        dap = [l["href"] for l in e.get("links", []) if l.get("href", "").startswith(OPENDAP + "/")]
         g = {"titulo": h5[0].rsplit("/", 1)[-1], "inicio": e["time_start"], "fim": e.get("time_end") or e["time_start"],
-             "url": h5[0], "atualizado_cmr": e.get("updated")}
+             "url": h5[0], "atualizado_cmr": e.get("updated"), "granule_ur": e.get("title"),
+             "url_opendap": dap[0] if dap else None}
         # Reprocessamento: o mesmo dia pode ter _001 e _002; fica o maior contador (mais recente).
         atual = por_inicio.get(g["inicio"])
         if atual is None or g["titulo"] > atual["titulo"]:
@@ -164,7 +190,10 @@ def buscar_granulos(ficha: dict, inicio: dt.date, fim: dt.date, cliente: httpx.C
 
 
 def url_opendap(ficha: dict, granulo: dict) -> str:
-    return f"{OPENDAP}/collections/{ficha['concept_id']}/granules/{granulo['titulo']}.dap.nc4"
+    """URL DAP4 (.dap.nc4) do grânulo: link OPeNDAP do CMR ou, sem ele, o GranuleUR na coleção."""
+    base = granulo.get("url_opendap") or (
+        f"{OPENDAP}/collections/{ficha['concept_id']}/granules/{granulo.get('granule_ur') or granulo['titulo']}")
+    return f"{base}.dap.nc4"
 
 
 def restricao_dap4(ficha: dict, linha: int, coluna: int) -> str:
@@ -197,13 +226,32 @@ def baixar_granulo(url: str, cliente: httpx.Client | None = None) -> bytes:
     return r.content
 
 
+def _gravar_bruto(dir_bruto: Path, nome: str, conteudo: bytes, url: str, params: dict | None, obtido_em: str) -> None:
+    """Resposta crua + .meta.json (URL pública, parâmetros, data, sha256). Nunca grava cabeçalhos/credencial."""
+    dir_bruto.mkdir(parents=True, exist_ok=True)
+    p = dir_bruto / nome
+    p.write_bytes(conteudo)
+    meta = {"url": url, "parametros": params or {}, "obtido_em": obtido_em, "bytes": len(conteudo),
+            "sha256": hashlib.sha256(conteudo).hexdigest(), "formato": "netCDF4/HDF5 (OPeNDAP DAP4 .dap.nc4)"}
+    p.with_name(p.name + ".meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+
+
 def atualizar_celula(dir_cache: Path, produto: str, ficha: dict, grade: str, linha: int, coluna: int,
-                     inicio: dt.date, fim: dt.date, cliente: httpx.Client | None = None, recorte: bool = True) -> Path:
-    """Baixa o período da NSIDC e grava no cache. Lança FonteIndisponivel se a fonte cair."""
+                     inicio: dt.date, fim: dt.date, cliente: httpx.Client | None = None, recorte: bool = True,
+                     dir_bruto: Path | None = None) -> Path:
+    """Baixa o período da NSIDC e grava no cache. Lança FonteIndisponivel se a fonte cair.
+
+    `dir_bruto`: se dado, guarda cada recorte cru com .meta.json (Princípio III).
+    """
     hoje = dt.date.today().isoformat()
     registros, unidade = [], None
     for g in buscar_granulos(ficha, inicio, fim, cliente):
         conteudo = baixar_recorte(ficha, g, linha, coluna, cliente) if recorte else baixar_granulo(g["url"], cliente)
+        if dir_bruto is not None:
+            url = url_opendap(ficha, g) if recorte else g["url"]
+            params = {"dap4.ce": restricao_dap4(ficha, linha, coluna)} if recorte else None
+            sufixo = f"_r{linha}_c{coluna}.dap.nc4" if recorte else ""
+            _gravar_bruto(Path(dir_bruto), f"{g['titulo']}{sufixo}", conteudo, url, params, hoje)
         with h5py.File(io.BytesIO(conteudo), "r") as h5:
             for variante in ficha["variaveis"]:
                 ex = extrair_celula(h5, ficha, variante, linha, coluna, recorte=recorte)

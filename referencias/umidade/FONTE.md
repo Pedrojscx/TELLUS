@@ -46,6 +46,18 @@ dividido pelas colunas, o que dá 36.032,22 m (M36) e 9.008,06 m (M09). O guia V
 Por isso o cliente confere linha e coluna com os `EASE_row_index`/`EASE_column_index` do arquivo
 baixado.
 
+## Série real versionada: `rio_verde_go/`
+
+- `serie.csv` + `meta.json`: SPL3SMP_E **V006**, célula EASE2_M09 linha 1059 e coluna 1382 (centro em
+  −17,75156; −50,92842, a 5,37 km do ponto −17,785; −50,965), período de 2026-10-17 a 2026-11-15
+  (27 dias com grânulo), AM e PM. `sha256_serie` `cf7a82ee…7e69`; `sintetico: false`.
+- Obtida em 2026-11-15 por OPeNDAP DAP4 (`https://opendap.earthdata.nasa.gov/collections/C2938664763-NSIDC_CPRD/granules/<GranuleUR>.dap.nc4`),
+  com NASA Earthdata login. O token ficou só no ambiente e não está em nenhum arquivo.
+- Bruto: `data/raw/umidade/opendap/SPL3SMP_E/*.dap.nc4` (fora do Git). Cada um tem `.meta.json` com URL,
+  restrição DAP4, data e sha256. O catálogo CMR está em `data/raw/umidade/cmr/`.
+- O serviço usa esta série só quando não há cache local da célula, e avisa `referencia_versionada`.
+- Recriar: `set -a && . ~/tellus/.env && set +a && uv run --project backend python scripts/preparar_umidade.py --lat -17.785 --lon -50.965 --dias 30 --fim 2026-11-15 --exportar-referencia rio_verde_go`
+
 ## O que não está aqui
 
 - Nenhum dado real de umidade foi baixado. O ambiente do agente não tinha `EARTHDATA_TOKEN`.

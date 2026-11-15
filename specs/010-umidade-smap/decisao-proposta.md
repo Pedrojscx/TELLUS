@@ -2,7 +2,7 @@
 
 **Situação:** PROPOSTA em teste. A decisão #70 continua aberta. Este documento não fecha nem
 responde a issue.
-**Data do teste:** 2026-11-15 · **Frente B (spec 010)**
+**Data do teste:** 2026-11-15 · Frente B (desenho, spec 010) · amostra real obtida pelo A1 - Maestro #2, com o `EARTHDATA_TOKEN` autorizado pelo usuário (carregado só no ambiente; nunca impresso nem gravado)
 
 ## 1. Proposta do usuário (hipótese operacional do protótipo)
 
@@ -37,12 +37,19 @@ não o relógio. Por isso o mesmo cache dá a mesma resposta.
 |---|---|---|
 | Célula EASE2 de 9 km | **linha 1059, coluna 1382**. Centro (-17,75156, -50,92842), a ≈ 5,4 km do ponto. Célula de 9,01 km | `regras.celula_ease2`, conferida com pyproj (teste `test_celula_de_rio_verde`) |
 | Acesso ao dado | **Exige Earthdata login.** Sem login, `data.nsidc.earthdatacloud.nasa.gov/...h5` responde **HTTP 302 → `urs.earthdata.nasa.gov/oauth/authorize`**. O OPeNDAP (`opendap.earthdata.nasa.gov/.../*.dmr.xml`) responde **HTTP 302 → `/login/urs`**. O CMR não pede login | `curl` em 2026-11-15 |
-| Credencial no ambiente do agente | **Ausente.** `EARTHDATA_TOKEN` não está definido. O `.env` não foi lido (Princípio VIII) | `scripts/preparar_umidade.py` → código de saída 3 |
+| Credencial | **Usada com autorização explícita do usuário.** O `EARTHDATA_TOKEN` de `~/tellus/.env` foi carregado só no ambiente do comando (`set -a; . ~/tellus/.env`), sem ser lido, impresso nem gravado. Varredura: 0 arquivos em `data/raw/umidade`, `referencias/umidade`, `backend`, `specs` e `scripts` contêm o token | `grep -F` com o valor só no ambiente → 0 |
 | Grânulos nos últimos 30 dias (2026-10-17 a 2026-11-15) | **27 dias com grânulo** e 32 entradas no CMR, porque há reprocessamentos `_002`. Dias sem grânulo: **2026-10-18**, mais 2026-11-14 e 11-15, que ainda não foram publicados | bruto `data/raw/umidade/cmr/SPL3SMP_E_2026-10-17_2026-11-15.json` + `.meta.json` (sha256 `f43863df…868f`) |
 | Latência de publicação | 1ª publicação (`_001`, 22 grânulos): mediana de **≈ 20 h** após o fim do dia UTC, mínimo de 12,4 h. O máximo, 382 h, reflete atualizações posteriores do registro no CMR | `updated` − `time_end` no CMR |
 | Reprocessamento | Em 10 dias da janela ampla (out–nov), um `_002` substitui o `_001`. O cliente fica com o maior contador | `cliente.buscar_granulos`, teste `test_buscar_granulos_fica_com_o_reprocessamento_mais_recente` |
 | Tamanho | ≈ 550–640 MB por arquivo diário. Por isso o cliente pede só a célula via OPeNDAP DAP4 (8 variáveis, 1×1) | `granule_size` no CMR; `cliente.restricao_dap4` |
-| **Observações válidas na célula em 30 dias (AM/PM, bit 0)** | **NÃO VERIFICADO.** Sem login, nenhum valor de umidade nem flag foi lido. **Nenhum número foi inventado** | bloqueio acima |
+| Formato real do recorte | OPeNDAP DAP4 `.dap.nc4` = **netCDF4/HDF5** (assinatura `\x89HDF`), com os grupos `Soil_Moisture_Retrieval_Data_AM`/`_PM`. Cada variável tem forma (1, 1); `soil_moisture` é float32 com `units = cm**3/cm**3` e `_FillValue -9999`; flag e índices são uint16 com `_FillValue 65534`. O arquivo traz mais `dim0`/`dim1`. **Igual ao HDF5 sintético dos testes** | recortes em `data/raw/umidade/opendap/SPL3SMP_E/` (≈ 38 kB cada) |
+| Divergência corrigida no cliente | O OPeNDAP endereça o grânulo pelo **GranuleUR do CMR** (`SMAP_L3_SM_P_E_20261101_R19240_001.h5_1MMe51bJ`), não pelo nome do arquivo `.h5`. Com o nome do arquivo, o Hyrax responde **HTTP 404**. Agora o cliente usa o link OPeNDAP que o próprio CMR publica (com o GranuleUR como reserva) | `cliente.buscar_granulos`/`url_opendap`; `test_url_opendap_usa_o_granule_ur_do_cmr` |
+| **Dias com grânulo (2026-10-17 a 2026-11-15)** | **27 de 30**. Faltam 2026-10-18 (sem grânulo no CMR) e 2026-11-14 e 11-15 (ainda não publicados) | CMR + 27 recortes brutos |
+| **Observações AM/PM na célula L1059/C1382** | 54 possíveis (27 × 2), das quais **18 com valor** (10 AM, 8 PM) e **36 com preenchimento** (−9999: a célula ficou fora da faixa da passagem; 17 AM, 19 PM). Em todos os arquivos, os índices `EASE_row/column_index` com valor são (1059, 1382) | contagem direta nos brutos e `servico.contexto` (os dois batem) |
+| **Válidas pelo bit 0 da `retrieval_qual_flag` (preenchimento excluído)** | **17** (10 AM e 7 PM). A flag é **8** nas 17 válidas e **9** em 1 não recomendada (2026-11-08 PM, 0,2161). O bit 3 está ligado em todas; o significado não foi verificado aqui e ele não entra na regra | idem |
+| **Faixa de valores válidos** | **0,1897 a 0,3594 m³/m³** (média de 0,26). Mínimo em 2026-10-20 AM e máximo em 2026-10-28 PM | idem |
+| **Distribuição** | 17 observações válidas em **12 dias distintos** (em 5 deles há AM e PM). O intervalo entre dias com observação válida vai de 1 a **3 dias**, no máximo. Os 2 dias finais da janela ainda não foram publicados | série `referencias/umidade/rio_verde_go/serie.csv` |
+| Rota real | Com o router montado, `GET /api/umidade/contexto?lat=-17.785&lon=-50.965` passou de **404 `sem_cache`** para **200** com **17 itens** reais, todos com `aviso_escala` espacial e temporal, `dado_sintetico: false` e `origem_dados: cache`. Sem cache local, usa a série versionada (`origem_dados: referencia_versionada`, com aviso). Sem nenhuma das duas, continua 404 `sem_cache`, nomeando a origem | `tests/umidade/test_rio_verde.py` |
 
 ## 4. Compatibilidade com a spec 010
 
@@ -57,29 +64,25 @@ não o relógio. Por isso o mesmo cache dá a mesma resposta.
 
 ## 5. Veredito
 
-**NÃO SUSTENTA (ainda) como proposta verificada.** O bloqueio é de acesso, não de mérito:
+**SUSTENTA**, como hipótese operacional do protótipo, para Rio Verde-GO em 2026-10-17 a 2026-11-15.
+SPL3SMP_E V006 com as observações válidas (bit 0 = 0) dos últimos 30 dias dá **17 observações
+válidas**, de 0,19 a 0,36 m³/m³, com data e passagem (AM/PM). É uma série útil como contexto regional,
+em 12 dias distintos e com no máximo 3 dias entre dias com observação válida. Todos os FR e SC da seção 4 continuam atendidos com dado real:
+o SC-001 foi verificado em 17 de 17 itens, e o SC-002 em 36 preenchimentos mostrados como lacuna, sem vizinho.
 
-- **Sustentado pelas fontes:** o produto existe e está ativo (V006, publicado até 2026-11-13). A grade de 9 km e a célula de Rio Verde estão conferidas. A latência é de cerca de 1 dia, o que basta para uma janela de 30 dias. A regra de qualidade está documentada (Tabela 6), a unidade e o fill vêm do CMR, e todos os FR/SC são atendíveis pelo desenho implementado.
-- **Não sustentado:** a premissa central da janela, de que há observações válidas em número útil na célula em 30 dias, não foi medida. Um dia com grânulo não garante valor na célula. A cobertura do radiômetro tem faixas, e a recuperação pode ser marcada como sem qualidade recomendada (vegetação densa, RFI, água). Sem o valor e a flag reais não há contagem.
+Isso **não fecha a #70**. Produto e janela continuam `hipotese` no código. A decisão é do Maestro e do usuário.
 
-**Para destravar** (o usuário roda, com o token só no ambiente):
+**Alternativa fundamentada, caso outra região ou estação dê poucas válidas** (não adotada, padrão mantido):
 
-```
-! cd ~/tellus-wt/010 && set -a && . ~/tellus/.env && set +a && uv run --project backend python scripts/preparar_umidade.py --lat -17.785 --lon -50.965 --dias 30 --exportar-referencia rio_verde_go
-```
-
-O script imprime a contagem `observacoes_validas`, `registros_sem_dado` e
-`registros_qualidade_nao_recomendada`, além de cada data e flag. Ele grava o bruto em
-`data/raw/umidade/` e a série derivada em `referencias/umidade/rio_verde_go/`. Com esse resultado,
-o veredito pode virar "sustenta".
-
-**Alternativa fundamentada, caso a contagem real seja baixa** (não decidida):
-
-- **SPL4SMGP V008** (9 km, 3 h, `sm_surface` 0–5 cm). É contínuo, sem falhas de passagem, mas é **estimativa de modelo com assimilação**, não observação. Teria de aparecer como tal (a ficha já marca `natureza`). Não tem flag de qualidade por célula neste cache: qualidade `desconhecido`.
-- Outra opção é manter o SPL3SMP_E e ampliar a janela. Essa mudança é só de parâmetro (`janela_dias`), mas também seria hipótese.
+- Ampliar a janela (`janela_dias`). Com a taxa observada (cerca de 0,57 válida por dia), 30 dias já
+  bastam aqui. Numa estação chuvosa com mais flags não recomendadas, 45 a 60 dias compensariam. A
+  mudança é só de parâmetro e continua sendo hipótese.
+- **SPL4SMGP V008** (9 km, a cada 3 h, `sm_surface` de 0–5 cm): contínuo, sem lacunas de passagem, mas
+  é **estimativa de modelo com assimilação**, não observação, e teria de aparecer como tal. Não tem
+  flag de qualidade por célula neste cache.
 
 ## 6. Limitações
 
-- O código foi testado só com fixtures **sintéticas** (`sintetico: true`). O caminho real (CMR → OPeNDAP → cache) foi testado com transporte HTTP simulado, não contra a NASA. O formato exato do recorte DAP4 da NSIDC (nomes de grupo no `.dap.nc4`) precisa ser confirmado na primeira execução com token.
+- A amostra real cobre **uma célula e uma janela de 30 dias** (fim de outubro e início de novembro de 2026, começo da estação chuvosa). Outra estação ou região pode ter outra taxa de válidas. Os testes de unidade continuam usando fixtures **sintéticas** (`sintetico: true`); `test_rio_verde.py` usa a série real versionada.
 - A interpretação da flag usa só o bit 0. Os bits 1 a 3 são guardados, mas não filtram.
 - O cache é por célula. A geometria que toca várias células gera um item por célula, sem média, porque a regra de agregação não foi decidida.
