@@ -7,8 +7,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from tellus.api import car, clima, localizacao
+from tellus.api import car, clima, localizacao, zarc
 from tellus.car.servico import ErroCar
+from tellus.zarc.servico import ErroZarc
 from tellus.clima.servico import ErroClima
 from tellus.localizacao.servico import ErroLocalizacao
 
@@ -50,7 +51,13 @@ async def _erro_car(_: Request, exc: ErroCar) -> JSONResponse:
     return _erro(exc.status, exc.codigo, exc.mensagem, exc.campo)
 
 
+@app.exception_handler(ErroZarc)
+async def _erro_zarc(_: Request, exc: ErroZarc) -> JSONResponse:
+    return _erro(exc.status, exc.codigo, exc.mensagem, exc.campo)
+
+
 app.include_router(localizacao.router)
+app.include_router(zarc.router)
 app.include_router(car.router)
 app.include_router(clima.router)
 

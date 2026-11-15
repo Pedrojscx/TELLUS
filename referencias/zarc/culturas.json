@@ -1,0 +1,16 @@
+{
+  "fonte": "SISZARC (MAPA), combo de culturas da safra 2026/2027, consultado em 2026-11-15",
+  "url": "https://sistemasweb.agricultura.gov.br/siszarc/gerarRelatorioPublicacoesDoZarc.action",
+  "safra_vigente": "2026 / 2027",
+  "manejo": "Sequeiro",
+  "culturas": {
+    "milho_2a_safra": {"codigo_siszarc": "12015080000021", "nome": "Milho 2ª Safra"},
+    "sorgo_granifero_2a_safra": {"codigo_siszarc": "12016740174021", "nome": "Sorgo Granífero 2ª Safra"},
+    "milho_2a_safra_braquiaria": {
+      "codigo_siszarc": "12015080000821",
+      "nome": "Milho 2ª Safra consorciado com Braquiária",
+      "nota": "referência oficial mais próxima para a cobertura com braquiária; não há ZARC para cobertura pura"
+    },
+    "soja": {"codigo_siszarc": "12016720000011", "nome": "Soja"}
+  }
+}
