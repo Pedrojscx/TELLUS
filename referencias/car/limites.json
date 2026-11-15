@@ -1,10 +1,4 @@
 {
-  "max_vertices_anel": {
-    "valor": 5000,
-    "unidade": "vértices",
-    "status": "hipotese",
-    "motivo": "limite para validação O(n²) em menos de 1 s; D-009 (limites de arquivo e geometria) ainda aberta"
-  },
   "casas_decimais_id": {
     "valor": 6,
     "unidade": "casas decimais",

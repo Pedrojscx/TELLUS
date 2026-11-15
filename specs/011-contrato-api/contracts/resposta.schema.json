@@ -1,0 +1,648 @@
+{
+ "$defs": {
+  "Aviso": {
+   "additionalProperties": false,
+   "properties": {
+    "codigo": {
+     "title": "Codigo",
+     "type": "string"
+    },
+    "mensagem": {
+     "title": "Mensagem",
+     "type": "string"
+    },
+    "origem": {
+     "title": "Origem",
+     "type": "string"
+    },
+    "tipo": {
+     "const": "aviso",
+     "default": "aviso",
+     "title": "Tipo",
+     "type": "string"
+    }
+   },
+   "required": [
+    "codigo",
+    "mensagem",
+    "origem"
+   ],
+   "title": "Aviso",
+   "type": "object"
+  },
+  "BlocoCultura": {
+   "additionalProperties": false,
+   "properties": {
+    "cultura": {
+     "enum": [
+      "milho_2a_safra",
+      "sorgo_granifero_2a_safra",
+      "braquiaria_cobertura"
+     ],
+     "title": "Cultura",
+     "type": "string"
+    },
+    "economia": {
+     "$ref": "#/$defs/Secao"
+    },
+    "risco_hidrico": {
+     "$ref": "#/$defs/Secao"
+    }
+   },
+   "required": [
+    "cultura",
+    "risco_hidrico",
+    "economia"
+   ],
+   "title": "BlocoCultura",
+   "type": "object"
+  },
+  "CacheInfo": {
+   "additionalProperties": false,
+   "properties": {
+    "disponivel": {
+     "title": "Disponivel",
+     "type": "boolean"
+    },
+    "obtido_em": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Obtido Em"
+    }
+   },
+   "required": [
+    "disponivel"
+   ],
+   "title": "CacheInfo",
+   "type": "object"
+  },
+  "ContextoOpcional": {
+   "additionalProperties": false,
+   "properties": {
+    "avisos": {
+     "default": [],
+     "items": {
+      "additionalProperties": true,
+      "type": "object"
+     },
+     "title": "Avisos",
+     "type": "array"
+    },
+    "conteudo": {
+     "anyOf": [
+      {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Conteudo"
+    },
+    "erro": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/ErroFonte"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "estado": {
+     "enum": [
+      "disponivel",
+      "indisponivel",
+      "erro",
+      "nao_solicitado"
+     ],
+     "title": "Estado",
+     "type": "string"
+    },
+    "id": {
+     "enum": [
+      "vegetacao",
+      "umidade"
+     ],
+     "title": "Id",
+     "type": "string"
+    },
+    "spec": {
+     "title": "Spec",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "spec",
+    "estado"
+   ],
+   "title": "ContextoOpcional",
+   "type": "object"
+  },
+  "ErroFonte": {
+   "additionalProperties": false,
+   "properties": {
+    "acao": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Acao"
+    },
+    "cache": {
+     "$ref": "#/$defs/CacheInfo",
+     "default": {
+      "disponivel": false,
+      "obtido_em": null
+     }
+    },
+    "campo": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Campo"
+    },
+    "codigo": {
+     "title": "Codigo",
+     "type": "string"
+    },
+    "mensagem": {
+     "title": "Mensagem",
+     "type": "string"
+    },
+    "origem": {
+     "title": "Origem",
+     "type": "string"
+    },
+    "tipo": {
+     "const": "erro",
+     "default": "erro",
+     "title": "Tipo",
+     "type": "string"
+    }
+   },
+   "required": [
+    "codigo",
+    "mensagem",
+    "origem"
+   ],
+   "title": "ErroFonte",
+   "type": "object"
+  },
+  "EstadoFonte": {
+   "additionalProperties": false,
+   "properties": {
+    "estado": {
+     "enum": [
+      "ok",
+      "cache",
+      "falha"
+     ],
+     "title": "Estado",
+     "type": "string"
+    },
+    "fonte": {
+     "title": "Fonte",
+     "type": "string"
+    },
+    "obtido_em": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Obtido Em"
+    },
+    "secao": {
+     "title": "Secao",
+     "type": "string"
+    }
+   },
+   "required": [
+    "fonte",
+    "estado",
+    "secao"
+   ],
+   "title": "EstadoFonte",
+   "type": "object"
+  },
+  "PremissaEditada": {
+   "additionalProperties": false,
+   "properties": {
+    "cultura": {
+     "anyOf": [
+      {
+       "enum": [
+        "milho_2a_safra",
+        "sorgo_granifero_2a_safra",
+        "braquiaria_cobertura"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cultura"
+    },
+    "id": {
+     "minLength": 1,
+     "title": "Id",
+     "type": "string"
+    },
+    "modulo": {
+     "enum": [
+      "motor",
+      "culturas",
+      "economia"
+     ],
+     "title": "Modulo",
+     "type": "string"
+    },
+    "unidade": {
+     "minLength": 1,
+     "title": "Unidade",
+     "type": "string"
+    },
+    "valor_novo": {
+     "title": "Valor Novo",
+     "type": "number"
+    },
+    "valor_padrao": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Valor Padrao"
+    }
+   },
+   "required": [
+    "modulo",
+    "id",
+    "valor_novo",
+    "unidade"
+   ],
+   "title": "PremissaEditada",
+   "type": "object"
+  },
+  "Proveniencia": {
+   "additionalProperties": false,
+   "description": "Os seis campos da constituição (Princípio I) + o que esta proveniência explica (`cobre`).",
+   "properties": {
+    "cobre": {
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1,
+     "title": "Cobre",
+     "type": "array"
+    },
+    "fonte": {
+     "title": "Fonte",
+     "type": "string"
+    },
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "localizacao": {
+     "title": "Localizacao",
+     "type": "string"
+    },
+    "obtido_em": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Obtido Em"
+    },
+    "periodo": {
+     "title": "Periodo",
+     "type": "string"
+    },
+    "qualidade": {
+     "title": "Qualidade",
+     "type": "string"
+    },
+    "situacao": {
+     "enum": [
+      "fonte",
+      "cache",
+      "hipotese",
+      "editado",
+      "calculado",
+      "pedido",
+      "nao_se_aplica"
+     ],
+     "title": "Situacao",
+     "type": "string"
+    },
+    "unidade": {
+     "title": "Unidade",
+     "type": "string"
+    },
+    "url": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Url"
+    },
+    "versao": {
+     "title": "Versao",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "fonte",
+    "versao",
+    "periodo",
+    "unidade",
+    "localizacao",
+    "qualidade",
+    "situacao",
+    "cobre"
+   ],
+   "title": "Proveniencia",
+   "type": "object"
+  },
+  "Secao": {
+   "additionalProperties": false,
+   "properties": {
+    "avisos": {
+     "default": [],
+     "items": {
+      "$ref": "#/$defs/Aviso"
+     },
+     "title": "Avisos",
+     "type": "array"
+    },
+    "conteudo": {
+     "anyOf": [
+      {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Conteudo"
+    },
+    "erro": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/ErroFonte"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "estado": {
+     "enum": [
+      "disponivel",
+      "indisponivel",
+      "pendente",
+      "erro"
+     ],
+     "title": "Estado",
+     "type": "string"
+    },
+    "id": {
+     "enum": [
+      "risco_hidrico",
+      "economia",
+      "recomendacao"
+     ],
+     "title": "Id",
+     "type": "string"
+    },
+    "obrigatoria": {
+     "title": "Obrigatoria",
+     "type": "boolean"
+    },
+    "proveniencia": {
+     "items": {
+      "$ref": "#/$defs/Proveniencia"
+     },
+     "title": "Proveniencia",
+     "type": "array"
+    },
+    "spec": {
+     "title": "Spec",
+     "type": "string"
+    },
+    "versao_modulo": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Versao Modulo"
+    }
+   },
+   "required": [
+    "id",
+    "spec",
+    "obrigatoria",
+    "estado",
+    "versao_modulo",
+    "conteudo",
+    "proveniencia"
+   ],
+   "title": "Secao",
+   "type": "object"
+  },
+  "Versoes": {
+   "additionalProperties": false,
+   "properties": {
+    "contrato": {
+     "title": "Contrato",
+     "type": "string"
+    },
+    "hash_pedido": {
+     "title": "Hash Pedido",
+     "type": "string"
+    },
+    "hash_principal": {
+     "title": "Hash Principal",
+     "type": "string"
+    },
+    "modulos": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "title": "Modulos",
+     "type": "object"
+    }
+   },
+   "required": [
+    "contrato",
+    "hash_pedido",
+    "hash_principal",
+    "modulos"
+   ],
+   "title": "Versoes",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "avisos": {
+   "items": {
+    "$ref": "#/$defs/Aviso"
+   },
+   "title": "Avisos",
+   "type": "array"
+  },
+  "contextos": {
+   "additionalProperties": {
+    "$ref": "#/$defs/ContextoOpcional"
+   },
+   "propertyNames": {
+    "enum": [
+     "vegetacao",
+     "umidade"
+    ]
+   },
+   "title": "Contextos",
+   "type": "object"
+  },
+  "culturas": {
+   "items": {
+    "$ref": "#/$defs/BlocoCultura"
+   },
+   "title": "Culturas",
+   "type": "array"
+  },
+  "erros": {
+   "items": {
+    "$ref": "#/$defs/ErroFonte"
+   },
+   "title": "Erros",
+   "type": "array"
+  },
+  "estado_geral": {
+   "enum": [
+    "final",
+    "final_com_cache",
+    "incompleto",
+    "erro"
+   ],
+   "title": "Estado Geral",
+   "type": "string"
+  },
+  "final": {
+   "title": "Final",
+   "type": "boolean"
+  },
+  "fontes": {
+   "items": {
+    "$ref": "#/$defs/EstadoFonte"
+   },
+   "title": "Fontes",
+   "type": "array"
+  },
+  "hipoteses": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Hipoteses",
+   "type": "array"
+  },
+  "pedido": {
+   "additionalProperties": true,
+   "title": "Pedido",
+   "type": "object"
+  },
+  "premissas_editadas": {
+   "items": {
+    "$ref": "#/$defs/PremissaEditada"
+   },
+   "title": "Premissas Editadas",
+   "type": "array"
+  },
+  "recomendacao": {
+   "$ref": "#/$defs/Secao"
+  },
+  "versao_contrato": {
+   "default": "1.0.0",
+   "title": "Versao Contrato",
+   "type": "string"
+  },
+  "versoes": {
+   "$ref": "#/$defs/Versoes"
+  }
+ },
+ "required": [
+  "pedido",
+  "estado_geral",
+  "final",
+  "culturas",
+  "recomendacao",
+  "contextos",
+  "fontes",
+  "avisos",
+  "erros",
+  "hipoteses",
+  "premissas_editadas",
+  "versoes"
+ ],
+ "title": "RespostaCalculo",
+ "type": "object"
+}

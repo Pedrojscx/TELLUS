@@ -1,0 +1,58 @@
+{
+ "erro_esperado": "geometria_invalida",
+ "pedido": {
+  "area": {
+   "confirmada": true,
+   "geometria": {
+    "coordinates": [
+     [
+      [
+       -50.97,
+       -17.79
+      ],
+      [
+       -50.96,
+       -17.78
+      ],
+      [
+       -50.97,
+       -17.78
+      ],
+      [
+       -50.96,
+       -17.79
+      ],
+      [
+       -50.97,
+       -17.79
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   },
+   "id_geometria": "exemplo-cruzado",
+   "origem": "desenho",
+   "tipo": "geometria"
+  },
+  "contextos": {
+   "umidade": false,
+   "vegetacao": false
+  },
+  "data_colheita_soja": "2027-01-20",
+  "grupo": "GRUPO I",
+  "metodologia": "comparar_alternativas",
+  "premissas_editadas": [
+   {
+    "cultura": "sorgo_granifero_2a_safra",
+    "id": "preco_r_saca",
+    "modulo": "economia",
+    "unidade": "R$/saca de 60 kg",
+    "valor_novo": 55.0
+   }
+  ],
+  "solo": {
+   "textura": "argilosa"
+  },
+  "versao_contrato": "1.0.0"
+ }
+}
