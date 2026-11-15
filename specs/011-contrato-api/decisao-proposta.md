@@ -52,3 +52,8 @@ O que os números mostram:
 - O prazo de 60 s é conferido entre chamadas de módulo (interrupção cooperativa). Uma chamada isolada mais longa que o prazo só é detectada quando termina.
 - Esta versão não tem rota de cálculo (falta a 008). Por isso o `tempo_excedido` vive em `secoes.calcular` e no contrato.
 - Os tempos dependem da máquina. É preciso medir de novo no servidor da demo.
+
+### Limitações conhecidas (registradas pelo usuário em 15/11)
+
+- **Prazo de 60 s só entre módulos:** o limite é verificado apenas entre as chamadas de módulo (clima, motor, economia) em `secoes.calcular`. Uma etapa isolada que demore mais que o prazo não é interrompida no meio. O estouro só é detectado quando ela termina.
+- **A demo depende do cache IMERG quente de Rio Verde:** dentro dos 60 s, o cálculo só cabe com a série IMERG de Rio Verde já em cache ou versionada em `referencias/clima/rio_verde_go/`. Sem esse cache, a primeira chamada precisaria baixar a série do GES DISC (cerca de 20 min com 16 conexões, segundo o REGISTRO.md da spec 003) e estouraria o prazo. Conferido na `main` 4bc0647 (15/11, 01h55): a série versionada cobre a célula `-17.75_-50.95`, com IMERG `ok` em todos os 9.039 dias de 2001-01-01 a 2025-09-30, sem lacuna. Os 410 dias seguintes estão como `nao_publicado` (D-002), e há 1 dia sem POWER (2026-11-14). Num clone limpo, sem `data/raw` e sem rede, `secoes.calcular` roda em 0,61 s para as 3 culturas, e os testes de contrato e do motor passam (100). Fora da célula da A025, como na área do CAR em `-17.85_-51.05`, ainda vale o download.

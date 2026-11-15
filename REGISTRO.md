@@ -210,3 +210,9 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Envelope único de erro `{"erro": {codigo, mensagem, origem, campo}}` em todos os handlers do `app.py` e em `/api/umidade`.
 - D-009 (hipótese): 20 MB, 10.000 vértices, 100.000 ha e 60 s, num único arquivo (`contrato/limites.json`). CAR (5.000 por anel e 20 MB) e vegetação passam a ler dali, sem mudar valores.
 - Pior caso medido da validação de polígono (O(n²)): 10,2 s com 5.000 vértices; 21,9 s com 10.000; 43,8 s com 20.000. Medir de novo no servidor da demo.
+## Spec 002 entrega 2: área por desenho e arquivo (15/11, Frente B + Claude Code, integrada pelo Maestro)
+- Módulo `tellus.lavoura`: KML (`xml.etree`, DOCTYPE/ENTITY recusados), KMZ (`zipfile`, tamanho descompactado limitado), GeoJSON (`json`, crs não geográfico recusado) e Shapefile .zip (`pyshp`, que já existia). Rotas `/api/lavoura/{arquivo,desenho,limites}`.
+- Desenho no mapa em Leaflet puro (clique = vértice; desfazer, fechar e limpar), sem plugin. Testado manualmente pelo usuário em 15/11.
+- Todos os modos de área usam a validação, o resumo (área ha, municípios, `id_geometria` igual entre formatos) e a confirmação do CAR. Limites da D-009 do arquivo único.
+- Uma lavoura por arquivo. Erros nomeados: formato_nao_aceito, arquivo_invalido, projecao_nao_suportada, sem_geometria, varias_lavouras, geometria_invalida, vertices_excedidos, area_excedida e arquivo_grande (413). Nunca simplifica.
+- 419 testes passando.
