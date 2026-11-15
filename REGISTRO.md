@@ -149,3 +149,16 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Ao vivo: GO-5218805-8F8B…EE33 → encontrado em 0,67 s, 35,15 ha calculados contra 35,0003 ha declarados (0,4%), Rio Verde 100%.
 - 99 testes passando (21 novos do CAR, com resposta WFS real gravada e shapefile gerado no teste).
 - O resumo territorial (área, municípios atingidos, `id_geometria`) e a confirmação já servem a 002 para desenho e arquivo genérico.
+
+## Spec 004 calendário ZARC (15/11, 01h, LK + Claude Code)
+- `tellus.zarc`: cliente SISZARC sem login (8 combos, um XLS por UF × cultura × portaria × grupo, solo vazio = todos), regras puras de decêndio e janela, `calendario`, `consultar_data`, `permitido` e rotas `/api/zarc/{culturas,calendario,consulta}`.
+- Códigos SISZARC 2026/27: milho 2ª safra 12015080000021; sorgo granífero 2ª 12016740174021; milho 2ª + braquiária 12015080000821; soja 12016720000011.
+- Defeito do relatório oficial: a coluna do decêndio 35 vem rotulada "Dev 35". A leitura é por posição, com os rótulos conferidos.
+- Grafias diferentes entre SISZARC e IBGE: "Santo Antônio do Leverger" contra "de Leverger" (MT), tratado em `APELIDOS` no script.
+- GO: portarias 322 (milho, 30/07/2026), 273 (sorgo, 22/07), 337 (milho + braquiária, 06/08) e 198 (soja, 03/07). 246 municípios. Rio Verde confere com os valores de 14/11 e com o XLS. MT: 142 municípios; MS: 79.
+- Download lento (cerca de 4 min por cultura × UF). As outras UFs produtoras seguem em background.
+- Portarias ZARC (texto) com parâmetros oficiais para a 005:
+  - Milho 2ª (Port. 322): Ze 60 cm; AD1 a AD6 = 24/31,8/41,4/54,6/72,6/95,4 mm; fases G I 20/30/30/20, G II 20/40/40/20, G III 20/50/50/20; ISNA 0,70 (fase I) e 0,55 (fase III).
+  - Sorgo (Port. 273): solos tipo 1/2/3 = arenoso/médio/argiloso com CAD 35/55/75 mm; Ze 50 cm; ISNA 0,6 e 0,45.
+  - Soja (Port. 198): CAD 24/32/42/55/72/95 mm; Ze 60 cm.
+  - Faixas AD em mm/cm (IN SPA/MAPA nº 1/2022, citada na Port. 198): AD1 0,34–0,46; AD2 0,46–0,61; AD3 0,61–0,80; AD4 0,80–1,06; AD5 1,06–1,40; AD6 1,40–1,84.
