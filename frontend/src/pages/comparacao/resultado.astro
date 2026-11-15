@@ -43,7 +43,12 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
   // Resultado REAL (contrato 1.1.0, #54): com a lavoura confirmada e as entradas completas, chama o backend.
   // Sem isso, fica o exemplo identificado acima (selo "DADO DE EXEMPLO").
   import { carregarExemplo, ROTULO_CENARIO, type Alternativa, type ResultadoComparacao } from "../../lib/comparacao/contrato-provisorio";
-  import { calcular, montarPedido, paraResultado, type FalhaPedido } from "../../lib/comparacao/contrato";
+  import { calcular, montarPedido, paraResultado, type FalhaPedido, type RespostaContrato } from "../../lib/comparacao/contrato";
+  import { TEXTO_ESTADO_GERAL, etapasDaResposta, etapasEmAndamento, textoErro, type Etapa } from "../../lib/comparacao/etapas";
+
+  const ICONE: Record<string, string> = { pendente: "○", rodando: "◌", ok: "✓", cache: "◐", falha: "✕" };
+  const TEXTO: Record<string, string> = { pendente: "aguardando", rodando: "em andamento", ok: "pronto", cache: "pronto com cópia guardada", falha: "indisponível" };
+  const COR: Record<string, string> = { pendente: "text-stone-400", rodando: "text-sky-700 font-semibold", ok: "text-emerald-700", cache: "text-amber-700", falha: "text-red-700 font-semibold" };
   import { lerLavoura } from "../../lib/comparacao/lavoura";
   import { mesclarPremissas } from "../../lib/comparacao/premissas";
   import { validarEntradas } from "../../lib/comparacao/validacao";
@@ -77,13 +82,20 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
       </div></details>`;
   }
 
-  function render(r: ResultadoComparacao, estadoGeral: string, final: boolean): string {
-    const erros = r.erros.map((e) => `<li>${selo("erro", `${e.mensagem} (${e.origem})`)}</li>`).join("");
+  function listaEtapas(etapas: Etapa[]): string {
+    return `<ol class="mt-2 space-y-1 text-sm">${etapas.map((e) => `<li class="flex gap-2 ${COR[e.estado]}"><span aria-hidden="true" class="w-4">${ICONE[e.estado]}</span><span>${esc(e.rotulo)}${e.obrigatoria ? "" : " (opcional)"}: ${TEXTO[e.estado]}${e.detalhe ? ` (${esc(e.detalhe)})` : ""}</span></li>`).join("")}</ol>`;
+  }
+
+  function render(r: ResultadoComparacao, resp: RespostaContrato): string {
+    const g = TEXTO_ESTADO_GERAL[resp.estado_geral] ?? TEXTO_ESTADO_GERAL.erro;
+    const erros = r.erros.map((e) => `<li>${selo("erro", textoErro(e))}</li>`).join("");
     const avisos = r.avisos.map((a) => `<li>${selo("aviso", a.mensagem)}</li>`).join("");
     const ctx = r.contextos_opcionais.map((c) => `<div class="rounded-md border border-stone-200 bg-white p-3 text-sm"><p class="font-medium">${esc(c.titulo)}</p><p class="text-stone-700">${esc(c.resumo)}</p><p class="mt-1">${selo("aviso", c.aviso_escala)}</p>${c.erro ? `<p class="mt-1">${selo("erro", c.erro.mensagem)}</p>` : ""}</div>`).join("");
-    return `<section class="rounded-xl border border-stone-200 bg-white p-4 text-sm">
-        <h2 class="font-semibold">Resultado calculado</h2>
-        <p class="mt-1 text-stone-700">Contrato ${esc(r.versao_contrato)} · estado ${esc(estadoGeral)}${final ? "" : " (não final: veja avisos e erros)"}</p>
+    return `<section class="rounded-xl border border-stone-200 bg-white p-4 text-sm" ${resp.final ? "" : 'role="alert"'}>
+        <h2 class="font-semibold">${resp.final ? "Resultado calculado" : "Resultado parcial (não é final)"}</h2>
+        <p class="mt-1">${selo(g.tipo, g.texto)}</p>
+        <details class="mt-2"><summary class="cursor-pointer text-stone-700">O que foi consultado e calculado</summary>${listaEtapas(etapasDaResposta(resp))}</details>
+        <p class="mt-2 text-xs text-stone-500">Contrato ${esc(r.versao_contrato)}</p>
       </section>
       ${erros ? `<section class="space-y-2"><h2 class="font-semibold">Erros</h2><ul class="space-y-1">${erros}</ul></section>` : ""}
       <section class="space-y-3"><h2 class="text-lg font-semibold">Alternativas dentro do ZARC</h2>
@@ -100,14 +112,21 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
     const e = s?.entradas;
     if (!e?.area?.real || !lav || validarEntradas(e).length) return; // fica o exemplo
     const estado = document.getElementById("resultado-estado")!;
-    estado.textContent = "Calculando com os dados reais (clima, ZARC, solo, custo e preço)…";
+    const fase = (f: "enviando" | "calculando" | "montando") => {
+      const et = etapasEmAndamento(f);
+      estado.innerHTML = `<p class="font-medium" aria-live="polite">Calculando… etapa atual: ${esc(et.find((x) => x.estado === "rodando")!.rotulo)}. Nada abaixo é resultado ainda.</p>${listaEtapas(et)}`;
+    };
+    fase("enviando");
     estado.classList.remove("hidden");
     try {
       const premissas = mesclarPremissas(carregarExemplo().premissas, s?.premissas);
-      const resp = await calcular(montarPedido(e, lav, premissas));
+      const pedido = montarPedido(e, lav, premissas);
+      fase("calculando");
+      const resp = await calcular(pedido);
+      fase("montando");
       const r = paraResultado(resp, e.metodologia ?? "comparar_alternativas");
       const real = document.getElementById("resultado-real")!;
-      real.innerHTML = render(r, resp.estado_geral, resp.final);
+      real.innerHTML = render(r, resp);
       real.classList.remove("hidden");
       document.getElementById("resultado-exemplo")!.classList.add("hidden");
       document.getElementById("selo-exemplo")?.classList.add("hidden");
