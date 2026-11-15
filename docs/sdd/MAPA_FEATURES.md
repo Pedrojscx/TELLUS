@@ -57,4 +57,5 @@ Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etap
 | 003 | Implementada: IMERG 2001 a set/2025 e POWER com proveniência, validação A025 (viés -1,03%, MAE 4,13), Rio Verde offline | `003-dados-clima` | LK |
 | 004 | Implementada: calendário ZARC (milho 2ª, sorgo 2ª, milho+braquiária, soja; safra 2026/27) por município, grupo e solo, com bloqueio fora da janela. GO, MT e MS baixados; demais UFs produtoras em andamento | `004-calendario-zarc` | LK |
 | 005 | Implementada: parâmetros com fonte (portarias ZARC GO, IN 1/2022) ou hipótese (Kc/Ky FAO como método, fases do sorgo, braquiária); classificação de solo oficial por granulometria; edições com antes e depois | `005-base-solo-culturas` | LK |
+| 006 | Implementada: balanço FAO-56 (ETo Penman-Monteith conferida com o Ex. 18), entressafra pousio/palhada, falha pelo ISNA da portaria, risco por decêndio da janela ZARC | `006-motor-hidrico-entressafra` | LK |
 | 009, 010, 012 | Com o Pedro | — | Pedro |

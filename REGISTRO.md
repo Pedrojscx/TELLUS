@@ -173,3 +173,14 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - A equação oficial não é monotônica na argila (60/15/25 → 0,909; 30/15/55 → 1,043; 15/15/70 → 0,940). Por isso a textura sozinha só dá hipótese.
 - 158 testes passando.
 - ZARC multi-UF: MG tinha duas grafias diferentes do IBGE ("Barão de/do Monte Alto", "São Thomé/Tomé das Letras"); apelidos acrescentados. MG será refeito com os XLS já baixados.
+
+## Spec 006 motor hídrico (15/11, 02h, LK + Claude Code)
+- `tellus.motor`, puro: `eto` (Penman-Monteith FAO-56; Ex. 18 reproduzido com Rn 13,28 e ETo 3,9), `balanco` (FAO-56 cap. 8, Kc único, Ks eq. 84, drenagem, entressafra; perda FAO-33 multiplicativa; falha severa pelo ISNA da portaria) e `simulacao` (mesma data em cada ano; dia ausente exclui o ano).
+- `servico`: junta 003 (clima + ETo com altitude da célula POWER), 004 (bloqueio fora da janela, portaria na resposta) e 005 (premissas e solo). Entradas com hash e `versao_entradas`. Rotas `/api/motor/simular` e `/api/motor/janela`.
+- D-004: estado inicial com 100% da CAD, pousio Kc 0,30 e palhada 0,15, intervalo de 3 dias. Tudo hipótese editável (`referencias/motor/premissas.json`).
+- Rio Verde, grupo I, colheita em 01/01:
+  - milho AD4: risco histórico 0% (jan), 8% (01/02), 28% (11/02; o ZARC marca 40%);
+  - sorgo tipo 3: 0% até 11/02, 8% (21/02), 20% (01/03), 28% (11/03), 32% (21/03; o ZARC marca 30%).
+  - O sorgo aguenta cerca de um mês a mais, como no ZARC.
+- 174 testes passando.
+- ZARC multi-UF: BA (417 municípios) e PR prontos. TO tinha uma grafia diferente ("Couto de Magalhães" contra "Couto Magalhães"); apelido acrescentado; MG e TO serão refeitos com os XLS em cache.

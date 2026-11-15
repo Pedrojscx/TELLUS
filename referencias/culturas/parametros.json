@@ -9,19 +9,34 @@
       "documento": "Portaria SPA/MAPA nº 322, de 28/07/2026 (DOU 30/07/2026): ZARC milho 2ª safra, Goiás, safra 2026/2027, itens 1.12 a 1.14 do anexo",
       "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/goias",
       "consultado_em": "2026-11-15",
-      "validade_regional": {"uf": ["GO"], "safra": "2026/2027"}
+      "validade_regional": {
+        "uf": [
+          "GO"
+        ],
+        "safra": "2026/2027"
+      }
     },
     "PORT273_GO": {
       "documento": "Portaria SPA/MAPA nº 273, de 20/07/2026 (DOU 22/07/2026): ZARC sorgo granífero, Goiás, safra 2026/2027, itens 1.8.2 a 1.8.4 do anexo",
       "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/goias",
       "consultado_em": "2026-11-15",
-      "validade_regional": {"uf": ["GO"], "safra": "2026/2027"}
+      "validade_regional": {
+        "uf": [
+          "GO"
+        ],
+        "safra": "2026/2027"
+      }
     },
     "IN1_2022": {
       "documento": "Instrução Normativa SPA/MAPA nº 1, de 21/06/2022, com redação da IN SPA/MAPA nº 2, de 05/08/2022: classes de água disponível (Art. 2º) e equação de pedotransferência (Art. 3º)",
       "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/documentos/InstruoNormativa_n_1_de_21_de_junho_de2022_V2.pdf",
       "consultado_em": "2026-11-15",
-      "validade_regional": {"uf": ["*"], "safra": "vigente desde 2022-07-01"}
+      "validade_regional": {
+        "uf": [
+          "*"
+        ],
+        "safra": "vigente desde 2022-07-01"
+      }
     }
   },
   "culturas": {
@@ -29,25 +44,235 @@
       "nome": "Milho 2ª safra",
       "classificacao_solo": "AD",
       "parametros": [
-        {"id": "ze_cm", "nome": "Profundidade efetiva do sistema radicular", "valor": 60, "unidade": "cm", "status": "fonte", "fonte": "PORT322_GO", "trecho": "item 1.13: profundidade efetiva do sistema radicular (Ze) de 60 cm"},
-        {"id": "cad_mm", "nome": "Capacidade de água disponível por classe de solo", "valor": {"AD1": 24.0, "AD2": 31.8, "AD3": 41.4, "AD4": 54.6, "AD5": 72.6, "AD6": 95.4}, "unidade": "mm", "status": "fonte", "fonte": "PORT322_GO", "trecho": "item 1.13: AD1 a AD6 com capacidade de armazenamento de 24; 31,8; 41,4; 54,6; 72,6 e 95,4 mm"},
-        {"id": "fases_dias", "nome": "Duração das fases I a IV por grupo", "valor": {"GRUPO I": [20, 30, 30, 20], "GRUPO II": [20, 40, 40, 20], "GRUPO III": [20, 50, 50, 20]}, "unidade": "dias", "status": "fonte", "fonte": "PORT322_GO", "trecho": "item 1.12, tabela de grupos: fase I estabelecimento, II vegetativo, III reprodução, IV maturação"},
-        {"id": "isna_limite", "nome": "Limite de ISNA para deficiência hídrica severa (fases I e III)", "valor": {"fase_I": 0.70, "fase_III": 0.55}, "unidade": "adimensional (ETr/ETc)", "status": "fonte", "fonte": "PORT322_GO", "trecho": "item 1.14 a: ISNA igual ou menor a 0,70 na fase I e igual ou menor a 0,55 na fase III"},
-        {"id": "kc", "nome": "Coeficiente de cultura (inicial, médio, final)", "valor": {"ini": 0.30, "med": 1.20, "fim": 0.60}, "unidade": "adimensional", "status": "hipotese", "metodo_referencia": "FAO-56", "motivo": "Valores da Tabela 12 da FAO-56 (milho grão, clima sub-úmido), sem validação local no Cerrado. Aguardam revisão técnica."},
-        {"id": "ky", "nome": "Fator de resposta da produtividade à água (total e por fase)", "valor": {"total": 1.25, "fase_I": 0.40, "fase_II": 0.40, "fase_III": 1.50, "fase_IV": 0.20}, "unidade": "adimensional", "status": "hipotese", "metodo_referencia": "FAO-33", "motivo": "Valores da Tabela 24 da FAO-33 para milho (vegetativo 0,4; floração 1,5; formação do rendimento 0,5; maturação 0,2), aplicados às fases do ZARC sem validação local. A fase III do ZARC junta floração e enchimento, por isso usa o valor da floração."}
+        {
+          "id": "ze_cm",
+          "nome": "Profundidade efetiva do sistema radicular",
+          "valor": 60,
+          "unidade": "cm",
+          "status": "fonte",
+          "fonte": "PORT322_GO",
+          "trecho": "item 1.13: profundidade efetiva do sistema radicular (Ze) de 60 cm"
+        },
+        {
+          "id": "cad_mm",
+          "nome": "Capacidade de água disponível por classe de solo",
+          "valor": {
+            "AD1": 24.0,
+            "AD2": 31.8,
+            "AD3": 41.4,
+            "AD4": 54.6,
+            "AD5": 72.6,
+            "AD6": 95.4
+          },
+          "unidade": "mm",
+          "status": "fonte",
+          "fonte": "PORT322_GO",
+          "trecho": "item 1.13: AD1 a AD6 com capacidade de armazenamento de 24; 31,8; 41,4; 54,6; 72,6 e 95,4 mm"
+        },
+        {
+          "id": "fases_dias",
+          "nome": "Duração das fases I a IV por grupo",
+          "valor": {
+            "GRUPO I": [
+              20,
+              30,
+              30,
+              20
+            ],
+            "GRUPO II": [
+              20,
+              40,
+              40,
+              20
+            ],
+            "GRUPO III": [
+              20,
+              50,
+              50,
+              20
+            ]
+          },
+          "unidade": "dias",
+          "status": "fonte",
+          "fonte": "PORT322_GO",
+          "trecho": "item 1.12, tabela de grupos: fase I estabelecimento, II vegetativo, III reprodução, IV maturação"
+        },
+        {
+          "id": "isna_limite",
+          "nome": "Limite de ISNA para deficiência hídrica severa (fases I e III)",
+          "valor": {
+            "fase_I": 0.7,
+            "fase_III": 0.55
+          },
+          "unidade": "adimensional (ETr/ETc)",
+          "status": "fonte",
+          "fonte": "PORT322_GO",
+          "trecho": "item 1.14 a: ISNA igual ou menor a 0,70 na fase I e igual ou menor a 0,55 na fase III"
+        },
+        {
+          "id": "kc",
+          "nome": "Coeficiente de cultura (inicial, médio, final)",
+          "valor": {
+            "ini": 0.3,
+            "med": 1.2,
+            "fim": 0.6
+          },
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Valores da Tabela 12 da FAO-56 (milho grão, clima sub-úmido), sem validação local no Cerrado. Aguardam revisão técnica."
+        },
+        {
+          "id": "ky",
+          "nome": "Fator de resposta da produtividade à água (total e por fase)",
+          "valor": {
+            "total": 1.25,
+            "fase_I": 0.4,
+            "fase_II": 0.4,
+            "fase_III": 1.5,
+            "fase_IV": 0.2
+          },
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-33",
+          "motivo": "Valores da Tabela 24 da FAO-33 para milho (vegetativo 0,4; floração 1,5; formação do rendimento 0,5; maturação 0,2), aplicados às fases do ZARC sem validação local. A fase III do ZARC junta floração e enchimento, por isso usa o valor da floração."
+        },
+        {
+          "id": "p_esgotamento",
+          "nome": "Fração de esgotamento sem estresse (p)",
+          "valor": 0.55,
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Tabela 22 da FAO-56 (milho grão, p = 0,55), sem validação local. Usada para o coeficiente de estresse Ks do balanço."
+        }
       ]
     },
     "sorgo_granifero_2a_safra": {
       "nome": "Sorgo granífero 2ª safra",
       "classificacao_solo": "TIPO",
       "parametros": [
-        {"id": "ze_cm", "nome": "Profundidade efetiva do sistema radicular", "valor": 50, "unidade": "cm", "status": "fonte", "fonte": "PORT273_GO", "trecho": "item 1.8.3: profundidade efetiva média do sistema radicular de 50 cm"},
-        {"id": "cad_mm", "nome": "Capacidade de água disponível por tipo de solo", "valor": {"1": 35.0, "2": 55.0, "3": 75.0}, "unidade": "mm", "status": "fonte", "fonte": "PORT273_GO", "trecho": "item 1.8.3: Tipo 1 (textura arenosa), Tipo 2 (textura média), Tipo 3 (textura argilosa), 35, 55 e 75 mm"},
-        {"id": "ciclo_dias", "nome": "Ciclo da emergência à maturação por grupo (faixa)", "valor": {"GRUPO I": [0, 110], "GRUPO II": [111, 130], "GRUPO III": [131, 160]}, "unidade": "dias", "status": "fonte", "fonte": "PORT273_GO", "trecho": "item 1.8.2: Grupo I (n ≤ 110), Grupo II (111 ≤ n ≤ 130), Grupo III (n > 130). O limite superior de 160 do Grupo III é hipótese, porque a portaria não fixa máximo"},
-        {"id": "fases_dias", "nome": "Duração das fases I a IV por grupo", "valor": {"GRUPO I": [16, 28, 32, 24], "GRUPO II": [19, 34, 38, 29], "GRUPO III": [22, 39, 45, 34]}, "unidade": "dias", "status": "hipotese", "metodo_referencia": "FAO-56", "motivo": "A portaria 273 não publica a duração das fases. Os ciclos de 100, 120 e 140 dias (dentro das faixas da portaria) foram divididos nas proporções da Tabela 11 da FAO-56 para sorgo (20/35/40/30 de 125 dias)."},
-        {"id": "isna_limite", "nome": "Limite de ISNA (fases I e III)", "valor": {"fase_I": 0.60, "fase_III": 0.45}, "unidade": "adimensional (ETr/ETc)", "status": "fonte", "fonte": "PORT273_GO", "trecho": "item 1.8.4: ISNA 0,6 na fase I e 0,45 na fase III"},
-        {"id": "kc", "nome": "Coeficiente de cultura (inicial, médio, final)", "valor": {"ini": 0.30, "med": 1.05, "fim": 0.55}, "unidade": "adimensional", "status": "hipotese", "metodo_referencia": "FAO-56", "motivo": "Valores da Tabela 12 da FAO-56 (sorgo grão, Kc médio 1,00 a 1,10, usado 1,05), sem validação local."},
-        {"id": "ky", "nome": "Fator de resposta da produtividade à água (total e por fase)", "valor": {"total": 0.90, "fase_I": 0.20, "fase_II": 0.20, "fase_III": 0.55, "fase_IV": 0.20}, "unidade": "adimensional", "status": "hipotese", "metodo_referencia": "FAO-33", "motivo": "Valores da Tabela 24 da FAO-33 para sorgo (vegetativo 0,2; floração 0,55; formação do rendimento 0,45; maturação 0,2), sem validação local."}
+        {
+          "id": "ze_cm",
+          "nome": "Profundidade efetiva do sistema radicular",
+          "valor": 50,
+          "unidade": "cm",
+          "status": "fonte",
+          "fonte": "PORT273_GO",
+          "trecho": "item 1.8.3: profundidade efetiva média do sistema radicular de 50 cm"
+        },
+        {
+          "id": "cad_mm",
+          "nome": "Capacidade de água disponível por tipo de solo",
+          "valor": {
+            "1": 35.0,
+            "2": 55.0,
+            "3": 75.0
+          },
+          "unidade": "mm",
+          "status": "fonte",
+          "fonte": "PORT273_GO",
+          "trecho": "item 1.8.3: Tipo 1 (textura arenosa), Tipo 2 (textura média), Tipo 3 (textura argilosa), 35, 55 e 75 mm"
+        },
+        {
+          "id": "ciclo_dias",
+          "nome": "Ciclo da emergência à maturação por grupo (faixa)",
+          "valor": {
+            "GRUPO I": [
+              0,
+              110
+            ],
+            "GRUPO II": [
+              111,
+              130
+            ],
+            "GRUPO III": [
+              131,
+              160
+            ]
+          },
+          "unidade": "dias",
+          "status": "fonte",
+          "fonte": "PORT273_GO",
+          "trecho": "item 1.8.2: Grupo I (n ≤ 110), Grupo II (111 ≤ n ≤ 130), Grupo III (n > 130). O limite superior de 160 do Grupo III é hipótese, porque a portaria não fixa máximo"
+        },
+        {
+          "id": "fases_dias",
+          "nome": "Duração das fases I a IV por grupo",
+          "valor": {
+            "GRUPO I": [
+              16,
+              28,
+              32,
+              24
+            ],
+            "GRUPO II": [
+              19,
+              34,
+              38,
+              29
+            ],
+            "GRUPO III": [
+              22,
+              39,
+              45,
+              34
+            ]
+          },
+          "unidade": "dias",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "A portaria 273 não publica a duração das fases. Os ciclos de 100, 120 e 140 dias (dentro das faixas da portaria) foram divididos nas proporções da Tabela 11 da FAO-56 para sorgo (20/35/40/30 de 125 dias)."
+        },
+        {
+          "id": "isna_limite",
+          "nome": "Limite de ISNA (fases I e III)",
+          "valor": {
+            "fase_I": 0.6,
+            "fase_III": 0.45
+          },
+          "unidade": "adimensional (ETr/ETc)",
+          "status": "fonte",
+          "fonte": "PORT273_GO",
+          "trecho": "item 1.8.4: ISNA 0,6 na fase I e 0,45 na fase III"
+        },
+        {
+          "id": "kc",
+          "nome": "Coeficiente de cultura (inicial, médio, final)",
+          "valor": {
+            "ini": 0.3,
+            "med": 1.05,
+            "fim": 0.55
+          },
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Valores da Tabela 12 da FAO-56 (sorgo grão, Kc médio 1,00 a 1,10, usado 1,05), sem validação local."
+        },
+        {
+          "id": "ky",
+          "nome": "Fator de resposta da produtividade à água (total e por fase)",
+          "valor": {
+            "total": 0.9,
+            "fase_I": 0.2,
+            "fase_II": 0.2,
+            "fase_III": 0.55,
+            "fase_IV": 0.2
+          },
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-33",
+          "motivo": "Valores da Tabela 24 da FAO-33 para sorgo (vegetativo 0,2; floração 0,55; formação do rendimento 0,45; maturação 0,2), sem validação local."
+        },
+        {
+          "id": "p_esgotamento",
+          "nome": "Fração de esgotamento sem estresse (p)",
+          "valor": 0.55,
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Tabela 22 da FAO-56 (sorgo grão, p = 0,55), sem validação local."
+        }
       ]
     },
     "braquiaria_cobertura": {
@@ -55,10 +280,76 @@
       "classificacao_solo": "AD",
       "nota": "Não há ZARC para braquiária solteira. A referência oficial mais próxima é o milho 2ª safra consorciado com braquiária (Portaria 337, GO). Todos os parâmetros abaixo são hipótese.",
       "parametros": [
-        {"id": "ze_cm", "nome": "Profundidade efetiva do sistema radicular", "valor": 60, "unidade": "cm", "status": "hipotese", "motivo": "Igual à do milho 2ª safra na Portaria 322 para usar as mesmas classes AD. A braquiária enraíza mais fundo; o valor é conservador."},
-        {"id": "cad_mm", "nome": "Capacidade de água disponível por classe de solo", "valor": {"AD1": 24.0, "AD2": 31.8, "AD3": 41.4, "AD4": 54.6, "AD5": 72.6, "AD6": 95.4}, "unidade": "mm", "status": "hipotese", "motivo": "Mesmos valores da Portaria 322 (Ze 60 cm), por falta de ZARC para cobertura solteira."},
-        {"id": "fases_dias", "nome": "Duração das fases I a IV (estabelecimento até a dessecação)", "valor": {"UNICO": [20, 30, 40, 30]}, "unidade": "dias", "status": "hipotese", "motivo": "Ciclo de 120 dias da semeadura à dessecação antes da soja, sem fonte local."},
-        {"id": "kc", "nome": "Coeficiente de cultura (inicial, médio, final)", "valor": {"ini": 0.40, "med": 0.95, "fim": 0.85}, "unidade": "adimensional", "status": "hipotese", "metodo_referencia": "FAO-56", "motivo": "Faixa de pastagem com pastejo rotacionado da Tabela 12 da FAO-56 (0,40; 0,85 a 1,05; 0,85), sem validação para braquiária de cobertura."}
+        {
+          "id": "ze_cm",
+          "nome": "Profundidade efetiva do sistema radicular",
+          "valor": 60,
+          "unidade": "cm",
+          "status": "hipotese",
+          "motivo": "Igual à do milho 2ª safra na Portaria 322 para usar as mesmas classes AD. A braquiária enraíza mais fundo; o valor é conservador."
+        },
+        {
+          "id": "cad_mm",
+          "nome": "Capacidade de água disponível por classe de solo",
+          "valor": {
+            "AD1": 24.0,
+            "AD2": 31.8,
+            "AD3": 41.4,
+            "AD4": 54.6,
+            "AD5": 72.6,
+            "AD6": 95.4
+          },
+          "unidade": "mm",
+          "status": "hipotese",
+          "motivo": "Mesmos valores da Portaria 322 (Ze 60 cm), por falta de ZARC para cobertura solteira."
+        },
+        {
+          "id": "fases_dias",
+          "nome": "Duração das fases I a IV (estabelecimento até a dessecação)",
+          "valor": {
+            "UNICO": [
+              20,
+              30,
+              40,
+              30
+            ]
+          },
+          "unidade": "dias",
+          "status": "hipotese",
+          "motivo": "Ciclo de 120 dias da semeadura à dessecação antes da soja, sem fonte local."
+        },
+        {
+          "id": "kc",
+          "nome": "Coeficiente de cultura (inicial, médio, final)",
+          "valor": {
+            "ini": 0.4,
+            "med": 0.95,
+            "fim": 0.85
+          },
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Faixa de pastagem com pastejo rotacionado da Tabela 12 da FAO-56 (0,40; 0,85 a 1,05; 0,85), sem validação para braquiária de cobertura."
+        },
+        {
+          "id": "p_esgotamento",
+          "nome": "Fração de esgotamento sem estresse (p)",
+          "valor": 0.6,
+          "unidade": "adimensional",
+          "status": "hipotese",
+          "metodo_referencia": "FAO-56",
+          "motivo": "Tabela 22 da FAO-56 (pastagem, p = 0,60), sem validação para braquiária de cobertura."
+        },
+        {
+          "id": "isna_limite",
+          "nome": "Limite de ISNA para falha de estabelecimento (fase I)",
+          "valor": {
+            "fase_I": 0.7
+          },
+          "unidade": "adimensional (ETr/ETc)",
+          "status": "hipotese",
+          "motivo": "Sem ZARC para braquiária solteira; usa o limite da fase I do milho 2ª safra (Port. 322) como critério de falha de estabelecimento da cobertura."
+        }
       ]
     }
   },
@@ -66,10 +357,26 @@
     "fonte_conversao_oficial": "IN1_2022",
     "nota": "A IN 1/2022 converte granulometria (areia total, silte e argila, camada 0 a 40 cm) em água disponível. Para quem só sabe a textura, a granulometria típica abaixo é hipótese, escolhida dentro da classe textural do SiBCS. O resultado mostra o aviso para informar a análise de solo.",
     "granulometria_tipica_hipotese": {
-      "arenosa": {"areia": 85, "silte": 5, "argila": 10},
-      "media": {"areia": 60, "silte": 15, "argila": 25},
-      "argilosa": {"areia": 30, "silte": 15, "argila": 55}
+      "arenosa": {
+        "areia": 85,
+        "silte": 5,
+        "argila": 10
+      },
+      "media": {
+        "areia": 60,
+        "silte": 15,
+        "argila": 25
+      },
+      "argilosa": {
+        "areia": 30,
+        "silte": 15,
+        "argila": 55
+      }
     },
-    "tipo_sorgo_oficial": {"arenosa": "1", "media": "2", "argilosa": "3"}
+    "tipo_sorgo_oficial": {
+      "arenosa": "1",
+      "media": "2",
+      "argilosa": "3"
+    }
   }
 }
