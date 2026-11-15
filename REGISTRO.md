@@ -194,3 +194,4 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Rio Verde, milho, custo operacional de R$ 5.889,09/ha: o empate com R$ 67,34/sc fica em cerca de 87,5 sc/ha.
 - 188 testes passando.
 - ZARC multi-UF: MA (217) e PI (224) prontos. SP tem erro de codificação no próprio SISZARC ("Santa Cruz da Conceic?o"); apelido acrescentado.
+- ZARC multi-UF concluído (15/11, 02h50): GO 246, MT 142, MS 79, MG 853, PR 399, BA 417 (6 conjuntos: sem algumas culturas), TO 139, MA 217, PI 224, SP 645, DF 1 = 3.362 municípios. As contagens conferem com o IBGE. Grafias corrigidas por apelido: MT (Leverger), MG (Monte Alto, Tomé das Letras), TO (Couto Magalhães), SP (Conceição gravado como "Conceic?o" pelo SISZARC). Os XLS brutos ficam em data/raw/zarc/siszarc/ (só os .meta.json no Git).

@@ -1,0 +1,15 @@
+{
+  "url": "https://sistemasweb.agricultura.gov.br/siszarc/gerarRelatorioPublicacoesDoZarc.action",
+  "acao": "gerarRelatorioPublicacoesDoZarc!gerarRelatorioXLS.action",
+  "filtros": {
+    "safra": "2026 / 2027",
+    "cultura": "12016720000011",
+    "manejo": "Sequeiro",
+    "uf": "MA",
+    "portaria": "199",
+    "grupo": "GRUPO I",
+    "solo": "todos"
+  },
+  "obtido_em": "2026-11-15",
+  "sha256": "aab58d6b59ecd7f00fd2b7a8e8c2207596fe152b582cca87706eef9c48f6eb56"
+}
