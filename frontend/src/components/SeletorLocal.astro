@@ -76,7 +76,7 @@ const brasil = fs.readFileSync(
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
   import { api, apiCar, FalhaApi, type CandidatoLavoura, type ConsultaCar, type ResultadoLocalizacao } from "../lib/api";
-  import { salvarLavoura } from "../lib/comparacao/lavoura";
+  import { lerLavoura, salvarLavoura } from "../lib/comparacao/lavoura";
   import { esc, renderReferencias } from "../lib/referencias";
   import { apiLavoura, poligonoDosVertices } from "../lib/lavoura";
 
@@ -355,5 +355,6 @@ const brasil = fs.readFileSync(
   });
 
   // --- local padrão ---
-  executar(() => api.padrao());
+  // Só quando não há talhão confirmado: a carga da página não pode trocar a geometria pelo ponto do município.
+  if (lerLavoura()?.tipo !== "geometria") executar(() => api.padrao());
 </script>

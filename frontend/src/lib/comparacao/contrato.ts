@@ -29,11 +29,20 @@ export interface FalhaPedido {
   campo?: string | null;
 }
 
+/** Lavoura com talhão confirmado (desenho, arquivo ou CAR): o cálculo usa a geometria, não o ponto. */
+export function usaTalhao(lavoura: LavouraConfirmada): boolean {
+  return lavoura.tipo === "geometria" && !!lavoura.geometria && !!lavoura.id_geometria;
+}
+
+/** Área do pedido (AreaGeometria ou AreaPonto do contrato): geometria quando há talhão; ponto só se o produtor localizou por ponto. */
+export function areaDoPedido(lavoura: LavouraConfirmada): Record<string, unknown> {
+  return usaTalhao(lavoura)
+    ? { tipo: "geometria", geometria: lavoura.geometria, id_geometria: lavoura.id_geometria, origem: lavoura.origem ?? "desenho", confirmada: true }
+    : { tipo: "ponto", lat: lavoura.lat, lon: lavoura.lon, confirmada: true, ...(lavoura.codigo_ibge ? { codigo_ibge: lavoura.codigo_ibge } : {}) };
+}
+
 export function montarPedido(e: EntradasComparacao, lavoura: LavouraConfirmada, premissas: Premissa[]): Record<string, unknown> {
-  const area =
-    lavoura.tipo === "geometria" && lavoura.geometria && lavoura.id_geometria
-      ? { tipo: "geometria", geometria: lavoura.geometria, id_geometria: lavoura.id_geometria, origem: lavoura.origem ?? "desenho", confirmada: true }
-      : { tipo: "ponto", lat: lavoura.lat, lon: lavoura.lon, confirmada: true, ...(lavoura.codigo_ibge ? { codigo_ibge: lavoura.codigo_ibge } : {}) };
+  const area = areaDoPedido(lavoura);
   // A água disponível editada nas premissas prevalece sobre a escolha das Entradas (o produtor informou o valor).
   const cadEditado = premissas.find((p) => p.id === "cad_mm" && p.editado != null)?.editado ?? null;
   const solo = cadEditado != null ? { cad_mm: cadEditado }
