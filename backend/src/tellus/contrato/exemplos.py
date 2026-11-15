@@ -25,7 +25,8 @@ PEDIDO_VALIDO = {
     "metodologia": "comparar_alternativas",
     "premissas_editadas": [
         {"modulo": "economia", "id": "preco_r_saca", "valor_novo": 55.0, "unidade": "R$/saca de 60 kg",
-         "cultura": "sorgo_granifero_2a_safra"},
+         "cultura": "sorgo_granifero_2a_safra", "origem_informada": "cotação de exemplo (cooperativa fictícia)",
+         "data_informada": "2026-11-14"},
     ],
     "contextos": {"vegetacao": False, "umidade": False},
 }

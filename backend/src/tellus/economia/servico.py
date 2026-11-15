@@ -99,7 +99,9 @@ def _cenarios(perda_quantis: dict | None, prod: float | None, preco: float | Non
 
 
 def margem(lat: float, lon: float, cultura: str, perda_quantis: dict | None, edicoes: dict | None = None,
-           percentis: dict | None = None) -> dict:
+           percentis: dict | None = None, informacoes: dict | None = None) -> dict:
+    """`informacoes`: {chave da edição: {"origem_informada": str, "data_informada": "AAAA-MM-DD"}} (contrato 1.1.0).
+    Registra de onde o produtor tirou o valor (ex.: cotação do sorgo, que não tem indicador oficial — D-005)."""
     if cultura not in CULTURA_CONAB:
         raise ErroEconomia("cultura_invalida", f"Cultura deve ser uma de {sorted(CULTURA_CONAB)}.", "cultura")
     percentis = percentis or PERCENTIS_PADRAO
@@ -126,7 +128,11 @@ def margem(lat: float, lon: float, cultura: str, perda_quantis: dict | None, edi
         v = ed[chave]
         if not isinstance(v, (int, float)) or isinstance(v, bool) or not lo <= v <= hi:
             raise ErroEconomia("fora_do_dominio", f"{chave} = {v} fora do domínio aceito ({lo} a {hi} {unidade}).", chave)
-        alteracoes.append({"premissa": chave, "valor_anterior": padrao, "valor_novo": v, "unidade": unidade, "origem_novo": "produtor"})
+        alt = {"premissa": chave, "valor_anterior": padrao, "valor_novo": v, "unidade": unidade, "origem_novo": "produtor"}
+        info = (informacoes or {}).get(chave)
+        if info:
+            alt |= {"origem_informada": info["origem_informada"], "data_informada": info["data_informada"]}
+        alteracoes.append(alt)
         return v, True
 
     preco_pad = base["preco"]["valor"]
@@ -139,7 +145,11 @@ def margem(lat: float, lon: float, cultura: str, perda_quantis: dict | None, edi
         custo_itens, itens = conab.custo_do_nivel(praca, nivel, ajustes_itens)
         for k, v in ajustes_itens.items():
             antes = next(i["valor_r_ha"] for i in praca["itens"] if i["codigo"] == k)
-            alteracoes.append({"premissa": f"custo_item.{k}", "valor_anterior": antes, "valor_novo": v, "unidade": "R$/ha", "origem_novo": "produtor"})
+            alt = {"premissa": f"custo_item.{k}", "valor_anterior": antes, "valor_novo": v, "unidade": "R$/ha", "origem_novo": "produtor"}
+            info = (informacoes or {}).get(f"custo_item.{k}")
+            if info:
+                alt |= {"origem_informada": info["origem_informada"], "data_informada": info["data_informada"]}
+            alteracoes.append(alt)
     custo, custo_ed = editar("custo_r_ha", custo_itens, 0, 100000, "R$/ha")
     if "nivel_custo" in (edicoes or {}):
         alteracoes.append({"premissa": "nivel_custo", "valor_anterior": NIVEL_PADRAO, "valor_novo": nivel, "unidade": "—", "origem_novo": "produtor"})
@@ -161,8 +171,15 @@ def margem(lat: float, lon: float, cultura: str, perda_quantis: dict | None, edi
         anterior = _cenarios(perda_quantis, prod_pad, preco_pad, custo_ref, percentis) if None not in (preco_pad, custo_ref) else None
         comparacao = {"margem_anterior_r_ha": None if anterior is None else {k: v["margem_r_ha"] for k, v in anterior.items()},
                       "margem_nova_r_ha": {k: v["margem_r_ha"] for k, v in cenarios.items()}}
+    preco_premissa = base["preco"] | {"valor_usado": preco, "editado": preco_ed}
+    info_preco = (informacoes or {}).get("preco_r_saca") if preco_ed else None
+    if info_preco:
+        preco_premissa["informado"] = {"origem_informada": info_preco["origem_informada"],
+                                       "data_informada": info_preco["data_informada"]}
+    if preco_ed and base["preco"]["status"] == "indisponivel":
+        preco_premissa["status"] = "informado_pelo_produtor"
     premissas = {
-        "preco": base["preco"] | {"valor_usado": preco, "editado": preco_ed},
+        "preco": preco_premissa,
         "produtividade": base["produtividade"] | {"valor_usado": prod, "editado": prod_ed},
         "custo": {"nivel": nivel, "valor_padrao_r_ha": custo_pad, "valor_usado_r_ha": custo, "editado": custo_ed or bool(ajustes_itens),
                   "status": "fonte" if praca else "indisponivel", "unidade": "R$/ha"},

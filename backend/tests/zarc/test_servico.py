@@ -29,9 +29,16 @@ def test_bloqueio_fora_da_janela():
     assert not servico.permitido(RV, "milho_2a_safra", "2027-03-01", "GRUPO I", "AD1")
 
 
-def test_uf_nao_baixada_nao_infere():
-    cal = servico.calendario("4314902", "milho_2a_safra")  # Porto Alegre-RS: UF não baixada
+def test_uf_nao_baixada_nao_infere(monkeypatch):
+    # as 27 UFs estão baixadas; simula uma UF sem arquivo
+    monkeypatch.setattr(servico, "_uf", lambda safra, uf: None)
+    cal = servico.calendario("4314902", "milho_2a_safra")  # Porto Alegre-RS
     assert cal["disponivel"] is False and "RS" in cal["motivo"] and cal["grupos"] == []
+
+
+def test_uf_sem_zarc_da_cultura_declara_lacuna():
+    cal = servico.calendario("4314902", "milho_2a_safra")  # RS não tem milho 2ª safra zoneado
+    assert cal["disponivel"] is False and "vizinho" in cal["motivo"]
 
 
 def test_combinacao_ausente_nao_infere(monkeypatch):

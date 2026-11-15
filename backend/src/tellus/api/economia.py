@@ -21,6 +21,7 @@ class PedidoMargem(BaseModel):
     simulacao: dict | None = None  # pedido do motor (006); se vier, a perda é simulada aqui
     edicoes: dict[str, float | str] | None = None
     percentis: dict[str, int | str] | None = None
+    informacoes: dict[str, dict[str, str]] | None = None  # {chave: {origem_informada, data_informada}} (contrato 1.1.0)
 
 
 @router.post("/margem")
@@ -31,7 +32,7 @@ def margem(p: PedidoMargem) -> dict:
         sim = motor.simular(p.simulacao | {"lat": p.lat, "lon": p.lon, "cultura": p.cultura})
         perdas = sim["resultado"]["perda_relativa_quantis"]
         versao_motor = sim["versao_entradas"]
-    r = servico.margem(p.lat, p.lon, p.cultura, perdas, p.edicoes, p.percentis)
+    r = servico.margem(p.lat, p.lon, p.cultura, perdas, p.edicoes, p.percentis, p.informacoes)
     return r | {"versao_entradas_motor": versao_motor}
 
 

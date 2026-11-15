@@ -95,3 +95,10 @@ app.include_router(contrato.router)
 @app.get("/api/saude")
 def saude() -> dict:
     return {"status": "ok"}
+
+
+# Contextos opcionais da rota /api/contrato/calcular (009/010): plugados aqui para o contrato não importá-los.
+from tellus.umidade import servico as _umidade_servico  # noqa: E402
+from tellus.vegetacao import servico as _vegetacao_servico  # noqa: E402
+
+contrato.PROVEDORES_CONTEXTO.update({"vegetacao": _vegetacao_servico.contexto, "umidade": _umidade_servico.contexto})

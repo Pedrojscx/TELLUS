@@ -2,7 +2,7 @@
 
 - risco_hidrico ← `tellus.motor.servico.simular` (spec 006)
 - economia      ← `tellus.economia.servico.margem` (spec 007)
-- recomendacao  ← spec 008 inexistente: seção `pendente`, sem conteúdo nem campos inventados
+- recomendacao  ← `tellus.recomendacao.servico.recomendar` (spec 008), mesmo motor e mesmas entradas
 - contextos     ← respostas opacas da 009/010 (ou erro), isoladas do resultado principal
 
 Os adaptadores só leem campos que os módulos já devolvem. Se um campo faltar, a proveniência
@@ -19,8 +19,9 @@ from . import regras, versao
 from .modelos import CULTURAS
 from .versao import VERSAO
 
-AVISO_008 = ("A recomendação (spec 008, #48) ainda não existe. Esta resposta traz risco hídrico e margem por cultura, "
+AVISO_008 = ("A recomendação (spec 008, #48) não foi calculada nesta resposta. Ela traz risco hídrico e margem por cultura, "
              "mas não ordena nem recomenda alternativas.")
+METODOLOGIA_008 = {"cultura_escolhida": "cultura_escolhida", "comparar_alternativas": "calculo_completo"}
 
 
 def _s(v: Any) -> str:
@@ -174,6 +175,14 @@ def secao_economia(r: Mapping, s: Mapping | None) -> dict:
                       "localizacao": "lavoura do pedido", "qualidade": "informado pelo produtor; o valor anterior fica ao lado",
                       "situacao": "editado", "cobre": ["alteracoes.*", "premissas.*.valor_usado", "premissas.custo.valor_usado_r_ha",
                                 "custo_conab.itens.*.valor_usado_r_ha", "cenarios.*.custo_r_ha"]})
+    for alt in r["alteracoes"]:
+        if alt.get("origem_informada"):
+            provs.append({"id": f"informado_{alt['premissa']}", "fonte": f"Informado pelo produtor: {alt['origem_informada']}",
+                          "versao": r["versao_premissas"], "periodo": str(alt["data_informada"]), "unidade": alt["unidade"],
+                          "localizacao": f"informado pelo produtor ({alt['origem_informada']})",
+                          "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
+                          "situacao": "editado", "cobre": ["premissas.preco.*" if alt["premissa"] == "preco_r_saca" else "alteracoes.*",
+                                                           "alteracoes.*"]})
     avisos = [_aviso("margem_indisponivel", m, "spec 007") for m in r["motivos_indisponivel"]]
     if perc.get("status") == "hipotese":
         avisos.append(_aviso("percentis_hipotese", perc["descricao"], "spec 007 (D-006)"))
@@ -197,6 +206,50 @@ def secao_indisponivel(id_: str, spec: str, codigo: str, mensagem: str) -> dict:
 def secao_recomendacao_pendente() -> dict:
     return {"id": "recomendacao", "spec": "008 (#48)", "obrigatoria": True, "estado": "pendente", "versao_modulo": None,
             "conteudo": None, "proveniencia": [], "avisos": [_aviso("secao_pendente", AVISO_008, "spec 008")], "erro": None}
+
+
+def secao_recomendacao(r: Mapping, informados: list[Mapping]) -> dict:
+    """Seção 008 a partir da saída real de `tellus.recomendacao.servico.recomendar`."""
+    alts = r["alternativas"]
+    versoes = sorted({f"{a['versoes']['motor']}/{a['versoes']['economia']}" for a in alts})
+    v = regras.hash_estavel(versoes)
+    portarias = sorted({str(a["portaria_zarc"]) for a in alts + [i for i in r["indisponiveis"] if i.get("portaria_zarc")]})
+    provs = [
+        {"id": "zarc", "fonte": "ZARC/MAPA (spec 004), portaria(s) " + (", ".join(portarias) or "—"), "versao": "safra 2026/2027",
+         "periodo": "decêndios de semeadura da safra 2026/2027", "unidade": "decêndio (1 a 36); % (risco oficial)",
+         "localizacao": "município do pedido", "qualidade": "só decêndios dentro da janela oficial entram (FR-002)",
+         "situacao": "fonte", "cobre": ["*.decendio", "*.risco_zarc_pct"]},
+        {"id": "motor", "fonte": "TELLUS motor hídrico (spec 006), mesmas entradas versionadas da seção risco_hidrico",
+         "versao": v, "periodo": "série histórica IMERG/POWER usada pelo motor (ver versoes.motor de cada alternativa)",
+         "unidade": "fração 0–1 (risco, perda); mm; anos", "localizacao": "ponto ou área do pedido",
+         "qualidade": "frequência histórica, não previsão", "situacao": "calculado",
+         "cobre": ["*.risco_historico_falha_severa", "*.anos_validos", "*.deficit_mm_mediano", "*.perda_relativa_quantis.*",
+                   "*.cenarios.*.perda_relativa"]},
+        {"id": "economia", "fonte": "TELLUS economia (spec 007): custo Conab da praça mais próxima e preço com fonte ou informado",
+         "versao": v, "periodo": "mês de referência da planilha Conab e data do preço (ver versoes.economia)",
+         "unidade": "kg/ha, sacas/ha, R$/ha", "localizacao": "praça Conab mais próxima com a cultura",
+         "qualidade": "margem nos cenários conservador, central e favorável", "situacao": "calculado",
+         "cobre": ["*.margem_r_ha.*", "*.cenarios.*.produtividade_kg_ha", "*.cenarios.*.sacas_ha", "*.cenarios.*.receita_r_ha",
+                   "*.cenarios.*.custo_r_ha", "*.cenarios.*.margem_r_ha"]},
+        {"id": "percentis", "fonte": "D-006 (decisão de produto do TELLUS, editável)", "versao": "quartis da perda",
+         "periodo": "série histórica do motor", "unidade": "percentil da perda relativa",
+         "localizacao": "não se aplica (regra de leitura dos cenários)", "qualidade": "hipotese — conservador P75, central P50, favorável P25",
+         "situacao": "hipotese", "cobre": ["*.cenarios.*.percentil_perda"]},
+        {"id": "ordenacao", "fonte": "TELLUS recomendação (spec 008): " + "; ".join(c["descricao"] for c in r["criterio_ordem"]),
+         "versao": v, "periodo": "não se aplica (ordem das alternativas desta resposta)", "unidade": "posição (1 = primeira)",
+         "localizacao": "alternativas desta resposta", "qualidade": "critério público em criterio_ordem", "situacao": "calculado",
+         "cobre": ["*.posicao"]},
+    ]
+    for i in informados:
+        provs.append({"id": f"informado_{i['cultura']}_{i['id']}", "fonte": f"Informado pelo produtor: {i['origem_informada']}",
+                      "versao": v, "periodo": str(i["data_informada"]), "unidade": i["unidade"],
+                      "localizacao": f"informado pelo produtor ({i['origem_informada']})",
+                      "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
+                      "situacao": "editado", "cobre": ["*.cenarios.*.receita_r_ha"]})
+    avisos = [_aviso(a["codigo"], a["mensagem"], "spec 008") for a in r["avisos"]]
+    return {"id": "recomendacao", "spec": "008 (#48)", "obrigatoria": True,
+            "estado": "disponivel" if r["recomendada"] else "indisponivel", "versao_modulo": v,
+            "conteudo": dict(r), "proveniencia": provs, "avisos": avisos, "erro": None}
 
 
 # ---------------------------------------------------------------- contextos (#99)
@@ -224,12 +277,12 @@ def contexto(id_: str, solicitado: bool, valor: Mapping | None) -> dict:
 
 
 def montar_resposta(pedido: Mapping, blocos: list[dict], contextos: Mapping[str, dict], fontes: list[dict],
-                    erros: list[dict], hipoteses: list[str], premissas: list[dict]) -> dict:
-    recomendacao = secao_recomendacao_pendente()
+                    erros: list[dict], hipoteses: list[str], premissas: list[dict], recomendacao: dict | None = None) -> dict:
+    recomendacao = recomendacao or secao_recomendacao_pendente()
     principal = {"culturas": blocos, "recomendacao": recomendacao}
     todas = [b[n] for b in blocos for n in ("risco_hidrico", "economia")] + [recomendacao]
     estado = regras.estado_geral(todas, fontes)
-    avisos = [_aviso("secao_pendente", AVISO_008, "spec 008")]
+    avisos = [_aviso("secao_pendente", AVISO_008, "spec 008")] if recomendacao["estado"] == "pendente" else []
     if estado == "final_com_cache" or any(f["estado"] == "cache" for f in fontes):
         datas = sorted({f["obtido_em"] for f in fontes if f["estado"] == "cache" and f["obtido_em"]})
         avisos.append(_aviso("cache_usado", "Parte dos dados veio de cópia guardada (cache) de " + ", ".join(datas) + ".", "fontes"))
@@ -260,8 +313,9 @@ def erro_tempo_excedido(prazo_s: float, decorrido_s: float) -> versao.ErroContra
 
 def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] | None = None,
              simular: Callable[[dict], dict] | None = None, margem: Callable[..., dict] | None = None,
-             prazo_s: float | None = None, relogio: Callable[[], float] | None = None) -> dict:
-    """Executa 006 e 007 para o pedido normalizado. Não é exposto como rota nesta versão (a 008 falta).
+             prazo_s: float | None = None, relogio: Callable[[], float] | None = None,
+             recomendar: Callable[[dict], dict] | None = None) -> dict:
+    """Executa 006, 007 e 008 para o pedido normalizado (rota POST /api/contrato/calcular).
 
     `simular`/`margem` permitem injetar falhas nos testes; por padrão são os módulos reais.
     Prazo (D-009): conferido depois de cada chamada de módulo (interrupção cooperativa; uma chamada
@@ -281,8 +335,10 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
     from tellus.car import regras as car_regras
     from tellus.economia import servico as economia
     from tellus.motor import servico as motor
+    from tellus.recomendacao import servico as recomendacao_servico
 
     simular = simular or motor.simular
+    recomendar = recomendar or recomendacao_servico.recomendar
     margem = margem or economia.margem
     a = pedido["area"]
     lat, lon = (a["lat"], a["lon"]) if a["tipo"] == "ponto" else car_regras.centroide_bbox(a["geometria"])
@@ -307,7 +363,8 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
         s = None
         if pedido["grupo"] == "nao_sei":
             rh = secao_indisponivel("risco_hidrico", "006 (#44)", "grupo_nao_sei",
-                                    "Grupo 'não sei' exige um cálculo por grupo e a comparação entre eles, papel da recomendação (008, pendente).")
+                                    "Grupo 'não sei': o risco de cada grupo testado está na seção recomendacao (008), "
+                                    "em alternativas e grupos_testados.") | {"obrigatoria": False}
         else:
             try:
                 s = simular(ped_motor)
@@ -323,13 +380,21 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
                 fontes.append({"fonte": e["origem"], "estado": "falha", "obtido_em": None, "secao": "risco_hidrico"})
                 rh = secao_com_erro("risco_hidrico", "006 (#44)", e)
         ed_econ = {p["id"]: p["valor_novo"] for p in mine if p["modulo"] == "economia"}
-        if rh["estado"] == "erro":
+        info_econ = {p["id"]: {"origem_informada": p["origem_informada"], "data_informada": str(p["data_informada"])}
+                     for p in mine if p["modulo"] == "economia" and p.get("origem_informada")}
+        if pedido["grupo"] == "nao_sei":
+            ec = secao_indisponivel("economia", "007 (#46)", "grupo_nao_sei",
+                                    "Grupo 'não sei': a margem de cada grupo testado está na seção recomendacao (008).") | {"obrigatoria": False}
+        elif rh["estado"] == "erro":
             ec = secao_indisponivel("economia", "007 (#46)", "dependencia_com_erro",
                                     "A margem depende do risco hídrico desta cultura, que falhou.")
         else:
             try:
                 perdas = s["resultado"]["perda_relativa_quantis"] if s else None
-                r = margem(lat, lon, c, perdas, ed_econ or None)
+                if info_econ:
+                    r = margem(lat, lon, c, perdas, ed_econ or None, informacoes=info_econ)
+                else:
+                    r = margem(lat, lon, c, perdas, ed_econ or None)
                 conferir_prazo()
                 ec = secao_economia(r, s)
             except versao.ErroContrato:
@@ -350,6 +415,48 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
                 padrao = s["entradas"]["entressafra"].get("kc_padrao")
             premissas_saida.append(dict(p) | {"cultura": c, "valor_padrao": padrao if isinstance(padrao, (int, float)) else None})
         blocos.append({"cultura": c, "risco_hidrico": rh, "economia": ec})
+    rec = _recomendacao(pedido, lat, lon, edits, recomendar, erros, conferir_prazo)
     pedido_ctx = pedido.get("contextos") or {}
     ctx = {k: contexto(k, bool(pedido_ctx.get(k)), (contextos_respostas or {}).get(k)) for k in ("vegetacao", "umidade")}
-    return montar_resposta(pedido, blocos, ctx, fontes, erros, hipoteses, premissas_saida)
+    return montar_resposta(pedido, blocos, ctx, fontes, erros, hipoteses, premissas_saida, rec)
+
+
+def _recomendacao(pedido: Mapping, lat: float, lon: float, edits: list[dict], recomendar: Callable[[dict], dict],
+                  erros: list[dict], conferir_prazo: Callable[[], None]) -> dict:
+    """Seção 008: o pedido do contrato traduzido para a recomendação (mesmas entradas dos blocos 006/007)."""
+    a = pedido["area"]
+    ped = {"metodologia": METODOLOGIA_008[pedido["metodologia"]], "lat": lat, "lon": lon,
+           "solo": {k: v for k, v in pedido["solo"].items() if v is not None},
+           "data_colheita_soja": pedido["data_colheita_soja"]}
+    if pedido.get("cultura"):
+        ped["cultura"] = pedido["cultura"]
+    if pedido["grupo"] != "nao_sei":
+        ped["grupo"] = pedido["grupo"]
+    if a["tipo"] == "ponto" and a.get("codigo_ibge"):
+        ped["codigo_ibge"] = a["codigo_ibge"]
+    culturas = [pedido["cultura"]] if pedido.get("cultura") else list(CULTURAS)
+    por_cultura = lambda modulo: {c: {p["id"]: p["valor_novo"] for p in edits if p["modulo"] == modulo and p.get("cultura") in (None, c)}  # noqa: E731
+                                  for c in culturas}
+    ed_cult, ed_eco = por_cultura("culturas"), por_cultura("economia")
+    ped["edicoes_cultura"] = {c: v for c, v in ed_cult.items() if v}
+    ped["edicoes_economia"] = {c: v for c, v in ed_eco.items() if v}
+    ped["informacoes_economia"] = {
+        c: {p["id"]: {"origem_informada": p["origem_informada"], "data_informada": str(p["data_informada"])}
+            for p in edits if p["modulo"] == "economia" and p.get("origem_informada") and p.get("cultura") in (None, c)}
+        for c in culturas}
+    for p in edits:
+        if p["modulo"] == "motor" and p["id"] == "armazenamento_inicial_frac":
+            ped["armazenamento_inicial_frac"] = p["valor_novo"]
+        elif p["modulo"] == "motor" and p["id"] == "entressafra.kc":
+            ped["entressafra"] = {"kc": p["valor_novo"]}
+    informados = [p | {"cultura": p.get("cultura") or "todas"} for p in edits if p.get("origem_informada")]
+    try:
+        r = recomendar(ped)
+        conferir_prazo()
+        return secao_recomendacao(r, informados)
+    except versao.ErroContrato:
+        raise
+    except Exception as exc:  # noqa: BLE001 — erro de módulo vira ErroFonte legível
+        e = erro_fonte(exc, "spec 008 (recomendação)", acao="Sem a recomendação, as seções por cultura continuam válidas.")
+        erros.append(e)
+        return secao_com_erro("recomendacao", "008 (#48)", e)

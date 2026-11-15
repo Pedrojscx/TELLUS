@@ -16,9 +16,9 @@ def api():
 
 def test_versao_com_limites_e_secoes(api):
     j = api.get("/api/contrato/versao").json()
-    assert j["versao_contrato"] == "1.0.0" and j["versoes_aceitas"] == ["1.0.x"]
+    assert j["versao_contrato"] == "1.1.0" and j["versoes_aceitas"] == ["1.0.x", "1.1.x"]
     assert all(v["status"] == "hipotese" for k, v in j["limites"].items() if not k.startswith("_") and k != "vertices_por_anel_max")
-    assert j["secoes"]["recomendacao"].startswith("pendente")
+    assert j["secoes"]["recomendacao"].startswith("disponivel")
 
 
 def test_esquema(api):
@@ -44,7 +44,7 @@ def test_erros_no_envelope_unificado(api, pedido_valido, ajuste, codigo, campo):
     assert {"codigo", "mensagem", "origem", "campo"} <= set(e)
     assert e["codigo"] == codigo and e["campo"] == campo and e["origem"] == "pedido"
     if codigo == "versao_incompativel":
-        assert e["versoes_aceitas"] == ["1.0.x"]
+        assert e["versoes_aceitas"] == ["1.0.x", "1.1.x"]
 
 
 def test_corpo_que_nao_e_objeto(api):

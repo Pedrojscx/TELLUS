@@ -60,6 +60,15 @@ class PremissaEditada(_Estrito):
     unidade: str = Field(min_length=1)
     cultura: Cultura | None = None  # None = vale para todas as culturas calculadas
     valor_padrao: float | None = None  # preenchido na resposta; o pedido pode omitir
+    # 1.1.0 (opcionais): de onde o produtor tirou o valor, ex.: cotação do sorgo (sem indicador oficial, D-005)
+    origem_informada: str | None = Field(default=None, min_length=2, max_length=200)
+    data_informada: dt.date | None = None
+
+    @model_validator(mode="after")
+    def _origem_e_data_juntas(self) -> "PremissaEditada":
+        if (self.origem_informada is None) != (self.data_informada is None):
+            raise ValueError("premissas_editadas: origem_informada e data_informada vêm juntas (ou nenhuma)")
+        return self
 
 
 class Contextos(_Estrito):

@@ -57,6 +57,9 @@ def _hipoteses(sim: dict, eco: dict) -> list[str]:
         hip.append("Percentis dos cenários (D-006)")
     if eco["estado"] == "com_premissas_do_produtor":
         hip.append("Premissas econômicas editadas pelo produtor")
+    inf = eco["premissas"]["preco"].get("informado")
+    if inf:
+        hip.append(f"Preço informado pelo produtor ({inf['origem_informada']}, {inf['data_informada']})")
     return hip
 
 
@@ -71,6 +74,7 @@ def avaliar_cultura(pedido: dict, cultura: str) -> dict:
         return {"cultura": cultura, "grupos_testados": [], "alternativas": [],
                 "indisponiveis": [{"cultura": cultura, "motivo": getattr(e, "mensagem", str(e))}]}
     ed_eco = (pedido.get("edicoes_economia") or {}).get(cultura)
+    info_eco = (pedido.get("informacoes_economia") or {}).get(cultura)
     for grupo in grupos:
         pm = _pedido_motor(pedido, cultura, grupo)
         try:
@@ -85,7 +89,7 @@ def avaliar_cultura(pedido: dict, cultura: str) -> dict:
                 continue
             sim = motor.simular(pm | {"data_plantio": d["data_plantio"]})
             eco = economia.margem(sim["pedido"]["lat"], sim["pedido"]["lon"], cultura,
-                                  sim["resultado"]["perda_relativa_quantis"], ed_eco, pedido.get("percentis"))
+                                  sim["resultado"]["perda_relativa_quantis"], ed_eco, pedido.get("percentis"), info_eco)
             alt = {
                 "cultura": cultura,
                 "grupo": grupo,

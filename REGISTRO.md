@@ -229,3 +229,14 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Rotas `POST /api/clima/serie` e `/resumo`. O ponto não muda, e a proveniência do ponto ficou idêntica (exemplo gravado da 011 preservado).
 - O motor (006) repassa a geometria ao clima (mudança mínima, +6/−4 linhas, autorizada pelo usuário). Os testes antigos do motor passam sem alteração.
 - O caso com várias células está provado só com cache SINTÉTICO (caso à mão 0,7 × 3,5 + 0,3 × 20 = 8,45 mm). Por decisão do usuário, as células IMERG vizinhas não foram baixadas. Só a célula da A025 (−17,75; −50,95) tem série real versionada.
+
+## ZARC nacional e #54: 008 no contrato 1.1.0 (15/11, 04h20, LK + Claude Code)
+- ZARC 2026/27 das 27 UFs: 5.569 de 5.571 municípios com ao menos uma cultura zoneada. O milho 2ª safra não existe no SISZARC em AL, AM, AP, CE, PB, PE, RN, RS, SC e SE; nesses casos o app declara "sem ZARC publicado". Grafias SISZARC × IBGE resolvidas por apelido: PE (Lagoa de Itaenga), RJ (Paraty), RN (Arez; Boa Saúde = Januário Cicco), RR (São Luiz do Anauá), SE (Amparo do São Francisco, Graccho Cardoso).
+- #54, contrato 1.1.0 (MENOR, aceita 1.0.x):
+  - a seção `recomendacao` usa a 008 real; `comparar_alternativas` é traduzido para `calculo_completo`;
+  - o grupo `nao_sei` vai para a 008, e as seções por cultura viram não obrigatórias;
+  - falha da 008 vira erro da seção, sem derrubar as outras;
+  - rota `POST /api/contrato/calcular`.
+- Cotação informada (pedido do Pedro): `origem_informada` e `data_informada` nas premissas editadas, juntos. Chegam a `alteracoes` e `premissas.preco.informado` na 007 (o sorgo passa a `informado_pelo_produtor`), viram proveniência `informado_*` na seção da economia e na da 008, e entram nas hipóteses da alternativa. Implementado direto a partir dos tipos da `012-interface-web` (a branch de backend do recado não foi publicada).
+- Isolamento do SMAP mantido: o contrato não importa umidade nem vegetação. O `app.py` pluga os provedores de contexto (`contrato.PROVEDORES_CONTEXTO`).
+- 451 testes passando.
