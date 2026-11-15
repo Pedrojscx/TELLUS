@@ -38,8 +38,8 @@ export default async function relatorio(): Promise<void> {
   l.push("> Gerado automaticamente por `frontend/e2e/relatorio.ts` ao fim de `npx playwright test`. Não editar à mão:", "> rode a bateria de novo para atualizar. Como rodar e o que cada suíte cobre: [README.md](README.md).", "");
   l.push("## Resumo", "");
   l.push(`| Item | Valor |`, `|---|---|`);
-  l.push(`| Resultado | **${passaram} de ${regs.length} testes conforme o esperado** (${defeitos.length} deles são defeitos conhecidos, abaixo) |`);
-  l.push(`| Verificações | ${verifs.filter((v) => v.ok).length} de ${verifs.length} atendidas (as não atendidas são as dos defeitos conhecidos) |`);
+  l.push(`| Resultado | **${passaram} de ${regs.length} testes conforme o esperado** ${defeitos.length ? ` (${defeitos.length} deles são defeitos conhecidos, abaixo)` : ", nenhum defeito conhecido"} |`);
+  l.push(`| Verificações | ${verifs.filter((v) => v.ok).length} de ${verifs.length} atendidas${defeitos.length ? " (as não atendidas são as dos defeitos conhecidos)" : ""} |`);
   l.push(`| Capturas de tela | ${capturas} |`);
   l.push(`| Início da execução | ${hora(meta.inicio)} (horário de Brasília) |`);
   l.push(`| Commit testado | \`${meta.commit}\` (branch \`${meta.branch}\`${meta.alteracoes_locais ? `, com ${meta.alteracoes_locais} arquivo(s) alterado(s) fora do commit` : ", sem alterações locais"}) |`);
