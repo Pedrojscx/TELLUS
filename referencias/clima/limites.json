@@ -1,0 +1,14 @@
+{
+  "contagem_minima_imerg": {
+    "valor": 1,
+    "unidade": "amostras",
+    "status": "fonte",
+    "fonte": "IMERG V07 ATBD/README: precipitation_cnt = número de amostras válidas no dia; 0 = sem dado"
+  },
+  "passo_amostragem_graus": {
+    "valor": 0.005,
+    "unidade": "graus",
+    "status": "hipotese",
+    "motivo": "amostragem para estimar a fração da área em cada célula de 0,1° sem biblioteca geoespacial (research R5)"
+  }
+}

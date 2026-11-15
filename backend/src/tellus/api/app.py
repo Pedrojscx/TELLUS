@@ -7,7 +7,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from tellus.api import localizacao
+from tellus.api import clima, localizacao
+from tellus.clima.servico import ErroClima
 from tellus.localizacao.servico import ErroLocalizacao
 
 app = FastAPI(title="TELLUS", version="0.1.0")
@@ -35,7 +36,16 @@ async def _erro_validacao(_: Request, exc: RequestValidationError) -> JSONRespon
     return _erro(422, "parametro_invalido", primeiro.get("msg", "Parâmetro inválido."), campo)
 
 
+@app.exception_handler(ErroClima)
+async def _erro_clima(_: Request, exc: ErroClima) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status,
+        content={"erro": {"codigo": exc.codigo, "mensagem": exc.mensagem, "origem": exc.origem}},
+    )
+
+
 app.include_router(localizacao.router)
+app.include_router(clima.router)
 
 
 @app.get("/api/saude")

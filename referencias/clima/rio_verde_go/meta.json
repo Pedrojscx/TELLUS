@@ -1,0 +1,27 @@
+{
+  "local": "Rio Verde-GO, estação INMET A025",
+  "imerg": {
+    "celula": "-17.75_-50.95",
+    "centro": [
+      -17.75,
+      -50.95
+    ],
+    "versao": "GPM_3IMERGDF V07B",
+    "obtido_em": "2026-11-14",
+    "sha256_cache": "4927456239e054e43f087f8fdc206d46f53c1a9ba04185878b61fbdf3354df1f"
+  },
+  "power": {
+    "celula": "-18.000_-51.250",
+    "altitude_m": 731.58,
+    "fontes": [
+      "MERRA2",
+      "GEOSIT",
+      "SYN1DEG",
+      "POWER"
+    ],
+    "obtido_em": "2026-11-14",
+    "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CALLSKY_SFC_SW_DWN%2CRH2M%2CWS2M%2CPRECTOTCORR&community=AG&longitude=-51.25&latitude=-18.0&start=20010101&end=20261114&format=JSON&time-standard=UTC",
+    "sha256_cache": "65de9eb02ad52c179dc769ab948d05a9d9296fa8a9cad8bef1f44599efbe00ac"
+  },
+  "gerado_em": "2026-11-14"
+}

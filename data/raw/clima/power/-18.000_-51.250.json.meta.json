@@ -1,0 +1,6 @@
+{
+  "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CALLSKY_SFC_SW_DWN%2CRH2M%2CWS2M%2CPRECTOTCORR&community=AG&longitude=-51.25&latitude=-18.0&start=20010101&end=20261114&format=JSON&time-standard=UTC",
+  "obtido_em": "2026-11-14",
+  "status_http": 200,
+  "sha256": "65de9eb02ad52c179dc769ab948d05a9d9296fa8a9cad8bef1f44599efbe00ac"
+}
