@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: TELLUS — Clima (spec 003)
+  version: 0.1.0
+  description: >
+    Séries diárias de clima por local, a partir do cache. Nenhuma rota baixa dados: o download é
+    feito pelos scripts de preparação (degradação explícita, Princípio VII).
+paths:
+  /api/clima/resumo:
+    get:
+      summary: Cobertura por ano, período, proveniência e avisos (sem a série)
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number } }
+        - { name: lon, in: query, required: true, schema: { type: number } }
+      responses:
+        "200": { description: Resumo, content: { application/json: { schema: { $ref: "#/components/schemas/Resumo" } } } }
+        "404": { description: sem_cache, content: { application/json: { schema: { $ref: "#/components/schemas/Erro" } } } }
+  /api/clima/serie:
+    get:
+      summary: Série diária usada pelo motor (chuva IMERG + variáveis POWER)
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number } }
+        - { name: lon, in: query, required: true, schema: { type: number } }
+        - { name: inicio, in: query, required: false, schema: { type: string, format: date } }
+        - { name: fim, in: query, required: false, schema: { type: string, format: date } }
+      responses:
+        "200": { description: Série, content: { application/json: { schema: { $ref: "#/components/schemas/SerieClimatica" } } } }
+        "404": { description: sem_cache, content: { application/json: { schema: { $ref: "#/components/schemas/Erro" } } } }
+  /api/clima/validacao:
+    get:
+      summary: Comparação IMERG × INMET × POWER (chuva POWER só aqui)
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number } }
+        - { name: lon, in: query, required: true, schema: { type: number } }
+        - name: recorte
+          in: query
+          required: false
+          schema: { type: string, enum: [jan-jun, todos], default: jan-jun }
+      responses:
+        "200": { description: Validação ou indisponível com motivo, content: { application/json: { schema: { type: object } } } }
+components:
+  schemas:
+    Proveniencia:
+      type: object
+      required: [fonte, versao, periodo, unidade, localizacao, qualidade, resolucao, aviso_escala, obtido_em, url]
+      properties:
+        fonte: { type: string }
+        versao: { type: string }
+        periodo: { type: object, properties: { inicio: { type: string, format: date }, fim: { type: string, format: date } } }
+        unidade: { type: object, additionalProperties: { type: string } }
+        localizacao: { type: object }
+        qualidade: { type: object }
+        resolucao: { type: string }
+        aviso_escala: { type: string }
+        obtido_em: { type: string, format: date }
+        url: { type: string }
+    DiaClima:
+      type: object
+      required: [data, chuva_mm, tmax_c, tmin_c, radiacao_mj_m2, umidade_pct, vento_m_s]
+      properties:
+        data: { type: string, format: date }
+        chuva_mm: { type: [number, "null"] }
+        tmax_c: { type: [number, "null"] }
+        tmin_c: { type: [number, "null"] }
+        radiacao_mj_m2: { type: [number, "null"] }
+        umidade_pct: { type: [number, "null"] }
+        vento_m_s: { type: [number, "null"] }
+    SerieClimatica:
+      type: object
+      required: [local, dias, proveniencia, ultimo_dia_publicado_imerg, avisos, origem_dados, versao_cache]
+      properties:
+        local: { type: object }
+        dias: { type: array, items: { $ref: "#/components/schemas/DiaClima" } }
+        proveniencia:
+          type: object
+          properties:
+            chuva: { $ref: "#/components/schemas/Proveniencia" }
+            power: { $ref: "#/components/schemas/Proveniencia" }
+        ultimo_dia_publicado_imerg: { type: string, format: date }
+        avisos: { type: array, items: { type: object } }
+        origem_dados: { type: string, enum: [cache, referencia_versionada] }
+        versao_cache: { type: string, format: date }
+    Resumo:
+      type: object
+      properties:
+        cobertura_por_ano: { type: array, items: { type: object } }
+        proveniencia: { type: object }
+        ultimo_dia_publicado_imerg: { type: string, format: date }
+        avisos: { type: array, items: { type: object } }
+    Erro:
+      type: object
+      required: [erro]
+      properties:
+        erro:
+          type: object
+          required: [codigo, mensagem, origem]
+          properties:
+            codigo: { type: string, enum: [sem_cache, sem_credencial, fonte_indisponivel, coordenada_invalida] }
+            mensagem: { type: string }
+            origem: { type: string }
