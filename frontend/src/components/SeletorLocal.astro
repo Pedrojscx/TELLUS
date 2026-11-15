@@ -76,6 +76,7 @@ const brasil = fs.readFileSync(
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
   import { api, apiCar, FalhaApi, type CandidatoLavoura, type ConsultaCar, type ResultadoLocalizacao } from "../lib/api";
+  import { salvarLavoura } from "../lib/comparacao/lavoura";
   import { esc, renderReferencias } from "../lib/referencias";
   import { apiLavoura, poligonoDosVertices } from "../lib/lavoura";
 
@@ -109,6 +110,9 @@ const brasil = fs.readFileSync(
   function aplicar(res: ResultadoLocalizacao) {
     mostrarErro(null);
     const { municipio, lat, lon } = res.local;
+    // Gancho para a comparação (012): o último local aceito vira a lavoura (ponto) até uma área ser confirmada.
+    salvarLavoura({ tipo: "ponto", lat, lon, codigo_ibge: municipio.codigo_ibge, municipio: municipio.nome, uf: municipio.uf,
+                    area_ha: null, confirmada_em: new Date().toISOString().slice(0, 10) });
     const selo = res.eh_demo
       ? `<span class="ml-2 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">local da demonstração</span>`
       : "";
@@ -224,6 +228,10 @@ const brasil = fs.readFileSync(
     try {
       const lav = await apiCar.confirmar(candidatoAtual);
       aplicar(lav.localizacao);
+      const m = lav.localizacao.local.municipio;
+      salvarLavoura({ tipo: "geometria", lat: lav.centroide.lat, lon: lav.centroide.lon, codigo_ibge: m.codigo_ibge,
+                      municipio: m.nome, uf: m.uf, area_ha: lav.area_ha, geometria: lav.geometria as any,
+                      id_geometria: lav.id_geometria, origem: lav.origem, confirmada_em: lav.confirmada_em });
       camadaArea?.setStyle({ color: "#047857", fillOpacity: 0.2 });
       if (camadaArea) mapa.fitBounds(camadaArea.getBounds(), { maxZoom: 15 });
       resultadoCar.insertAdjacentHTML("beforeend", `<p class="mt-2 font-medium text-emerald-800">Área confirmada (${lav.area_ha.toLocaleString("pt-BR")} ha).</p>`);

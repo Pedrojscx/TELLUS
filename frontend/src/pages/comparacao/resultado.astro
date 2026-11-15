@@ -9,6 +9,9 @@ const e = ex.entradas;
 const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textura].toLowerCase()}` : e.solo ? `${e.solo.cad_mm} mm` : "—";
 ---
 <LayoutComparacao titulo="Resultado da comparação" atual="resultado" subtitulo="Abra uma alternativa para ver risco, margem, cenários, premissas e fontes.">
+  <div id="resultado-estado" role="status" class="hidden rounded-xl border border-stone-200 bg-white p-4 text-sm"></div>
+  <div id="resultado-real" class="hidden space-y-6"></div>
+  <div id="resultado-exemplo" class="space-y-6">
   <section class="rounded-xl border border-stone-200 bg-white p-4 text-sm">
     <h2 class="font-semibold">Entradas usadas</h2>
     <p class="mt-1 text-stone-700">{e.area?.municipio}-{e.area?.uf}, {e.area?.area_ha.toLocaleString("pt-BR")} ha · colheita da soja em {e.colheita_soja?.split("-").reverse().join("/")} · {solo} · {e.grupo ? ROTULO_GRUPO[e.grupo] : "—"} · metodologia: {r.metodologia === "comparar_alternativas" ? "comparar alternativas" : "cultura escolhida"}</p>
@@ -33,7 +36,88 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
     <p class="text-sm text-stone-600">Ajuda a interpretar, mas <strong>não entra no cálculo</strong>. O resultado acima é o mesmo com ou sem estes blocos.</p>
     {r.contextos_opcionais.map((c) => <ContextoOpcional c={c} />)}
   </section>
+  </div>
 </LayoutComparacao>
+
+<script>
+  // Resultado REAL (contrato 1.1.0, #54): com a lavoura confirmada e as entradas completas, chama o backend.
+  // Sem isso, fica o exemplo identificado acima (selo "DADO DE EXEMPLO").
+  import { carregarExemplo, ROTULO_CENARIO, type Alternativa, type ResultadoComparacao } from "../../lib/comparacao/contrato-provisorio";
+  import { calcular, montarPedido, paraResultado, type FalhaPedido } from "../../lib/comparacao/contrato";
+  import { lerLavoura } from "../../lib/comparacao/lavoura";
+  import { mesclarPremissas } from "../../lib/comparacao/premissas";
+  import { validarEntradas } from "../../lib/comparacao/validacao";
+  import * as sessao from "../../lib/comparacao/sessao";
+
+  const esc = (t: unknown) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+  const brl = (n: number | null) => n == null ? "indisponível" : n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  const selo = (tipo: "fonte" | "hipotese" | "aviso" | "erro", texto: string) => {
+    const rot = { fonte: "Fonte", hipotese: "Hipótese", aviso: "Aviso", erro: "Erro" }[tipo];
+    return `<span class="tellus-selo tellus-selo--${tipo}"${tipo === "erro" ? ' role="alert"' : ""}><span>${rot}: ${esc(texto)}</span></span>`;
+  };
+
+  function cartao(a: Alternativa, i: number): string {
+    const central = a.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? null;
+    const linhas = a.cenarios.map((c) => `<tr><td class="py-1">${ROTULO_CENARIO[c.cenario]}</td><td class="py-1 text-right tabular-nums ${c.margem_r_ha != null && c.margem_r_ha < 0 ? "text-red-700" : ""}">${brl(c.margem_r_ha)}</td></tr>`).join("");
+    const hip = a.premissas_usadas.map((h) => `<li>${selo("hipotese", h)}</li>`).join("");
+    const fontes = a.proveniencia.map((p) => `<li>${selo(p.situacao === "hipotese" ? "hipotese" : "fonte", p.fonte)} <span class="text-xs text-stone-600">${esc(p.qualidade)}</span></li>`).join("");
+    return `<details class="group rounded-xl border border-stone-200 bg-white shadow-sm open:ring-1 open:ring-emerald-700/30">
+      <summary class="flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-2 p-4">
+        <span><span class="mr-2 text-stone-400 tabular-nums">${i + 1}.</span><strong>${esc(a.cultura)}</strong><span class="text-sm text-stone-600"> · grupo ${esc(a.grupo)} · ${esc(a.decendio)}</span></span>
+        <span class="text-sm tabular-nums text-stone-700">margem central ${central == null ? "indisponível" : `${brl(central)}/ha`} <span class="ml-1 text-emerald-700 group-open:hidden">▸ abrir</span></span>
+      </summary>
+      <div class="space-y-4 border-t border-stone-100 p-4">
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="rounded-md bg-stone-50 p-3"><p class="text-xs font-medium text-stone-500">Risco oficial (ZARC)</p><p class="text-2xl font-semibold tabular-nums">${a.risco_zarc_pct}%</p><p class="text-xs text-stone-600">Risco do zoneamento do MAPA para o decêndio.</p></div>
+          <div class="rounded-md bg-stone-50 p-3"><p class="text-xs font-medium text-stone-500">Risco histórico de falta de água</p><p class="text-2xl font-semibold tabular-nums">${a.risco_historico_falta_agua_pct.toLocaleString("pt-BR")}%</p><p class="text-xs text-stone-600">Frequência nos anos passados; não diz como será esta safra.</p></div>
+        </div>
+        <div><p class="text-sm font-medium">Margem por hectare</p><table class="mt-1 w-full max-w-sm text-sm">${linhas}</table></div>
+        ${hip ? `<div><p class="text-sm font-medium">Hipóteses usadas</p><ul class="mt-1 space-y-1">${hip}</ul></div>` : ""}
+        <div><p class="text-sm font-medium">Fontes</p><ul class="mt-1 space-y-1">${fontes}</ul></div>
+      </div></details>`;
+  }
+
+  function render(r: ResultadoComparacao, estadoGeral: string, final: boolean): string {
+    const erros = r.erros.map((e) => `<li>${selo("erro", `${e.mensagem} (${e.origem})`)}</li>`).join("");
+    const avisos = r.avisos.map((a) => `<li>${selo("aviso", a.mensagem)}</li>`).join("");
+    const ctx = r.contextos_opcionais.map((c) => `<div class="rounded-md border border-stone-200 bg-white p-3 text-sm"><p class="font-medium">${esc(c.titulo)}</p><p class="text-stone-700">${esc(c.resumo)}</p><p class="mt-1">${selo("aviso", c.aviso_escala)}</p>${c.erro ? `<p class="mt-1">${selo("erro", c.erro.mensagem)}</p>` : ""}</div>`).join("");
+    return `<section class="rounded-xl border border-stone-200 bg-white p-4 text-sm">
+        <h2 class="font-semibold">Resultado calculado</h2>
+        <p class="mt-1 text-stone-700">Contrato ${esc(r.versao_contrato)} · estado ${esc(estadoGeral)}${final ? "" : " (não final: veja avisos e erros)"}</p>
+      </section>
+      ${erros ? `<section class="space-y-2"><h2 class="font-semibold">Erros</h2><ul class="space-y-1">${erros}</ul></section>` : ""}
+      <section class="space-y-3"><h2 class="text-lg font-semibold">Alternativas dentro do ZARC</h2>
+        <p class="rounded-md bg-stone-100 px-3 py-2 text-sm text-stone-700"><strong>Critério de ordem:</strong> ${esc(r.criterio_ordem)}</p>
+        ${r.alternativas.length ? r.alternativas.map(cartao).join("") : `<p>${selo("aviso", "Nenhuma alternativa com dados completos dentro do ZARC; não há recomendação.")}</p>`}
+      </section>
+      ${avisos ? `<section class="space-y-2"><h2 class="font-semibold">Avisos</h2><ul class="space-y-1">${avisos}</ul></section>` : ""}
+      <section class="space-y-3"><h2 class="font-semibold">Contexto da região (opcional)</h2><p class="text-sm text-stone-600">Ajuda a interpretar, mas <strong>não entra no cálculo</strong>.</p>${ctx}</section>`;
+  }
+
+  async function iniciar() {
+    const s = sessao.ler();
+    const lav = lerLavoura();
+    const e = s?.entradas;
+    if (!e?.area?.real || !lav || validarEntradas(e).length) return; // fica o exemplo
+    const estado = document.getElementById("resultado-estado")!;
+    estado.textContent = "Calculando com os dados reais (clima, ZARC, solo, custo e preço)…";
+    estado.classList.remove("hidden");
+    try {
+      const premissas = mesclarPremissas(carregarExemplo().premissas, s?.premissas);
+      const resp = await calcular(montarPedido(e, lav, premissas));
+      const r = paraResultado(resp, e.metodologia ?? "comparar_alternativas");
+      const real = document.getElementById("resultado-real")!;
+      real.innerHTML = render(r, resp.estado_geral, resp.final);
+      real.classList.remove("hidden");
+      document.getElementById("resultado-exemplo")!.classList.add("hidden");
+      estado.classList.add("hidden");
+    } catch (err) {
+      const f = err as FalhaPedido;
+      estado.innerHTML = `${selo("erro", f.mensagem ?? "Falha no cálculo.")} <span class="text-stone-600">Abaixo, o exemplo identificado.</span>`;
+    }
+  }
+  iniciar();
+</script>
 
 <script>
   // Aplica a cotação informada pelo produtor (sessão) às alternativas que exigem preço sem padrão (ex.: sorgo).
