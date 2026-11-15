@@ -1,0 +1,75 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+import CartaoAlternativa from "../../components/comparacao/CartaoAlternativa.astro";
+import ContextoOpcional from "../../components/comparacao/ContextoOpcional.astro";
+import { carregarExemplo, ROTULO_GRUPO, ROTULO_TEXTURA } from "../../lib/comparacao/contrato-provisorio";
+const ex = carregarExemplo();
+const r = ex.resultado;
+const e = ex.entradas;
+const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textura].toLowerCase()}` : e.solo ? `${e.solo.cad_mm} mm` : "—";
+---
+<LayoutComparacao titulo="Resultado da comparação" atual="resultado" subtitulo="Abra uma alternativa para ver risco, margem, cenários, premissas e fontes.">
+  <section class="rounded-xl border border-stone-200 bg-white p-4 text-sm">
+    <h2 class="font-semibold">Entradas usadas</h2>
+    <p class="mt-1 text-stone-700">{e.area?.municipio}-{e.area?.uf}, {e.area?.area_ha.toLocaleString("pt-BR")} ha · colheita da soja em {e.colheita_soja?.split("-").reverse().join("/")} · {solo} · {e.grupo ? ROTULO_GRUPO[e.grupo] : "—"} · metodologia: {r.metodologia === "comparar_alternativas" ? "comparar alternativas" : "cultura escolhida"}</p>
+    <p class="mt-2 text-xs text-stone-500">Contrato {r.versao_contrato} (provisório). Dados de exemplo.</p>
+  </section>
+
+  <section aria-labelledby="t-alt" class="space-y-3">
+    <h2 id="t-alt" class="text-lg font-semibold">Alternativas dentro do ZARC</h2>
+    <p class="rounded-md bg-stone-100 px-3 py-2 text-sm text-stone-700"><strong>Critério de ordem:</strong> {r.criterio_ordem}</p>
+    {r.alternativas.map((a, i) => <CartaoAlternativa a={a} posicao={i + 1} />)}
+  </section>
+
+  {r.avisos.length > 0 && (
+    <section class="space-y-2" aria-labelledby="t-avisos">
+      <h2 id="t-avisos" class="font-semibold">Avisos</h2>
+      <ul class="space-y-1 text-sm">{r.avisos.map((a) => <li class="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-amber-950">{a.mensagem}</li>)}</ul>
+    </section>
+  )}
+
+  <section class="space-y-3" aria-labelledby="t-ctx">
+    <h2 id="t-ctx" class="font-semibold">Contexto da região (opcional)</h2>
+    <p class="text-sm text-stone-600">Ajuda a interpretar, mas <strong>não entra no cálculo</strong>. O resultado acima é o mesmo com ou sem estes blocos.</p>
+    {r.contextos_opcionais.map((c) => <ContextoOpcional c={c} />)}
+  </section>
+</LayoutComparacao>
+
+<script>
+  // Aplica a cotação informada pelo produtor (sessão) às alternativas que exigem preço sem padrão (ex.: sorgo).
+  import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+  import { fmt, margemPrincipal, mesclarPremissas, simulacaoLocal } from "../../lib/comparacao/premissas";
+  import { ROTULO_CENARIO } from "../../lib/comparacao/contrato-provisorio";
+  import * as sessao from "../../lib/comparacao/sessao";
+
+  const ex = carregarExemplo();
+  const premissas = mesclarPremissas(ex.premissas, sessao.ler()?.premissas);
+  const esc = (t: string) => t.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+  const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  document.querySelectorAll<HTMLElement>("[data-alternativa]").forEach((el) => {
+    const a = ex.resultado.alternativas[Number(el.dataset.alternativa)];
+    const m = margemPrincipal(a, premissas);
+    const sim = simulacaoLocal(a, premissas);
+    const caixa = el.querySelector<HTMLElement>("[data-simulacao-local]")!;
+    caixa.classList.toggle("hidden", !sim);
+    caixa.innerHTML = sim ? `<p class="font-bold text-amber-900">DADO DE EXEMPLO — não é resultado real</p><p class="text-xs text-amber-950">Simulação local sobre a base de exemplo, com a sua cotação. Não entra na ordem nem no resumo.</p><ul class="mt-1 space-y-0.5 tabular-nums">${sim.cenarios.map((c) => `<li>${ROTULO_CENARIO[c.cenario]}: ${c.margem_r_ha == null ? "indisponível" : brl(c.margem_r_ha)}</li>`).join("")}</ul>` : "";
+    for (const c of m.cenarios) {
+      const td = el.querySelector<HTMLElement>(`[data-margem="${c.cenario}"]`);
+      if (!td) continue;
+      td.textContent = c.margem_r_ha == null ? "indisponível" : brl(c.margem_r_ha);
+      td.className = `py-1 text-right tabular-nums ${c.margem_r_ha == null ? "text-stone-500 italic" : c.margem_r_ha < 0 ? "text-red-700" : ""}`;
+    }
+    const central = m.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? null;
+    el.querySelector("[data-margem-central]")!.textContent = central == null ? "indisponível" : `${brl(central)}/ha`;
+    const motivo = el.querySelector<HTMLElement>("[data-margem-motivo]")!;
+    motivo.textContent = m.motivo ?? "";
+    motivo.classList.toggle("hidden", !m.motivo);
+    const p = premissas.find((x) => x.id === a.preco_premissa_id)!;
+    const cot = p.cotacao ?? null;
+    el.querySelector("[data-proveniencia-cotacao]")!.innerHTML = cot
+      ? `<div class="rounded-md border border-sky-200 bg-sky-50 p-2 text-sm"><div class="flex flex-wrap items-center justify-between gap-2"><p class="font-medium">${esc(p.nome)}: ${fmt(cot.valor)} ${esc(p.unidade)}</p><span class="rounded bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-900">Informada pelo produtor</span></div>
+         <dl class="mt-1 grid grid-cols-[auto_1fr] gap-x-3 text-xs text-stone-700"><dt class="text-stone-500">Origem</dt><dd class="break-words">${esc(cot.origem_informada)}</dd><dt class="text-stone-500">Data da cotação</dt><dd>${esc(cot.data_informada)}</dd><dt class="text-stone-500">Padrão</dt><dd>sem cotação oficial (CEPEA não cobre sorgo — D-005)</dd></dl></div>`
+      : `<div class="rounded-md border border-stone-200 bg-stone-50 p-2 text-xs text-stone-700">${esc(p.nome)}: sem cotação informada · sem fonte oficial (D-005). <a href="/comparacao/premissas" class="text-emerald-800 underline">Informar cotação</a></div>`;
+  });
+</script>
+

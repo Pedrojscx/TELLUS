@@ -1,0 +1,18 @@
+---
+// Erro de fonte legível (#103, SC-002): origem, cache/data disponível e ação possível.
+import type { ErroFonte } from "../../lib/comparacao/contrato-provisorio";
+interface Props { e: ErroFonte }
+const { e } = Astro.props;
+const comCache = Boolean(e.cache_obtido_em);
+---
+<div role={comCache ? "status" : "alert"}
+  class:list={["rounded-md border p-3 text-sm", comCache ? "border-amber-300 bg-amber-50 text-amber-950" : "border-red-300 bg-red-50 text-red-900"]}>
+  <p class="font-semibold">{comCache ? "Fonte fora do ar — usando cópia guardada" : "Fonte fora do ar — sem cópia guardada"}</p>
+  <p class="mt-1">{e.mensagem}</p>
+  <dl class="mt-2 grid grid-cols-[auto_1fr] gap-x-3 text-xs">
+    <dt class="font-medium">Origem</dt><dd class="break-words">{e.origem}</dd>
+    <dt class="font-medium">Cópia guardada</dt><dd>{comCache ? `sim, de ${e.cache_obtido_em}` : "não há"}</dd>
+    <dt class="font-medium">O que fazer</dt><dd>{e.acao ?? "Tente de novo mais tarde."}</dd>
+  </dl>
+  <p class="mt-1 text-xs opacity-70">Código: {e.codigo}</p>
+</div>

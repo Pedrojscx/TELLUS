@@ -1,0 +1,36 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+import Metodologias from "../../components/comparacao/Metodologias.astro";
+---
+<LayoutComparacao titulo="Como calcular" atual="metodologia" subtitulo="Escolha uma das duas formas. As entradas são as mesmas.">
+  <div id="sem-entradas" role="alert" class="hidden rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-900">
+    Faltam dados da lavoura. <a href="/comparacao/entradas" class="underline">Volte às entradas</a>: nenhum cálculo começa sem área confirmada.
+  </div>
+  <form id="form-metodologia" class="space-y-4" novalidate>
+    <Metodologias />
+    <p id="erro-metodologia" role="alert" class="hidden text-sm font-medium text-red-700"></p>
+    <button type="submit" class="rounded-md bg-emerald-700 px-5 py-2.5 font-medium text-white hover:bg-emerald-800">Calcular</button>
+  </form>
+</LayoutComparacao>
+<script>
+  import { validarEntradas, validarMetodologia } from "../../lib/comparacao/validacao";
+  import * as sessao from "../../lib/comparacao/sessao";
+  const form = document.getElementById("form-metodologia") as HTMLFormElement;
+  const s = sessao.ler();
+  const entradas = s?.entradas ?? { ...sessao.VAZIA };
+  if (validarEntradas(entradas).length) document.getElementById("sem-entradas")!.classList.remove("hidden");
+  form.querySelectorAll<HTMLInputElement>('input[name="metodologia"]').forEach((r) => (r.checked = r.value === entradas.metodologia));
+  (form.querySelector('select[name="cultura"]') as HTMLSelectElement).value = entradas.cultura ?? "";
+  form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const fd = new FormData(form);
+    const e = { ...entradas, metodologia: (fd.get("metodologia") as any) ?? null, cultura: (fd.get("cultura") as string) || null };
+    if (e.metodologia !== "cultura_escolhida") e.cultura = null;
+    sessao.gravar({ ...(s ?? { exemplo: true }), exemplo: true, entradas: e });
+    const erros = validarMetodologia(e);
+    const p = document.getElementById("erro-metodologia")!;
+    p.textContent = erros.map((x) => x.mensagem).join(" ");
+    p.classList.toggle("hidden", !erros.length);
+    if (!erros.length) location.href = "/comparacao/carga";
+  });
+</script>

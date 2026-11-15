@@ -1,0 +1,12 @@
+---
+import LayoutComparacao from "../../components/comparacao/LayoutComparacao.astro";
+import BlocoProveniencia from "../../components/comparacao/BlocoProveniencia.astro";
+import ErroFonte from "../../components/comparacao/ErroFonte.astro";
+import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+const { estados_fonte: f } = carregarExemplo();
+---
+<LayoutComparacao titulo="Fontes e erros" atual="erros" subtitulo="Os três estados de uma fonte, como o produtor os vê.">
+  <section class="space-y-2"><h2 class="font-semibold">Fonte respondeu</h2>{f.sucesso.map((p) => <BlocoProveniencia p={p} />)}</section>
+  <section class="space-y-2"><h2 class="font-semibold">Fonte fora do ar, com cópia guardada</h2>{f.degradado.map((e) => <ErroFonte e={e} />)}</section>
+  <section class="space-y-2"><h2 class="font-semibold">Fonte fora do ar, sem cópia guardada</h2>{f.falha.map((e) => <ErroFonte e={e} />)}</section>
+</LayoutComparacao>

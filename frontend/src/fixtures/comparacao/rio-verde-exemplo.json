@@ -1,0 +1,342 @@
+{
+  "exemplo": true,
+  "descricao": "DADO DE EXEMPLO — não é resultado real. Números inventados para desenhar as telas da spec 012; o formato é provisório até a spec 011 (#54) e o motor da 008 (#48) ainda não existe.",
+  "entradas": {
+    "area": {
+      "id_geometria": "exemplo-rio-verde-35ha",
+      "area_ha": 35.15,
+      "municipio": "Rio Verde",
+      "uf": "GO",
+      "confirmada": true
+    },
+    "colheita_soja": "2026-02-10",
+    "solo": {
+      "modo": "textura",
+      "textura": "media"
+    },
+    "grupo": "nao_sei",
+    "metodologia": "comparar_alternativas",
+    "cultura": null
+  },
+  "premissas": [
+    {
+      "id": "cad_mm",
+      "nome": "Água disponível no solo",
+      "tipo": "solo",
+      "padrao": 60,
+      "editado": null,
+      "unidade": "mm",
+      "minimo": 10,
+      "maximo": 250,
+      "proveniencia": {
+        "fonte": "EXEMPLO — conversão de textura (spec 005, IN 1/2022)",
+        "unidade": "mm",
+        "situacao": "hipotese",
+        "origem_dados": "exemplo",
+        "obtido_em": "2026-11-15"
+      }
+    },
+    {
+      "id": "preco_milho",
+      "nome": "Preço do milho",
+      "tipo": "economica",
+      "padrao": 58.0,
+      "editado": null,
+      "unidade": "R$/saca 60 kg",
+      "minimo": 1,
+      "maximo": 500,
+      "proveniencia": {
+        "fonte": "EXEMPLO — série CEPEA/ESALQ (spec 007)",
+        "unidade": "R$/saca 60 kg",
+        "escala": "praça de exemplo",
+        "situacao": "fonte",
+        "origem_dados": "exemplo",
+        "obtido_em": "2026-11-10"
+      }
+    },
+    {
+      "id": "custo_milho",
+      "nome": "Custo operacional do milho",
+      "tipo": "economica",
+      "padrao": 3900,
+      "editado": null,
+      "unidade": "R$/ha",
+      "minimo": 0,
+      "maximo": 30000,
+      "proveniencia": {
+        "fonte": "EXEMPLO — custo de produção Conab (spec 007)",
+        "unidade": "R$/ha",
+        "escala": "praça Rio Verde-GO a 0 km (exemplo)",
+        "situacao": "fonte",
+        "origem_dados": "exemplo",
+        "obtido_em": "2026-11-10"
+      }
+    },
+    {
+      "id": "sacas_ha_milho",
+      "nome": "Sacas colhidas por hectare (premissa do produtor)",
+      "tipo": "economica",
+      "padrao": 95,
+      "editado": null,
+      "unidade": "sc/ha",
+      "minimo": 0,
+      "maximo": 300,
+      "proveniencia": {
+        "fonte": "EXEMPLO — premissa a definir na 007/008",
+        "unidade": "sc/ha",
+        "situacao": "hipotese",
+        "origem_dados": "exemplo"
+      }
+    },
+    {
+      "id": "preco_sorgo",
+      "nome": "Preço do sorgo",
+      "tipo": "economica",
+      "padrao": null,
+      "editado": null,
+      "unidade": "R$/saca 60 kg",
+      "minimo": 1,
+      "maximo": 500,
+      "exige_cotacao": true,
+      "sem_padrao_motivo": "Sem cotação oficial (CEPEA não cobre sorgo) — informe a sua",
+      "cotacao": null,
+      "pedido": {
+        "modulo": "economia",
+        "id": "preco_r_saca",
+        "cultura": "sorgo_granifero_2a_safra"
+      },
+      "proveniencia": {
+        "fonte": "Sem fonte oficial: o CEPEA não publica indicador de sorgo (D-005)",
+        "unidade": "R$/saca 60 kg",
+        "situacao": "desconhecido",
+        "origem_dados": "exemplo"
+      }
+    }
+  ],
+  "resultado": {
+    "exemplo": true,
+    "versao_contrato": "provisorio-0",
+    "metodologia": "comparar_alternativas",
+    "criterio_ordem": "EXEMPLO: primeiro só decêndios dentro do ZARC; depois menor risco histórico de falta de água; empate pela maior margem no cenário central. O critério real será definido na spec 008.",
+    "alternativas": [
+      {
+        "cultura": "Milho 2ª safra",
+        "grupo": "II",
+        "decendio": "21 a 28 de fevereiro",
+        "risco_zarc_pct": 20,
+        "risco_historico_falta_agua_pct": 18,
+        "cenarios": [
+          {
+            "cenario": "conservador",
+            "margem_r_ha": 450
+          },
+          {
+            "cenario": "central",
+            "margem_r_ha": 1610
+          },
+          {
+            "cenario": "favoravel",
+            "margem_r_ha": 2480
+          }
+        ],
+        "premissas_usadas": [
+          "cad_mm",
+          "preco_milho",
+          "custo_milho",
+          "sacas_ha_milho"
+        ],
+        "avisos": [
+          {
+            "codigo": "hipotese",
+            "mensagem": "Água disponível veio da textura (hipótese). Informe a análise de solo para trocar."
+          }
+        ],
+        "proveniencia": [
+          {
+            "fonte": "EXEMPLO — ZARC SISZARC (spec 004)",
+            "versao": "portaria de exemplo",
+            "escala": "município",
+            "situacao": "fonte",
+            "origem_dados": "exemplo",
+            "obtido_em": "2026-11-14"
+          },
+          {
+            "fonte": "EXEMPLO — chuva NASA GPM IMERG Final (spec 003)",
+            "versao": "V07B",
+            "unidade": "mm/dia",
+            "escala": "célula de 0,1° (≈ 11 km), diária",
+            "qualidade": "dias válidos de exemplo",
+            "situacao": "fonte",
+            "origem_dados": "exemplo",
+            "obtido_em": "2026-11-14"
+          }
+        ]
+      },
+      {
+        "cultura": "Sorgo",
+        "grupo": "I",
+        "decendio": "1 a 10 de março",
+        "risco_zarc_pct": 20,
+        "risco_historico_falta_agua_pct": 22,
+        "cenarios": [
+          {
+            "cenario": "conservador",
+            "margem_r_ha": null,
+            "sacas_ha": 41.5,
+            "custo_r_ha": 2807
+          },
+          {
+            "cenario": "central",
+            "margem_r_ha": null,
+            "sacas_ha": 52.0,
+            "custo_r_ha": 2807
+          },
+          {
+            "cenario": "favoravel",
+            "margem_r_ha": null,
+            "sacas_ha": 58.0,
+            "custo_r_ha": 2807
+          }
+        ],
+        "premissas_usadas": [
+          "cad_mm",
+          "preco_sorgo"
+        ],
+        "avisos": [
+          {
+            "codigo": "base_exemplo",
+            "mensagem": "EXEMPLO: sacas/ha e custo de base inventados para desenhar a tela; o cálculo real vem da 007/008."
+          }
+        ],
+        "proveniencia": [
+          {
+            "fonte": "EXEMPLO — ZARC SISZARC (spec 004)",
+            "escala": "município",
+            "situacao": "fonte",
+            "origem_dados": "exemplo"
+          }
+        ],
+        "preco_premissa_id": "preco_sorgo"
+      },
+      {
+        "cultura": "Planta de cobertura",
+        "grupo": "—",
+        "decendio": "21 a 28 de fevereiro",
+        "risco_zarc_pct": 0,
+        "risco_historico_falta_agua_pct": 15,
+        "cenarios": [
+          {
+            "cenario": "conservador",
+            "margem_r_ha": -380
+          },
+          {
+            "cenario": "central",
+            "margem_r_ha": -320
+          },
+          {
+            "cenario": "favoravel",
+            "margem_r_ha": -260
+          }
+        ],
+        "premissas_usadas": [
+          "cad_mm"
+        ],
+        "avisos": [
+          {
+            "codigo": "sem_zarc",
+            "mensagem": "Sem ZARC para cobertura: o risco oficial não se aplica. Margem negativa = custo da cobertura."
+          }
+        ],
+        "proveniencia": [
+          {
+            "fonte": "EXEMPLO — custo de cobertura (spec 007)",
+            "situacao": "hipotese",
+            "origem_dados": "exemplo"
+          }
+        ]
+      }
+    ],
+    "avisos": [
+      {
+        "codigo": "percentis_pendentes",
+        "mensagem": "Os percentis dos cenários conservador, central e favorável ainda estão em decisão (D-006)."
+      },
+      {
+        "codigo": "frequencia_historica",
+        "mensagem": "Risco histórico é frequência do passado (2001 a 2025), não diz o que vai acontecer nesta safra."
+      }
+    ],
+    "erros": [],
+    "contextos_opcionais": [
+      {
+        "id": "umidade",
+        "titulo": "Umidade do solo na região (SMAP)",
+        "disponivel": true,
+        "resumo": "EXEMPLO: 9 observações válidas nos últimos 30 dias; a última, de 0,27 cm³/cm³ na superfície (≈ 0–5 cm).",
+        "aviso_escala": "Média de uma célula de satélite de 9 km × 9 km: descreve a região, não o seu talhão. Não entra no cálculo.",
+        "proveniencia": {
+          "fonte": "EXEMPLO — NASA SMAP SPL3SMP_E (spec 010)",
+          "versao": "006",
+          "unidade": "cm³/cm³",
+          "escala": "grade de 9 km (EASE-Grid 2.0), passagens diárias AM/PM",
+          "qualidade": "bit 0 da flag = qualidade recomendada",
+          "situacao": "hipotese",
+          "origem_dados": "exemplo"
+        }
+      },
+      {
+        "id": "vegetacao",
+        "titulo": "Vegetação na área (MODIS/HLS)",
+        "disponivel": false,
+        "resumo": "Indisponível: índice, período e regra de qualidade ainda em decisão (D-007).",
+        "aviso_escala": "Contexto histórico opcional; não entra no cálculo.",
+        "proveniencia": null,
+        "erro": {
+          "codigo": "decisao_pendente",
+          "mensagem": "A spec 009 ainda não definiu o indicador.",
+          "origem": "spec 009 (D-007)",
+          "cache_obtido_em": null,
+          "acao": "O resultado principal não depende deste bloco."
+        }
+      }
+    ]
+  },
+  "estados_fonte": {
+    "sucesso": [
+      {
+        "fonte": "EXEMPLO — NASA POWER (spec 003)",
+        "versao": "daily, community AG",
+        "unidade": "°C, MJ/m²/dia, %, m/s",
+        "escala": "célula de 0,5° × 0,625° (≈ 55 km), diária",
+        "situacao": "fonte",
+        "origem_dados": "exemplo",
+        "obtido_em": "2026-11-14"
+      }
+    ],
+    "degradado": [
+      {
+        "codigo": "cache_usado",
+        "mensagem": "A fonte não respondeu; mostrando o cache guardado.",
+        "origem": "NASA GPM IMERG Final (exemplo)",
+        "cache_obtido_em": "2026-11-14",
+        "acao": "O resultado usa o cache. Tente de novo mais tarde para atualizar."
+      }
+    ],
+    "falha": [
+      {
+        "codigo": "fonte_indisponivel",
+        "mensagem": "O CAR não respondeu e não há cópia guardada deste imóvel.",
+        "origem": "SICAR (geoserver.car.gov.br) — exemplo",
+        "cache_obtido_em": null,
+        "acao": "Envie o arquivo do SICAR (upload) ou desenhe a área no mapa."
+      },
+      {
+        "codigo": "sem_cache",
+        "mensagem": "Não há dados de clima guardados para este local.",
+        "origem": "NASA GPM IMERG Final e NASA POWER — exemplo",
+        "cache_obtido_em": null,
+        "acao": "Sem esses dados o cálculo não roda. Tente outro ponto ou volte quando a fonte responder."
+      }
+    ]
+  }
+}

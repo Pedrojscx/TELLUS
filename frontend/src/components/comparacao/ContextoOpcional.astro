@@ -1,0 +1,22 @@
+---
+// Seções opcionais 009/010. Ficam separadas do resultado principal e não o alteram nem o bloqueiam.
+// Se o contexto faltar ou falhar, o resultado principal continua igual (T-068 #99 é da 011).
+import type { ContextoOpcional } from "../../lib/comparacao/contrato-provisorio";
+import BlocoProveniencia from "./BlocoProveniencia.astro";
+import ErroFonte from "./ErroFonte.astro";
+interface Props { c: ContextoOpcional }
+const { c } = Astro.props;
+---
+<details class="rounded-xl border border-dashed border-stone-300 bg-white">
+  <summary class="flex cursor-pointer list-none flex-wrap items-center justify-between gap-2 p-4">
+    <span class="font-medium">{c.titulo}</span>
+    <span class:list={["rounded px-2 py-0.5 text-xs font-semibold", c.disponivel ? "bg-sky-100 text-sky-900" : "bg-stone-200 text-stone-700"]}>
+      {c.disponivel ? "contexto opcional" : "indisponível — não afeta o resultado"}</span>
+  </summary>
+  <div class="space-y-3 border-t border-stone-100 p-4 text-sm">
+    <p>{c.resumo}</p>
+    <p class="rounded-md bg-sky-50 px-3 py-2 text-sky-950"><strong>Escala:</strong> {c.aviso_escala}</p>
+    {c.proveniencia && <BlocoProveniencia p={c.proveniencia} compacto />}
+    {c.erro && <ErroFonte e={c.erro} />}
+  </div>
+</details>

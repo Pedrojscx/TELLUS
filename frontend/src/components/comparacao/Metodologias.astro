@@ -1,0 +1,36 @@
+---
+// As duas metodologias (#101, FR-003; spec 008 FR-001). Explicação em linguagem simples.
+// A escolha fica na sessão; o envio no pedido versionado depende da 011 (#96).
+---
+<fieldset class="grid gap-4 md:grid-cols-2">
+  <legend class="sr-only">Como calcular</legend>
+  <label class="flex cursor-pointer flex-col gap-2 rounded-xl border-2 border-stone-200 bg-white p-4 has-[:checked]:border-emerald-700 has-[:checked]:bg-emerald-50">
+    <span class="flex items-center gap-2 font-semibold">
+      <input type="radio" name="metodologia" value="cultura_escolhida" class="size-4 accent-emerald-700" />
+      Já sei a cultura
+    </span>
+    <span class="text-sm text-stone-700">Você escolhe milho, sorgo ou planta de cobertura. O TELLUS mostra, para cada decêndio dentro do ZARC, o risco histórico de falta de água e a margem por hectare dessa cultura.</span>
+    <select name="cultura" class="rounded-md border border-stone-300 px-2 py-1.5 text-sm" aria-label="Cultura">
+      <option value="">Escolha a cultura…</option>
+      <option value="milho">Milho 2ª safra</option>
+      <option value="sorgo">Sorgo</option>
+      <option value="cobertura">Planta de cobertura</option>
+    </select>
+  </label>
+  <label class="flex cursor-pointer flex-col gap-2 rounded-xl border-2 border-stone-200 bg-white p-4 has-[:checked]:border-emerald-700 has-[:checked]:bg-emerald-50">
+    <span class="flex items-center gap-2 font-semibold">
+      <input type="radio" name="metodologia" value="comparar_alternativas" class="size-4 accent-emerald-700" />
+      Comparar as alternativas
+    </span>
+    <span class="text-sm text-stone-700">O TELLUS calcula todas as culturas, grupos e decêndios permitidos pelo ZARC e coloca as alternativas em ordem. O critério de ordem aparece junto do resultado.</span>
+  </label>
+</fieldset>
+<div class="rounded-md border border-stone-200 bg-white p-4 text-sm text-stone-700">
+  <p class="font-semibold text-stone-900">Qual a diferença?</p>
+  <ul class="mt-1 list-disc space-y-1 pl-5">
+    <li>As duas usam <strong>o mesmo cálculo e as mesmas entradas</strong>. Para a mesma cultura e o mesmo decêndio, o número é igual nas duas.</li>
+    <li>Só muda o que aparece: uma cultura que você escolheu, ou todas as permitidas em ordem.</li>
+    <li>Nenhuma das duas mostra decêndio fora do ZARC.</li>
+    <li>A ordem não é uma ordem para plantar. Ela resume risco e margem com as premissas que você pode editar.</li>
+  </ul>
+</div>

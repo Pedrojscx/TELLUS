@@ -1,0 +1,145 @@
+---
+// Entradas da comparação (#100, FR-002): colheita, solo (textura ou mm) e grupo, com validação local.
+// A área vem da localização existente (#57). O SeletorLocal ainda não avisa quando confirma, então
+// esta tela de exemplo usa a área de exemplo identificada (ver plan.md, "gancho de confirmação").
+import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+const ex = carregarExemplo().entradas.area!;
+---
+<form id="form-entradas" novalidate class="space-y-5">
+  <section class="rounded-xl border border-stone-200 bg-white p-4" aria-labelledby="t-area">
+    <h2 id="t-area" class="font-semibold">Área da lavoura</h2>
+    <div id="area-estado" class="mt-2 text-sm text-stone-700">Nenhuma área confirmada.</div>
+    <button type="button" id="usar-area-exemplo" class="mt-2 rounded-md border border-emerald-700 px-3 py-1.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50">
+      Usar área de exemplo ({ex.municipio}-{ex.uf}, {ex.area_ha.toLocaleString("pt-BR")} ha)
+    </button>
+    <p data-erro="area" class="mt-1 hidden text-sm text-red-700"></p>
+  </section>
+
+  <section class="rounded-xl border border-stone-200 bg-white p-4" aria-labelledby="t-colheita">
+    <h2 id="t-colheita" class="font-semibold"><label for="colheita">Data da colheita da soja</label></h2>
+    <p class="text-sm text-stone-600">Data exata. Ela marca o início da entressafra.</p>
+    <input id="colheita" name="colheita" type="date" class="mt-2 w-full max-w-xs rounded-md border border-stone-300 px-3 py-2" />
+    <p data-erro="colheita_soja" class="mt-1 hidden text-sm text-red-700"></p>
+  </section>
+
+  <section class="rounded-xl border border-stone-200 bg-white p-4" aria-labelledby="t-solo">
+    <h2 id="t-solo" class="font-semibold">Solo</h2>
+    <p class="text-sm text-stone-600">Escolha a textura ou, se tiver análise, informe a água disponível em mm.</p>
+    <div class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-4" role="radiogroup" aria-labelledby="t-solo">
+      {[["arenosa", "Arenosa"], ["media", "Média"], ["argilosa", "Argilosa"], ["mm", "Sei o valor em mm"]].map(([v, r]) => (
+        <label class="flex items-center gap-2 rounded-md border border-stone-300 px-3 py-2 text-sm has-[:checked]:border-emerald-700 has-[:checked]:bg-emerald-50">
+          <input type="radio" name="solo" value={v} class="accent-emerald-700" /> {r}
+        </label>
+      ))}
+    </div>
+    <div id="caixa-mm" class="mt-2 hidden">
+      <label for="cad-mm" class="text-sm font-medium">Água disponível (mm)</label>
+      <input id="cad-mm" inputmode="decimal" placeholder="ex.: 60" class="mt-1 block w-full max-w-xs rounded-md border border-stone-300 px-3 py-2" />
+    </div>
+    <p class="mt-2 text-xs text-stone-500">A conversão de textura em água disponível segue a spec 005. Quando vem só da textura, aparece como hipótese.</p>
+    <p data-erro="solo" class="mt-1 hidden text-sm text-red-700"></p>
+  </section>
+
+  <section class="rounded-xl border border-stone-200 bg-white p-4" aria-labelledby="t-grupo">
+    <h2 id="t-grupo" class="font-semibold">Grupo da cultivar</h2>
+    <p class="text-sm text-stone-600">O grupo do ZARC. Se não souber, o TELLUS mostra cada grupo separado.</p>
+    <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4" role="radiogroup" aria-labelledby="t-grupo">
+      {[["I", "Grupo I"], ["II", "Grupo II"], ["III", "Grupo III"], ["nao_sei", "Não sei"]].map(([v, r]) => (
+        <label class="flex items-center gap-2 rounded-md border border-stone-300 px-3 py-2 text-sm has-[:checked]:border-emerald-700 has-[:checked]:bg-emerald-50">
+          <input type="radio" name="grupo" value={v} class="accent-emerald-700" /> {r}
+        </label>
+      ))}
+    </div>
+    <p data-erro="grupo" class="mt-1 hidden text-sm text-red-700"></p>
+  </section>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="submit" class="rounded-md bg-emerald-700 px-5 py-2.5 font-medium text-white hover:bg-emerald-800">Seguir para a metodologia</button>
+    <button type="button" id="limpar" class="text-sm text-stone-600 underline">Limpar</button>
+    <p id="resumo-erros" role="alert" class="hidden text-sm font-medium text-red-700"></p>
+  </div>
+</form>
+
+<script>
+  import { carregarExemplo, type EntradasComparacao } from "../../lib/comparacao/contrato-provisorio";
+  import { lerNumero, validarEntradas } from "../../lib/comparacao/validacao";
+  import * as sessao from "../../lib/comparacao/sessao";
+
+  const ex = carregarExemplo();
+  const form = document.getElementById("form-entradas") as HTMLFormElement;
+  const caixaMm = document.getElementById("caixa-mm")!;
+  const inMm = document.getElementById("cad-mm") as HTMLInputElement;
+  const inData = document.getElementById("colheita") as HTMLInputElement;
+  let entradas: EntradasComparacao = sessao.ler()?.entradas ?? { ...sessao.VAZIA };
+
+  function mostrarArea() {
+    const el = document.getElementById("area-estado")!;
+    el.innerHTML = entradas.area?.confirmada
+      ? `<span class="font-medium text-emerald-800">Área confirmada:</span> ${entradas.area.municipio}-${entradas.area.uf}, ${entradas.area.area_ha.toLocaleString("pt-BR")} ha <span class="ml-1 rounded bg-amber-100 px-1.5 text-xs font-semibold text-amber-900">exemplo</span>`
+      : "Nenhuma área confirmada.";
+  }
+
+  function preencher() {
+    mostrarArea();
+    inData.value = entradas.colheita_soja ?? "";
+    const s = entradas.solo;
+    const v = s ? (s.modo === "mm" ? "mm" : s.textura) : "";
+    form.querySelectorAll<HTMLInputElement>('input[name="solo"]').forEach((r) => (r.checked = r.value === v));
+    if (s?.modo === "mm") inMm.value = String(s.cad_mm).replace(".", ",");
+    caixaMm.classList.toggle("hidden", v !== "mm");
+    form.querySelectorAll<HTMLInputElement>('input[name="grupo"]').forEach((r) => (r.checked = r.value === entradas.grupo));
+  }
+
+  function ler(): EntradasComparacao {
+    const solo = (form.querySelector('input[name="solo"]:checked') as HTMLInputElement | null)?.value;
+    let s: EntradasComparacao["solo"] = null;
+    if (solo === "mm") {
+      const n = lerNumero(inMm.value);
+      s = { modo: "mm", cad_mm: typeof n === "number" ? n : NaN };
+    } else if (solo) s = { modo: "textura", textura: solo as any };
+    const grupo = (form.querySelector('input[name="grupo"]:checked') as HTMLInputElement | null)?.value ?? null;
+    return { ...entradas, colheita_soja: inData.value || null, solo: s, grupo: grupo as any };
+  }
+
+  function mostrarErros(lista: { campo: string; mensagem: string }[]) {
+    form.querySelectorAll<HTMLElement>("[data-erro]").forEach((p) => {
+      const e = lista.find((x) => x.campo === p.dataset.erro);
+      p.textContent = e?.mensagem ?? "";
+      p.classList.toggle("hidden", !e);
+    });
+    const r = document.getElementById("resumo-erros")!;
+    r.textContent = lista.length ? `Corrija ${lista.length} campo(s) para seguir.` : "";
+    r.classList.toggle("hidden", !lista.length);
+  }
+
+  form.addEventListener("change", (ev) => {
+    const alvo = ev.target as HTMLInputElement;
+    if (alvo.name === "solo") caixaMm.classList.toggle("hidden", alvo.value !== "mm");
+    entradas = ler();
+    sessao.gravar({ exemplo: true, entradas });
+  });
+
+  document.getElementById("usar-area-exemplo")!.addEventListener("click", () => {
+    entradas = { ...ler(), area: ex.entradas.area };
+    sessao.gravar({ exemplo: true, entradas });
+    mostrarArea();
+  });
+
+  document.getElementById("limpar")!.addEventListener("click", () => {
+    sessao.limpar();
+    entradas = { ...sessao.VAZIA };
+    preencher();
+    mostrarErros([]);
+  });
+
+  form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    entradas = ler();
+    const erros = validarEntradas(entradas);
+    mostrarErros(erros);
+    sessao.gravar({ exemplo: true, entradas });
+    if (!erros.length) location.href = "/comparacao/metodologia";
+  });
+
+  preencher();
+</script>
