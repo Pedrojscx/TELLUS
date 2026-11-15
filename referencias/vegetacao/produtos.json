@@ -1,0 +1,76 @@
+{
+  "_sobre": "Metadados documentados dos produtos de vegetação (spec 009). Fatos de produto, com fonte; nenhuma regra de uso aqui. A regra de qualidade e o índice escolhido estão em parametros.json e dependem da decisão D-007 (#69).",
+  "MOD13Q1": {
+    "produto": "MOD13Q1",
+    "nome": "MODIS/Terra Vegetation Indices 16-Day L3 Global 250m SIN Grid",
+    "versao": "061",
+    "plataforma": "Terra",
+    "doi": "10.5067/MODIS/MOD13Q1.061",
+    "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+    "resolucao": {"espacial_m": 231.656358, "espacial_texto": "250 m nominal (pixel de 231,66 m na grade senoidal)", "temporal": "composição de 16 dias"},
+    "calendario": {"dia_juliano_inicial": 1, "passo_dias": 16},
+    "indices": {
+      "ndvi": {"camada": "250m 16 days NDVI", "fator_escala": 0.0001, "faixa_valida": [-2000, 10000], "preenchimento": -3000, "unidade": "adimensional (índice de −1 a 1)"},
+      "evi": {"camada": "250m 16 days EVI", "fator_escala": 0.0001, "faixa_valida": [-2000, 10000], "preenchimento": -3000, "unidade": "adimensional (índice de −1 a 1)"}
+    },
+    "qa": {
+      "pixel_reliability": {"camada": "250m 16 days pixel reliability", "-1": "preenchimento/sem dado", "0": "dado bom", "1": "dado marginal", "2": "neve/gelo", "3": "nuvem"},
+      "vi_quality_bits_0_1": {"camada": "250m 16 days VI Quality", "0": "VI produzido, boa qualidade", "1": "VI produzido, conferir outras QA", "2": "pixel produzido, provavelmente nuvem", "3": "pixel não produzido por outras razões"}
+    },
+    "fonte": "Didan, K.; Barreto, A. MODIS Vegetation Index User's Guide (MOD13 Series), Collection 6.1, 2019 (LP DAAC); página do produto MOD13Q1 v061 no LP DAAC.",
+    "limitacao": "Pixel de 250 m mistura lavoura, estrada, mata e solo exposto; cada valor é o melhor dia de uma janela de 16 dias, não uma medição diária da fazenda."
+  },
+  "MYD13Q1": {
+    "produto": "MYD13Q1",
+    "nome": "MODIS/Aqua Vegetation Indices 16-Day L3 Global 250m SIN Grid",
+    "versao": "061",
+    "plataforma": "Aqua",
+    "doi": "10.5067/MODIS/MYD13Q1.061",
+    "url": "https://lpdaac.usgs.gov/products/myd13q1v061/",
+    "resolucao": {"espacial_m": 231.656358, "espacial_texto": "250 m nominal (pixel de 231,66 m na grade senoidal)", "temporal": "composição de 16 dias (defasada 8 dias do Terra)"},
+    "calendario": {"dia_juliano_inicial": 9, "passo_dias": 16},
+    "indices": {
+      "ndvi": {"camada": "250m 16 days NDVI", "fator_escala": 0.0001, "faixa_valida": [-2000, 10000], "preenchimento": -3000, "unidade": "adimensional (índice de −1 a 1)"},
+      "evi": {"camada": "250m 16 days EVI", "fator_escala": 0.0001, "faixa_valida": [-2000, 10000], "preenchimento": -3000, "unidade": "adimensional (índice de −1 a 1)"}
+    },
+    "qa": {
+      "pixel_reliability": {"camada": "250m 16 days pixel reliability", "-1": "preenchimento/sem dado", "0": "dado bom", "1": "dado marginal", "2": "neve/gelo", "3": "nuvem"},
+      "vi_quality_bits_0_1": {"camada": "250m 16 days VI Quality", "0": "VI produzido, boa qualidade", "1": "VI produzido, conferir outras QA", "2": "pixel produzido, provavelmente nuvem", "3": "pixel não produzido por outras razões"}
+    },
+    "fonte": "Didan, K.; Barreto, A. MODIS Vegetation Index User's Guide (MOD13 Series), Collection 6.1, 2019 (LP DAAC); página do produto MYD13Q1 v061 no LP DAAC.",
+    "limitacao": "Pixel de 250 m mistura lavoura, estrada, mata e solo exposto; cada valor é o melhor dia de uma janela de 16 dias, não uma medição diária da fazenda."
+  },
+  "HLS": {
+    "produto": "HLS",
+    "nome": "Harmonized Landsat Sentinel-2 (HLSL30 e HLSS30) — reflectância de superfície",
+    "versao": "2.0",
+    "plataforma": "Landsat 8/9 OLI (L30) e Sentinel-2 MSI (S30)",
+    "doi": "10.5067/HLS/HLSL30.020; 10.5067/HLS/HLSS30.020",
+    "url": "https://lpdaac.usgs.gov/products/hlsl30v002/",
+    "resolucao": {"espacial_m": 30, "espacial_texto": "30 m", "temporal": "cena por passagem (2 a 3 dias combinando sensores, antes de nuvem)"},
+    "bandas": {
+      "L30": {"azul": "B02", "vermelho": "B04", "nir": "B05"},
+      "S30": {"azul": "B02", "vermelho": "B04", "nir": "B8A"},
+      "fator_escala": 0.0001,
+      "preenchimento": -9999
+    },
+    "indices": {
+      "ndvi": {"formula": "(NIR − Vermelho) / (NIR + Vermelho)", "unidade": "adimensional (índice de −1 a 1)"},
+      "evi": {"formula": "2,5 × (NIR − Vermelho) / (NIR + 6 × Vermelho − 7,5 × Azul + 1)", "unidade": "adimensional"}
+    },
+    "qa": {
+      "fmask_bits": {"0": "cirro (reservado)", "1": "nuvem", "2": "adjacente a nuvem/sombra", "3": "sombra de nuvem", "4": "neve/gelo", "5": "água", "6-7": "nível de aerossol"}
+    },
+    "acesso": "Requer conta NASA Earthdata (variável de ambiente EARTHDATA_TOKEN).",
+    "fonte": "HLS Product User Guide v2.0 (Masek, Ju et al., NASA LP DAAC); fórmula do EVI: Huete et al. 2002, Remote Sensing of Environment 83:195–213.",
+    "limitacao": "Pixel de 30 m ainda não é a lavoura; nuvem frequente no verão do Cerrado deixa lacunas longas; L30 e S30 são harmonizados, mas não idênticos."
+  },
+  "grade_senoidal_modis": {
+    "raio_terra_m": 6371007.181,
+    "x_min_m": -20015109.354,
+    "y_max_m": 10007554.677,
+    "lado_tile_m": 1111950.5197665,
+    "pixels_por_tile_250m": 4800,
+    "fonte": "MODIS Land Grid (Sinusoidal) — NASA MODLAND tile grid; Wolfe, Roy & Vermote 1998, IEEE TGRS 36(4)."
+  }
+}

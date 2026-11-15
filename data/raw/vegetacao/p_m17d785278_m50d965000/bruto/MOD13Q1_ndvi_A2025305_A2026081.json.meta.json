@@ -1,0 +1,5 @@
+{
+ "url": "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset?latitude=-17.785278&longitude=-50.965&band=250m_16_days_NDVI&startDate=A2025305&endDate=A2026081&kmAboveBelow=0&kmLeftRight=0",
+ "obtido_em": "2026-11-15",
+ "sha256": "441cc9eaba18d4c174d3d6130d685bde3ea1989c07c96c88576280689f301ea7"
+}

@@ -1,0 +1,6 @@
+{
+ "url": "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=HLSS30&version=2.0&point=-50.965,-17.785278&temporal=2025-11-15T00:00:00Z,2026-11-15T00:00:00Z&page_size=500",
+ "obtido_em": "2026-11-15",
+ "sha256": "a1f8ec18fd763f509563ec8dc068b7f64a89fa49479d6e7c7d8a8d22719c42c0",
+ "login": "n\u00e3o (metadados p\u00fablicos do CMR)"
+}
