@@ -27,6 +27,13 @@ APELIDOS = {
     ("MG", "sao thome das letras"): "sao tome das letras",
     ("TO", "couto de magalhaes"): "couto magalhaes",
     ("SP", "santa cruz da conceic o"): "santa cruz da conceicao",  # o SISZARC grava "Conceic?o" (erro de codificação)
+    ("PE", "lagoa do itaenga"): "lagoa de itaenga",
+    ("RJ", "parati"): "paraty",
+    ("RN", "ares"): "arez",
+    ("RN", "boa saude"): "januario cicco",  # nome antigo do município, ainda usado pelo SISZARC
+    ("RR", "sao luiz"): "sao luiz do anaua",  # o município se chama São Luiz do Anauá no IBGE
+    ("SE", "amparo de sao francisco"): "amparo do sao francisco",
+    ("SE", "gracho cardoso"): "graccho cardoso",
 }
 
 
