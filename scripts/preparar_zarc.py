@@ -23,6 +23,8 @@ MUN = json.loads((RAIZ / "referencias" / "localizacao" / "municipios.json").read
 # grafias do SISZARC que diferem do IBGE (UF, nome normalizado do SISZARC) -> nome normalizado do IBGE
 APELIDOS = {
     ("MT", "santo antonio do leverger"): "santo antonio de leverger",
+    ("MG", "barao de monte alto"): "barao do monte alto",
+    ("MG", "sao thome das letras"): "sao tome das letras",
 }
 
 
