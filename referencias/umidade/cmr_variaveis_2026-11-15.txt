@@ -1,0 +1,35 @@
+C2938664585-NSIDC_CPRD SPL3SMP 009 doi 10.5067/4XXOGX0OOW1S nvars 104
+  docs ['https://nsidc.org/sites/default/files/documents/user-guide/spl3smp-v009-userguide.pdf', 'https://nsidc.org/sites/default/files/d7255120smap20l3_sm_p20psd_version2080_final.pdf']
+  res {'HorizontalDataResolution': {'GriddedResolutions': [{'XDimension': 36.0, 'YDimension': 36.0, 'Unit': 'Kilometers'}]}}
+    Soil_Moisture_Retrieval_Data_AM/EASE_column_index | None | fill [65534] | The column index of the 36 km EASE grid cell that contains the associa
+    Soil_Moisture_Retrieval_Data_AM/EASE_row_index | None | fill [65534] | The row index of the 36 km EASE grid cell that contains the associated
+    Soil_Moisture_Retrieval_Data_AM/retrieval_qual_flag | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_AM/soil_moisture | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+    Soil_Moisture_Retrieval_Data_PM/EASE_column_index_pm | None | fill [65534] | The column index of the 36 km EASE grid cell that contains the associa
+    Soil_Moisture_Retrieval_Data_PM/EASE_row_index_pm | None | fill [65534] | The row index of the 36 km EASE grid cell that contains the associated
+    Soil_Moisture_Retrieval_Data_PM/retrieval_qual_flag_pm | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_PM/soil_moisture_pm | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+C2938664763-NSIDC_CPRD SPL3SMP_E 006 doi 10.5067/M20OXIZHY3RJ nvars 200
+  docs ['https://nsidc.org/sites/default/files/documents/user-guide/spl3smp_e-v006-userguide.pdf', 'https://nsidc.org/sites/default/files/d5629220smap20l3_sm_p_e20psd_version2050_final.pdf']
+  res {'HorizontalDataResolution': {'GriddedResolutions': [{'XDimension': 9.0, 'YDimension': 9.0, 'Unit': 'Kilometers'}]}}
+    Soil_Moisture_Retrieval_Data_AM/EASE_column_index | None | fill [65534] | The column index of the 9 km EASE grid cell that contains the associat
+    Soil_Moisture_Retrieval_Data_AM/EASE_row_index | None | fill [65534] | The row index of the 9 km EASE grid cell that contains the associated 
+    Soil_Moisture_Retrieval_Data_AM/retrieval_qual_flag | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_AM/soil_moisture | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+    Soil_Moisture_Retrieval_Data_PM/EASE_column_index_pm | None | fill [65534] | The column index of the 9 km EASE grid cell that contains the associat
+    Soil_Moisture_Retrieval_Data_PM/EASE_row_index_pm | None | fill [65534] | The row index of the 9 km EASE grid cell that contains the associated 
+    Soil_Moisture_Retrieval_Data_PM/retrieval_qual_flag_pm | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_PM/soil_moisture_pm | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+    Soil_Moisture_Retrieval_Data_Polar_AM/EASE_column_index | None | fill [65534] | The column index of the 9 km EASE grid cell that contains the associat
+    Soil_Moisture_Retrieval_Data_Polar_AM/EASE_row_index | None | fill [65534] | The row index of the 9 km EASE grid cell that contains the associated 
+    Soil_Moisture_Retrieval_Data_Polar_AM/retrieval_qual_flag | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_Polar_AM/soil_moisture | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+    Soil_Moisture_Retrieval_Data_Polar_PM/EASE_column_index_pm | None | fill [65534] | The column index of the 9 km EASE grid cell that contains the associat
+    Soil_Moisture_Retrieval_Data_Polar_PM/EASE_row_index_pm | None | fill [65534] | The row index of the 9 km EASE grid cell that contains the associated 
+    Soil_Moisture_Retrieval_Data_Polar_PM/retrieval_qual_flag_pm | None | fill [65534] | Bit flags that record the conditions and the quality of the DCA retrie
+    Soil_Moisture_Retrieval_Data_Polar_PM/soil_moisture_pm | cm**3/cm**3 | fill [-9999.0] | Representative DCA soil moisture measurement for the Earth based grid 
+C3480440870-NSIDC_CPRD SPL4SMGP 008 doi 10.5067/T5RUATAQREF8 nvars 53
+  docs ['https://nsidc.org/sites/default/files/documents/user-guide/multi_spl4smau-v008-userguide.pdf', 'https://nsidc.org/sites/default/files/documents/technical-reference/smap_l4_sm_psd_v17_for_l4sm_version_8.pdf']
+  res {'HorizontalDataResolution': {'GriddedResolutions': [{'XDimension': 9.0, 'YDimension': 9.0, 'Unit': 'Kilometers'}]}}
+    Geophysical_Data/sm_rootzone | m3 m-3 | fill [-9999.0] | Root zone soil moisture (0-100 cm)
+    Geophysical_Data/sm_surface | m3 m-3 | fill [-9999.0] | Top layer soil moisture (0-5 cm)
