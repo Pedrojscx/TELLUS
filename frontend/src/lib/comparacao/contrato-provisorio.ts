@@ -81,7 +81,8 @@ export interface Premissa {
   sem_padrao_motivo?: string | null;
   cotacao?: CotacaoInformada | null;
   /** Mapeamento para o pedido da 011: módulo, id e cultura da premissa no backend. */
-  pedido?: { modulo: "economia" | "culturas" | "motor"; id: string; cultura?: string | null };
+  /** `fator`/`unidade`: conversão para a unidade do backend (ex.: sacas/ha × 60 = kg/ha). */
+  pedido?: { modulo: "economia" | "culturas" | "motor"; id: string; cultura?: string | null; fator?: number; unidade?: string };
 }
 
 export interface CenarioMargem {
@@ -170,11 +171,12 @@ export function premissasParaPedido(ps: Premissa[]): PremissaEditadaPedido[] {
   const saida: PremissaEditadaPedido[] = [];
   for (const p of ps) {
     if (!p.pedido) continue;
-    const base = { modulo: p.pedido.modulo, id: p.pedido.id, unidade: p.unidade, cultura: p.pedido.cultura ?? null };
+    const fator = p.pedido.fator ?? 1;
+    const base = { modulo: p.pedido.modulo, id: p.pedido.id, unidade: p.pedido.unidade ?? p.unidade, cultura: p.pedido.cultura ?? null };
     if (p.exige_cotacao) {
-      if (p.cotacao) saida.push({ ...base, valor_novo: p.cotacao.valor, origem_informada: p.cotacao.origem_informada, data_informada: p.cotacao.data_informada });
+      if (p.cotacao) saida.push({ ...base, valor_novo: p.cotacao.valor * fator, origem_informada: p.cotacao.origem_informada, data_informada: p.cotacao.data_informada });
     } else if (p.editado != null) {
-      saida.push({ ...base, valor_novo: p.editado });
+      saida.push({ ...base, valor_novo: p.editado * fator });
     }
   }
   return saida;

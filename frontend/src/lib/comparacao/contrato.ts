@@ -33,7 +33,10 @@ export function montarPedido(e: EntradasComparacao, lavoura: LavouraConfirmada, 
     lavoura.tipo === "geometria" && lavoura.geometria && lavoura.id_geometria
       ? { tipo: "geometria", geometria: lavoura.geometria, id_geometria: lavoura.id_geometria, origem: lavoura.origem ?? "desenho", confirmada: true }
       : { tipo: "ponto", lat: lavoura.lat, lon: lavoura.lon, confirmada: true, ...(lavoura.codigo_ibge ? { codigo_ibge: lavoura.codigo_ibge } : {}) };
-  const solo = e.solo?.modo === "mm" ? { cad_mm: e.solo.cad_mm } : e.solo ? { textura: e.solo.textura } : {};
+  // A água disponível editada nas premissas prevalece sobre a escolha das Entradas (o produtor informou o valor).
+  const cadEditado = premissas.find((p) => p.id === "cad_mm" && p.editado != null)?.editado ?? null;
+  const solo = cadEditado != null ? { cad_mm: cadEditado }
+    : e.solo?.modo === "mm" ? { cad_mm: e.solo.cad_mm } : e.solo ? { textura: e.solo.textura } : {};
   const pedido: Record<string, unknown> = {
     versao_contrato: VERSAO_CONTRATO,
     area,
@@ -84,6 +87,19 @@ export interface RespostaContrato {
   recomendacao: Secao;
   contextos: Record<"vegetacao" | "umidade", { estado: string; conteudo: any; avisos: AvisoContrato[]; erro: ErroContrato | null }>;
   avisos: AvisoContrato[]; erros: ErroContrato[]; hipoteses: string[];
+  premissas_editadas?: { modulo: string; id: string; valor_novo: number; unidade: string; cultura: string | null;
+                         valor_padrao: number | null; origem_informada?: string | null; data_informada?: string | null }[];
+  fontes?: { fonte: string; estado: "ok" | "cache" | "falha"; obtido_em: string | null; secao: string }[];
+}
+
+const num = (v: number) => v.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
+
+/** "Preço (milho): padrão 67,34 → 70 R$/saca (produtor)": padrão e edição lado a lado, com a origem (#102). */
+export function textoAlteracao(p: NonNullable<RespostaContrato["premissas_editadas"]>[number]): string {
+  const cult = p.cultura ? ` (${NOME_CULTURA[p.cultura] ?? p.cultura})` : "";
+  const padrao = p.valor_padrao == null ? "sem padrão com fonte" : `padrão ${num(p.valor_padrao)}`;
+  const origem = p.origem_informada ? `informado: ${p.origem_informada}, ${p.data_informada}` : "editado pelo produtor";
+  return `${p.id}${cult}: ${padrao} → ${num(p.valor_novo)} ${p.unidade} (${origem})`;
 }
 
 function situacao(s: string): Proveniencia["situacao"] {
@@ -152,7 +168,11 @@ export function paraResultado(r: RespostaContrato, metodologia: "cultura_escolhi
     versao_contrato: r.versao_contrato,
     metodologia,
     criterio_ordem: criterio || "—",
-    alternativas: alts.map((a) => paraAlternativa(a, provs)),
+    alternativas: alts.map((a) => {
+      const alt = paraAlternativa(a, provs);
+      const mudancas = (r.premissas_editadas ?? []).filter((p) => p.cultura == null || p.cultura === a.cultura).map(textoAlteracao);
+      return { ...alt, premissas_usadas: [...mudancas, ...alt.premissas_usadas] };
+    }),
     avisos: [...(r.avisos ?? []), ...(rec.avisos ?? []), ...indisponiveis].map((a) => ({ codigo: a.codigo, mensagem: a.mensagem })),
     erros: (r.erros ?? []).map(paraErro),
     contextos_opcionais: (["vegetacao", "umidade"] as const).map((k) => paraContexto(k, r.contextos[k])),

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import resposta from "../../../../specs/011-contrato-api/contracts/exemplos/resposta_rio_verde.json";
-import { montarPedido, paraResultado, type RespostaContrato } from "./contrato";
+import { montarPedido, paraResultado, textoAlteracao, type RespostaContrato } from "./contrato";
+import { premissasParaPedido } from "./contrato-provisorio";
 import type { EntradasComparacao, Premissa } from "./contrato-provisorio";
 import type { LavouraConfirmada } from "./lavoura";
 
@@ -64,5 +65,32 @@ describe("paraResultado (resposta real gravada de Rio Verde)", () => {
   it("contextos opcionais com aviso de escala", () => {
     expect(res.contextos_opcionais.map((c) => c.id)).toEqual(["vegetacao", "umidade"]);
     expect(res.contextos_opcionais.every((c) => c.aviso_escala.length > 0)).toBe(true);
+  });
+});
+
+describe("#102: premissas do editor chegam ao backend", () => {
+  const milho = (id: string, editado: number, pedido: Premissa["pedido"]): Premissa => ({
+    id, nome: id, tipo: "economica", padrao: 1, editado, unidade: "x", minimo: 0, maximo: 100000,
+    proveniencia: { fonte: "exemplo", situacao: "editado" }, pedido,
+  });
+  it("preço, custo e sacas do milho viram premissas_editadas (sacas × 60 = kg/ha)", () => {
+    const ps = premissasParaPedido([
+      milho("preco_milho", 70, { modulo: "economia", id: "preco_r_saca", cultura: "milho_2a_safra" }),
+      milho("custo_milho", 5000, { modulo: "economia", id: "custo_r_ha", cultura: "milho_2a_safra" }),
+      milho("sacas_ha_milho", 100, { modulo: "economia", id: "produtividade_kg_ha", cultura: "milho_2a_safra", fator: 60, unidade: "kg/ha" }),
+    ]);
+    expect(ps).toEqual([
+      { modulo: "economia", id: "preco_r_saca", unidade: "x", cultura: "milho_2a_safra", valor_novo: 70 },
+      { modulo: "economia", id: "custo_r_ha", unidade: "x", cultura: "milho_2a_safra", valor_novo: 5000 },
+      { modulo: "economia", id: "produtividade_kg_ha", unidade: "kg/ha", cultura: "milho_2a_safra", valor_novo: 6000 },
+    ]);
+  });
+  it("água disponível editada vai no solo do pedido", () => {
+    const cad: Premissa = { id: "cad_mm", nome: "Água", tipo: "solo", padrao: 60, editado: 72, unidade: "mm", minimo: 10, maximo: 250, proveniencia: { fonte: "x", situacao: "editado" } };
+    expect((montarPedido(entradas, ponto, [cad]) as any).solo).toEqual({ cad_mm: 72 });
+  });
+  it("resultado mostra padrão e edição lado a lado", () => {
+    expect(textoAlteracao({ modulo: "economia", id: "preco_r_saca", valor_novo: 70, unidade: "R$/saca de 60 kg", cultura: "milho_2a_safra", valor_padrao: 67.34 }))
+      .toBe("preco_r_saca (Milho 2ª safra): padrão 67,34 → 70 R$/saca de 60 kg (editado pelo produtor)");
   });
 });

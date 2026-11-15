@@ -76,6 +76,13 @@ def test_completo_sem_edicoes_recomenda_so_o_que_tem_dados():
     assert {i["cultura"] for i in r["indisponiveis"]} >= {"sorgo_granifero_2a_safra", "braquiaria_cobertura"}
 
 
+def test_cad_informada_sem_classe_zarc_so_tira_a_cultura():
+    """#102: CAD editada pelo produtor; sorgo (classe por tipo de solo) fica indisponível, milho segue."""
+    r = servico.recomendar(BASE | {"solo": {"cad_mm": 72}, "metodologia": "calculo_completo", "edicoes_economia": ECO})
+    assert "milho_2a_safra" in {a["cultura"] for a in r["alternativas"]}
+    assert any(i["cultura"] == "sorgo_granifero_2a_safra" and "classe do ZARC" in i["motivo"] for i in r["indisponiveis"])
+
+
 def test_grupo_informado_limita():
     r = servico.recomendar(BASE | {"metodologia": "cultura_escolhida", "cultura": "milho_2a_safra", "grupo": "GRUPO II"})
     assert {a["grupo"] for a in r["alternativas"]} == {"GRUPO II"}
