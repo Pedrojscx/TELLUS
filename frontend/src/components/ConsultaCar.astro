@@ -1,0 +1,29 @@
+---
+// Consulta pelo número do CAR e upload do shapefile SICAR (spec 001). A lógica fica no script do
+// SeletorLocal, que é dono do mapa.
+---
+
+<div class="space-y-2 border-t border-stone-200 pt-4">
+  <form id="form-car" class="space-y-2" novalidate>
+    <label for="car" class="block text-sm font-medium">Número do CAR (opcional)</label>
+    <div class="flex flex-wrap gap-2">
+      <input
+        id="car"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="GO-5218805-8F8B1082570B4C1799ADBEE6CE0EEE33"
+        class="min-w-0 flex-1 rounded-md border border-stone-300 px-3 py-2 font-mono text-sm uppercase"
+      />
+      <button type="submit" class="rounded-md border border-emerald-700 px-4 py-2 font-medium text-emerald-800 hover:bg-emerald-50">
+        Buscar no CAR
+      </button>
+    </div>
+  </form>
+
+  <div>
+    <label for="arquivo-sicar" class="block text-sm font-medium">Ou envie o shapefile do imóvel exportado do SICAR (.zip)</label>
+    <input id="arquivo-sicar" type="file" accept=".zip,application/zip" class="mt-1 block w-full text-sm text-stone-700 file:mr-3 file:rounded-md file:border-0 file:bg-stone-200 file:px-3 file:py-1.5" />
+  </div>
+
+  <div id="resultado-car" aria-live="polite" class="hidden rounded-md border border-stone-200 bg-stone-50 p-3 text-sm"></div>
+</div>

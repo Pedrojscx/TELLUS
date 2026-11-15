@@ -1,0 +1,7 @@
+{
+  "url": "https://geoserver.car.gov.br/geoserver/sicar/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=sicar%3Asicar_imoveis_go&outputFormat=application%2Fjson&srsName=EPSG%3A4326&cql_filter=cod_imovel%3D%27GO-5218805-00000000000000000000000000000000%27",
+  "camada": "sicar:sicar_imoveis_go",
+  "obtido_em": "2026-11-15",
+  "status_http": 200,
+  "sha256": "152688d5bdba6b57b2a7fb29f430d730f18f8c6f16f7b02e9813af0ac8934bf1"
+}

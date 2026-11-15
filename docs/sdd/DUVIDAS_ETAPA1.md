@@ -13,3 +13,7 @@
 | D-009 | contrato-api | Qual limite de tamanho e prazo de processamento será aceito para arquivo e geometria complexa? | Define resposta de espera ou erro | limites definidos; fila; restrição inicial | Definir antes de aceitar uploads grandes | Contrato final de upload |
 | D-010 | interface-web | Quais requisitos de acesso e dispositivos são obrigatórios no lançamento inicial? | Define critérios testáveis de uso | celular; computador; ambos | Priorizar celular e computador após teste com produtor | Critérios de aceitação da interface |
 | D-011 | identidade-visual | Qual nome, paleta, tom e licenças de elementos visuais serão aprovados? | Evita identidade sem dono ou licença | oficina; guia existente; adiar | Adiar até o fluxo funcional; usar estilo neutro | Identidade final |
+
+## Respostas
+
+- **D-001 (15/11, 00h)**: sim. O WFS 2.0 de `geoserver.car.gov.br/geoserver/sicar/wfs` (camada `sicar:sicar_imoveis_<uf>`) aceita `cql_filter=cod_imovel='...'` sem login e devolve MultiPolygon, área, condição e data de atualização em cerca de 0,35 s. Código inexistente dá `numberMatched: 0`. O upload do SICAR continua como alternativa. Evidência no REGISTRO.md (15/11, 00h).

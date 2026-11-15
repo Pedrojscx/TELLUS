@@ -52,7 +52,7 @@ Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etap
 
 | ID | Situação | Branch | Responsável |
 |---|---|---|---|
-| 001 | D-001 respondida: o WFS do CAR consulta por código e por área (ver REGISTRO, 15/11 00h). Falta implementar | — | sem dono |
-| 002 | Entrega 1 (ponto e referências) na `main`; faltam desenho, upload e CAR | `main` | LK |
+| 001 | Implementada: consulta pelo número do CAR (WFS SICAR), 6 estados distintos, upload do shapefile SICAR, confirmação da área | `001-pesquisa-car-wfs` | LK |
+| 002 | Entrega 1 (ponto e referências) na `main`. Com a 001: área pelo CAR ou pelo shapefile SICAR, validação, área em ha, municípios atingidos e confirmação. Faltam desenho no mapa e KML/KMZ/GeoJSON | `main` | LK |
 | 003 | Implementada: IMERG 2001 a set/2025 e POWER com proveniência, validação A025 (viés -1,03%, MAE 4,13), Rio Verde offline | `003-dados-clima` | LK |
 | 004, 005 | Propostas para o Pedro | — | Pedro |

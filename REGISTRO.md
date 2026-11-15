@@ -141,3 +141,11 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - `referencias/clima/rio_verde_go/` (série derivada, meta com sha256): a demo roda sem rede. Sem cache, o serviço cai nela (`origem_dados: referencia_versionada`).
 - A API de dados por estação do INMET (`apitempo.../estacao/...`) responde 204. Só a A025 tem validação; as outras estações recebem `disponivel: false` com o motivo.
 - 68 testes passando (pytest com `--import-mode=importlib`).
+
+## Spec 001 CAR (15/11, 00h40, LK + Claude Code)
+- Branch `001-pesquisa-car-wfs`: módulo `tellus.car` (regras puras de geometria, cliente WFS com cache, leitor de shapefile com pyshp) e as rotas `GET /api/car/{codigo}`, `POST /api/car/upload` e `POST /api/lavoura/confirmar`. Na tela: campo do CAR, polígono no mapa, upload SICAR e botão de confirmar.
+- Estados: encontrado, inexistente, sem_geometria, geometria_invalida, codigo_invalido e fonte_indisponivel. Com cache e fonte fora do ar, devolve o estado guardado com o aviso `cache_usado`.
+- TLS: o servidor do SICAR só negocia cifras que o OpenSSL 3.5 (Python 3.14) recusa por padrão. O cliente usa `DEFAULT:@SECLEVEL=1` com o certificado verificado. Sem isso, a consulta caía em `fonte_indisponivel`.
+- Ao vivo: GO-5218805-8F8B…EE33 → encontrado em 0,67 s, 35,15 ha calculados contra 35,0003 ha declarados (0,4%), Rio Verde 100%.
+- 99 testes passando (21 novos do CAR, com resposta WFS real gravada e shapefile gerado no teste).
+- O resumo territorial (área, municípios atingidos, `id_geometria`) e a confirmação já servem a 002 para desenho e arquivo genérico.
