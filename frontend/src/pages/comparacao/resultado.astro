@@ -110,6 +110,8 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
       real.innerHTML = render(r, resp.estado_geral, resp.final);
       real.classList.remove("hidden");
       document.getElementById("resultado-exemplo")!.classList.add("hidden");
+      document.getElementById("selo-exemplo")?.classList.add("hidden");
+      document.title = document.title.replace(" (exemplo)", "");
       estado.classList.add("hidden");
     } catch (err) {
       const f = err as FalhaPedido;
