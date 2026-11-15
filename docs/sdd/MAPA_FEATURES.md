@@ -61,3 +61,4 @@ Não executar as etapas seguintes do Spec Kit nem abrir issues durante esta etap
 | 007 | Implementada: custo Conab da praça mais próxima com itens recompostos, preço CEPEA do milho, sorgo sem preço = indisponível, margem nos 3 cenários com edição e antes/depois | `007-economia` | LK |
 | 008 | Implementada: duas metodologias (cultura escolhida e cálculo completo) sobre o mesmo motor, com paridade testada, ZARC em 100%, ordem pela margem conservadora e D-006 em quartis | `008-recomendacao` | LK |
 | 009, 010, 012 | Com o Pedro | — | Pedro |
+| 013 | Parte 1: decisão D-011 (paleta Safra, tom técnico), guia, tokens, selos e contraste AA; aplicação nas telas aguarda a 012 | `013-identidade-visual` | LK |

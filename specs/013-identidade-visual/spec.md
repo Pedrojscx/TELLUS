@@ -42,4 +42,4 @@ Como produtor, quero reconhecer o Tellus e ler resultados e avisos com facilidad
 
 ## Assumptions
 
-- [NEEDS CLARIFICATION: Qual nome, paleta, tom e licenças de elementos visuais serão aprovados?]
+- Resolvido em 15/11 (D-011), por escolha do LK: nome TELLUS; paleta "Safra" (verde-folha #2F6B2F, dourado escuro #7A5C00, fundo marfim #FFFDF7; estados fonte #155E75, hipótese #7A5C00, aviso #9A3412, erro #B91C1C, todos ≥ 4,5:1); tom técnico e direto; nenhum elemento de terceiros na identidade (ícones e marca da equipe, fontes do sistema). Guia em `docs/marca/GUIA_DE_MARCA.md`.
