@@ -1328,8 +1328,8 @@
     "conteudo": {
      "alteracoes": [
       {
-       "data_informada": "2026-11-14",
-       "origem_informada": "cotação de exemplo (cooperativa fictícia)",
+       "data_informada": "2025-01-15",
+       "origem_informada": "Cooperativa local de Rio Verde/GO",
        "origem_novo": "produtor",
        "premissa": "preco_r_saca",
        "unidade": "R$/saca de 60 kg",
@@ -1706,8 +1706,8 @@
        "editado": true,
        "id": "preco_r_saca",
        "informado": {
-        "data_informada": "2026-11-14",
-        "origem_informada": "cotação de exemplo (cooperativa fictícia)"
+        "data_informada": "2025-01-15",
+        "origem_informada": "Cooperativa local de Rio Verde/GO"
        },
        "motivo": "D-005: o CEPEA não publica indicador de sorgo e o portal de preços da Conab não oferece conexão segura (certificado inválido). Informe o preço negociado para ver a margem.",
        "nome": "Preço de venda",
@@ -1731,7 +1731,7 @@
        "valor_usado": 3600.0
       }
      },
-     "versao_premissas": "03e37eb9d284cc9d"
+     "versao_premissas": "d566130edfca36c9"
     },
     "erro": null,
     "estado": "disponivel",
@@ -1811,7 +1811,7 @@
       "qualidade": "calculado com as premissas acima; inclui premissas do produtor",
       "situacao": "calculado",
       "unidade": "kg/ha, sacas/ha, R$/ha",
-      "versao": "03e37eb9d284cc9d"
+      "versao": "d566130edfca36c9"
      },
      {
       "cobre": [
@@ -1828,25 +1828,26 @@
       "qualidade": "informado pelo produtor; o valor anterior fica ao lado",
       "situacao": "editado",
       "unidade": "ver unidade de cada alteração",
-      "versao": "03e37eb9d284cc9d"
+      "versao": "d566130edfca36c9"
      },
      {
       "cobre": [
-       "premissas.preco.*",
+       "premissas.preco.valor_usado",
        "alteracoes.*"
       ],
-      "fonte": "Informado pelo produtor: cotação de exemplo (cooperativa fictícia)",
-      "id": "informado_preco_r_saca",
-      "localizacao": "informado pelo produtor (cotação de exemplo (cooperativa fictícia))",
-      "periodo": "2026-11-14",
-      "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
-      "situacao": "editado",
+      "fonte": "Cooperativa local de Rio Verde/GO",
+      "id": "preco_informado",
+      "localizacao": "Cooperativa local de Rio Verde/GO",
+      "obtido_em": "2025-01-15",
+      "periodo": "2025-01-15",
+      "qualidade": "informada pelo produtor; sem indicador oficial (D-005)",
+      "situacao": "informada_pelo_produtor",
       "unidade": "R$/saca de 60 kg",
-      "versao": "03e37eb9d284cc9d"
+      "versao": "cotação informada em 2025-01-15"
      }
     ],
     "spec": "007 (#46)",
-    "versao_modulo": "03e37eb9d284cc9d"
+    "versao_modulo": "d566130edfca36c9"
    },
    "risco_hidrico": {
     "avisos": [
@@ -3646,15 +3647,15 @@
   "cultura": null,
   "data_colheita_soja": "2027-01-20",
   "grupo": "GRUPO I",
-  "hash_pedido": "c6bd986a134ce7e3",
+  "hash_pedido": "74187706df344869",
   "metodologia": "comparar_alternativas",
   "premissas_editadas": [
    {
     "cultura": "sorgo_granifero_2a_safra",
-    "data_informada": "2026-11-14",
+    "data_informada": "2025-01-15",
     "id": "preco_r_saca",
     "modulo": "economia",
-    "origem_informada": "cotação de exemplo (cooperativa fictícia)",
+    "origem_informada": "Cooperativa local de Rio Verde/GO",
     "unidade": "R$/saca de 60 kg",
     "valor_novo": 55.0,
     "valor_padrao": null
@@ -3671,10 +3672,10 @@
  "premissas_editadas": [
   {
    "cultura": "sorgo_granifero_2a_safra",
-   "data_informada": "2026-11-14",
+   "data_informada": "2025-01-15",
    "id": "preco_r_saca",
    "modulo": "economia",
-   "origem_informada": "cotação de exemplo (cooperativa fictícia)",
+   "origem_informada": "Cooperativa local de Rio Verde/GO",
    "unidade": "R$/saca de 60 kg",
    "valor_novo": 55.0,
    "valor_padrao": null
@@ -3743,7 +3744,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -3770,7 +3771,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "1cfdc08b1e8ef5c5",
+      "economia": "e03ceaadc9a87655",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -3814,7 +3815,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -3841,7 +3842,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "8ee4a90d0a22d323",
+      "economia": "fd1f0ee80e9aed58",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -3954,7 +3955,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -3981,7 +3982,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "f1019ca8297c2acf",
+      "economia": "4c3c96506986ea0a",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4094,7 +4095,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -4121,7 +4122,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "266e8a3457e86ca6",
+      "economia": "8b66085f5ad43a9e",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4165,7 +4166,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -4192,7 +4193,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "a924b55734b64e61",
+      "economia": "db8a5f5bd2973e1d",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4236,7 +4237,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -4263,7 +4264,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "241aaeea536116eb",
+      "economia": "55509a051f341740",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4307,7 +4308,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -4334,7 +4335,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "ee6ab33cde6675a4",
+      "economia": "98d4994561425004",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4378,7 +4379,7 @@
       "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
       "Percentis dos cenários (D-006)",
       "Premissas econômicas editadas pelo produtor",
-      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+      "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
      ],
      "margem_disponivel": true,
      "margem_r_ha": {
@@ -4405,7 +4406,7 @@
       "risco_zarc_pct": "%"
      },
      "versoes": {
-      "economia": "a9500378a1e8447c",
+      "economia": "50410aa27555b5ea",
       "motor": "050f4b3bd2beeedf"
      }
     },
@@ -4922,7 +4923,7 @@
      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
      "Percentis dos cenários (D-006)",
      "Premissas econômicas editadas pelo produtor",
-     "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     "Preço informado pelo produtor (Cooperativa local de Rio Verde/GO, 2025-01-15)"
     ],
     "margem_disponivel": true,
     "margem_r_ha": {
@@ -4949,7 +4950,7 @@
      "risco_zarc_pct": "%"
     },
     "versoes": {
-     "economia": "1cfdc08b1e8ef5c5",
+     "economia": "e03ceaadc9a87655",
      "motor": "050f4b3bd2beeedf"
     }
    }
@@ -4988,7 +4989,7 @@
     "qualidade": "frequência histórica, não previsão",
     "situacao": "calculado",
     "unidade": "fração 0–1 (risco, perda); mm; anos",
-    "versao": "ded291a06f5cbf11"
+    "versao": "8631e7e8e1829550"
    },
    {
     "cobre": [
@@ -5006,7 +5007,7 @@
     "qualidade": "margem nos cenários conservador, central e favorável",
     "situacao": "calculado",
     "unidade": "kg/ha, sacas/ha, R$/ha",
-    "versao": "ded291a06f5cbf11"
+    "versao": "8631e7e8e1829550"
    },
    {
     "cobre": [
@@ -5032,36 +5033,37 @@
     "qualidade": "critério público em criterio_ordem",
     "situacao": "calculado",
     "unidade": "posição (1 = primeira)",
-    "versao": "ded291a06f5cbf11"
+    "versao": "8631e7e8e1829550"
    },
    {
     "cobre": [
      "*.cenarios.*.receita_r_ha"
     ],
-    "fonte": "Informado pelo produtor: cotação de exemplo (cooperativa fictícia)",
+    "fonte": "Informado pelo produtor: Cooperativa local de Rio Verde/GO",
     "id": "informado_sorgo_granifero_2a_safra_preco_r_saca",
-    "localizacao": "informado pelo produtor (cotação de exemplo (cooperativa fictícia))",
-    "periodo": "2026-11-14",
-    "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
-    "situacao": "editado",
+    "localizacao": "informado pelo produtor (Cooperativa local de Rio Verde/GO)",
+    "obtido_em": "2025-01-15",
+    "periodo": "2025-01-15",
+    "qualidade": "informada pelo produtor; sem indicador oficial (D-005)",
+    "situacao": "informada_pelo_produtor",
     "unidade": "R$/saca de 60 kg",
-    "versao": "ded291a06f5cbf11"
+    "versao": "8631e7e8e1829550"
    }
   ],
   "spec": "008 (#48)",
-  "versao_modulo": "ded291a06f5cbf11"
+  "versao_modulo": "8631e7e8e1829550"
  },
  "versao_contrato": "1.1.0",
  "versoes": {
   "contrato": "1.1.0",
-  "hash_pedido": "c6bd986a134ce7e3",
-  "hash_principal": "f2a3e6cecf0fafbc",
+  "hash_pedido": "74187706df344869",
+  "hash_principal": "7d2d430689d9fd70",
   "modulos": {
    "braquiaria_cobertura.economia": "7930343cc8ece6af",
    "braquiaria_cobertura.risco_hidrico": "49b4f6ecfc563ef2",
    "milho_2a_safra.economia": "0009c669502358ef",
    "milho_2a_safra.risco_hidrico": "f80f0a057b340a0a",
-   "sorgo_granifero_2a_safra.economia": "03e37eb9d284cc9d",
+   "sorgo_granifero_2a_safra.economia": "d566130edfca36c9",
    "sorgo_granifero_2a_safra.risco_hidrico": "050f4b3bd2beeedf"
   }
  }

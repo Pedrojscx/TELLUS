@@ -25,5 +25,17 @@ def test_correcao_mesmo_menor_aceita(pedido_valido):
     assert regras.normalizar_pedido(pedido_valido)
 
 
+@pytest.mark.parametrize("v", ["1.0.0", "1.0.7"])
+def test_pedido_1_0_sem_campos_novos_permanece_compativel(pedido_valido, v):
+    pedido_valido["versao_contrato"] = v
+    for premissa in pedido_valido["premissas_editadas"]:
+        premissa.pop("origem_informada", None)
+        premissa.pop("data_informada", None)
+    normalizado = regras.normalizar_pedido(pedido_valido)
+    assert normalizado["versao_contrato"] == v
+    assert normalizado["premissas_editadas"][0]["origem_informada"] is None
+    assert normalizado["premissas_editadas"][0]["data_informada"] is None
+
+
 def test_resposta_carrega_versao(resposta_real):
     assert resposta_real["versao_contrato"] == versao.VERSAO == resposta_real["versoes"]["contrato"]

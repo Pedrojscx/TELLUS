@@ -156,8 +156,6 @@
     "origem_informada": {
      "anyOf": [
       {
-       "maxLength": 200,
-       "minLength": 2,
        "type": "string"
       },
       {

@@ -3,7 +3,7 @@
 import json
 import re
 
-from tellus.contrato import regras
+from tellus.contrato import regras, versao
 from tellus.contrato.modelos import RespostaCalculo
 
 
@@ -50,7 +50,7 @@ def test_sorgo_sem_preco_padrao_mas_editado_tem_margem(resposta_real):
     s = resposta_real["culturas"][1]["economia"]
     # 1.1.0: sem padrão (D-005), o preço informado pelo produtor fica marcado como tal, com origem e data
     assert s["estado"] == "disponivel" and s["conteudo"]["premissas"]["preco"]["status"] == "informado_pelo_produtor"
-    assert s["conteudo"]["premissas"]["preco"]["informado"]["data_informada"] == "2026-11-14"
+    assert s["conteudo"]["premissas"]["preco"]["informado"]["data_informada"] == "2025-01-15"
     assert s["conteudo"]["premissas"]["preco"]["valor_usado"] == 55.0
     assert "premissas_do_produtor" in {p["id"] for p in s["proveniencia"]}
 
@@ -68,11 +68,12 @@ def test_008_disponivel_com_saida_real(resposta_real):
     assert "secao_pendente" not in {a["codigo"] for a in resposta_real["avisos"]}
     assert {p["id"] for p in rec["proveniencia"]} >= {"zarc", "motor", "economia", "percentis", "ordenacao"}
     # a cotação informada do sorgo chega à proveniência da 008
-    assert any(p["id"].startswith("informado_sorgo") and "cooperativa" in p["fonte"] for p in rec["proveniencia"])
+    assert any(p["id"].startswith("informado_sorgo") and "cooperativa" in p["fonte"].lower() for p in rec["proveniencia"])
 
 def test_versoes_de_entradas_e_contrato(resposta_real):
     v = resposta_real["versoes"]
-    assert v["contrato"] == "1.1.0" and v["hash_pedido"] == resposta_real["pedido"]["hash_pedido"]
+    assert v["contrato"] == versao.VERSAO == "1.1.0"
+    assert v["hash_pedido"] == resposta_real["pedido"]["hash_pedido"]
     assert all(v["modulos"][k] for k in v["modulos"])
     assert len(v["modulos"]) == 6
 

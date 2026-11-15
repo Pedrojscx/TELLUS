@@ -30,10 +30,11 @@ def test_origem_e_data_juntas():
 def test_origem_chega_a_proveniencia_da_007():
     r = secoes.calcular(_p())
     sorgo = r["culturas"][1]["economia"]
-    prov = next(p for p in sorgo["proveniencia"] if p["id"] == "informado_preco_r_saca")
-    assert prov["periodo"] == "2026-11-14" and "cooperativa" in prov["fonte"] and "premissas.preco.*" in prov["cobre"]
+    prov = next(p for p in sorgo["proveniencia"] if p["id"] == "preco_informado")  # formato do contrato 1.1.0 (Pedro)
+    assert prov["periodo"] == "2025-01-15" and "Cooperativa" in prov["fonte"] and prov["situacao"] == "informada_pelo_produtor"
+    # a 007 repassa origem e data (não só o contrato a partir do pedido)
     alt = next(a for a in sorgo["conteudo"]["alteracoes"] if a["premissa"] == "preco_r_saca")
-    assert alt["origem_informada"].startswith("cotação") and alt["data_informada"] == "2026-11-14"
+    assert alt["origem_informada"] == "Cooperativa local de Rio Verde/GO" and alt["data_informada"] == "2025-01-15"
     assert regras.numeros_sem_proveniencia(r) == []
 
 

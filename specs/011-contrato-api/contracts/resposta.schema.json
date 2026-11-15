@@ -302,8 +302,6 @@
     "origem_informada": {
      "anyOf": [
       {
-       "maxLength": 200,
-       "minLength": 2,
        "type": "string"
       },
       {
@@ -396,7 +394,8 @@
       "editado",
       "calculado",
       "pedido",
-      "nao_se_aplica"
+      "nao_se_aplica",
+      "informada_pelo_produtor"
      ],
      "title": "Situacao",
      "type": "string"

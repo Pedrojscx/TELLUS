@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from tellus.api import contrato
+from tellus.contrato import versao
 
 
 @pytest.fixture
@@ -16,7 +17,8 @@ def api():
 
 def test_versao_com_limites_e_secoes(api):
     j = api.get("/api/contrato/versao").json()
-    assert j["versao_contrato"] == "1.1.0" and j["versoes_aceitas"] == ["1.0.x", "1.1.x"]
+    assert j["versao_contrato"] == versao.VERSAO == "1.1.0"
+    assert j["versoes_aceitas"] == ["1.0.x", "1.1.x"]
     assert all(v["status"] == "hipotese" for k, v in j["limites"].items() if not k.startswith("_") and k != "vertices_por_anel_max")
     assert j["secoes"]["recomendacao"].startswith("disponivel")
 
