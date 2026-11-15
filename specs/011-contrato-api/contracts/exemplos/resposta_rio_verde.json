@@ -1,0 +1,3697 @@
+{
+ "avisos": [
+  {
+   "codigo": "secao_pendente",
+   "mensagem": "A recomendação (spec 008, #48) ainda não existe. Esta resposta traz risco hídrico e margem por cultura, mas não ordena nem recomenda alternativas.",
+   "origem": "spec 008",
+   "tipo": "aviso"
+  },
+  {
+   "codigo": "cache_usado",
+   "mensagem": "Parte dos dados veio de cópia guardada (cache) de 2026-11-14.",
+   "origem": "fontes",
+   "tipo": "aviso"
+  }
+ ],
+ "contextos": {
+  "umidade": {
+   "avisos": [],
+   "conteudo": null,
+   "erro": null,
+   "estado": "nao_solicitado",
+   "id": "umidade",
+   "spec": "010 (#52)"
+  },
+  "vegetacao": {
+   "avisos": [],
+   "conteudo": null,
+   "erro": null,
+   "estado": "nao_solicitado",
+   "id": "vegetacao",
+   "spec": "009 (#50)"
+  }
+ },
+ "culturas": [
+  {
+   "cultura": "milho_2a_safra",
+   "economia": {
+    "avisos": [
+     {
+      "codigo": "percentis_hipotese",
+      "mensagem": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "origem": "spec 007 (D-006)",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "alteracoes": [],
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 161.41,
+       "percentil_perda": 50,
+       "perda_relativa": 0.1015,
+       "produtividade_kg_ha": 5391.0,
+       "receita_r_ha": 6050.5,
+       "sacas_ha": 89.85
+      },
+      "conservador": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -1133.54,
+       "percentil_perda": 75,
+       "perda_relativa": 0.2938,
+       "produtividade_kg_ha": 4237.2,
+       "receita_r_ha": 4755.55,
+       "sacas_ha": 70.62
+      },
+      "favoravel": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 711.58,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0198,
+       "produtividade_kg_ha": 5881.2,
+       "receita_r_ha": 6600.67,
+       "sacas_ha": 98.02
+      }
+     },
+     "comparacao": null,
+     "cultura": "milho_2a_safra",
+     "custo_conab": {
+      "avisos_planilha": [],
+      "codigo_ibge": "5218805",
+      "distancia_km": 9.2,
+      "fonte": {
+       "arquivo": "conab_milho_2a_safra.xls",
+       "fonte": "Conab — custos de produção, série histórica",
+       "obtido_em": "2026-11-14",
+       "sha256": "30c923d8f92d1bbc1995f13b568fe24b7349e38f752e0491157a1f2adc59df1b",
+       "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/milho/milho_2a_safra_serie_historica_2005-2026.xls"
+      },
+      "itens": [
+       {
+        "codigo": "1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Operação com animal",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Operação com Avião",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "3.1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Tratores e Colheitadeiras",
+        "valor_r_ha": 269.51,
+        "valor_usado_r_ha": 269.51
+       },
+       {
+        "codigo": "3.2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Conjunto de Irrigação",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "4",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Aluguel de Máquinas",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "5",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Aluguel de Animais",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "6",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Mão de obra",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "7",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Administrador",
+        "valor_r_ha": 16.32,
+        "valor_usado_r_ha": 16.32
+       },
+       {
+        "codigo": "8",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Sementes e mudas",
+        "valor_r_ha": 900.0,
+        "valor_usado_r_ha": 900.0
+       },
+       {
+        "codigo": "9",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Fertilizantes",
+        "valor_r_ha": 2170.58,
+        "valor_usado_r_ha": 2170.58
+       },
+       {
+        "codigo": "10",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Agrotóxicos",
+        "valor_r_ha": 447.28,
+        "valor_usado_r_ha": 447.28
+       },
+       {
+        "codigo": "11",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Receita",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Embalagens/Utensílios",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Análise de Solo",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.3",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Demais Despesas",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "13",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Serviços Diversos",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "14",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Transporte Externo",
+        "valor_r_ha": 300.0,
+        "valor_usado_r_ha": 300.0
+       },
+       {
+        "codigo": "15",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Despesas Administrativas",
+        "valor_r_ha": 114.11,
+        "valor_usado_r_ha": 114.11
+       },
+       {
+        "codigo": "16",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Despesas de armazenagem",
+        "valor_r_ha": 233.75,
+        "valor_usado_r_ha": 233.75
+       },
+       {
+        "codigo": "17",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Beneficiamento",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "18",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Seguro da Produção",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "19",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Seguro do crédito",
+        "valor_r_ha": 53.25,
+        "valor_usado_r_ha": 53.25
+       },
+       {
+        "codigo": "20",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Assistência Técnica",
+        "valor_r_ha": 76.07,
+        "valor_usado_r_ha": 76.07
+       },
+       {
+        "codigo": "21",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Classificação",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "22",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Outros",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "23",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "CESSR",
+        "valor_r_ha": 80.25,
+        "valor_usado_r_ha": 80.25
+       },
+       {
+        "codigo": "24",
+        "editado": false,
+        "grupo": "despesas_financeiras",
+        "nome": "Juros do Financiamento",
+        "valor_r_ha": 157.42,
+        "valor_usado_r_ha": 157.42
+       },
+       {
+        "codigo": "25",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de benfeitorias/instalações",
+        "valor_r_ha": 96.14,
+        "valor_usado_r_ha": 96.14
+       },
+       {
+        "codigo": "26",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de implementos",
+        "valor_r_ha": 174.74,
+        "valor_usado_r_ha": 174.74
+       },
+       {
+        "codigo": "27",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de Máquinas",
+        "valor_r_ha": 156.88,
+        "valor_usado_r_ha": 156.88
+       },
+       {
+        "codigo": "28",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Manutenção Periódica Benfeitorias/Instalações",
+        "valor_r_ha": 17.53,
+        "valor_usado_r_ha": 17.53
+       },
+       {
+        "codigo": "29",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Encargos Sociais",
+        "valor_r_ha": 7.44,
+        "valor_usado_r_ha": 7.44
+       },
+       {
+        "codigo": "30",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Seguro do capital fixo",
+        "valor_r_ha": 19.57,
+        "valor_usado_r_ha": 19.57
+       },
+       {
+        "codigo": "31",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Arrendamento",
+        "valor_r_ha": 598.25,
+        "valor_usado_r_ha": 598.25
+       }
+      ],
+      "mes_referencia": "2026-03",
+      "nivel": "custo_operacional",
+      "planilha": "Rio Verde-GO-2026",
+      "praca": "Rio Verde-GO",
+      "sistema": "PLANTIO DIRETO",
+      "totais_planilha": {
+       "custeio": 3803.69,
+       "custo_fixo": 1070.55,
+       "custo_operacional": 5889.09,
+       "custo_total": 6886.16,
+       "custo_variavel": 4818.54,
+       "depreciacoes": 427.76,
+       "despesas_financeiras": 157.42,
+       "outras_despesas": 857.43,
+       "outros_custos_fixos": 642.79,
+       "renda_fatores": 997.07
+      },
+      "total_nivel_r_ha": 5889.09,
+      "unidade": "R$/ha"
+     },
+     "estado": "fonte",
+     "formula": "margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+     "margem_disponivel": true,
+     "motivos_indisponivel": [],
+     "premissas": {
+      "custo": {
+       "editado": false,
+       "nivel": "custo_operacional",
+       "status": "fonte",
+       "unidade": "R$/ha",
+       "valor_padrao_r_ha": 5889.09,
+       "valor_usado_r_ha": 5889.09
+      },
+      "percentis": {
+       "descricao": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+       "status": "hipotese",
+       "valores": {
+        "central": "50",
+        "conservador": "75",
+        "favoravel": "25"
+       }
+      },
+      "preco": {
+       "editado": false,
+       "fonte": {
+        "data": "2026-11-13",
+        "fonte": "Cepea/Esalq-USP",
+        "indicador": "INDICADOR DO MILHO ESALQ/BM&FBOVESPA",
+        "obtido_em": "2026-11-15",
+        "praca": "Campinas-SP (região de referência do indicador)",
+        "url": "https://www.cepea.org.br/br/indicador/series/milho.aspx?id=77"
+       },
+       "id": "preco_r_saca",
+       "nome": "Preço de venda",
+       "nota": "Preço à vista na região de Campinas-SP; não desconta o frete até a fazenda (o transporte externo já é item de custo da Conab).",
+       "status": "fonte",
+       "unidade": "R$/saca de 60 kg",
+       "valor": 67.34,
+       "valor_usado": 67.34
+      },
+      "produtividade": {
+       "editado": false,
+       "fonte": {
+        "fonte": "Conab",
+        "planilha": "Rio Verde-GO-2026",
+        "tipo": "ex-ante (premissa da Conab)"
+       },
+       "id": "produtividade_kg_ha",
+       "nome": "Produtividade de referência (sem estresse hídrico)",
+       "status": "fonte",
+       "unidade": "kg/ha",
+       "valor": 6000.0,
+       "valor_usado": 6000.0
+      }
+     },
+     "versao_premissas": "0009c669502358ef"
+    },
+    "erro": null,
+    "estado": "disponivel",
+    "id": "economia",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "custo_conab.*",
+       "premissas.custo.*",
+       "cenarios.*.custo_r_ha"
+      ],
+      "fonte": "Conab — custos de produção, série histórica — planilha Rio Verde-GO-2026",
+      "id": "conab_custo",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "obtido_em": "2026-11-14",
+      "periodo": "2026-03",
+      "qualidade": "estimativa ex-ante da Conab, PLANTIO DIRETO, nível custo_operacional",
+      "situacao": "fonte",
+      "unidade": "R$/ha",
+      "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/milho/milho_2a_safra_serie_historica_2005-2026.xls",
+      "versao": "conab_milho_2a_safra.xls sha256 30c923d8f92d"
+     },
+     {
+      "cobre": [
+       "premissas.produtividade.*"
+      ],
+      "fonte": "Conab — planilha Rio Verde-GO-2026",
+      "id": "conab_produtividade",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "obtido_em": "2026-11-14",
+      "periodo": "2026-03",
+      "qualidade": "ex-ante (premissa da Conab)",
+      "situacao": "fonte",
+      "unidade": "kg/ha",
+      "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/milho/milho_2a_safra_serie_historica_2005-2026.xls",
+      "versao": "conab_milho_2a_safra.xls sha256 30c923d8f92d"
+     },
+     {
+      "cobre": [
+       "premissas.preco.*"
+      ],
+      "fonte": "Cepea/Esalq-USP — INDICADOR DO MILHO ESALQ/BM&FBOVESPA",
+      "id": "preco",
+      "localizacao": "Campinas-SP (região de referência do indicador)",
+      "obtido_em": "2026-11-15",
+      "periodo": "2026-11-13",
+      "qualidade": "Preço à vista na região de Campinas-SP; não desconta o frete até a fazenda (o transporte externo já é item de custo da Conab).",
+      "situacao": "fonte",
+      "unidade": "R$/saca de 60 kg",
+      "url": "https://www.cepea.org.br/br/indicador/series/milho.aspx?id=77",
+      "versao": "cotação de 2026-11-13"
+     },
+     {
+      "cobre": [
+       "cenarios.*.perda_relativa"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006), quantis da perda relativa FAO-33",
+      "id": "perda_motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "fração 0–1",
+      "versao": "f80f0a057b340a0a"
+     },
+     {
+      "cobre": [
+       "cenarios.*.percentil_perda"
+      ],
+      "fonte": "D-006 (hipótese do TELLUS, editável)",
+      "id": "percentis",
+      "localizacao": "não se aplica (regra de leitura dos cenários)",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "hipotese — Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "situacao": "hipotese",
+      "unidade": "percentil da perda relativa",
+      "versao": "{\"central\": \"50\", \"conservador\": \"75\", \"favoravel\": \"25\"}"
+     },
+     {
+      "cobre": [
+       "cenarios.*.produtividade_kg_ha",
+       "cenarios.*.sacas_ha",
+       "cenarios.*.receita_r_ha",
+       "cenarios.*.margem_r_ha",
+       "comparacao.*"
+      ],
+      "fonte": "TELLUS economia (spec 007): margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+      "id": "calculo_margem",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "periodo": "2026-03",
+      "qualidade": "calculado com as premissas acima",
+      "situacao": "calculado",
+      "unidade": "kg/ha, sacas/ha, R$/ha",
+      "versao": "0009c669502358ef"
+     }
+    ],
+    "spec": "007 (#46)",
+    "versao_modulo": "0009c669502358ef"
+   },
+   "risco_hidrico": {
+    "avisos": [
+     {
+      "codigo": "nao_e_previsao",
+      "mensagem": "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "escala_regional",
+      "mensagem": "Valores de grade de satélite e reanálise representam a média de uma célula de quilômetros, não a lavoura. Frequência histórica não é previsão.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "hipoteses",
+      "mensagem": "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "anos_excluidos": [],
+     "pedido": {
+      "codigo_ibge": "5218805",
+      "cultura": "milho_2a_safra",
+      "data_colheita_soja": "01-20",
+      "data_plantio": "01-23",
+      "grupo": "GRUPO I",
+      "lat": -17.785278,
+      "lon": -50.965
+     },
+     "por_ano": [
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2001,
+       "chuva_mm": 426.91,
+       "deficit_mm": 59.86,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        11.17,
+        48.69
+       ],
+       "dr_final": 53.056,
+       "drenagem_mm": 212.06,
+       "eta_mm": 267.91,
+       "etc_mm": 327.77,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9225,
+        0.2728
+       ],
+       "maturacao": "2001-05-02",
+       "perda_relativa": 0.2447,
+       "plantio": "2001-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2002,
+       "chuva_mm": 513.77,
+       "deficit_mm": 94.66,
+       "deficit_mm_fases": [
+        0.0,
+        6.06,
+        31.24,
+        57.37
+       ],
+       "dr_final": 49.349,
+       "drenagem_mm": 331.19,
+       "eta_mm": 231.93,
+       "etc_mm": 326.59,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9374,
+        0.7753,
+        0.1255
+       ],
+       "maturacao": "2002-05-02",
+       "perda_relativa": 0.4667,
+       "plantio": "2002-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2003,
+       "chuva_mm": 758.82,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 30.82,
+       "drenagem_mm": 499.89,
+       "eta_mm": 289.75,
+       "etc_mm": 289.75,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2003-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2003-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.99,
+       "ano": 2004,
+       "chuva_mm": 824.23,
+       "deficit_mm": 8.49,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        8.49,
+        0.0
+       ],
+       "dr_final": 24.372,
+       "drenagem_mm": 548.45,
+       "eta_mm": 299.59,
+       "etc_mm": 308.08,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9383,
+        1.0
+       ],
+       "maturacao": "2004-05-01",
+       "perda_relativa": 0.0926,
+       "plantio": "2004-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2005,
+       "chuva_mm": 509.86,
+       "deficit_mm": 64.15,
+       "deficit_mm_fases": [
+        0.0,
+        1.72,
+        17.5,
+        44.93
+       ],
+       "dr_final": 38.806,
+       "drenagem_mm": 283.82,
+       "eta_mm": 264.84,
+       "etc_mm": 329.0,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9831,
+        0.8732,
+        0.292
+       ],
+       "maturacao": "2005-05-02",
+       "perda_relativa": 0.3096,
+       "plantio": "2005-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.963,
+       "ano": 2006,
+       "chuva_mm": 761.44,
+       "deficit_mm": 0.85,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.85
+       ],
+       "dr_final": 36.922,
+       "drenagem_mm": 501.29,
+       "eta_mm": 295.07,
+       "etc_mm": 295.92,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9857
+       ],
+       "maturacao": "2006-05-02",
+       "perda_relativa": 0.0029,
+       "plantio": "2006-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2007,
+       "chuva_mm": 662.8,
+       "deficit_mm": 90.12,
+       "deficit_mm_fases": [
+        0.0,
+        4.64,
+        53.73,
+        31.76
+       ],
+       "dr_final": 23.625,
+       "drenagem_mm": 448.11,
+       "eta_mm": 238.31,
+       "etc_mm": 328.43,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9536,
+        0.6194,
+        0.5024
+       ],
+       "maturacao": "2007-05-02",
+       "perda_relativa": 0.6208,
+       "plantio": "2007-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2008,
+       "chuva_mm": 931.87,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 5.991,
+       "drenagem_mm": 649.98,
+       "eta_mm": 287.88,
+       "etc_mm": 287.88,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2008-05-01",
+       "perda_relativa": 0.0,
+       "plantio": "2008-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2009,
+       "chuva_mm": 669.92,
+       "deficit_mm": 11.82,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        11.82
+       ],
+       "dr_final": 45.93,
+       "drenagem_mm": 421.84,
+       "eta_mm": 294.01,
+       "etc_mm": 305.84,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.8103
+       ],
+       "maturacao": "2009-05-02",
+       "perda_relativa": 0.0379,
+       "plantio": "2009-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2010,
+       "chuva_mm": 569.47,
+       "deficit_mm": 71.24,
+       "deficit_mm_fases": [
+        0.0,
+        4.26,
+        18.41,
+        48.57
+       ],
+       "dr_final": 53.508,
+       "drenagem_mm": 372.67,
+       "eta_mm": 250.3,
+       "etc_mm": 321.54,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9559,
+        0.8602,
+        0.2792
+       ],
+       "maturacao": "2010-05-02",
+       "perda_relativa": 0.3356,
+       "plantio": "2010-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2011,
+       "chuva_mm": 814.0,
+       "deficit_mm": 16.07,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.38,
+        15.69
+       ],
+       "dr_final": 24.003,
+       "drenagem_mm": 564.18,
+       "eta_mm": 273.82,
+       "etc_mm": 289.89,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9969,
+        0.7555
+       ],
+       "maturacao": "2011-05-02",
+       "perda_relativa": 0.0533,
+       "plantio": "2011-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2012,
+       "chuva_mm": 833.77,
+       "deficit_mm": 15.54,
+       "deficit_mm_fases": [
+        0.0,
+        0.69,
+        1.84,
+        13.01
+       ],
+       "dr_final": 12.405,
+       "drenagem_mm": 543.13,
+       "eta_mm": 303.05,
+       "etc_mm": 318.59,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9928,
+        0.9866,
+        0.7819
+       ],
+       "maturacao": "2012-05-01",
+       "perda_relativa": 0.0655,
+       "plantio": "2012-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2013,
+       "chuva_mm": 912.36,
+       "deficit_mm": 1.24,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        1.24
+       ],
+       "dr_final": 38.099,
+       "drenagem_mm": 659.84,
+       "eta_mm": 290.62,
+       "etc_mm": 291.86,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9778
+       ],
+       "maturacao": "2013-05-02",
+       "perda_relativa": 0.0044,
+       "plantio": "2013-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.99,
+       "ano": 2014,
+       "chuva_mm": 751.04,
+       "deficit_mm": 1.19,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.06,
+        1.13
+       ],
+       "dr_final": 19.976,
+       "drenagem_mm": 456.69,
+       "eta_mm": 313.77,
+       "etc_mm": 314.96,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9996,
+        0.9809
+       ],
+       "maturacao": "2014-05-02",
+       "perda_relativa": 0.0045,
+       "plantio": "2014-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2015,
+       "chuva_mm": 720.96,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 27.862,
+       "drenagem_mm": 453.03,
+       "eta_mm": 295.79,
+       "etc_mm": 295.79,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2015-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2015-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.988,
+       "ano": 2016,
+       "chuva_mm": 528.09,
+       "deficit_mm": 107.4,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        44.4,
+        63.0
+       ],
+       "dr_final": 40.105,
+       "drenagem_mm": 342.6,
+       "eta_mm": 224.93,
+       "etc_mm": 332.33,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.7017,
+        0.1133
+       ],
+       "maturacao": "2016-05-01",
+       "perda_relativa": 0.5455,
+       "plantio": "2016-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2017,
+       "chuva_mm": 637.39,
+       "deficit_mm": 21.41,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        3.18,
+        18.23
+       ],
+       "dr_final": 12.428,
+       "drenagem_mm": 355.32,
+       "eta_mm": 294.5,
+       "etc_mm": 315.9,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9766,
+        0.6996
+       ],
+       "maturacao": "2017-05-02",
+       "perda_relativa": 0.093,
+       "plantio": "2017-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.974,
+       "ano": 2018,
+       "chuva_mm": 454.49,
+       "deficit_mm": 18.07,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        13.86,
+        4.21
+       ],
+       "dr_final": 37.968,
+       "drenagem_mm": 200.29,
+       "eta_mm": 290.76,
+       "etc_mm": 308.83,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8981,
+        0.9248
+       ],
+       "maturacao": "2018-05-02",
+       "perda_relativa": 0.1656,
+       "plantio": "2018-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.977,
+       "ano": 2019,
+       "chuva_mm": 613.78,
+       "deficit_mm": 11.1,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        8.34,
+        2.76
+       ],
+       "dr_final": 36.281,
+       "drenagem_mm": 347.93,
+       "eta_mm": 300.87,
+       "etc_mm": 311.97,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9379,
+        0.9545
+       ],
+       "maturacao": "2019-05-02",
+       "perda_relativa": 0.1015,
+       "plantio": "2019-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2020,
+       "chuva_mm": 497.04,
+       "deficit_mm": 33.16,
+       "deficit_mm_fases": [
+        0.0,
+        1.38,
+        23.34,
+        8.44
+       ],
+       "dr_final": 44.657,
+       "drenagem_mm": 251.5,
+       "eta_mm": 290.19,
+       "etc_mm": 323.35,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9857,
+        0.8382,
+        0.8572
+       ],
+       "maturacao": "2020-05-01",
+       "perda_relativa": 0.2685,
+       "plantio": "2020-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.96,
+       "ano": 2021,
+       "chuva_mm": 512.36,
+       "deficit_mm": 65.86,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        26.44,
+        39.42
+       ],
+       "dr_final": 45.377,
+       "drenagem_mm": 268.36,
+       "eta_mm": 287.19,
+       "etc_mm": 353.05,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8323,
+        0.4845
+       ],
+       "maturacao": "2021-05-02",
+       "perda_relativa": 0.3287,
+       "plantio": "2021-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.969,
+       "ano": 2022,
+       "chuva_mm": 563.86,
+       "deficit_mm": 63.61,
+       "deficit_mm_fases": [
+        0.0,
+        2.3,
+        5.89,
+        55.42
+       ],
+       "dr_final": 53.673,
+       "drenagem_mm": 338.1,
+       "eta_mm": 277.75,
+       "etc_mm": 341.36,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9773,
+        0.9592,
+        0.2387
+       ],
+       "maturacao": "2022-05-02",
+       "perda_relativa": 0.2114,
+       "plantio": "2022-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2023,
+       "chuva_mm": 751.97,
+       "deficit_mm": 25.29,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        24.57,
+        0.72
+       ],
+       "dr_final": 36.717,
+       "drenagem_mm": 491.79,
+       "eta_mm": 296.9,
+       "etc_mm": 322.19,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8268,
+        0.9891
+       ],
+       "maturacao": "2023-05-02",
+       "perda_relativa": 0.2614,
+       "plantio": "2023-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2024,
+       "chuva_mm": 765.27,
+       "deficit_mm": 7.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.04,
+        0.0,
+        6.96
+       ],
+       "dr_final": 45.265,
+       "drenagem_mm": 462.31,
+       "eta_mm": 348.23,
+       "etc_mm": 355.23,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9997,
+        1.0,
+        0.9016
+       ],
+       "maturacao": "2024-05-01",
+       "perda_relativa": 0.0198,
+       "plantio": "2024-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.985,
+       "ano": 2025,
+       "chuva_mm": 471.62,
+       "deficit_mm": 49.15,
+       "deficit_mm_fases": [
+        0.0,
+        19.46,
+        23.76,
+        5.93
+       ],
+       "dr_final": 25.768,
+       "drenagem_mm": 186.68,
+       "eta_mm": 309.87,
+       "etc_mm": 359.02,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.8272,
+        0.8491,
+        0.9033
+       ],
+       "maturacao": "2025-05-02",
+       "perda_relativa": 0.2938,
+       "plantio": "2025-01-23"
+      }
+     ],
+     "premissa_chuva": "Chuva do IMERG toda efetiva (sem escoamento superficial); drenagem além da capacidade de campo.",
+     "resultado": {
+      "anos_com_falha": 0,
+      "anos_validos": 25,
+      "deficit_mm_mediano": 18.07,
+      "definicao_falha": "ISNA (ETa/ETc) da fase I ou III abaixo ou igual ao limite da portaria ZARC (ou hipótese, na cobertura)",
+      "perda_relativa_quantis": {
+       "10": 0.0012,
+       "25": 0.0198,
+       "50": 0.1015,
+       "75": 0.2938,
+       "90": 0.4143
+      },
+      "risco_historico_falha_severa": 0.0,
+      "risco_zarc_pct": 20,
+      "significado_riscos": "risco_historico_falha_severa é calculado pelo TELLUS com a série histórica; risco_zarc_pct é o risco oficial da portaria. São medidas distintas."
+     }
+    },
+    "erro": null,
+    "estado": "disponivel",
+    "id": "risco_hidrico",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "pedido.*"
+      ],
+      "fonte": "Pedido do produtor normalizado pelo motor (spec 006)",
+      "id": "pedido",
+      "localizacao": "-17.785278, -50.965 (município 5218805)",
+      "periodo": "colheita 01-20, plantio 01-23 (mês-dia, aplicado a cada ano)",
+      "qualidade": "informado e confirmado pelo produtor",
+      "situacao": "pedido",
+      "unidade": "graus decimais",
+      "versao": "f80f0a057b340a0a"
+     },
+     {
+      "cobre": [
+       "por_ano.*.chuva_mm"
+      ],
+      "fonte": "NASA GPM IMERG Final (precipitação diária)",
+      "id": "imerg",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"contagem_media\": 48.0, \"dias_ausentes\": 0, \"dias_nao_publicados\": 410, \"dias_validos\": 9039}; resolução 0,1° × 0,1° (≈ 11 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"chuva_mm\": \"mm/dia\"}",
+      "url": "https://opendap.earthdata.nasa.gov/collections/C2723754864-GES_DISC/granules/",
+      "versao": "GPM_3IMERGDF V07B"
+     },
+     {
+      "cobre": [
+       "por_ano.*.etc_mm"
+      ],
+      "fonte": "NASA POWER (variáveis diárias para ETo)",
+      "id": "power",
+      "localizacao": "{\"altitude_m\": 731.58, \"centro_lat\": -18.0, \"centro_lon\": -51.25, \"distancia_km\": 38.47}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"dias_ausentes\": 0, \"dias_validos\": 9039}; resolução 0,5° × 0,625° (≈ 55 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"radiacao_mj_m2\": \"MJ/m²/dia\", \"tmax_c\": \"°C\", \"tmin_c\": \"°C\", \"umidade_pct\": \"%\", \"vento_m_s\": \"m/s\"}",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "versao": "POWER daily, community AG (MERRA2, GEOSIT, SYN1DEG, POWER)"
+     },
+     {
+      "cobre": [
+       "resultado.*",
+       "por_ano.*",
+       "anos_excluidos.*"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006): balanço FAO-56 cap. 8 e perda FAO-33 por fase; ETo FAO-56 Penman-Monteith com POWER; chuva IMERG",
+      "id": "motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos, 0 excluídos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "mm; fração 0–1 (perda, ISNA, risco); ano",
+      "versao": "f80f0a057b340a0a"
+     },
+     {
+      "cobre": [
+       "resultado.risco_zarc_pct"
+      ],
+      "fonte": "ZARC/MAPA, portaria 322",
+      "id": "zarc",
+      "localizacao": "município 5218805, solo AD4, GRUPO I",
+      "periodo": "safra 2026 / 2027, decêndio 3",
+      "qualidade": "risco oficial da portaria (medida distinta do risco histórico)",
+      "situacao": "fonte",
+      "unidade": "% (risco oficial)",
+      "versao": "portaria 322"
+     }
+    ],
+    "spec": "006 (#44)",
+    "versao_modulo": "f80f0a057b340a0a"
+   }
+  },
+  {
+   "cultura": "sorgo_granifero_2a_safra",
+   "economia": {
+    "avisos": [
+     {
+      "codigo": "percentis_hipotese",
+      "mensagem": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "origem": "spec 007 (D-006)",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "alteracoes": [
+      {
+       "origem_novo": "produtor",
+       "premissa": "preco_r_saca",
+       "unidade": "R$/saca de 60 kg",
+       "valor_anterior": null,
+       "valor_novo": 55.0
+      }
+     ],
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -514.37,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0023,
+       "produtividade_kg_ha": 3591.7,
+       "receita_r_ha": 3292.39,
+       "sacas_ha": 59.86
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -704.76,
+       "percentil_perda": 75,
+       "perda_relativa": 0.06,
+       "produtividade_kg_ha": 3384.0,
+       "receita_r_ha": 3102.0,
+       "sacas_ha": 56.4
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -506.76,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 3600.0,
+       "receita_r_ha": 3300.0,
+       "sacas_ha": 60.0
+      }
+     },
+     "comparacao": {
+      "margem_anterior_r_ha": null,
+      "margem_nova_r_ha": {
+       "central": -514.37,
+       "conservador": -704.76,
+       "favoravel": -506.76
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "custo_conab": {
+      "avisos_planilha": [],
+      "codigo_ibge": "5218805",
+      "distancia_km": 9.2,
+      "fonte": {
+       "arquivo": "conab_sorgo.xls",
+       "fonte": "Conab — custos de produção, série histórica",
+       "obtido_em": "2026-11-14",
+       "sha256": "9a5246e4dcffa66c86f527754de60672cac10a7329acc641f48c6a2dd78969d7",
+       "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/seriehistoricacustossorgo2013a2026.xls"
+      },
+      "itens": [
+       {
+        "codigo": "1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Operação com animal",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Operação com Avião",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "3.1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Tratores e Colheitadeiras",
+        "valor_r_ha": 246.39,
+        "valor_usado_r_ha": 246.39
+       },
+       {
+        "codigo": "3.2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Conjunto de Irrigação",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "4",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Aluguel de Máquinas",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "5",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Aluguel de Animais",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "6",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Mão de obra",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "7",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Administrador",
+        "valor_r_ha": 20.4,
+        "valor_usado_r_ha": 20.4
+       },
+       {
+        "codigo": "8",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Sementes e mudas",
+        "valor_r_ha": 360.0,
+        "valor_usado_r_ha": 360.0
+       },
+       {
+        "codigo": "9",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Fertilizantes",
+        "valor_r_ha": 1275.8,
+        "valor_usado_r_ha": 1275.8
+       },
+       {
+        "codigo": "10",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Agrotóxicos",
+        "valor_r_ha": 356.1,
+        "valor_usado_r_ha": 356.1
+       },
+       {
+        "codigo": "11",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Receita",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.1",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Embalagens/Utensílios",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.2",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Análise de Solo",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "12.3",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Demais Despesas",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "13",
+        "editado": false,
+        "grupo": "custeio",
+        "nome": "Serviços Diversos",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "14",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Transporte Externo",
+        "valor_r_ha": 180.0,
+        "valor_usado_r_ha": 180.0
+       },
+       {
+        "codigo": "15",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Despesas Administrativas",
+        "valor_r_ha": 67.76,
+        "valor_usado_r_ha": 67.76
+       },
+       {
+        "codigo": "16",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Despesas de armazenagem",
+        "valor_r_ha": 138.35,
+        "valor_usado_r_ha": 138.35
+       },
+       {
+        "codigo": "17",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Beneficiamento",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "18",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Seguro da Produção",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "19",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Seguro do crédito",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "20",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Assistência Técnica",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "21",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Classificação",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "22",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "Outros",
+        "valor_r_ha": 0.0,
+        "valor_usado_r_ha": 0.0
+       },
+       {
+        "codigo": "23",
+        "editado": false,
+        "grupo": "outras_despesas",
+        "nome": "CESSR",
+        "valor_r_ha": 38.48,
+        "valor_usado_r_ha": 38.48
+       },
+       {
+        "codigo": "24",
+        "editado": false,
+        "grupo": "despesas_financeiras",
+        "nome": "Juros do Financiamento",
+        "valor_r_ha": 123.72,
+        "valor_usado_r_ha": 123.72
+       },
+       {
+        "codigo": "25",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de benfeitorias/instalações",
+        "valor_r_ha": 5.67,
+        "valor_usado_r_ha": 5.67
+       },
+       {
+        "codigo": "26",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de implementos",
+        "valor_r_ha": 169.09,
+        "valor_usado_r_ha": 169.09
+       },
+       {
+        "codigo": "27",
+        "editado": false,
+        "grupo": "depreciacoes",
+        "nome": "Depreciação de Máquinas",
+        "valor_r_ha": 136.38,
+        "valor_usado_r_ha": 136.38
+       },
+       {
+        "codigo": "28",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Manutenção Periódica Benfeitorias/Instalações",
+        "valor_r_ha": 62.92,
+        "valor_usado_r_ha": 62.92
+       },
+       {
+        "codigo": "29",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Encargos Sociais",
+        "valor_r_ha": 9.3,
+        "valor_usado_r_ha": 9.3
+       },
+       {
+        "codigo": "30",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Seguro do capital fixo",
+        "valor_r_ha": 18.15,
+        "valor_usado_r_ha": 18.15
+       },
+       {
+        "codigo": "31",
+        "editado": false,
+        "grupo": "outros_custos_fixos",
+        "nome": "Arrendamento",
+        "valor_r_ha": 598.25,
+        "valor_usado_r_ha": 598.25
+       }
+      ],
+      "mes_referencia": "2026-03",
+      "nivel": "custo_operacional",
+      "planilha": "Rio Verde-GO-2026",
+      "praca": "Rio Verde-GO",
+      "sistema": "PLANTIO DIRETO",
+      "totais_planilha": {
+       "custeio": 2258.69,
+       "custo_fixo": 999.76,
+       "custo_operacional": 3806.76,
+       "custo_total": 4788.11,
+       "custo_variavel": 2807.0,
+       "depreciacoes": 311.14,
+       "despesas_financeiras": 123.72,
+       "outras_despesas": 424.59,
+       "outros_custos_fixos": 688.62,
+       "renda_fatores": 981.35
+      },
+      "total_nivel_r_ha": 3806.76,
+      "unidade": "R$/ha"
+     },
+     "estado": "com_premissas_do_produtor",
+     "formula": "margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+     "margem_disponivel": true,
+     "motivos_indisponivel": [],
+     "premissas": {
+      "custo": {
+       "editado": false,
+       "nivel": "custo_operacional",
+       "status": "fonte",
+       "unidade": "R$/ha",
+       "valor_padrao_r_ha": 3806.76,
+       "valor_usado_r_ha": 3806.76
+      },
+      "percentis": {
+       "descricao": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+       "status": "hipotese",
+       "valores": {
+        "central": "50",
+        "conservador": "75",
+        "favoravel": "25"
+       }
+      },
+      "preco": {
+       "editado": true,
+       "id": "preco_r_saca",
+       "motivo": "D-005: o CEPEA não publica indicador de sorgo e o portal de preços da Conab não oferece conexão segura (certificado inválido). Informe o preço negociado para ver a margem.",
+       "nome": "Preço de venda",
+       "status": "indisponivel",
+       "unidade": "R$/saca de 60 kg",
+       "valor": null,
+       "valor_usado": 55.0
+      },
+      "produtividade": {
+       "editado": false,
+       "fonte": {
+        "fonte": "Conab",
+        "planilha": "Rio Verde-GO-2026",
+        "tipo": "ex-ante (premissa da Conab)"
+       },
+       "id": "produtividade_kg_ha",
+       "nome": "Produtividade de referência (sem estresse hídrico)",
+       "status": "fonte",
+       "unidade": "kg/ha",
+       "valor": 3600.0,
+       "valor_usado": 3600.0
+      }
+     },
+     "versao_premissas": "1af3e2d25af91dc5"
+    },
+    "erro": null,
+    "estado": "disponivel",
+    "id": "economia",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "custo_conab.*",
+       "premissas.custo.*",
+       "cenarios.*.custo_r_ha"
+      ],
+      "fonte": "Conab — custos de produção, série histórica — planilha Rio Verde-GO-2026",
+      "id": "conab_custo",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "obtido_em": "2026-11-14",
+      "periodo": "2026-03",
+      "qualidade": "estimativa ex-ante da Conab, PLANTIO DIRETO, nível custo_operacional",
+      "situacao": "fonte",
+      "unidade": "R$/ha",
+      "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/seriehistoricacustossorgo2013a2026.xls",
+      "versao": "conab_sorgo.xls sha256 9a5246e4dcff"
+     },
+     {
+      "cobre": [
+       "premissas.produtividade.*"
+      ],
+      "fonte": "Conab — planilha Rio Verde-GO-2026",
+      "id": "conab_produtividade",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "obtido_em": "2026-11-14",
+      "periodo": "2026-03",
+      "qualidade": "ex-ante (premissa da Conab)",
+      "situacao": "fonte",
+      "unidade": "kg/ha",
+      "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/arquivos-custo-de-producao/agricolas/seriehistoricacustossorgo2013a2026.xls",
+      "versao": "conab_sorgo.xls sha256 9a5246e4dcff"
+     },
+     {
+      "cobre": [
+       "cenarios.*.perda_relativa"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006), quantis da perda relativa FAO-33",
+      "id": "perda_motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "fração 0–1",
+      "versao": "050f4b3bd2beeedf"
+     },
+     {
+      "cobre": [
+       "cenarios.*.percentil_perda"
+      ],
+      "fonte": "D-006 (hipótese do TELLUS, editável)",
+      "id": "percentis",
+      "localizacao": "não se aplica (regra de leitura dos cenários)",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "hipotese — Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "situacao": "hipotese",
+      "unidade": "percentil da perda relativa",
+      "versao": "{\"central\": \"50\", \"conservador\": \"75\", \"favoravel\": \"25\"}"
+     },
+     {
+      "cobre": [
+       "cenarios.*.produtividade_kg_ha",
+       "cenarios.*.sacas_ha",
+       "cenarios.*.receita_r_ha",
+       "cenarios.*.margem_r_ha",
+       "comparacao.*"
+      ],
+      "fonte": "TELLUS economia (spec 007): margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+      "id": "calculo_margem",
+      "localizacao": "praça Conab Rio Verde-GO a 9.2 km do ponto",
+      "periodo": "2026-03",
+      "qualidade": "calculado com as premissas acima; inclui premissas do produtor",
+      "situacao": "calculado",
+      "unidade": "kg/ha, sacas/ha, R$/ha",
+      "versao": "1af3e2d25af91dc5"
+     },
+     {
+      "cobre": [
+       "alteracoes.*",
+       "premissas.*.valor_usado",
+       "premissas.custo.valor_usado_r_ha",
+       "custo_conab.itens.*.valor_usado_r_ha",
+       "cenarios.*.custo_r_ha"
+      ],
+      "fonte": "Produtor (premissas_editadas do pedido)",
+      "id": "premissas_do_produtor",
+      "localizacao": "lavoura do pedido",
+      "periodo": "não se aplica (valor informado)",
+      "qualidade": "informado pelo produtor; o valor anterior fica ao lado",
+      "situacao": "editado",
+      "unidade": "ver unidade de cada alteração",
+      "versao": "1af3e2d25af91dc5"
+     }
+    ],
+    "spec": "007 (#46)",
+    "versao_modulo": "1af3e2d25af91dc5"
+   },
+   "risco_hidrico": {
+    "avisos": [
+     {
+      "codigo": "nao_e_previsao",
+      "mensagem": "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "escala_regional",
+      "mensagem": "Valores de grade de satélite e reanálise representam a média de uma célula de quilômetros, não a lavoura. Frequência histórica não é previsão.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "hipoteses",
+      "mensagem": "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "anos_excluidos": [],
+     "pedido": {
+      "codigo_ibge": "5218805",
+      "cultura": "sorgo_granifero_2a_safra",
+      "data_colheita_soja": "01-20",
+      "data_plantio": "01-23",
+      "grupo": "GRUPO I",
+      "lat": -17.785278,
+      "lon": -50.965
+     },
+     "por_ano": [
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2001,
+       "chuva_mm": 426.91,
+       "deficit_mm": 19.9,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.19,
+        19.71
+       ],
+       "dr_final": 66.138,
+       "drenagem_mm": 208.08,
+       "eta_mm": 284.96,
+       "etc_mm": 304.86,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9986,
+        0.731
+       ],
+       "maturacao": "2001-05-02",
+       "perda_relativa": 0.0545,
+       "plantio": "2001-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2002,
+       "chuva_mm": 513.77,
+       "deficit_mm": 46.66,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        3.24,
+        43.41
+       ],
+       "dr_final": 65.972,
+       "drenagem_mm": 322.89,
+       "eta_mm": 256.85,
+       "etc_mm": 303.5,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9757,
+        0.3904
+       ],
+       "maturacao": "2002-05-02",
+       "perda_relativa": 0.1336,
+       "plantio": "2002-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2003,
+       "chuva_mm": 758.82,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 26.446,
+       "drenagem_mm": 512.85,
+       "eta_mm": 272.41,
+       "etc_mm": 272.41,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2003-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2003-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.993,
+       "ano": 2004,
+       "chuva_mm": 824.23,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 20.913,
+       "drenagem_mm": 558.68,
+       "eta_mm": 285.9,
+       "etc_mm": 285.9,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2004-05-01",
+       "perda_relativa": 0.0,
+       "plantio": "2004-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2005,
+       "chuva_mm": 509.86,
+       "deficit_mm": 28.48,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        28.48
+       ],
+       "dr_final": 51.563,
+       "drenagem_mm": 282.7,
+       "eta_mm": 278.72,
+       "etc_mm": 307.2,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.5983
+       ],
+       "maturacao": "2005-05-02",
+       "perda_relativa": 0.0803,
+       "plantio": "2005-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.973,
+       "ano": 2006,
+       "chuva_mm": 761.44,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 31.41,
+       "drenagem_mm": 514.29,
+       "eta_mm": 276.56,
+       "etc_mm": 276.56,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2006-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2006-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2007,
+       "chuva_mm": 662.8,
+       "deficit_mm": 43.03,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        15.22,
+        27.81
+       ],
+       "dr_final": 35.349,
+       "drenagem_mm": 435.53,
+       "eta_mm": 262.62,
+       "etc_mm": 305.65,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8881,
+        0.597
+       ],
+       "maturacao": "2007-05-02",
+       "perda_relativa": 0.1372,
+       "plantio": "2007-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2008,
+       "chuva_mm": 931.87,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 3.27,
+       "drenagem_mm": 666.59,
+       "eta_mm": 268.55,
+       "etc_mm": 268.55,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2008-05-01",
+       "perda_relativa": 0.0,
+       "plantio": "2008-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2009,
+       "chuva_mm": 669.92,
+       "deficit_mm": 0.08,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.08
+       ],
+       "dr_final": 44.59,
+       "drenagem_mm": 428.98,
+       "eta_mm": 285.53,
+       "etc_mm": 285.61,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9988
+       ],
+       "maturacao": "2009-05-02",
+       "perda_relativa": 0.0002,
+       "plantio": "2009-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2010,
+       "chuva_mm": 569.47,
+       "deficit_mm": 25.02,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        5.19,
+        19.83
+       ],
+       "dr_final": 66.635,
+       "drenagem_mm": 362.19,
+       "eta_mm": 273.91,
+       "etc_mm": 298.92,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9598,
+        0.7266
+       ],
+       "maturacao": "2010-05-02",
+       "perda_relativa": 0.0756,
+       "plantio": "2010-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2011,
+       "chuva_mm": 813.99,
+       "deficit_mm": 0.12,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.12
+       ],
+       "dr_final": 20.309,
+       "drenagem_mm": 565.12,
+       "eta_mm": 269.19,
+       "etc_mm": 269.31,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9982
+       ],
+       "maturacao": "2011-05-02",
+       "perda_relativa": 0.0004,
+       "plantio": "2011-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2012,
+       "chuva_mm": 833.77,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 8.358,
+       "drenagem_mm": 545.47,
+       "eta_mm": 296.66,
+       "etc_mm": 296.66,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2012-05-01",
+       "perda_relativa": 0.0,
+       "plantio": "2012-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2013,
+       "chuva_mm": 912.36,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 31.762,
+       "drenagem_mm": 670.95,
+       "eta_mm": 273.17,
+       "etc_mm": 273.17,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2013-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2013-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.993,
+       "ano": 2014,
+       "chuva_mm": 751.04,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 17.586,
+       "drenagem_mm": 473.99,
+       "eta_mm": 294.08,
+       "etc_mm": 294.08,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2014-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2014-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2015,
+       "chuva_mm": 720.96,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 20.193,
+       "drenagem_mm": 464.7,
+       "eta_mm": 276.46,
+       "etc_mm": 276.46,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2015-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2015-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.991,
+       "ano": 2016,
+       "chuva_mm": 528.09,
+       "deficit_mm": 59.84,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        3.81,
+        56.03
+       ],
+       "dr_final": 56.855,
+       "drenagem_mm": 336.62,
+       "eta_mm": 247.67,
+       "etc_mm": 307.51,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9715,
+        0.2752
+       ],
+       "maturacao": "2016-05-01",
+       "perda_relativa": 0.1584,
+       "plantio": "2016-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2017,
+       "chuva_mm": 637.39,
+       "deficit_mm": 1.75,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        1.75
+       ],
+       "dr_final": 10.931,
+       "drenagem_mm": 355.95,
+       "eta_mm": 292.37,
+       "etc_mm": 294.12,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9739
+       ],
+       "maturacao": "2017-05-02",
+       "perda_relativa": 0.0052,
+       "plantio": "2017-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.981,
+       "ano": 2018,
+       "chuva_mm": 454.49,
+       "deficit_mm": 0.54,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.54,
+        0.0
+       ],
+       "dr_final": 30.818,
+       "drenagem_mm": 196.06,
+       "eta_mm": 287.84,
+       "etc_mm": 288.37,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9957,
+        1.0
+       ],
+       "maturacao": "2018-05-02",
+       "perda_relativa": 0.0023,
+       "plantio": "2018-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.983,
+       "ano": 2019,
+       "chuva_mm": 613.78,
+       "deficit_mm": 0.0,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "dr_final": 32.244,
+       "drenagem_mm": 354.28,
+       "eta_mm": 290.48,
+       "etc_mm": 290.48,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+       ],
+       "maturacao": "2019-05-02",
+       "perda_relativa": 0.0,
+       "plantio": "2019-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2020,
+       "chuva_mm": 497.04,
+       "deficit_mm": 6.85,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        6.85,
+        0.0
+       ],
+       "dr_final": 41.712,
+       "drenagem_mm": 244.85,
+       "eta_mm": 293.9,
+       "etc_mm": 300.75,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9507,
+        1.0
+       ],
+       "maturacao": "2020-05-01",
+       "perda_relativa": 0.0271,
+       "plantio": "2020-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.971,
+       "ano": 2021,
+       "chuva_mm": 512.36,
+       "deficit_mm": 23.95,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        1.25,
+        22.69
+       ],
+       "dr_final": 57.614,
+       "drenagem_mm": 265.21,
+       "eta_mm": 302.58,
+       "etc_mm": 326.53,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9911,
+        0.7307
+       ],
+       "maturacao": "2021-05-02",
+       "perda_relativa": 0.0585,
+       "plantio": "2021-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.978,
+       "ano": 2022,
+       "chuva_mm": 563.86,
+       "deficit_mm": 25.27,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.05,
+        25.22
+       ],
+       "dr_final": 68.102,
+       "drenagem_mm": 338.25,
+       "eta_mm": 292.03,
+       "etc_mm": 317.3,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9996,
+        0.6679
+       ],
+       "maturacao": "2022-05-02",
+       "perda_relativa": 0.0666,
+       "plantio": "2022-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2023,
+       "chuva_mm": 751.98,
+       "deficit_mm": 4.89,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        4.89,
+        0.0
+       ],
+       "dr_final": 32.314,
+       "drenagem_mm": 489.59,
+       "eta_mm": 294.7,
+       "etc_mm": 299.59,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.963,
+        1.0
+       ],
+       "maturacao": "2023-05-02",
+       "perda_relativa": 0.0204,
+       "plantio": "2023-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2024,
+       "chuva_mm": 765.28,
+       "deficit_mm": 0.02,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        0.02
+       ],
+       "dr_final": 44.102,
+       "drenagem_mm": 475.31,
+       "eta_mm": 334.07,
+       "etc_mm": 334.09,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9997
+       ],
+       "maturacao": "2024-05-01",
+       "perda_relativa": 0.0001,
+       "plantio": "2024-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.989,
+       "ano": 2025,
+       "chuva_mm": 471.62,
+       "deficit_mm": 17.4,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        13.39,
+        4.01
+       ],
+       "dr_final": 27.322,
+       "drenagem_mm": 179.64,
+       "eta_mm": 318.46,
+       "etc_mm": 335.87,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.911,
+        0.9417
+       ],
+       "maturacao": "2025-05-02",
+       "perda_relativa": 0.06,
+       "plantio": "2025-01-23"
+      }
+     ],
+     "premissa_chuva": "Chuva do IMERG toda efetiva (sem escoamento superficial); drenagem além da capacidade de campo.",
+     "resultado": {
+      "anos_com_falha": 0,
+      "anos_validos": 25,
+      "deficit_mm_mediano": 0.54,
+      "definicao_falha": "ISNA (ETa/ETc) da fase I ou III abaixo ou igual ao limite da portaria ZARC (ou hipótese, na cobertura)",
+      "perda_relativa_quantis": {
+       "10": 0.0,
+       "25": 0.0,
+       "50": 0.0023,
+       "75": 0.06,
+       "90": 0.1123
+      },
+      "risco_historico_falha_severa": 0.0,
+      "risco_zarc_pct": 20,
+      "significado_riscos": "risco_historico_falha_severa é calculado pelo TELLUS com a série histórica; risco_zarc_pct é o risco oficial da portaria. São medidas distintas."
+     }
+    },
+    "erro": null,
+    "estado": "disponivel",
+    "id": "risco_hidrico",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "pedido.*"
+      ],
+      "fonte": "Pedido do produtor normalizado pelo motor (spec 006)",
+      "id": "pedido",
+      "localizacao": "-17.785278, -50.965 (município 5218805)",
+      "periodo": "colheita 01-20, plantio 01-23 (mês-dia, aplicado a cada ano)",
+      "qualidade": "informado e confirmado pelo produtor",
+      "situacao": "pedido",
+      "unidade": "graus decimais",
+      "versao": "050f4b3bd2beeedf"
+     },
+     {
+      "cobre": [
+       "por_ano.*.chuva_mm"
+      ],
+      "fonte": "NASA GPM IMERG Final (precipitação diária)",
+      "id": "imerg",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"contagem_media\": 48.0, \"dias_ausentes\": 0, \"dias_nao_publicados\": 410, \"dias_validos\": 9039}; resolução 0,1° × 0,1° (≈ 11 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"chuva_mm\": \"mm/dia\"}",
+      "url": "https://opendap.earthdata.nasa.gov/collections/C2723754864-GES_DISC/granules/",
+      "versao": "GPM_3IMERGDF V07B"
+     },
+     {
+      "cobre": [
+       "por_ano.*.etc_mm"
+      ],
+      "fonte": "NASA POWER (variáveis diárias para ETo)",
+      "id": "power",
+      "localizacao": "{\"altitude_m\": 731.58, \"centro_lat\": -18.0, \"centro_lon\": -51.25, \"distancia_km\": 38.47}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"dias_ausentes\": 0, \"dias_validos\": 9039}; resolução 0,5° × 0,625° (≈ 55 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"radiacao_mj_m2\": \"MJ/m²/dia\", \"tmax_c\": \"°C\", \"tmin_c\": \"°C\", \"umidade_pct\": \"%\", \"vento_m_s\": \"m/s\"}",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "versao": "POWER daily, community AG (MERRA2, GEOSIT, SYN1DEG, POWER)"
+     },
+     {
+      "cobre": [
+       "resultado.*",
+       "por_ano.*",
+       "anos_excluidos.*"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006): balanço FAO-56 cap. 8 e perda FAO-33 por fase; ETo FAO-56 Penman-Monteith com POWER; chuva IMERG",
+      "id": "motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos, 0 excluídos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "mm; fração 0–1 (perda, ISNA, risco); ano",
+      "versao": "050f4b3bd2beeedf"
+     },
+     {
+      "cobre": [
+       "resultado.risco_zarc_pct"
+      ],
+      "fonte": "ZARC/MAPA, portaria 273",
+      "id": "zarc",
+      "localizacao": "município 5218805, solo 3, GRUPO I",
+      "periodo": "safra 2026 / 2027, decêndio 3",
+      "qualidade": "risco oficial da portaria (medida distinta do risco histórico)",
+      "situacao": "fonte",
+      "unidade": "% (risco oficial)",
+      "versao": "portaria 273"
+     }
+    ],
+    "spec": "006 (#44)",
+    "versao_modulo": "050f4b3bd2beeedf"
+   }
+  },
+  {
+   "cultura": "braquiaria_cobertura",
+   "economia": {
+    "avisos": [
+     {
+      "codigo": "margem_indisponivel",
+      "mensagem": "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).",
+      "origem": "spec 007",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "percentis_hipotese",
+      "mensagem": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "origem": "spec 007 (D-006)",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "alteracoes": [],
+     "cenarios": {
+      "central": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "conservador": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "favoravel": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      }
+     },
+     "comparacao": null,
+     "cultura": "braquiaria_cobertura",
+     "custo_conab": null,
+     "estado": "fonte",
+     "formula": "margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+     "margem_disponivel": false,
+     "motivos_indisponivel": [
+      "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha)."
+     ],
+     "premissas": {
+      "custo": {
+       "editado": false,
+       "nivel": "custo_operacional",
+       "status": "indisponivel",
+       "unidade": "R$/ha",
+       "valor_padrao_r_ha": null,
+       "valor_usado_r_ha": null
+      },
+      "percentis": {
+       "descricao": "Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+       "status": "hipotese",
+       "valores": {
+        "central": "50",
+        "conservador": "75",
+        "favoravel": "25"
+       }
+      },
+      "preco": {
+       "editado": false,
+       "id": "preco_r_saca",
+       "motivo": "A planta de cobertura não é comercializada; a receita é zero.",
+       "nome": "Preço de venda",
+       "status": "nao_se_aplica",
+       "unidade": "R$/saca de 60 kg",
+       "valor": 0.0,
+       "valor_usado": 0.0
+      },
+      "produtividade": {
+       "editado": false,
+       "id": "produtividade_kg_ha",
+       "motivo": "Cobertura sem produção de grão.",
+       "nome": "Produtividade de referência",
+       "status": "nao_se_aplica",
+       "unidade": "kg/ha",
+       "valor": 0.0,
+       "valor_usado": 0.0
+      }
+     },
+     "versao_premissas": "7930343cc8ece6af"
+    },
+    "erro": null,
+    "estado": "indisponivel",
+    "id": "economia",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "premissas.produtividade.*"
+      ],
+      "fonte": "TELLUS economia (spec 007)",
+      "id": "produtividade_nao_se_aplica",
+      "localizacao": "não se aplica",
+      "periodo": "não se aplica",
+      "qualidade": "Cobertura sem produção de grão.",
+      "situacao": "nao_se_aplica",
+      "unidade": "kg/ha",
+      "versao": "7930343cc8ece6af"
+     },
+     {
+      "cobre": [
+       "premissas.preco.*"
+      ],
+      "fonte": "TELLUS economia (spec 007)",
+      "id": "preco_nao_se_aplica",
+      "localizacao": "não se aplica",
+      "periodo": "não se aplica",
+      "qualidade": "A planta de cobertura não é comercializada; a receita é zero.",
+      "situacao": "nao_se_aplica",
+      "unidade": "R$/saca de 60 kg",
+      "versao": "7930343cc8ece6af"
+     },
+     {
+      "cobre": [
+       "cenarios.*.perda_relativa"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006), quantis da perda relativa FAO-33",
+      "id": "perda_motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "fração 0–1",
+      "versao": "49b4f6ecfc563ef2"
+     },
+     {
+      "cobre": [
+       "cenarios.*.percentil_perda"
+      ],
+      "fonte": "D-006 (hipótese do TELLUS, editável)",
+      "id": "percentis",
+      "localizacao": "não se aplica (regra de leitura dos cenários)",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "hipotese — Cenários pela perda relativa simulada (006): conservador = percentil 75 da perda (3 em cada 4 anos perderam menos), central = mediana, favorável = percentil 25. Hipótese D-006, editável.",
+      "situacao": "hipotese",
+      "unidade": "percentil da perda relativa",
+      "versao": "{\"central\": \"50\", \"conservador\": \"75\", \"favoravel\": \"25\"}"
+     },
+     {
+      "cobre": [
+       "cenarios.*.produtividade_kg_ha",
+       "cenarios.*.sacas_ha",
+       "cenarios.*.receita_r_ha",
+       "cenarios.*.margem_r_ha",
+       "comparacao.*"
+      ],
+      "fonte": "TELLUS economia (spec 007): margem = produtividade de referência × (1 − perda do cenário) ÷ 60 × preço − custo do nível (R$/ha)",
+      "id": "calculo_margem",
+      "localizacao": "não se aplica",
+      "periodo": "não se aplica",
+      "qualidade": "calculado com as premissas acima",
+      "situacao": "calculado",
+      "unidade": "kg/ha, sacas/ha, R$/ha",
+      "versao": "7930343cc8ece6af"
+     }
+    ],
+    "spec": "007 (#46)",
+    "versao_modulo": "7930343cc8ece6af"
+   },
+   "risco_hidrico": {
+    "avisos": [
+     {
+      "codigo": "nao_e_previsao",
+      "mensagem": "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "escala_regional",
+      "mensagem": "Valores de grade de satélite e reanálise representam a média de uma célula de quilômetros, não a lavoura. Frequência histórica não é previsão.",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     },
+     {
+      "codigo": "hipoteses",
+      "mensagem": "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "origem": "spec 006",
+      "tipo": "aviso"
+     }
+    ],
+    "conteudo": {
+     "anos_excluidos": [],
+     "pedido": {
+      "codigo_ibge": "5218805",
+      "cultura": "braquiaria_cobertura",
+      "data_colheita_soja": "01-20",
+      "data_plantio": "01-23",
+      "grupo": "GRUPO I",
+      "lat": -17.785278,
+      "lon": -50.965
+     },
+     "por_ano": [
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2001,
+       "chuva_mm": 450.1,
+       "deficit_mm": 83.4,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        15.59,
+        67.81
+       ],
+       "dr_final": 43.363,
+       "drenagem_mm": 223.74,
+       "eta_mm": 269.73,
+       "etc_mm": 353.13,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8963,
+        0.2094
+       ],
+       "maturacao": "2001-05-22",
+       "perda_relativa": null,
+       "plantio": "2001-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2002,
+       "chuva_mm": 558.29,
+       "deficit_mm": 103.61,
+       "deficit_mm_fases": [
+        0.0,
+        0.38,
+        41.42,
+        61.81
+       ],
+       "dr_final": 27.196,
+       "drenagem_mm": 335.48,
+       "eta_mm": 250.0,
+       "etc_mm": 353.61,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9956,
+        0.7181,
+        0.2898
+       ],
+       "maturacao": "2002-05-22",
+       "perda_relativa": null,
+       "plantio": "2002-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2003,
+       "chuva_mm": 760.32,
+       "deficit_mm": 34.4,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        34.4
+       ],
+       "dr_final": 52.939,
+       "drenagem_mm": 528.05,
+       "eta_mm": 285.2,
+       "etc_mm": 319.61,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.5962
+       ],
+       "maturacao": "2003-05-22",
+       "perda_relativa": null,
+       "plantio": "2003-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.99,
+       "ano": 2004,
+       "chuva_mm": 868.19,
+       "deficit_mm": 3.85,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        3.85
+       ],
+       "dr_final": 29.982,
+       "drenagem_mm": 574.74,
+       "eta_mm": 322.87,
+       "etc_mm": 326.72,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9498
+       ],
+       "maturacao": "2004-05-21",
+       "perda_relativa": null,
+       "plantio": "2004-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2005,
+       "chuva_mm": 514.86,
+       "deficit_mm": 90.31,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        32.82,
+        57.49
+       ],
+       "dr_final": 53.229,
+       "drenagem_mm": 295.72,
+       "eta_mm": 272.37,
+       "etc_mm": 362.68,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.7774,
+        0.3577
+       ],
+       "maturacao": "2005-05-22",
+       "perda_relativa": null,
+       "plantio": "2005-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.963,
+       "ano": 2006,
+       "chuva_mm": 783.33,
+       "deficit_mm": 39.08,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        39.08
+       ],
+       "dr_final": 34.874,
+       "drenagem_mm": 529.21,
+       "eta_mm": 286.98,
+       "etc_mm": 326.06,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.5429
+       ],
+       "maturacao": "2006-05-22",
+       "perda_relativa": null,
+       "plantio": "2006-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2007,
+       "chuva_mm": 665.63,
+       "deficit_mm": 87.9,
+       "deficit_mm_fases": [
+        0.0,
+        0.11,
+        50.6,
+        37.19
+       ],
+       "dr_final": 50.92,
+       "drenagem_mm": 447.33,
+       "eta_mm": 269.22,
+       "etc_mm": 357.12,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9987,
+        0.657,
+        0.5847
+       ],
+       "maturacao": "2007-05-22",
+       "perda_relativa": null,
+       "plantio": "2007-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2008,
+       "chuva_mm": 936.12,
+       "deficit_mm": 10.75,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        10.75
+       ],
+       "dr_final": 47.484,
+       "drenagem_mm": 679.79,
+       "eta_mm": 303.81,
+       "etc_mm": 314.55,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.867
+       ],
+       "maturacao": "2008-05-21",
+       "perda_relativa": null,
+       "plantio": "2008-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2009,
+       "chuva_mm": 678.65,
+       "deficit_mm": 58.04,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        58.04
+       ],
+       "dr_final": 50.444,
+       "drenagem_mm": 446.28,
+       "eta_mm": 282.82,
+       "etc_mm": 340.86,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.3744
+       ],
+       "maturacao": "2009-05-22",
+       "perda_relativa": null,
+       "plantio": "2009-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2010,
+       "chuva_mm": 584.44,
+       "deficit_mm": 91.16,
+       "deficit_mm_fases": [
+        0.0,
+        0.05,
+        18.99,
+        72.11
+       ],
+       "dr_final": 49.644,
+       "drenagem_mm": 376.8,
+       "eta_mm": 257.27,
+       "etc_mm": 348.43,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9994,
+        0.8657,
+        0.1682
+       ],
+       "maturacao": "2010-05-22",
+       "perda_relativa": null,
+       "plantio": "2010-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2011,
+       "chuva_mm": 816.07,
+       "deficit_mm": 32.74,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        32.74
+       ],
+       "dr_final": 51.667,
+       "drenagem_mm": 578.78,
+       "eta_mm": 288.96,
+       "etc_mm": 321.69,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.6072
+       ],
+       "maturacao": "2011-05-22",
+       "perda_relativa": null,
+       "plantio": "2011-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2012,
+       "chuva_mm": 883.36,
+       "deficit_mm": 4.04,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.93,
+        3.11
+       ],
+       "dr_final": 13.013,
+       "drenagem_mm": 559.37,
+       "eta_mm": 337.01,
+       "etc_mm": 341.05,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9935,
+        0.961
+       ],
+       "maturacao": "2012-05-21",
+       "perda_relativa": null,
+       "plantio": "2012-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2013,
+       "chuva_mm": 912.44,
+       "deficit_mm": 50.39,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        50.39
+       ],
+       "dr_final": 53.922,
+       "drenagem_mm": 689.0,
+       "eta_mm": 277.37,
+       "etc_mm": 327.76,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.4385
+       ],
+       "maturacao": "2013-05-22",
+       "perda_relativa": null,
+       "plantio": "2013-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.99,
+       "ano": 2014,
+       "chuva_mm": 752.24,
+       "deficit_mm": 31.74,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        31.74
+       ],
+       "dr_final": 52.554,
+       "drenagem_mm": 485.51,
+       "eta_mm": 318.73,
+       "etc_mm": 350.47,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.65
+       ],
+       "maturacao": "2014-05-22",
+       "perda_relativa": null,
+       "plantio": "2014-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2015,
+       "chuva_mm": 844.21,
+       "deficit_mm": 3.08,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        3.08
+       ],
+       "dr_final": 2.325,
+       "drenagem_mm": 531.36,
+       "eta_mm": 315.18,
+       "etc_mm": 318.26,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.9593
+       ],
+       "maturacao": "2015-05-22",
+       "perda_relativa": null,
+       "plantio": "2015-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.988,
+       "ano": 2016,
+       "chuva_mm": 555.59,
+       "deficit_mm": 106.91,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        54.06,
+        52.85
+       ],
+       "dr_final": 42.374,
+       "drenagem_mm": 341.96,
+       "eta_mm": 255.35,
+       "etc_mm": 362.26,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.6609,
+        0.411
+       ],
+       "maturacao": "2016-05-21",
+       "perda_relativa": null,
+       "plantio": "2016-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2017,
+       "chuva_mm": 677.55,
+       "deficit_mm": 15.68,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        5.45,
+        10.23
+       ],
+       "dr_final": 21.013,
+       "drenagem_mm": 370.69,
+       "eta_mm": 327.87,
+       "etc_mm": 343.55,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9614,
+        0.8797
+       ],
+       "maturacao": "2017-05-22",
+       "perda_relativa": null,
+       "plantio": "2017-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.974,
+       "ano": 2018,
+       "chuva_mm": 476.77,
+       "deficit_mm": 39.71,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        2.35,
+        37.36
+       ],
+       "dr_final": 38.711,
+       "drenagem_mm": 213.9,
+       "eta_mm": 300.17,
+       "etc_mm": 339.89,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9825,
+        0.5817
+       ],
+       "maturacao": "2018-05-22",
+       "perda_relativa": null,
+       "plantio": "2018-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.977,
+       "ano": 2019,
+       "chuva_mm": 648.31,
+       "deficit_mm": 26.35,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        26.35
+       ],
+       "dr_final": 39.176,
+       "drenagem_mm": 370.57,
+       "eta_mm": 315.66,
+       "etc_mm": 342.01,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.697
+       ],
+       "maturacao": "2019-05-22",
+       "perda_relativa": null,
+       "plantio": "2019-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2020,
+       "chuva_mm": 518.65,
+       "deficit_mm": 37.36,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        6.93,
+        30.43
+       ],
+       "dr_final": 48.234,
+       "drenagem_mm": 249.27,
+       "eta_mm": 317.61,
+       "etc_mm": 354.98,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.9517,
+        0.6768
+       ],
+       "maturacao": "2020-05-21",
+       "perda_relativa": null,
+       "plantio": "2020-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.96,
+       "ano": 2021,
+       "chuva_mm": 522.32,
+       "deficit_mm": 100.77,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        17.53,
+        83.24
+       ],
+       "dr_final": 44.399,
+       "drenagem_mm": 272.91,
+       "eta_mm": 291.63,
+       "etc_mm": 392.4,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8955,
+        0.2082
+       ],
+       "maturacao": "2021-05-22",
+       "perda_relativa": null,
+       "plantio": "2021-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.969,
+       "ano": 2022,
+       "chuva_mm": 570.86,
+       "deficit_mm": 105.92,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        16.58,
+        89.34
+       ],
+       "dr_final": 51.903,
+       "drenagem_mm": 355.23,
+       "eta_mm": 265.85,
+       "etc_mm": 371.77,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.8915,
+        0.0902
+       ],
+       "maturacao": "2022-05-22",
+       "perda_relativa": null,
+       "plantio": "2022-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2023,
+       "chuva_mm": 752.84,
+       "deficit_mm": 65.3,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        8.08,
+        57.22
+       ],
+       "dr_final": 54.126,
+       "drenagem_mm": 504.04,
+       "eta_mm": 302.92,
+       "etc_mm": 368.22,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        0.945,
+        0.4696
+       ],
+       "maturacao": "2023-05-22",
+       "perda_relativa": null,
+       "plantio": "2023-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 1.0,
+       "ano": 2024,
+       "chuva_mm": 765.27,
+       "deficit_mm": 87.73,
+       "deficit_mm_fases": [
+        0.0,
+        0.0,
+        0.0,
+        87.73
+       ],
+       "dr_final": 54.516,
+       "drenagem_mm": 495.74,
+       "eta_mm": 324.05,
+       "etc_mm": 411.78,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        1.0,
+        1.0,
+        0.2944
+       ],
+       "maturacao": "2024-05-21",
+       "perda_relativa": null,
+       "plantio": "2024-01-23"
+      },
+      {
+       "agua_no_plantio_frac": 0.985,
+       "ano": 2025,
+       "chuva_mm": 476.99,
+       "deficit_mm": 49.68,
+       "deficit_mm_fases": [
+        0.0,
+        9.1,
+        0.66,
+        39.92
+       ],
+       "dr_final": 53.05,
+       "drenagem_mm": 178.07,
+       "eta_mm": 351.14,
+       "etc_mm": 400.81,
+       "falha_severa": false,
+       "isna_fases": [
+        1.0,
+        0.9094,
+        0.9958,
+        0.6216
+       ],
+       "maturacao": "2025-05-22",
+       "perda_relativa": null,
+       "plantio": "2025-01-23"
+      }
+     ],
+     "premissa_chuva": "Chuva do IMERG toda efetiva (sem escoamento superficial); drenagem além da capacidade de campo.",
+     "resultado": {
+      "anos_com_falha": 0,
+      "anos_validos": 25,
+      "deficit_mm_mediano": 49.68,
+      "definicao_falha": "ISNA (ETa/ETc) da fase I ou III abaixo ou igual ao limite da portaria ZARC (ou hipótese, na cobertura)",
+      "perda_relativa_quantis": null,
+      "risco_historico_falha_severa": 0.0,
+      "risco_zarc_pct": 20,
+      "significado_riscos": "risco_historico_falha_severa é calculado pelo TELLUS com a série histórica; risco_zarc_pct é o risco oficial da portaria. São medidas distintas."
+     }
+    },
+    "erro": null,
+    "estado": "disponivel",
+    "id": "risco_hidrico",
+    "obrigatoria": true,
+    "proveniencia": [
+     {
+      "cobre": [
+       "pedido.*"
+      ],
+      "fonte": "Pedido do produtor normalizado pelo motor (spec 006)",
+      "id": "pedido",
+      "localizacao": "-17.785278, -50.965 (município 5218805)",
+      "periodo": "colheita 01-20, plantio 01-23 (mês-dia, aplicado a cada ano)",
+      "qualidade": "informado e confirmado pelo produtor",
+      "situacao": "pedido",
+      "unidade": "graus decimais",
+      "versao": "49b4f6ecfc563ef2"
+     },
+     {
+      "cobre": [
+       "por_ano.*.chuva_mm"
+      ],
+      "fonte": "NASA GPM IMERG Final (precipitação diária)",
+      "id": "imerg",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"contagem_media\": 48.0, \"dias_ausentes\": 0, \"dias_nao_publicados\": 410, \"dias_validos\": 9039}; resolução 0,1° × 0,1° (≈ 11 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"chuva_mm\": \"mm/dia\"}",
+      "url": "https://opendap.earthdata.nasa.gov/collections/C2723754864-GES_DISC/granules/",
+      "versao": "GPM_3IMERGDF V07B"
+     },
+     {
+      "cobre": [
+       "por_ano.*.etc_mm"
+      ],
+      "fonte": "NASA POWER (variáveis diárias para ETo)",
+      "id": "power",
+      "localizacao": "{\"altitude_m\": 731.58, \"centro_lat\": -18.0, \"centro_lon\": -51.25, \"distancia_km\": 38.47}",
+      "obtido_em": "2026-11-14",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "{\"dias_ausentes\": 0, \"dias_validos\": 9039}; resolução 0,5° × 0,625° (≈ 55 km), diária (UTC)",
+      "situacao": "cache",
+      "unidade": "{\"radiacao_mj_m2\": \"MJ/m²/dia\", \"tmax_c\": \"°C\", \"tmin_c\": \"°C\", \"umidade_pct\": \"%\", \"vento_m_s\": \"m/s\"}",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "versao": "POWER daily, community AG (MERRA2, GEOSIT, SYN1DEG, POWER)"
+     },
+     {
+      "cobre": [
+       "resultado.*",
+       "por_ano.*",
+       "anos_excluidos.*"
+      ],
+      "fonte": "TELLUS motor hídrico (spec 006): balanço FAO-56 cap. 8 e perda FAO-33 por fase; ETo FAO-56 Penman-Monteith com POWER; chuva IMERG",
+      "id": "motor",
+      "localizacao": "{\"celulas\": [{\"centro_lat\": -17.75, \"centro_lon\": -50.95, \"peso\": 1.0}], \"distancia_km\": 4.23}",
+      "periodo": "2001-01-01 a 2025-09-30",
+      "qualidade": "25 anos válidos, 0 excluídos; frequência histórica, não previsão",
+      "situacao": "calculado",
+      "unidade": "mm; fração 0–1 (perda, ISNA, risco); ano",
+      "versao": "49b4f6ecfc563ef2"
+     },
+     {
+      "cobre": [
+       "resultado.risco_zarc_pct"
+      ],
+      "fonte": "ZARC/MAPA, portaria 337",
+      "id": "zarc",
+      "localizacao": "município 5218805, solo AD4, GRUPO I",
+      "periodo": "safra 2026 / 2027, decêndio 3",
+      "qualidade": "risco oficial da portaria (medida distinta do risco histórico)",
+      "situacao": "fonte",
+      "unidade": "% (risco oficial)",
+      "versao": "portaria 337"
+     }
+    ],
+    "spec": "006 (#44)",
+    "versao_modulo": "49b4f6ecfc563ef2"
+   }
+  }
+ ],
+ "erros": [],
+ "estado_geral": "incompleto",
+ "final": false,
+ "fontes": [
+  {
+   "estado": "cache",
+   "fonte": "NASA GPM IMERG Final (precipitação diária)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  },
+  {
+   "estado": "cache",
+   "fonte": "NASA POWER (variáveis diárias para ETo)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  },
+  {
+   "estado": "cache",
+   "fonte": "NASA GPM IMERG Final (precipitação diária)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  },
+  {
+   "estado": "cache",
+   "fonte": "NASA POWER (variáveis diárias para ETo)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  },
+  {
+   "estado": "cache",
+   "fonte": "NASA GPM IMERG Final (precipitação diária)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  },
+  {
+   "estado": "cache",
+   "fonte": "NASA POWER (variáveis diárias para ETo)",
+   "obtido_em": "2026-11-14",
+   "secao": "risco_hidrico"
+  }
+ ],
+ "hipoteses": [
+  "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+  "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+  "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada)."
+ ],
+ "pedido": {
+  "area": {
+   "codigo_ibge": null,
+   "confirmada": true,
+   "lat": -17.785278,
+   "lon": -50.965,
+   "tipo": "ponto"
+  },
+  "contextos": {
+   "umidade": false,
+   "vegetacao": false
+  },
+  "cultura": null,
+  "data_colheita_soja": "2027-01-20",
+  "grupo": "GRUPO I",
+  "hash_pedido": "6b4e261449c1c07d",
+  "metodologia": "comparar_alternativas",
+  "premissas_editadas": [
+   {
+    "cultura": "sorgo_granifero_2a_safra",
+    "id": "preco_r_saca",
+    "modulo": "economia",
+    "unidade": "R$/saca de 60 kg",
+    "valor_novo": 55.0,
+    "valor_padrao": null
+   }
+  ],
+  "solo": {
+   "cad_mm": null,
+   "classe": null,
+   "granulometria": null,
+   "textura": "argilosa"
+  },
+  "versao_contrato": "1.0.0"
+ },
+ "premissas_editadas": [
+  {
+   "cultura": "sorgo_granifero_2a_safra",
+   "id": "preco_r_saca",
+   "modulo": "economia",
+   "unidade": "R$/saca de 60 kg",
+   "valor_novo": 55.0,
+   "valor_padrao": null
+  }
+ ],
+ "recomendacao": {
+  "avisos": [
+   {
+    "codigo": "secao_pendente",
+    "mensagem": "A recomendação (spec 008, #48) ainda não existe. Esta resposta traz risco hídrico e margem por cultura, mas não ordena nem recomenda alternativas.",
+    "origem": "spec 008",
+    "tipo": "aviso"
+   }
+  ],
+  "conteudo": null,
+  "erro": null,
+  "estado": "pendente",
+  "id": "recomendacao",
+  "obrigatoria": true,
+  "proveniencia": [],
+  "spec": "008 (#48)",
+  "versao_modulo": null
+ },
+ "versao_contrato": "1.0.0",
+ "versoes": {
+  "contrato": "1.0.0",
+  "hash_pedido": "6b4e261449c1c07d",
+  "hash_principal": "ac43cdc334ee2796",
+  "modulos": {
+   "braquiaria_cobertura.economia": "7930343cc8ece6af",
+   "braquiaria_cobertura.risco_hidrico": "49b4f6ecfc563ef2",
+   "milho_2a_safra.economia": "0009c669502358ef",
+   "milho_2a_safra.risco_hidrico": "f80f0a057b340a0a",
+   "sorgo_granifero_2a_safra.economia": "1af3e2d25af91dc5",
+   "sorgo_granifero_2a_safra.risco_hidrico": "050f4b3bd2beeedf"
+  }
+ }
+}

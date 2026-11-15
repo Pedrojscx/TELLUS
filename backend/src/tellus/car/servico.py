@@ -13,7 +13,9 @@ from . import regras, shapefile, wfs
 
 RAIZ = Path(__file__).resolve().parents[4]
 LIMITES = json.loads((RAIZ / "referencias" / "car" / "limites.json").read_text(encoding="utf-8"))
-MAX_VERTICES = int(LIMITES["max_vertices_anel"]["valor"])
+# Limite técnico por anel (spec 001), lido do arquivo único de limites (D-009); o valor não mudou.
+LIMITES_UNICOS = json.loads((RAIZ / "backend" / "src" / "tellus" / "contrato" / "limites.json").read_text(encoding="utf-8"))
+MAX_VERTICES = int(LIMITES_UNICOS["vertices_por_anel_max"]["valor"])
 CASAS = int(LIMITES["casas_decimais_id"]["valor"])
 
 MSG_UPLOAD = (

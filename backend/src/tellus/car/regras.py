@@ -106,8 +106,19 @@ def area_ha(geom: dict) -> float:
     return total / 10_000
 
 
-def validar_poligono(geom: dict, max_vertices: int = 5000) -> list[str]:
-    """Lista de motivos de invalidez (vazia = válido)."""
+def _vertices_por_anel_padrao() -> int:
+    """Limite técnico por anel, do arquivo único de limites (tellus/contrato/limites.json); valor inalterado."""
+    import json
+    from pathlib import Path
+
+    p = Path(__file__).resolve().parents[1] / "contrato" / "limites.json"
+    return int(json.loads(p.read_text(encoding="utf-8"))["vertices_por_anel_max"]["valor"])
+
+
+def validar_poligono(geom: dict, max_vertices: int | None = None) -> list[str]:
+    """Lista de motivos de invalidez (vazia = válido). Sem `max_vertices`, usa o limite por anel configurado."""
+    if max_vertices is None:
+        max_vertices = _vertices_por_anel_padrao()
     try:
         pols = poligonos(geom)
     except (ValueError, KeyError, TypeError) as e:

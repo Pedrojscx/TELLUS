@@ -1,0 +1,332 @@
+{
+ "$defs": {
+  "AreaGeometria": {
+   "additionalProperties": false,
+   "properties": {
+    "confirmada": {
+     "title": "Confirmada",
+     "type": "boolean"
+    },
+    "geometria": {
+     "additionalProperties": true,
+     "title": "Geometria",
+     "type": "object"
+    },
+    "id_geometria": {
+     "minLength": 1,
+     "title": "Id Geometria",
+     "type": "string"
+    },
+    "origem": {
+     "enum": [
+      "car",
+      "upload_sicar",
+      "desenho",
+      "arquivo"
+     ],
+     "title": "Origem",
+     "type": "string"
+    },
+    "tipo": {
+     "const": "geometria",
+     "title": "Tipo",
+     "type": "string"
+    }
+   },
+   "required": [
+    "tipo",
+    "geometria",
+    "id_geometria",
+    "origem",
+    "confirmada"
+   ],
+   "title": "AreaGeometria",
+   "type": "object"
+  },
+  "AreaPonto": {
+   "additionalProperties": false,
+   "properties": {
+    "codigo_ibge": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Codigo Ibge"
+    },
+    "confirmada": {
+     "title": "Confirmada",
+     "type": "boolean"
+    },
+    "lat": {
+     "maximum": 90,
+     "minimum": -90,
+     "title": "Lat",
+     "type": "number"
+    },
+    "lon": {
+     "maximum": 180,
+     "minimum": -180,
+     "title": "Lon",
+     "type": "number"
+    },
+    "tipo": {
+     "const": "ponto",
+     "title": "Tipo",
+     "type": "string"
+    }
+   },
+   "required": [
+    "tipo",
+    "lat",
+    "lon",
+    "confirmada"
+   ],
+   "title": "AreaPonto",
+   "type": "object"
+  },
+  "Contextos": {
+   "additionalProperties": false,
+   "properties": {
+    "umidade": {
+     "default": false,
+     "title": "Umidade",
+     "type": "boolean"
+    },
+    "vegetacao": {
+     "default": false,
+     "title": "Vegetacao",
+     "type": "boolean"
+    }
+   },
+   "title": "Contextos",
+   "type": "object"
+  },
+  "PremissaEditada": {
+   "additionalProperties": false,
+   "properties": {
+    "cultura": {
+     "anyOf": [
+      {
+       "enum": [
+        "milho_2a_safra",
+        "sorgo_granifero_2a_safra",
+        "braquiaria_cobertura"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cultura"
+    },
+    "id": {
+     "minLength": 1,
+     "title": "Id",
+     "type": "string"
+    },
+    "modulo": {
+     "enum": [
+      "motor",
+      "culturas",
+      "economia"
+     ],
+     "title": "Modulo",
+     "type": "string"
+    },
+    "unidade": {
+     "minLength": 1,
+     "title": "Unidade",
+     "type": "string"
+    },
+    "valor_novo": {
+     "title": "Valor Novo",
+     "type": "number"
+    },
+    "valor_padrao": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Valor Padrao"
+    }
+   },
+   "required": [
+    "modulo",
+    "id",
+    "valor_novo",
+    "unidade"
+   ],
+   "title": "PremissaEditada",
+   "type": "object"
+  },
+  "Solo": {
+   "additionalProperties": false,
+   "properties": {
+    "cad_mm": {
+     "anyOf": [
+      {
+       "exclusiveMinimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cad Mm"
+    },
+    "classe": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Classe"
+    },
+    "granulometria": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Granulometria"
+    },
+    "textura": {
+     "anyOf": [
+      {
+       "enum": [
+        "arenosa",
+        "media",
+        "argilosa"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Textura"
+    }
+   },
+   "title": "Solo",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "area": {
+   "discriminator": {
+    "mapping": {
+     "geometria": "#/$defs/AreaGeometria",
+     "ponto": "#/$defs/AreaPonto"
+    },
+    "propertyName": "tipo"
+   },
+   "oneOf": [
+    {
+     "$ref": "#/$defs/AreaPonto"
+    },
+    {
+     "$ref": "#/$defs/AreaGeometria"
+    }
+   ],
+   "title": "Area"
+  },
+  "contextos": {
+   "$ref": "#/$defs/Contextos",
+   "default": {
+    "umidade": false,
+    "vegetacao": false
+   }
+  },
+  "cultura": {
+   "anyOf": [
+    {
+     "enum": [
+      "milho_2a_safra",
+      "sorgo_granifero_2a_safra",
+      "braquiaria_cobertura"
+     ],
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Cultura"
+  },
+  "data_colheita_soja": {
+   "format": "date",
+   "title": "Data Colheita Soja",
+   "type": "string"
+  },
+  "grupo": {
+   "enum": [
+    "GRUPO I",
+    "GRUPO II",
+    "GRUPO III",
+    "nao_sei"
+   ],
+   "title": "Grupo",
+   "type": "string"
+  },
+  "metodologia": {
+   "enum": [
+    "cultura_escolhida",
+    "comparar_alternativas"
+   ],
+   "title": "Metodologia",
+   "type": "string"
+  },
+  "premissas_editadas": {
+   "default": [],
+   "items": {
+    "$ref": "#/$defs/PremissaEditada"
+   },
+   "title": "Premissas Editadas",
+   "type": "array"
+  },
+  "solo": {
+   "$ref": "#/$defs/Solo"
+  },
+  "versao_contrato": {
+   "title": "Versao Contrato",
+   "type": "string"
+  }
+ },
+ "required": [
+  "versao_contrato",
+  "area",
+  "data_colheita_soja",
+  "solo",
+  "grupo",
+  "metodologia"
+ ],
+ "title": "PedidoCalculo",
+ "type": "object"
+}

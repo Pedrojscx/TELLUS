@@ -1,0 +1,28 @@
+{
+ "area": {
+  "confirmada": true,
+  "lat": -17.785278,
+  "lon": -50.965,
+  "tipo": "ponto"
+ },
+ "contextos": {
+  "umidade": false,
+  "vegetacao": false
+ },
+ "data_colheita_soja": "2027-01-20",
+ "grupo": "GRUPO I",
+ "metodologia": "comparar_alternativas",
+ "premissas_editadas": [
+  {
+   "cultura": "sorgo_granifero_2a_safra",
+   "id": "preco_r_saca",
+   "modulo": "economia",
+   "unidade": "R$/saca de 60 kg",
+   "valor_novo": 55.0
+  }
+ ],
+ "solo": {
+  "textura": "argilosa"
+ },
+ "versao_contrato": "1.0.0"
+}

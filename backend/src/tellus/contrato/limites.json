@@ -1,0 +1,76 @@
+{
+ "_leia": "Arquivo ÚNICO de limites (D-009, #71): hipótese operacional do protótipo decidida pelo usuário em 2026-11-15, revisável após a demo.",
+ "arquivo_max_bytes": {
+  "valor": 20971520,
+  "unidade": "bytes (20 MB)",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo",
+  "uso": "todos os formatos (shapefile .zip do CAR hoje; KML, KMZ e GeoJSON da #22); igual ao limite que o upload do CAR já aplicava"
+ },
+ "arquivo_formatos": {
+  "valor": [
+   "kml",
+   "kmz",
+   "geojson",
+   "shapefile_zip"
+  ],
+  "unidade": "formato",
+  "implementados": [
+   "shapefile_zip"
+  ],
+  "nota": "KML, KMZ e GeoJSON dependem da #22",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo"
+ },
+ "lavouras_por_envio": {
+  "valor": 1,
+  "unidade": "lavoura (Polygon ou MultiPolygon)",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo"
+ },
+ "vertices_total_max": {
+  "valor": 10000,
+  "unidade": "vértices (total da geometria)",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo",
+  "motivo": "ajustado pela medição do pior caso da validação (O(n²) no contorno em dente de serra) para caber nos 60 s; ver specs/011-contrato-api/decisao-proposta.md"
+ },
+ "area_max_ha": {
+  "valor": 100000,
+  "unidade": "ha",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo"
+ },
+ "processamento_prazo_s": {
+  "valor": 60,
+  "unidade": "s",
+  "modo": "síncrono, sem fila",
+  "status": "hipotese",
+  "decisao": "D-009",
+  "issue": "#71",
+  "data": "2026-11-15",
+  "revisao": "revisável após a demo"
+ },
+ "vertices_por_anel_max": {
+  "valor": 5000,
+  "unidade": "vértices por anel",
+  "status": "hipotese",
+  "origem": "spec 001 (CAR), antes em referencias/car/limites.json",
+  "motivo": "limite para validação O(n²) em menos de 1 s; D-009 (limites de arquivo e geometria) ainda aberta"
+ }
+}
