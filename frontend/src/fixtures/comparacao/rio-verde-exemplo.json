@@ -52,6 +52,11 @@
         "situacao": "fonte",
         "origem_dados": "exemplo",
         "obtido_em": "2026-11-10"
+      },
+      "pedido": {
+        "modulo": "economia",
+        "id": "preco_r_saca",
+        "cultura": "milho_2a_safra"
       }
     },
     {
@@ -70,6 +75,11 @@
         "situacao": "fonte",
         "origem_dados": "exemplo",
         "obtido_em": "2026-11-10"
+      },
+      "pedido": {
+        "modulo": "economia",
+        "id": "custo_r_ha",
+        "cultura": "milho_2a_safra"
       }
     },
     {
@@ -86,6 +96,13 @@
         "unidade": "sc/ha",
         "situacao": "hipotese",
         "origem_dados": "exemplo"
+      },
+      "pedido": {
+        "modulo": "economia",
+        "id": "produtividade_kg_ha",
+        "cultura": "milho_2a_safra",
+        "fator": 60,
+        "unidade": "kg/ha"
       }
     },
     {

@@ -87,7 +87,11 @@ def avaliar_cultura(pedido: dict, cultura: str) -> dict:
                 indisponiveis.append({"cultura": cultura, "grupo": grupo, "decendio": d["decendio"],
                                       "motivo": "decêndio da janela termina antes da colheita da soja"})
                 continue
-            sim = motor.simular(pm | {"data_plantio": d["data_plantio"]})
+            try:
+                sim = motor.simular(pm | {"data_plantio": d["data_plantio"]})
+            except motor.ErroMotor as e:  # ex.: CAD informada sem classe ZARC para a cultura → só esta fica indisponível
+                indisponiveis.append({"cultura": cultura, "grupo": grupo, "decendio": d["decendio"], "motivo": e.mensagem})
+                continue
             eco = economia.margem(sim["pedido"]["lat"], sim["pedido"]["lon"], cultura,
                                   sim["resultado"]["perda_relativa_quantis"], ed_eco, pedido.get("percentis"), info_eco)
             alt = {
