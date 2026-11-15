@@ -16,8 +16,9 @@ from tellus.umidade.servico import ErroUmidade
 router = APIRouter(prefix="/api/umidade")
 
 
-def _erro(status: int, codigo: str, mensagem: str, origem: str | None) -> JSONResponse:
-    return JSONResponse(status_code=status, content={"erro": {"codigo": codigo, "mensagem": mensagem, "origem": origem}})
+def _erro(status: int, codigo: str, mensagem: str, origem: str | None, campo: str | None = None) -> JSONResponse:
+    return JSONResponse(status_code=status,
+                        content={"erro": {"codigo": codigo, "mensagem": mensagem, "origem": origem, "campo": campo}})
 
 
 def _executar(**kw):
@@ -26,7 +27,7 @@ def _executar(**kw):
     except ErroUmidade as e:
         return _erro(e.status, e.codigo, e.mensagem, e.origem)
     except ErroLocalizacao as e:
-        return _erro(e.status, e.codigo, e.mensagem, e.campo)
+        return _erro(e.status, e.codigo, e.mensagem, "pedido", e.campo)
 
 
 @router.get("/produtos")
@@ -45,5 +46,5 @@ def contexto_geometria(geometria: dict = Body(..., embed=True), produto: str | N
                        variante: str | None = Body(None, embed=True), data: str | None = Body(None, embed=True),
                        inicio: str | None = Body(None, embed=True), fim: str | None = Body(None, embed=True)):
     if geometria.get("type") not in ("Point", "Polygon", "MultiPolygon"):
-        return _erro(422, "geometria_invalida", "Envie um GeoJSON Point, Polygon ou MultiPolygon em 'geometria'.", "pedido")
+        return _erro(422, "geometria_invalida", "Envie um GeoJSON Point, Polygon ou MultiPolygon em 'geometria'.", "pedido", "geometria")
     return _executar(geometria=geometria, produto=produto, variante=variante, data=data, inicio=inicio, fim=fim)

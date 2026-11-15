@@ -16,8 +16,8 @@ RAIZ = Path(__file__).resolve().parents[3]
 UNICO = RAIZ / "backend" / "src" / "tellus" / "contrato" / "limites.json"
 CHAVES = ("arquivo_max_bytes", "arquivo_formatos", "lavouras_por_envio", "vertices_total_max", "vertices_por_anel_max",
           "area_max_ha", "processamento_prazo_s", "max_vertices_anel")
-# Exceção conhecida, fora desta frente: a spec 009 (vegetacao) fixa o próprio MAX_VERTICES; registrada na NOTA.
-EXCECOES = {RAIZ / "backend" / "src" / "tellus" / "vegetacao" / "servico.py"}
+# Sem exceções: a vegetação (009) também lê vertices_por_anel_max do arquivo único desde a integração da 011.
+EXCECOES: set = set()
 
 
 def test_um_unico_arquivo_define_os_limites():

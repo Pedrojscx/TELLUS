@@ -30,7 +30,9 @@ PRODUTOS = json.loads((DIR_REF / "produtos.json").read_text(encoding="utf-8"))
 PARAMETROS = json.loads((DIR_REF / "parametros.json").read_text(encoding="utf-8"))
 GRADE = PRODUTOS["grade_senoidal_modis"]
 CASAS_ID = 6
-MAX_VERTICES = 5000
+# Limite técnico por anel lido do arquivo único de limites (D-009, #71); mesmo valor do CAR.
+MAX_VERTICES = int(json.loads((RAIZ / "backend" / "src" / "tellus" / "contrato" / "limites.json")
+                              .read_text(encoding="utf-8"))["vertices_por_anel_max"]["valor"])
 
 MODIS = ("MOD13Q1", "MYD13Q1")
 ORIGEM = {

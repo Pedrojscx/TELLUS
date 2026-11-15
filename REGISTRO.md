@@ -202,3 +202,11 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - D-008: a proposta SPL3SMP_E/30 dias foi testada com dado real (Earthdata, autorizado pelo usuário): 27/30 dias com grânulo, 17 válidas em 12 dias, 0,19 a 0,36 m³/m³ → sustenta como hipótese. A série real está em `referencias/umidade/rio_verde_go/` (demo offline). O cliente agora endereça o OPeNDAP pelo GranuleUR do CMR (o nome .h5 dava 404).
 - Integração: routers registrados no `app.py`. 246 testes passando e 1 pulado.
 - Pendências: comparação com e sem SMAP depende da 008 (#95). Formato de erro difere entre módulos (`origem`/`campo`) até o contrato da 011. `httpx` está só no grupo dev, mas é usado em runtime por `clima.imerg`, `vegetacao` e `umidade`.
+## Spec 011 contrato da API e D-009 (15/11, Frente B + Claude Code, integrada pelo Maestro)
+- `tellus.contrato`, versão 1.0.0 (semver: aceita o mesmo MAIOR, com MENOR ≤ ao do servidor). Rotas `/api/contrato/{versao,esquema,pedido/validar}`: só validam, sem executar cálculo.
+- A resposta embala a saída real da 006 (`risco_hidrico`) e da 007 (`economia`) por cultura. A 008 é uma seção pendente, sem campos inventados.
+- Todo número tem proveniência com os 6 campos da constituição: o teste percorre mais de 1.000 números do caso Rio Verde com 0 falhas.
+- Os contextos 009/010 são opcionais. Teste de integração com as séries REAIS de MODIS e SMAP: o `hash_principal` e as culturas não mudam.
+- Envelope único de erro `{"erro": {codigo, mensagem, origem, campo}}` em todos os handlers do `app.py` e em `/api/umidade`.
+- D-009 (hipótese): 20 MB, 10.000 vértices, 100.000 ha e 60 s, num único arquivo (`contrato/limites.json`). CAR (5.000 por anel e 20 MB) e vegetação passam a ler dali, sem mudar valores.
+- Pior caso medido da validação de polígono (O(n²)): 10,2 s com 5.000 vértices; 21,9 s com 10.000; 43,8 s com 20.000. Medir de novo no servidor da demo.
