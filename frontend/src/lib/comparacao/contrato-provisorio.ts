@@ -53,21 +53,39 @@ export interface EntradasComparacao {
   cultura?: string | null; // só na metodologia "cultura_escolhida"
 }
 
+/** Cotação informada pelo produtor (ex.: preço do sorgo, sem indicador oficial — D-005). */
+export interface CotacaoInformada {
+  valor: number;
+  origem_informada: string; // texto livre, ex.: "cooperativa X, Rio Verde"
+  data_informada: string; // AAAA-MM-DD
+}
+
 export interface Premissa {
   id: string;
   nome: string;
   tipo: "solo" | "economica" | "cultura";
-  padrao: number;
+  /** null = não há valor padrão com fonte (nunca se inventa um); só vale o informado pelo produtor. */
+  padrao: number | null;
   editado?: number | null;
   unidade: string;
   minimo: number;
   maximo: number;
   proveniencia: Proveniencia;
+  /** Premissa que só entra com valor, origem e data informados (ex.: preço do sorgo). */
+  exige_cotacao?: boolean;
+  sem_padrao_motivo?: string | null;
+  cotacao?: CotacaoInformada | null;
+  /** Mapeamento para o pedido da 011: módulo, id e cultura da premissa no backend. */
+  pedido?: { modulo: "economia" | "culturas" | "motor"; id: string; cultura?: string | null };
 }
 
 export interface CenarioMargem {
   cenario: "conservador" | "central" | "favoravel";
-  margem_r_ha: number;
+  /** null = margem indisponível (nunca vira zero); o motivo fica em Alternativa.margem_indisponivel. */
+  margem_r_ha: number | null;
+  /** Base de EXEMPLO para recompor a margem quando o preço vem do produtor: sacas/ha e custo R$/ha. */
+  sacas_ha?: number;
+  custo_r_ha?: number;
 }
 
 export interface Alternativa {
@@ -80,6 +98,9 @@ export interface Alternativa {
   premissas_usadas: string[];
   avisos: Aviso[];
   proveniencia: Proveniencia[];
+  /** Premissa de preço exigida (ex.: "preco_sorgo"); sem ela a margem fica indisponível. */
+  preco_premissa_id?: string | null;
+  margem_indisponivel?: string | null;
 }
 
 export interface ContextoOpcional {
@@ -126,3 +147,30 @@ export const ROTULO_GRUPO: Record<Grupo, string> = { I: "Grupo I", II: "Grupo II
 export const ROTULO_CENARIO: Record<CenarioMargem["cenario"], string> = {
   conservador: "Conservador", central: "Central", favoravel: "Favorável",
 };
+
+/** Item de `premissas_editadas` do pedido. `origem_informada`/`data_informada` NÃO existem no contrato 1.0.0:
+ * ficam aqui até a mudança proposta (MENOR 1.1.0, campos opcionais e compatíveis) — ver specs/012-interface-web/plan.md. */
+export interface PremissaEditadaPedido {
+  modulo: "economia" | "culturas" | "motor";
+  id: string;
+  valor_novo: number;
+  unidade: string;
+  cultura?: string | null;
+  origem_informada?: string;
+  data_informada?: string;
+}
+
+/** Premissas editadas/informadas → `pedido.premissas_editadas` (só as que têm mapeamento para o backend). */
+export function premissasParaPedido(ps: Premissa[]): PremissaEditadaPedido[] {
+  const saida: PremissaEditadaPedido[] = [];
+  for (const p of ps) {
+    if (!p.pedido) continue;
+    const base = { modulo: p.pedido.modulo, id: p.pedido.id, unidade: p.unidade, cultura: p.pedido.cultura ?? null };
+    if (p.exige_cotacao) {
+      if (p.cotacao) saida.push({ ...base, valor_novo: p.cotacao.valor, origem_informada: p.cotacao.origem_informada, data_informada: p.cotacao.data_informada });
+    } else if (p.editado != null) {
+      saida.push({ ...base, valor_novo: p.editado });
+    }
+  }
+  return saida;
+}

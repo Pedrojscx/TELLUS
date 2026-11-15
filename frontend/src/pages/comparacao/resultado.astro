@@ -34,3 +34,36 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
     {r.contextos_opcionais.map((c) => <ContextoOpcional c={c} />)}
   </section>
 </LayoutComparacao>
+
+<script>
+  // Aplica a cotação informada pelo produtor (sessão) às alternativas que exigem preço sem padrão (ex.: sorgo).
+  import { carregarExemplo } from "../../lib/comparacao/contrato-provisorio";
+  import { fmt, margensComCotacao, mesclarPremissas } from "../../lib/comparacao/premissas";
+  import * as sessao from "../../lib/comparacao/sessao";
+
+  const ex = carregarExemplo();
+  const premissas = mesclarPremissas(ex.premissas, sessao.ler()?.premissas);
+  const esc = (t: string) => t.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+  const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  document.querySelectorAll<HTMLElement>("[data-alternativa]").forEach((el) => {
+    const a = ex.resultado.alternativas[Number(el.dataset.alternativa)];
+    const m = margensComCotacao(a, premissas);
+    for (const c of m.cenarios) {
+      const td = el.querySelector<HTMLElement>(`[data-margem="${c.cenario}"]`);
+      if (!td) continue;
+      td.textContent = c.margem_r_ha == null ? "indisponível" : brl(c.margem_r_ha);
+      td.className = `py-1 text-right tabular-nums ${c.margem_r_ha == null ? "text-stone-500 italic" : c.margem_r_ha < 0 ? "text-red-700" : ""}`;
+    }
+    const central = m.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? null;
+    el.querySelector("[data-margem-central]")!.textContent = central == null ? "indisponível" : `${brl(central)}/ha`;
+    const motivo = el.querySelector<HTMLElement>("[data-margem-motivo]")!;
+    motivo.textContent = m.motivo ?? "";
+    motivo.classList.toggle("hidden", !m.motivo);
+    const p = premissas.find((x) => x.id === a.preco_premissa_id)!;
+    el.querySelector("[data-proveniencia-cotacao]")!.innerHTML = m.cotacao
+      ? `<div class="rounded-md border border-sky-200 bg-sky-50 p-2 text-sm"><div class="flex flex-wrap items-center justify-between gap-2"><p class="font-medium">${esc(p.nome)}: ${fmt(m.cotacao.valor)} ${esc(p.unidade)}</p><span class="rounded bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-900">Informada pelo produtor</span></div>
+         <dl class="mt-1 grid grid-cols-[auto_1fr] gap-x-3 text-xs text-stone-700"><dt class="text-stone-500">Origem</dt><dd class="break-words">${esc(m.cotacao.origem_informada)}</dd><dt class="text-stone-500">Data da cotação</dt><dd>${esc(m.cotacao.data_informada)}</dd><dt class="text-stone-500">Padrão</dt><dd>sem cotação oficial (CEPEA não cobre sorgo — D-005)</dd></dl></div>`
+      : `<div class="rounded-md border border-stone-200 bg-stone-50 p-2 text-xs text-stone-700">${esc(p.nome)}: sem cotação informada · sem fonte oficial (D-005). <a href="/comparacao/premissas" class="text-emerald-800 underline">Informar cotação</a></div>`;
+  });
+</script>
+

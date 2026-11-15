@@ -107,3 +107,10 @@ Rotas:
 - `/comparacao/erros`
 
 A seção "Localizar a lavoura", em `entradas`, só responde com o backend rodando (`cd backend && uv run uvicorn tellus.api.app:app`). As demais telas funcionam sem backend.
+
+## Preço do sorgo como premissa do produtor (D-005), 2026-11-15
+
+- A tela de premissas mostra o preço do sorgo **sem valor padrão**, com o rótulo "Sem cotação oficial (CEPEA não cobre sorgo) — informe a sua". Valor (R$/sc 60 kg), origem informada e data da cotação são obrigatórios. A validação pura está em `lib/comparacao/premissas.ts::validarCotacao` e `validacao.ts::validarDataCotacao`: valor > 0 e dentro da faixa, origem não vazia, data válida e não futura. Os testes estão em `lib/comparacao/cotacao.test.ts`.
+- Sem cotação, a margem do sorgo aparece "indisponível", com o motivo, e nunca vira zero (`margensComCotacao`). Com cotação, o resultado mostra "informada pelo produtor", a origem e a data no bloco de proveniência. A margem é recomposta sobre a base de EXEMPLO da fixture (sacas × preço − custo, a fórmula da 007).
+- **Backend hoje (main 95753b1)**: a 007 (`economia.margem`, `edicoes.preco_r_saca`) e a 008 (`edicoes_economia[cultura].preco_r_saca`) aceitam só o número. A alteração devolve `origem_novo: "produtor"`, sem origem nem data da cotação. O contrato 1.0.0 (`PremissaEditada`, `extra="forbid"`) também não tem esses campos.
+- **Mudança proposta no contrato (MENOR 1.1.0, compatível)**: campos opcionais `origem_informada: str` e `data_informada: date` (não futura) em `pedido.premissas_editadas[]`, devolvidos na resposta em `premissas_editadas[]` e na proveniência `premissas_do_produtor`. Pedidos 1.0.x continuam válidos. O adaptador `contrato-provisorio.ts::premissasParaPedido` já envia os dois campos.

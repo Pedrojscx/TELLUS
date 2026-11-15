@@ -68,3 +68,18 @@ export function validarMetodologia(e: EntradasComparacao): ErroCampo[] {
   }
   return erros;
 }
+
+/** Data de cotação: AAAA-MM-DD válida e não futura. `hoje` (AAAA-MM-DD) é injetado para o teste ser determinístico. */
+export function validarDataCotacao(texto: string | null | undefined, hoje: string): string | null {
+  if (!texto) return "Informe a data da cotação.";
+  const e = validarData(texto);
+  if (e) return e.replace("Informe a data da colheita da soja.", "Informe a data da cotação.");
+  if (texto.trim() > hoje) return "A data da cotação não pode ser no futuro.";
+  return null;
+}
+
+/** Hoje no fuso local, em AAAA-MM-DD. */
+export function hojeISO(agora: Date = new Date()): string {
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${agora.getFullYear()}-${p(agora.getMonth() + 1)}-${p(agora.getDate())}`;
+}
