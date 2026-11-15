@@ -248,3 +248,15 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - O favicon padrão do Astro (elemento de terceiros) foi trocado pelo ícone TELLUS da equipe.
 - Pendências humanas: arquivo LICENSE do repositório e busca de marca no INPI.
 - Falta aplicar nas telas (#59, #107), que depende da 012 do Pedro na `main`.
+
+## 012 integrada com o contrato real e 013 completa (15/11, 05h10, LK + Claude Code)
+- A branch `012-interface-web` do Pedro foi mergeada sem conflito (152 testes vitest, 8 páginas). Não havia PR; as telas usavam só dados de exemplo.
+- Troca do adaptador:
+  - a tela inicial grava a lavoura escolhida ou confirmada (`lavoura.ts`, ponto ou geometria);
+  - as Entradas oferecem "Usar a lavoura confirmada";
+  - `contrato.ts` monta o pedido 1.1.0, chama `POST /api/contrato/calcular` e converte para os tipos da 012;
+  - o resultado mostra as alternativas reais (sem o selo "DADO DE EXEMPLO") ou cai no exemplo identificado.
+  - Ao vivo: HTTP 200 em 0,85 s, estado final, 26 alternativas, contextos 009/010 disponíveis.
+- 013 parte 2: marca no layout e nos selos de proveniência e erro. Verificação #107 nas 8 telas: rótulos Fonte/Hipótese/Aviso/Erro presentes e nenhum "previsão".
+- Testes: 461 backend + 158 frontend.
+- Issues fechadas: #57, #100, #101, #59, #107, #58. Abertas com comentário: #102 (só o preço do sorgo chega ao backend; premissas do milho no editor ainda são de exemplo) e #103 (indicador de etapas ainda do exemplo). Continuam com humanos: #104 (teste com 5 pessoas), #72 (D-010), #56.
