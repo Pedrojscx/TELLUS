@@ -5,7 +5,7 @@ número já está reservado. Ao criar, mude o status e anote a branch.
 
 | Nº | Spec | Label | Depende de | Status |
 |---|---|---|---|---|
-| 001 | localizacao: local em qualquer ponto do Brasil, com as referências (POWER, IMERG, INMET, Conab, IBGE) | area:localizacao | — | spec escrita (`001-localizacao`) |
+| 001 | localizacao: local em qualquer ponto do Brasil, com as referências (POWER, IMERG, INMET, Conab, IBGE) | area:localizacao | — | implementada, falta teste de tela (`001-localizacao`) |
 | 002 | dados-clima: POWER (temperatura, radiação, umidade, vento), IMERG e INMET para chuva, cache | area:dados-clima | 001 | spec escrita (`002-dados-clima`) |
 | 003 | zarc: janelas e risco por cultura, grupo e solo, via SISZARC | area:zarc | 001 | spec escrita (`003-zarc`) |
 | 004 | solo-culturas: água disponível, Kc, Ky e fases de milho, sorgo e braquiária (cobertura), com fonte | area:solo-culturas | — | spec escrita (`004-solo-culturas`) |
