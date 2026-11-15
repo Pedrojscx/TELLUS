@@ -6,17 +6,19 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
-export const DIR_DOCS = path.resolve(AQUI, "../../docs/testes-e2e");
+// Saída: docs/testes-e2e (bateria técnica) ou outra pasta de docs/ definida pela config (E2E_SAIDA, ex.: teste-usabilidade).
+const SAIDA = process.env.E2E_SAIDA ?? "testes-e2e";
+export const DIR_DOCS = path.resolve(AQUI, "../../docs", SAIDA);
 export const DIR_CAPTURAS = path.join(DIR_DOCS, "capturas");
 export const DIR_EVIDENCIAS = path.join(DIR_DOCS, "evidencias");
-export const DIR_REGISTRO = path.resolve(AQUI, "../test-results/auditoria");
+export const DIR_REGISTRO = path.resolve(AQUI, "../test-results", `auditoria-${SAIDA}`);
 export const API = "http://localhost:8000";
 
 export interface Verificacao { descricao: string; esperado: string; obtido: string; ok: boolean }
 export interface Etapa { numero: number; titulo: string; captura: string | null; verificacoes: Verificacao[]; url: string; quando: string }
 export interface Registro {
   suite: string; teste: string; arquivo: string; inicio: string; fim?: string; status?: string; esperado?: string; erro?: string;
-  defeito?: string;
+  defeito?: string; video?: string;
   navegador?: string; viewport?: string; etapas: Etapa[];
 }
 
@@ -84,6 +86,7 @@ export class Auditoria {
       fim: new Date().toISOString(), status: this.info.status, esperado: this.info.expectedStatus,
       defeito: this.info.annotations.find((a) => a.type === "fail")?.description, navegador: this.page.context().browser()?.version(),
       viewport: vp ? `${vp.width}×${vp.height}` : undefined,
+      video: await this.page.video()?.path().catch(() => undefined),
       erro: this.info.error?.message?.split("\n").slice(0, 3).join(" ").replace(/\u001b\[[0-9;]*m/g, ""),
     });
     fs.mkdirSync(DIR_REGISTRO, { recursive: true });

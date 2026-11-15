@@ -10,8 +10,8 @@
 | Resultado | **21 de 21 testes conforme o esperado** , nenhum defeito conhecido |
 | Verificações | 131 de 131 atendidas |
 | Capturas de tela | 45 |
-| Início da execução | 15/11/2026, 16:37:34 (horário de Brasília) |
-| Commit testado | `dd5c854` (branch `corrige-grupo-nao-sei`, sem alterações locais) |
+| Início da execução | 15/11/2026, 17:25:00 (horário de Brasília) |
+| Commit testado | `a4719cc` (branch `teste-usabilidade`, sem alterações locais) |
 | Navegador | Microsoft Edge 157.0.4341.60 (Playwright 1.64.1, Node v24.20.0) |
 | Contrato da API | 1.2.0 |
 | Dados | API local com as séries e caches versionados do repositório (sem login NASA) |
@@ -47,7 +47,7 @@
 <a id="01-tela-inicial-tela-inicial-abre-com-marca-passo-a-passo-e-seletor-de-local"></a>
 ### Tela inicial abre com marca, passo a passo e seletor de local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:35 → 15/11/2026, 16:37:36
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:01 → 15/11/2026, 17:25:01
 
 #### Etapa 1: tela inicial
 
@@ -66,7 +66,7 @@ URL: `/`
 <a id="01-tela-inicial-escolher-rio-verde-go-pela-busca-mostra-as-fontes-do-local"></a>
 ### Escolher Rio Verde-GO pela busca mostra as fontes do local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:37 → 15/11/2026, 16:37:38
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:02 → 15/11/2026, 17:25:03
 
 #### Etapa 1: busca por Rio Verde
 
@@ -106,7 +106,7 @@ URL: `/`
 <a id="01-tela-inicial-coordenadas-digitadas-tambem-escolhem-o-local"></a>
 ### Coordenadas digitadas também escolhem o local
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:39 → 15/11/2026, 16:37:40
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:03 → 15/11/2026, 17:25:03
 
 #### Etapa 1: coordenadas digitadas
 
@@ -127,7 +127,7 @@ URL: `/`
 <a id="01-tela-inicial-coordenada-fora-do-brasil-e-recusada-com-mensagem-em-portugues"></a>
 ### Coordenada fora do Brasil é recusada com mensagem em português
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:40 → 15/11/2026, 16:37:40
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:04 → 15/11/2026, 17:25:04
 
 #### Etapa 1: ponto fora do Brasil recusado
 
@@ -142,7 +142,7 @@ URL: `/`
 <a id="01-tela-inicial-botao-da-tela-inicial-leva-a-comparacao"></a>
 ### Botão da tela inicial leva à comparação
 
-✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:41 → 15/11/2026, 16:37:42
+✅ passou · arquivo `frontend/e2e/01-tela-inicial.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:04 → 15/11/2026, 17:25:05
 
 #### Etapa 1: entradas com a lavoura escolhida
 
@@ -163,7 +163,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-entradas-vazias-nao-seguem-e-explicam-o-que-falta"></a>
 ### Entradas vazias não seguem e explicam o que falta
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:42 → 15/11/2026, 16:37:44
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:05 → 15/11/2026, 17:25:06
 
 #### Etapa 1: erros de entradas vazias
 
@@ -179,7 +179,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-agua-disponivel-em-mm-aceita-so-numero-positivo"></a>
 ### Água disponível em mm aceita só número positivo
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:44 → 15/11/2026, 16:37:46
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:06 → 15/11/2026, 17:25:07
 
 #### Etapa 1: agua disponivel negativa recusada
 
@@ -197,7 +197,7 @@ URL: `/comparacao/entradas`
 <a id="02-entradas-caso-de-referencia-preenchido-segue-para-a-metodologia"></a>
 ### Caso de referência preenchido segue para a metodologia
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:46 → 15/11/2026, 16:37:48
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:07 → 15/11/2026, 17:25:09
 
 #### Etapa 1: entradas preenchidas
 
@@ -226,7 +226,7 @@ URL: `/comparacao/metodologia`
 <a id="02-entradas-metodologia-sem-escolha-nao-calcula"></a>
 ### Metodologia sem escolha não calcula
 
-✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:48 → 15/11/2026, 16:37:50
+✅ passou · arquivo `frontend/e2e/02-entradas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:09 → 15/11/2026, 17:25:11
 
 #### Etapa 1: metodologia sem escolha
 
@@ -249,7 +249,7 @@ URL: `/comparacao/metodologia`
 <a id="03-calculo-real-caso-de-referencia-rio-verde-go-colheita-20-01-2027-argilosa-grupo-nao-sei-"></a>
 ### Caso de referência: Rio Verde-GO, colheita 20/01/2027, argilosa, grupo "não sei"
 
-✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:50 → 15/11/2026, 16:37:55
+✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:11 → 15/11/2026, 17:25:15
 
 #### Etapa 1: metodologia: comparar as alternativas
 
@@ -327,7 +327,7 @@ URL: `/comparacao/resultado`
 <a id="03-calculo-real-grupo-nao-sei-o-que-foi-consultado-lista-as-fontes-de-clima-e-as-culturas-calculadas-por-grupo"></a>
 ### Grupo "não sei": "O que foi consultado" lista as fontes de clima e as culturas calculadas por grupo
 
-✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:55 → 15/11/2026, 16:37:59
+✅ passou · arquivo `frontend/e2e/03-calculo-real.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:15 → 15/11/2026, 17:25:18
 
 #### Etapa 1: metodologia: comparar as alternativas
 
@@ -361,7 +361,7 @@ URL: `/comparacao/resultado`
 <a id="04-premissas-premissas-mostram-os-padroes-reais-e-a-edicao-chega-ao-calculo"></a>
 ### Premissas mostram os padrões reais e a edição chega ao cálculo
 
-✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:37:59 → 15/11/2026, 16:38:04
+✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:18 → 15/11/2026, 17:25:23
 
 #### Etapa 1: padroes reais de Rio Verde-GO
 
@@ -427,7 +427,7 @@ URL: `/comparacao/resultado`
 <a id="04-premissas-grupo-nao-sei-o-resultado-mostra-o-padrao-ao-lado-do-preco-editado"></a>
 ### Grupo "não sei": o resultado mostra o padrão ao lado do preço editado
 
-✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:05 → 15/11/2026, 16:38:10
+✅ passou · arquivo `frontend/e2e/04-premissas.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:23 → 15/11/2026, 17:25:27
 
 #### Etapa 1: padrao ao lado do preco editado
 
@@ -450,7 +450,7 @@ URL: `/comparacao/resultado`
 <a id="05-idioma-trocar-para-ingles-no-topo-vale-em-todas-as-telas-e-no-resultado-real"></a>
 ### Trocar para inglês no topo vale em todas as telas e no resultado real
 
-✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:10 → 15/11/2026, 16:38:16
+✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:27 → 15/11/2026, 17:25:33
 
 #### Etapa 1: tela inicial em ingles
 
@@ -507,7 +507,7 @@ URL: `/comparacao/resultado`
 <a id="05-idioma-link-com-lang-en-abre-direto-em-ingles"></a>
 ### Link com ?lang=en abre direto em inglês
 
-✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:16 → 15/11/2026, 16:38:16
+✅ passou · arquivo `frontend/e2e/05-idioma.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:33 → 15/11/2026, 17:25:33
 
 #### Etapa 1: link com lang en
 
@@ -524,7 +524,7 @@ URL: `/comparacao/metodologia?lang=en`
 <a id="06-celular-fluxo-completo-no-celular-sem-nada-cortado-na-lateral"></a>
 ### Fluxo completo no celular sem nada cortado na lateral
 
-✅ passou · arquivo `frontend/e2e/06-celular.e2e.ts` · tela 390×844 · 15/11/2026, 16:38:17 → 15/11/2026, 16:38:21
+✅ passou · arquivo `frontend/e2e/06-celular.e2e.ts` · tela 390×844 · 15/11/2026, 17:25:34 → 15/11/2026, 17:25:37
 
 #### Etapa 1: tela inicial no celular
 
@@ -575,7 +575,7 @@ URL: `/comparacao/resultado`
 <a id="07-erros-simulados-tela-de-calculo-simula-sucesso-fonte-com-copia-guardada-e-falha-sem-copia"></a>
 ### Tela de cálculo simula sucesso, fonte com cópia guardada e falha sem cópia
 
-✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:21 → 15/11/2026, 16:38:28
+✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:37 → 15/11/2026, 17:25:44
 
 #### Etapa 1: simulacao tudo certo
 
@@ -621,7 +621,7 @@ URL: `/comparacao/carga`
 <a id="07-erros-simulados-tela-de-erros-mostra-os-tres-estados-de-uma-fonte"></a>
 ### Tela de erros mostra os três estados de uma fonte
 
-✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:28 → 15/11/2026, 16:38:28
+✅ passou · arquivo `frontend/e2e/07-erros-simulados.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:44 → 15/11/2026, 17:25:45
 
 #### Etapa 1: tres estados de uma fonte
 
@@ -641,7 +641,7 @@ URL: `/comparacao/erros`
 <a id="08-api-mesmo-pedido-em-pt-e-en-da-os-mesmos-numeros-ordem-e-hash"></a>
 ### Mesmo pedido em PT e EN dá os mesmos números, ordem e hash
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:29 → 15/11/2026, 16:38:30
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:45 → 15/11/2026, 17:25:46
 
 #### Etapa 1: pt e en com os mesmos numeros
 
@@ -661,7 +661,7 @@ URL: `about:blank`
 <a id="08-api-versoes-do-contrato-1-1-0-aceita-2-0-0-recusada-com-as-versoes-aceitas"></a>
 ### Versões do contrato: 1.1.0 aceita, 2.0.0 recusada com as versões aceitas
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:30 → 15/11/2026, 16:38:30
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:46 → 15/11/2026, 17:25:47
 
 #### Etapa 1: versoes do contrato
 
@@ -678,7 +678,7 @@ URL: `about:blank`
 <a id="08-api-pedido-sem-area-confirmada-nao-comeca-o-calculo"></a>
 ### Pedido sem área confirmada não começa o cálculo
 
-✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 16:38:31 → 15/11/2026, 16:38:31
+✅ passou · arquivo `frontend/e2e/08-api.e2e.ts` · tela 1280×900 · 15/11/2026, 17:25:47 → 15/11/2026, 17:25:47
 
 #### Etapa 1: area nao confirmada recusada
 
