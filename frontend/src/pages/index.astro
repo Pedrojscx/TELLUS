@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import SeletorLocal from "../components/SeletorLocal.astro";
 import ReferenciasLocal from "../components/ReferenciasLocal.astro";
+import SeletorIdioma from "../components/SeletorIdioma.astro";
 ---
 
 <Base titulo="TELLUS · segunda safra">
@@ -11,7 +12,7 @@ import ReferenciasLocal from "../components/ReferenciasLocal.astro";
         <p class="inline-flex items-center gap-2 text-xl font-bold tracking-tight text-tellus-primaria"><img src="/favicon.svg" alt="" width="28" height="28" />TELLUS</p>
         <p class="text-sm text-stone-600">Milho, sorgo ou cobertura depois da soja: risco e margem com dados NASA e fontes oficiais.</p>
       </div>
-      <a href="/comparacao/entradas" class="rounded-md border border-tellus-primaria px-3 py-2 text-sm font-semibold text-tellus-primaria hover:bg-stone-100">Comparar alternativas →</a>
+      <div class="flex flex-wrap items-center gap-3"><SeletorIdioma /><a href="/comparacao/entradas" class="rounded-md border border-tellus-primaria px-3 py-2 text-sm font-semibold text-tellus-primaria hover:bg-stone-100">Comparar alternativas →</a></div>
     </div>
   </header>
   <main class="mx-auto max-w-5xl px-4 py-6">

@@ -1,0 +1,10 @@
+---
+// Seletor PT | EN (spec 014, FR-001). Texto, não bandeira; o idioma atual fica marcado (aria-pressed).
+---
+<div class="inline-flex items-center gap-1 text-sm" role="group" aria-label="Idioma" data-sem-traducao>
+  <button type="button" data-idioma="pt-BR" aria-pressed="true" title="Português"
+    class="rounded px-2 py-1 font-semibold text-tellus-primaria aria-pressed:bg-tellus-primaria aria-pressed:text-white hover:bg-stone-100 aria-pressed:hover:bg-tellus-primaria">PT</button>
+  <span aria-hidden="true" class="text-stone-400">|</span>
+  <button type="button" data-idioma="en" aria-pressed="false" title="English"
+    class="rounded px-2 py-1 font-semibold text-tellus-primaria aria-pressed:bg-tellus-primaria aria-pressed:text-white hover:bg-stone-100 aria-pressed:hover:bg-tellus-primaria">EN</button>
+</div>
