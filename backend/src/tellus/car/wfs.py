@@ -6,6 +6,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import ssl
 from pathlib import Path
 
 import httpx
@@ -18,6 +19,16 @@ DIR_CACHE = Path(os.environ.get("TELLUS_CACHE_CAR", RAIZ / "data" / "raw" / "car
 
 class FonteIndisponivel(Exception):
     pass
+
+
+def contexto_tls() -> ssl.SSLContext:
+    """O servidor do SICAR só negocia cifras que o OpenSSL 3.5 recusa no nível de segurança padrão.
+
+    Baixa o nível das cifras para 1 só neste cliente; a verificação do certificado continua ligada.
+    """
+    ctx = ssl.create_default_context()
+    ctx.set_ciphers("DEFAULT:@SECLEVEL=1")
+    return ctx
 
 
 def camada(codigo: str) -> str:
@@ -53,7 +64,7 @@ def consultar(codigo: str, dir_cache: Path | None = None, cliente: httpx.Client 
     """Resposta GeoJSON do WFS e metadados. Levanta FonteIndisponivel em falha de rede/serviço."""
     dir_cache = dir_cache or DIR_CACHE
     try:
-        cli = cliente or httpx.Client(timeout=20, headers={"User-Agent": "TELLUS/0.1 (NASA Space Apps)"})
+        cli = cliente or httpx.Client(timeout=20, verify=contexto_tls(), headers={"User-Agent": "TELLUS/0.1 (NASA Space Apps)"})
         r = cli.get(URL, params=parametros(codigo))
     except httpx.HTTPError as e:
         raise FonteIndisponivel(f"sem resposta do WFS do SICAR ({type(e).__name__})") from e
