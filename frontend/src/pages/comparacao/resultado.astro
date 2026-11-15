@@ -43,7 +43,7 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
   // Resultado REAL (contrato 1.1.0, #54): com a lavoura confirmada e as entradas completas, chama o backend.
   // Sem isso, fica o exemplo identificado acima (selo "DADO DE EXEMPLO").
   import { carregarExemplo, ROTULO_CENARIO, type Alternativa, type ResultadoComparacao } from "../../lib/comparacao/contrato-provisorio";
-  import { calcular, montarPedido, paraResultado, type FalhaPedido, type RespostaContrato } from "../../lib/comparacao/contrato";
+  import { calcular, montarPedido, paraResultado, usaTalhao, type FalhaPedido, type RespostaContrato } from "../../lib/comparacao/contrato";
   import { TEXTO_ESTADO_GERAL, etapasDaResposta, etapasEmAndamento, textoErro, type Etapa } from "../../lib/comparacao/etapas";
 
   const ICONE: Record<string, string> = { pendente: "○", rodando: "◌", ok: "✓", cache: "◐", falha: "✕" };
@@ -121,12 +121,15 @@ const solo = e.solo?.modo === "textura" ? `textura ${ROTULO_TEXTURA[e.solo.textu
     try {
       const premissas = mesclarPremissas(carregarExemplo().premissas, s?.premissas);
       const pedido = montarPedido(e, lav, premissas);
+      const areaUsada = lav && usaTalhao(lav)
+        ? `Área usada no cálculo: talhão confirmado (${lav.area_ha?.toLocaleString("pt-BR") ?? "?"} ha).`
+        : "Área usada no cálculo: ponto do município (sem talhão).";
       fase("calculando");
       const resp = await calcular(pedido);
       fase("montando");
       const r = paraResultado(resp, e.metodologia ?? "comparar_alternativas");
       const real = document.getElementById("resultado-real")!;
-      real.innerHTML = render(r, resp);
+      real.innerHTML = `<p class="rounded-md bg-stone-100 px-3 py-2 text-sm text-stone-700" data-area-usada>${esc(areaUsada)}</p>` + render(r, resp);
       real.classList.remove("hidden");
       document.getElementById("resultado-exemplo")!.classList.add("hidden");
       document.getElementById("selo-exemplo")?.classList.add("hidden");
