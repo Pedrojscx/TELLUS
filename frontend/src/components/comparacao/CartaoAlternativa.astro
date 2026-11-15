@@ -2,14 +2,14 @@
 // Alternativa (#56 cenário 2; spec 008 FR-003/FR-005): risco ZARC, risco histórico e margem separados.
 import type { Alternativa } from "../../lib/comparacao/contrato-provisorio";
 import { ROTULO_CENARIO } from "../../lib/comparacao/contrato-provisorio";
-import { margensComCotacao } from "../../lib/comparacao/premissas";
+import { margemPrincipal } from "../../lib/comparacao/premissas";
 import BlocoProveniencia from "./BlocoProveniencia.astro";
 interface Props { a: Alternativa; posicao: number }
 const { a, posicao } = Astro.props;
 const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
 // Renderização do servidor: sem cotação da sessão. Margem ausente aparece "indisponível", nunca R$ 0.
 // O script da página de resultado reaplica com a cotação informada pelo produtor (data-alternativa).
-const m = margensComCotacao(a, []);
+const m = margemPrincipal(a, []);
 const central = m.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? null;
 ---
 <details data-alternativa={a.preco_premissa_id ? posicao - 1 : undefined} class="group rounded-xl border border-stone-200 bg-white shadow-sm open:ring-1 open:ring-emerald-700/30">
@@ -44,6 +44,7 @@ const central = m.cenarios.find((c) => c.cenario === "central")?.margem_r_ha ?? 
           ))}
         </tbody>
       </table>
+      <div data-simulacao-local class="mt-2 hidden rounded-md border-2 border-dashed border-amber-400 bg-amber-50 p-3 text-sm"></div>
       <p data-margem-motivo class:list={["mt-1 rounded-md border border-amber-200 bg-amber-50 px-3 py-1.5 text-sm text-amber-950", !m.motivo && "hidden"]}>{m.motivo}</p>
     </div>
     {a.avisos.length > 0 && (

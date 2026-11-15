@@ -10,6 +10,10 @@
 
 import exemplo from "../../fixtures/comparacao/rio-verde-exemplo.json";
 
+/** Interruptor único: virar true quando a 008 com repasse da cotação informada estiver na main;
+ * aí a margem vem do backend e o recálculo local (simulação de exemplo) sai. */
+export const MARGEM_DO_BACKEND_DISPONIVEL = false;
+
 export type Situacao = "fonte" | "hipotese" | "editado" | "desconhecido";
 
 /** Bloco genérico de proveniência (FR-005 da 012; Princípio I). */

@@ -1,7 +1,7 @@
 // Edição de premissas (#102). Puro: valida unidade/domínio e mostra padrão × editado.
 // Os limites de cada premissa vêm do dado (hoje da fixture de exemplo; depois da 005/007 via 011).
 
-import type { Alternativa, CenarioMargem, CotacaoInformada, Premissa } from "./contrato-provisorio";
+import { MARGEM_DO_BACKEND_DISPONIVEL, type Alternativa, type CenarioMargem, type CotacaoInformada, type Premissa } from "./contrato-provisorio";
 import { lerNumero, validarDataCotacao } from "./validacao";
 
 export function aplicarEdicao(p: Premissa, texto: string): { premissa: Premissa; erro: string | null } {
@@ -89,4 +89,31 @@ export function mesclarPremissas(base: Premissa[], salvas: Premissa[] | null | u
     const s = porId.get(p.id);
     return s ? { ...p, editado: p.exige_cotacao ? null : s.editado ?? null, cotacao: p.exige_cotacao ? s.cotacao ?? null : null } : p;
   });
+}
+
+export const MOTIVO_AGUARDANDO_BACKEND =
+  "Margem com a sua cotação: aguardando o cálculo da 007/008 com a cotação informada. O número abaixo é só uma simulação local de exemplo.";
+
+/** Margem que pode aparecer como RESULTADO (cartão, resumo, ordenação). Só vem do backend: enquanto o interruptor
+ * estiver desligado, a alternativa que exige cotação fica indisponível, mesmo com cotação informada. */
+export function margemPrincipal(a: Alternativa, ps: Premissa[], backend = MARGEM_DO_BACKEND_DISPONIVEL):
+  { cenarios: CenarioMargem[]; motivo: string | null } {
+  if (!a.preco_premissa_id || backend) return { cenarios: a.cenarios, motivo: a.margem_indisponivel ?? null };
+  const temCotacao = Boolean(ps.find((x) => x.id === a.preco_premissa_id)?.cotacao);
+  return { cenarios: a.cenarios.map((c) => ({ ...c, margem_r_ha: null })), motivo: temCotacao ? MOTIVO_AGUARDANDO_BACKEND : MOTIVO_SEM_COTACAO };
+}
+
+export interface SimulacaoLocal {
+  exemplo: true;
+  eh_resultado: false;
+  cenarios: CenarioMargem[];
+  cotacao: CotacaoInformada;
+}
+
+/** Recálculo local sobre a base de EXEMPLO, só para mostrar numa caixa à parte com o selo. Nunca é resultado.
+ * null quando o backend já calcula (interruptor ligado) ou quando não há cotação. */
+export function simulacaoLocal(a: Alternativa, ps: Premissa[], backend = MARGEM_DO_BACKEND_DISPONIVEL): SimulacaoLocal | null {
+  if (backend || !a.preco_premissa_id) return null;
+  const m = margensComCotacao(a, ps);
+  return m.cotacao ? { exemplo: true, eh_resultado: false, cenarios: m.cenarios, cotacao: m.cotacao } : null;
 }
