@@ -55,13 +55,8 @@ test("Caso de referência: Rio Verde-GO, colheita 20/01/2027, argilosa, grupo \"
     });
 });
 
-// DEFEITO CONHECIDO (encontrado por esta bateria em 15/11/2026): com grupo "não sei", o backend calcula risco e
-// margem por grupo dentro da recomendação; as seções por cultura saem "indisponível (opcional)" e a lista `fontes`
-// da resposta vem vazia. A tela então mostra ✕ em todas as culturas e nenhuma fonte (NASA, ZARC, Conab), e o
-// estado geral não consegue detectar cópia guardada (cache). test.fail: quando corrigirem, o Playwright acusa
-// "passou inesperadamente" e esta marca deve sair.
-test("Defeito conhecido: \"O que foi consultado\" com grupo \"não sei\" lista as fontes e não marca culturas como falha", async ({ page, aud }) => {
-  test.fail(true, "Com grupo \"não sei\", fontes vem vazio e as seções por cultura aparecem como ✕ indisponível.");
+// Regressão do achado de 15/11/2026 (grupo "não sei"), corrigido em seguida; antes era um test.fail.
+test("Grupo \"não sei\": \"O que foi consultado\" lista as fontes de clima e as culturas calculadas por grupo", async ({ page, aud }) => {
   await escolherRioVerde(page, aud, false);
   await preencherEntradas(page, aud, false);
   await calcular(page, aud);
@@ -71,4 +66,8 @@ test("Defeito conhecido: \"O que foi consultado\" com grupo \"não sei\" lista a
     () => expect(lista).toContainText("NASA GPM IMERG", { timeout: 3_000 }), () => lista.innerText());
   await aud.verificar("Culturas não aparecem como falha", "nenhum \"✕\" nas culturas",
     () => expect(lista).not.toContainText("✕", { timeout: 3_000 }), () => lista.innerText());
+  await aud.verificar("Culturas indicadas como calculadas por grupo", "\"por grupo, na recomendação\"",
+    () => expect(lista).toContainText("por grupo, na recomendação"));
+  await lista.scrollIntoViewIfNeeded();
+  await aud.captura("o que foi consultado com grupo nao sei", { paginaInteira: false });
 });

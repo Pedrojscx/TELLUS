@@ -95,6 +95,13 @@ export function etapasDaResposta(r: RespostaContrato): Etapa[] {
     for (const [k, rot] of [["risco_hidrico", "risco hídrico"], ["economia", "margem"]] as const) {
       const s = c[k];
       if (!s) continue;
+      // Grupo "não sei": risco e margem são calculados por grupo dentro da recomendação, não na seção da cultura.
+      const porGrupo = s.estado === "indisponivel" && (s.avisos ?? []).some((a) => a.codigo === "grupo_nao_sei");
+      if (porGrupo) {
+        etapas.push({ id: `${c.cultura}:${k}`, rotulo: `${nome}: ${rot}`, obrigatoria: false, estado: estadoSecao(r.recomendacao),
+                      detalhe: "por grupo, na recomendação" });
+        continue;
+      }
       etapas.push({ id: `${c.cultura}:${k}`, rotulo: `${nome}: ${rot}`, obrigatoria: s.obrigatoria ?? true, estado: estadoSecao(s), detalhe: s.erro?.mensagem });
     }
   }

@@ -61,12 +61,8 @@ test("Premissas mostram os padrões reais e a edição chega ao cálculo", async
   await aud.captura("sorgo com a cotacao informada", { paginaInteira: false });
 });
 
-// DEFEITO CONHECIDO (encontrado por esta bateria em 15/11/2026): com grupo "não sei", o valor padrão da premissa
-// editada não volta na resposta (valor_padrao vem nulo porque a seção economia por cultura fica indisponível).
-// O resultado mostra "sem padrão com fonte → 70" em vez de "padrão 67,34 → 70". A edição chega ao cálculo
-// (a margem muda); só o padrão some. test.fail: quando corrigirem, tirar esta marca.
-test("Defeito conhecido: com grupo \"não sei\", o resultado mostra o padrão ao lado do preço editado", async ({ page, aud }) => {
-  test.fail(true, "Com grupo \"não sei\", valor_padrao vem nulo e a tela diz \"sem padrão com fonte\".");
+// Regressão do achado de 15/11/2026 (grupo "não sei"), corrigido em seguida; antes era um test.fail.
+test("Grupo \"não sei\": o resultado mostra o padrão ao lado do preço editado", async ({ page, aud }) => {
   await escolherRioVerde(page, aud, false);
   await preencherEntradas(page, aud, false);
   await page.locator('input[name="metodologia"][value="comparar_alternativas"]').check();
@@ -81,4 +77,6 @@ test("Defeito conhecido: com grupo \"não sei\", o resultado mostra o padrão ao
   await aud.verificar("Padrão aparece ao lado do novo valor", "\"padrão 67,34 → 70\" (ou o padrão vigente)",
     () => expect(cartao).toContainText(/padrão [\d,.]+ → 70/, { timeout: 3_000 }),
     async () => (await cartao.innerText()).split("\n").find((l) => l.includes("→")) ?? "sem linha com →");
+  await cartao.scrollIntoViewIfNeeded();
+  await aud.captura("padrao ao lado do preco editado", { paginaInteira: false });
 });

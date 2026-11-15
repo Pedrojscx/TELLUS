@@ -46,6 +46,11 @@ Um teste marcado com `test.fail` descreve o comportamento **correto** e falha en
 relatório ele aparece como "defeito conhecido (falhou como esperado)", com a captura do problema. Quando o defeito
 for corrigido, o Playwright acusa "passou inesperadamente": é a hora de tirar a marca `test.fail`.
 
+Histórico: a primeira execução (15/11/2026) encontrou dois defeitos com grupo "não sei", o caso de referência. A lista
+de fontes da resposta vinha vazia (a tela mostrava ✕ em todas as culturas e o estado geral não detectava cópia
+guardada) e o valor padrão da premissa editada vinha nulo ("sem padrão com fonte → 70"). Os dois foram corrigidos
+no mesmo dia; os testes `Grupo "não sei": …` das suítes 03 e 04 ficaram como regressão.
+
 ## Como auditar
 
 1. Confira no topo do relatório o commit testado e se havia alterações locais fora do commit.
