@@ -7,7 +7,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from tellus.api import car, clima, culturas, economia, localizacao, motor, zarc
+from tellus.api import car, clima, culturas, economia, localizacao, motor, umidade, vegetacao, zarc
 from tellus.car.servico import ErroCar
 from tellus.zarc.servico import ErroZarc
 from tellus.culturas.servico import ErroPremissa
@@ -81,6 +81,8 @@ app.include_router(culturas.router)
 app.include_router(zarc.router)
 app.include_router(car.router)
 app.include_router(clima.router)
+app.include_router(umidade.router)
+app.include_router(vegetacao.router)
 
 
 @app.get("/api/saude")
