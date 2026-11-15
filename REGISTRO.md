@@ -125,3 +125,19 @@ Nota: a seção "Sessão 14/11 (Claude Code) — pendências" acima foi escrita 
 - Constituição 1.1.0 = a do Pedro + "Decisões de Dados e Escopo" (chuva do POWER fora do balanço, cobertura nacional com referência mais próxima declarada, escopo até o prazo).
 - A antiga 001-localizacao do LK virou `specs/002-localizacao-propriedade/entrega-1-ponto/` (código e testes na `main`). As specs 002 a 007 do LK ficam como consulta (`docs/sdd/MAPA_SPECS.md`).
 - Divisão proposta em `docs/sdd/SINCRONIA_PEDRO.md`: LK fica com a 003 dados-clima; Pedro com a 004 e a 005.
+
+## CAR por WFS: D-001 respondida (15/11, 00h, LK + Claude Code)
+- `https://geoserver.car.gov.br/geoserver/sicar/wfs` (WFS 2.0, sem login) tem uma camada por UF: `sicar:sicar_imoveis_<uf>`. Campos: cod_imovel, status_imovel, dat_criacao, data_atualizacao, area (ha), condicao, uf, municipio, cod_municipio_ibge, m_fiscal, tipo_imovel e geo_area_imovel (MultiPolygon). Não traz nome do proprietário.
+- Consulta por código: `request=GetFeature&typeNames=sicar:sicar_imoveis_go&outputFormat=application/json&cql_filter=cod_imovel='GO-5218805-8F8B1082570B4C1799ADBEE6CE0EEE33'` devolve 1 feição em 0,35 s. Código inexistente devolve `numberMatched: 0`, distinto de fonte fora do ar.
+- Consulta por área: `bbox=lonmin,latmin,lonmax,latmax,EPSG:4326` (ordem lon,lat). Ex.: 27 imóveis em 0,05° × 0,05° perto de Rio Verde.
+- O prefixo do código (UF) escolhe a camada. Por regra da spec 001, a geometria ainda precisa de confirmação do produtor.
+- Outros sites sugeridos: geo.cati.sp.gov.br (portal ArcGIS da CATI) e datageo.ambiente.sp.gov.br (GeoServer da SIMA). Ambos só cobrem SP e não servem para Rio Verde-GO. Não fazem parte do plano.
+
+## Spec 003 dados-clima (15/11, 00h10, LK + Claude Code)
+- Branch `003-dados-clima`: módulo `tellus.clima`, com o cliente IMERG (DAP4 `.dap.nc4` lido por h5py, cache por célula em `data/raw/clima/imerg/`), o cliente POWER (um pedido para o período), regras puras e rotas `/api/clima/{resumo,serie,validacao}`.
+- IMERG de Rio Verde (célula -17,75/-50,95): 9.039 dias ok de 2001-01-01 a 2025-09-30 e 410 `nao_publicado` depois (D-002: lacuna recusada, aviso `lacuna_imerg`). Download de cerca de 20 min com 16 conexões.
+- POWER (célula -18/-51,25, 731,58 m): 9.449 dias, sem -999. Fontes MERRA2, GEOSIT, SYN1DEG e POWER.
+- SC-002 reproduzido de forma independente (IMERG baixado de novo contra a série INMET da pesquisa): 1.218 dias jan–jun; IMERG 6.284,48 mm, viés -1,03%, MAE 4,13, RMSE 8,59 mm/dia; POWER -26,96%.
+- `referencias/clima/rio_verde_go/` (série derivada, meta com sha256): a demo roda sem rede. Sem cache, o serviço cai nela (`origem_dados: referencia_versionada`).
+- A API de dados por estação do INMET (`apitempo.../estacao/...`) responde 204. Só a A025 tem validação; as outras estações recebem `disponivel: false` com o motivo.
+- 68 testes passando (pytest com `--import-mode=importlib`).
