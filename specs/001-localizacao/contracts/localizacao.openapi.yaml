@@ -160,6 +160,6 @@ components:
           properties:
             codigo:
               type: string
-              enum: [coordenada_invalida, fora_do_brasil, fora_de_municipio, municipio_nao_encontrado]
+              enum: [coordenada_invalida, fora_do_brasil, fora_de_municipio, municipio_nao_encontrado, parametro_invalido]
             mensagem: { type: string }
             campo: { type: [string, "null"] }
