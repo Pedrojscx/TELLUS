@@ -1,12 +1,6 @@
 {
  "avisos": [
   {
-   "codigo": "secao_pendente",
-   "mensagem": "A recomendação (spec 008, #48) ainda não existe. Esta resposta traz risco hídrico e margem por cultura, mas não ordena nem recomenda alternativas.",
-   "origem": "spec 008",
-   "tipo": "aviso"
-  },
-  {
    "codigo": "cache_usado",
    "mensagem": "Parte dos dados veio de cópia guardada (cache) de 2026-11-14.",
    "origem": "fontes",
@@ -1334,6 +1328,8 @@
     "conteudo": {
      "alteracoes": [
       {
+       "data_informada": "2026-11-14",
+       "origem_informada": "cotação de exemplo (cooperativa fictícia)",
        "origem_novo": "produtor",
        "premissa": "preco_r_saca",
        "unidade": "R$/saca de 60 kg",
@@ -1709,9 +1705,13 @@
       "preco": {
        "editado": true,
        "id": "preco_r_saca",
+       "informado": {
+        "data_informada": "2026-11-14",
+        "origem_informada": "cotação de exemplo (cooperativa fictícia)"
+       },
        "motivo": "D-005: o CEPEA não publica indicador de sorgo e o portal de preços da Conab não oferece conexão segura (certificado inválido). Informe o preço negociado para ver a margem.",
        "nome": "Preço de venda",
-       "status": "indisponivel",
+       "status": "informado_pelo_produtor",
        "unidade": "R$/saca de 60 kg",
        "valor": null,
        "valor_usado": 55.0
@@ -1731,7 +1731,7 @@
        "valor_usado": 3600.0
       }
      },
-     "versao_premissas": "1af3e2d25af91dc5"
+     "versao_premissas": "03e37eb9d284cc9d"
     },
     "erro": null,
     "estado": "disponivel",
@@ -1811,7 +1811,7 @@
       "qualidade": "calculado com as premissas acima; inclui premissas do produtor",
       "situacao": "calculado",
       "unidade": "kg/ha, sacas/ha, R$/ha",
-      "versao": "1af3e2d25af91dc5"
+      "versao": "03e37eb9d284cc9d"
      },
      {
       "cobre": [
@@ -1828,11 +1828,25 @@
       "qualidade": "informado pelo produtor; o valor anterior fica ao lado",
       "situacao": "editado",
       "unidade": "ver unidade de cada alteração",
-      "versao": "1af3e2d25af91dc5"
+      "versao": "03e37eb9d284cc9d"
+     },
+     {
+      "cobre": [
+       "premissas.preco.*",
+       "alteracoes.*"
+      ],
+      "fonte": "Informado pelo produtor: cotação de exemplo (cooperativa fictícia)",
+      "id": "informado_preco_r_saca",
+      "localizacao": "informado pelo produtor (cotação de exemplo (cooperativa fictícia))",
+      "periodo": "2026-11-14",
+      "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
+      "situacao": "editado",
+      "unidade": "R$/saca de 60 kg",
+      "versao": "03e37eb9d284cc9d"
      }
     ],
     "spec": "007 (#46)",
-    "versao_modulo": "1af3e2d25af91dc5"
+    "versao_modulo": "03e37eb9d284cc9d"
    },
    "risco_hidrico": {
     "avisos": [
@@ -3632,13 +3646,15 @@
   "cultura": null,
   "data_colheita_soja": "2027-01-20",
   "grupo": "GRUPO I",
-  "hash_pedido": "6b4e261449c1c07d",
+  "hash_pedido": "c6bd986a134ce7e3",
   "metodologia": "comparar_alternativas",
   "premissas_editadas": [
    {
     "cultura": "sorgo_granifero_2a_safra",
+    "data_informada": "2026-11-14",
     "id": "preco_r_saca",
     "modulo": "economia",
+    "origem_informada": "cotação de exemplo (cooperativa fictícia)",
     "unidade": "R$/saca de 60 kg",
     "valor_novo": 55.0,
     "valor_padrao": null
@@ -3650,13 +3666,15 @@
    "granulometria": null,
    "textura": "argilosa"
   },
-  "versao_contrato": "1.0.0"
+  "versao_contrato": "1.1.0"
  },
  "premissas_editadas": [
   {
    "cultura": "sorgo_granifero_2a_safra",
+   "data_informada": "2026-11-14",
    "id": "preco_r_saca",
    "modulo": "economia",
+   "origem_informada": "cotação de exemplo (cooperativa fictícia)",
    "unidade": "R$/saca de 60 kg",
    "valor_novo": 55.0,
    "valor_padrao": null
@@ -3665,32 +3683,1385 @@
  "recomendacao": {
   "avisos": [
    {
-    "codigo": "secao_pendente",
-    "mensagem": "A recomendação (spec 008, #48) ainda não existe. Esta resposta traz risco hídrico e margem por cultura, mas não ordena nem recomenda alternativas.",
+    "codigo": "nao_e_previsao",
+    "mensagem": "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra.",
+    "origem": "spec 008",
+    "tipo": "aviso"
+   },
+   {
+    "codigo": "riscos_distintos",
+    "mensagem": "risco_zarc_pct é o risco oficial da portaria; risco_historico_falha_severa é a frequência simulada pelo TELLUS; margem_r_ha é econômica. São medidas distintas.",
+    "origem": "spec 008",
+    "tipo": "aviso"
+   },
+   {
+    "codigo": "percentis",
+    "mensagem": "D-006: cenários pelos quartis da perda simulada — conservador = percentil 75 (pior em 1 de cada 4 anos), central = mediana, favorável = percentil 25. Decisão de produto, sem fonte setorial; editável.",
     "origem": "spec 008",
     "tipo": "aviso"
    }
   ],
-  "conteudo": null,
+  "conteudo": {
+   "alternativas": [
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -514.37,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0023,
+       "produtividade_kg_ha": 3591.7,
+       "receita_r_ha": 3292.39,
+       "sacas_ha": 59.86
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -651.96,
+       "percentil_perda": 75,
+       "perda_relativa": 0.044,
+       "produtividade_kg_ha": 3441.6,
+       "receita_r_ha": 3154.8,
+       "sacas_ha": 57.36
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -506.76,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 3600.0,
+       "receita_r_ha": 3300.0,
+       "sacas_ha": 60.0
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "01-20",
+     "decendio": 2,
+     "deficit_mm_mediano": 0.54,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -514.37,
+      "conservador": -651.96,
+      "favoravel": -506.76
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0,
+      "25": 0.0,
+      "50": 0.0023,
+      "75": 0.044,
+      "90": 0.0917
+     },
+     "portaria_zarc": "273",
+     "posicao": 1,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "1cfdc08b1e8ef5c5",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -514.37,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0023,
+       "produtividade_kg_ha": 3591.7,
+       "receita_r_ha": 3292.39,
+       "sacas_ha": 59.86
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -674.05,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0507,
+       "produtividade_kg_ha": 3417.5,
+       "receita_r_ha": 3132.71,
+       "sacas_ha": 56.96
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -506.76,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 3600.0,
+       "receita_r_ha": 3300.0,
+       "sacas_ha": 60.0
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "01-21",
+     "decendio": 3,
+     "deficit_mm_mediano": 0.54,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -514.37,
+      "conservador": -674.05,
+      "favoravel": -506.76
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0,
+      "25": 0.0,
+      "50": 0.0023,
+      "75": 0.0507,
+      "90": 0.0986
+     },
+     "portaria_zarc": "273",
+     "posicao": 2,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "8ee4a90d0a22d323",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 224.04,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0922,
+       "produtividade_kg_ha": 5446.8,
+       "receita_r_ha": 6113.13,
+       "sacas_ha": 90.78
+      },
+      "conservador": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -925.46,
+       "percentil_perda": 75,
+       "perda_relativa": 0.2629,
+       "produtividade_kg_ha": 4422.6,
+       "receita_r_ha": 4963.63,
+       "sacas_ha": 73.71
+      },
+      "favoravel": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 749.29,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0142,
+       "produtividade_kg_ha": 5914.8,
+       "receita_r_ha": 6638.38,
+       "sacas_ha": 98.58
+      }
+     },
+     "cultura": "milho_2a_safra",
+     "data_plantio": "01-20",
+     "decendio": 2,
+     "deficit_mm_mediano": 16.17,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": 224.04,
+      "conservador": -925.46,
+      "favoravel": 749.29
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0,
+      "25": 0.0142,
+      "50": 0.0922,
+      "75": 0.2629,
+      "90": 0.4029
+     },
+     "portaria_zarc": "322",
+     "posicao": 3,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "961c5b2deef2ffee",
+      "motor": "f80f0a057b340a0a"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -591.55,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0257,
+       "produtividade_kg_ha": 3507.5,
+       "receita_r_ha": 3215.21,
+       "sacas_ha": 58.46
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -964.45,
+       "percentil_perda": 75,
+       "perda_relativa": 0.1387,
+       "produtividade_kg_ha": 3100.7,
+       "receita_r_ha": 2842.31,
+       "sacas_ha": 51.68
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -529.22,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0068,
+       "produtividade_kg_ha": 3575.5,
+       "receita_r_ha": 3277.54,
+       "sacas_ha": 59.59
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "02-01",
+     "decendio": 4,
+     "deficit_mm_mediano": 8.16,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -591.55,
+      "conservador": -964.45,
+      "favoravel": -529.22
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0,
+      "25": 0.0068,
+      "50": 0.0257,
+      "75": 0.1387,
+      "90": 0.1778
+     },
+     "portaria_zarc": "273",
+     "posicao": 4,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "f1019ca8297c2acf",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 206.53,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0948,
+       "produtividade_kg_ha": 5431.2,
+       "receita_r_ha": 6095.62,
+       "sacas_ha": 90.52
+      },
+      "conservador": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -1010.98,
+       "percentil_perda": 75,
+       "perda_relativa": 0.2756,
+       "produtividade_kg_ha": 4346.4,
+       "receita_r_ha": 4878.11,
+       "sacas_ha": 72.44
+      },
+      "favoravel": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 751.98,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0138,
+       "produtividade_kg_ha": 5917.2,
+       "receita_r_ha": 6641.07,
+       "sacas_ha": 98.62
+      }
+     },
+     "cultura": "milho_2a_safra",
+     "data_plantio": "01-21",
+     "decendio": 3,
+     "deficit_mm_mediano": 16.51,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": 206.53,
+      "conservador": -1010.98,
+      "favoravel": 751.98
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0,
+      "25": 0.0138,
+      "50": 0.0948,
+      "75": 0.2756,
+      "90": 0.4053
+     },
+     "portaria_zarc": "322",
+     "posicao": 5,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "baff9124d0ca1142",
+      "motor": "f80f0a057b340a0a"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -749.95,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0737,
+       "produtividade_kg_ha": 3334.7,
+       "receita_r_ha": 3056.81,
+       "sacas_ha": 55.58
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1303.07,
+       "percentil_perda": 75,
+       "perda_relativa": 0.2413,
+       "produtividade_kg_ha": 2731.3,
+       "receita_r_ha": 2503.69,
+       "sacas_ha": 45.52
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -674.05,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0507,
+       "produtividade_kg_ha": 3417.5,
+       "receita_r_ha": 3132.71,
+       "sacas_ha": 56.96
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "02-11",
+     "decendio": 5,
+     "deficit_mm_mediano": 25.86,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -749.95,
+      "conservador": -1303.07,
+      "favoravel": -674.05
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.007,
+      "25": 0.0507,
+      "50": 0.0737,
+      "75": 0.2413,
+      "90": 0.2696
+     },
+     "portaria_zarc": "273",
+     "posicao": 6,
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "266e8a3457e86ca6",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -996.44,
+       "percentil_perda": 50,
+       "perda_relativa": 0.1484,
+       "produtividade_kg_ha": 3065.8,
+       "receita_r_ha": 2810.32,
+       "sacas_ha": 51.1
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1484.57,
+       "percentil_perda": 75,
+       "perda_relativa": 0.2963,
+       "produtividade_kg_ha": 2533.3,
+       "receita_r_ha": 2322.19,
+       "sacas_ha": 42.22
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -877.0,
+       "percentil_perda": 25,
+       "perda_relativa": 0.1122,
+       "produtividade_kg_ha": 3196.1,
+       "receita_r_ha": 2929.76,
+       "sacas_ha": 53.27
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "02-21",
+     "decendio": 6,
+     "deficit_mm_mediano": 49.62,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -996.44,
+      "conservador": -1484.57,
+      "favoravel": -877.0
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0345,
+      "25": 0.1122,
+      "50": 0.1484,
+      "75": 0.2963,
+      "90": 0.3757
+     },
+     "portaria_zarc": "273",
+     "posicao": 7,
+     "risco_historico_falha_severa": 0.08,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "a924b55734b64e61",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1294.45,
+       "percentil_perda": 50,
+       "perda_relativa": 0.2387,
+       "produtividade_kg_ha": 2740.7,
+       "receita_r_ha": 2512.31,
+       "sacas_ha": 45.68
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1703.65,
+       "percentil_perda": 75,
+       "perda_relativa": 0.3627,
+       "produtividade_kg_ha": 2294.3,
+       "receita_r_ha": 2103.11,
+       "sacas_ha": 38.24
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1108.64,
+       "percentil_perda": 25,
+       "perda_relativa": 0.1824,
+       "produtividade_kg_ha": 2943.4,
+       "receita_r_ha": 2698.12,
+       "sacas_ha": 49.06
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "03-01",
+     "decendio": 7,
+     "deficit_mm_mediano": 60.8,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -1294.45,
+      "conservador": -1703.65,
+      "favoravel": -1108.64
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0715,
+      "25": 0.1824,
+      "50": 0.2387,
+      "75": 0.3627,
+      "90": 0.4251
+     },
+     "portaria_zarc": "273",
+     "posicao": 8,
+     "risco_historico_falha_severa": 0.2,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "241aaeea536116eb",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1550.2,
+       "percentil_perda": 50,
+       "perda_relativa": 0.3162,
+       "produtividade_kg_ha": 2461.7,
+       "receita_r_ha": 2256.56,
+       "sacas_ha": 41.03
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1772.95,
+       "percentil_perda": 75,
+       "perda_relativa": 0.3837,
+       "produtividade_kg_ha": 2218.7,
+       "receita_r_ha": 2033.81,
+       "sacas_ha": 36.98
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1388.87,
+       "percentil_perda": 25,
+       "perda_relativa": 0.2673,
+       "produtividade_kg_ha": 2637.7,
+       "receita_r_ha": 2417.89,
+       "sacas_ha": 43.96
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "03-11",
+     "decendio": 8,
+     "deficit_mm_mediano": 82.95,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -1550.2,
+      "conservador": -1772.95,
+      "favoravel": -1388.87
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.1508,
+      "25": 0.2673,
+      "50": 0.3162,
+      "75": 0.3837,
+      "90": 0.4741
+     },
+     "portaria_zarc": "273",
+     "posicao": 9,
+     "risco_historico_falha_severa": 0.28,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "ee6ab33cde6675a4",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1684.22,
+       "percentil_perda": 50,
+       "perda_relativa": 0.3568,
+       "produtividade_kg_ha": 2315.5,
+       "receita_r_ha": 2122.54,
+       "sacas_ha": 38.59
+      },
+      "conservador": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1927.41,
+       "percentil_perda": 75,
+       "perda_relativa": 0.4305,
+       "produtividade_kg_ha": 2050.2,
+       "receita_r_ha": 1879.35,
+       "sacas_ha": 34.17
+      },
+      "favoravel": {
+       "custo_r_ha": 3806.76,
+       "margem_r_ha": -1491.44,
+       "percentil_perda": 25,
+       "perda_relativa": 0.2984,
+       "produtividade_kg_ha": 2525.8,
+       "receita_r_ha": 2315.32,
+       "sacas_ha": 42.1
+      }
+     },
+     "cultura": "sorgo_granifero_2a_safra",
+     "data_plantio": "03-21",
+     "decendio": 9,
+     "deficit_mm_mediano": 94.72,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)",
+      "Premissas econômicas editadas pelo produtor",
+      "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -1684.22,
+      "conservador": -1927.41,
+      "favoravel": -1491.44
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.2283,
+      "25": 0.2984,
+      "50": 0.3568,
+      "75": 0.4305,
+      "90": 0.5021
+     },
+     "portaria_zarc": "273",
+     "posicao": 10,
+     "risco_historico_falha_severa": 0.32,
+     "risco_zarc_pct": 30,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "a9500378a1e8447c",
+      "motor": "050f4b3bd2beeedf"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -287.08,
+       "percentil_perda": 50,
+       "perda_relativa": 0.1681,
+       "produtividade_kg_ha": 4991.4,
+       "receita_r_ha": 5602.01,
+       "sacas_ha": 83.19
+      },
+      "conservador": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -2386.06,
+       "percentil_perda": 75,
+       "perda_relativa": 0.4798,
+       "produtividade_kg_ha": 3121.2,
+       "receita_r_ha": 3503.03,
+       "sacas_ha": 52.02
+      },
+      "favoravel": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": 206.53,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0948,
+       "produtividade_kg_ha": 5431.2,
+       "receita_r_ha": 6095.62,
+       "sacas_ha": 90.52
+      }
+     },
+     "cultura": "milho_2a_safra",
+     "data_plantio": "02-01",
+     "decendio": 4,
+     "deficit_mm_mediano": 41.27,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -287.08,
+      "conservador": -2386.06,
+      "favoravel": 206.53
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.0406,
+      "25": 0.0948,
+      "50": 0.1681,
+      "75": 0.4798,
+      "90": 0.6816
+     },
+     "portaria_zarc": "322",
+     "posicao": 11,
+     "risco_historico_falha_severa": 0.08,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "0f5d377bab832d46",
+      "motor": "f80f0a057b340a0a"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -1314.01,
+       "percentil_perda": 50,
+       "perda_relativa": 0.3206,
+       "produtividade_kg_ha": 4076.4,
+       "receita_r_ha": 4575.08,
+       "sacas_ha": 67.94
+      },
+      "conservador": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -4454.07,
+       "percentil_perda": 75,
+       "perda_relativa": 0.7869,
+       "produtividade_kg_ha": 1278.6,
+       "receita_r_ha": 1435.02,
+       "sacas_ha": 21.31
+      },
+      "favoravel": {
+       "custo_r_ha": 5889.09,
+       "margem_r_ha": -874.95,
+       "percentil_perda": 25,
+       "perda_relativa": 0.2554,
+       "produtividade_kg_ha": 4467.6,
+       "receita_r_ha": 5014.14,
+       "sacas_ha": 74.46
+      }
+     },
+     "cultura": "milho_2a_safra",
+     "data_plantio": "02-11",
+     "decendio": 5,
+     "deficit_mm_mediano": 62.4,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": true,
+     "margem_r_ha": {
+      "central": -1314.01,
+      "conservador": -4454.07,
+      "favoravel": -874.95
+     },
+     "motivos_indisponivel": [],
+     "perda_relativa_quantis": {
+      "10": 0.1194,
+      "25": 0.2554,
+      "50": 0.3206,
+      "75": 0.7869,
+      "90": 0.8606
+     },
+     "portaria_zarc": "322",
+     "posicao": 12,
+     "risco_historico_falha_severa": 0.28,
+     "risco_zarc_pct": 40,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "343c3638b9a852c8",
+      "motor": "f80f0a057b340a0a"
+     }
+    }
+   ],
+   "avisos": [
+    {
+     "codigo": "nao_e_previsao",
+     "mensagem": "Frequência histórica calculada com a série observada (IMERG e POWER), uma simulação por ano. Não é previsão da próxima safra."
+    },
+    {
+     "codigo": "riscos_distintos",
+     "mensagem": "risco_zarc_pct é o risco oficial da portaria; risco_historico_falha_severa é a frequência simulada pelo TELLUS; margem_r_ha é econômica. São medidas distintas."
+    },
+    {
+     "codigo": "percentis",
+     "mensagem": "D-006: cenários pelos quartis da perda simulada — conservador = percentil 75 (pior em 1 de cada 4 anos), central = mediana, favorável = percentil 25. Decisão de produto, sem fonte setorial; editável."
+    }
+   ],
+   "criterio_ordem": [
+    {
+     "campo": "margem_r_ha.conservador",
+     "descricao": "maior margem no cenário conservador",
+     "direcao": "decrescente"
+    },
+    {
+     "campo": "risco_historico_falha_severa",
+     "descricao": "menor risco histórico de falha severa",
+     "direcao": "crescente"
+    },
+    {
+     "campo": "risco_zarc_pct",
+     "descricao": "menor risco oficial do ZARC",
+     "direcao": "crescente"
+    },
+    {
+     "campo": "decendio",
+     "descricao": "plantio mais cedo",
+     "direcao": "crescente"
+    },
+    {
+     "campo": "cultura",
+     "descricao": "desempate final",
+     "direcao": "alfabética"
+    }
+   ],
+   "grupo_informado": "GRUPO I",
+   "grupos_testados": {
+    "braquiaria_cobertura": [
+     "GRUPO I"
+    ],
+    "milho_2a_safra": [
+     "GRUPO I"
+    ],
+    "sorgo_granifero_2a_safra": [
+     "GRUPO I"
+    ]
+   },
+   "indisponiveis": [
+    {
+     "cultura": "milho_2a_safra",
+     "decendio": 1,
+     "grupo": "GRUPO I",
+     "motivo": "decêndio da janela termina antes da colheita da soja"
+    },
+    {
+     "cultura": "sorgo_granifero_2a_safra",
+     "decendio": 1,
+     "grupo": "GRUPO I",
+     "motivo": "decêndio da janela termina antes da colheita da soja"
+    },
+    {
+     "cultura": "braquiaria_cobertura",
+     "decendio": 1,
+     "grupo": "GRUPO I",
+     "motivo": "decêndio da janela termina antes da colheita da soja"
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "conservador": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "favoravel": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      }
+     },
+     "cultura": "braquiaria_cobertura",
+     "data_plantio": "01-20",
+     "decendio": 2,
+     "deficit_mm_mediano": 41.43,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": false,
+     "margem_r_ha": {
+      "central": null,
+      "conservador": null,
+      "favoravel": null
+     },
+     "motivo": "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).",
+     "motivos_indisponivel": [
+      "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha)."
+     ],
+     "perda_relativa_quantis": null,
+     "portaria_zarc": "337",
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "7930343cc8ece6af",
+      "motor": "49b4f6ecfc563ef2"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "conservador": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "favoravel": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      }
+     },
+     "cultura": "braquiaria_cobertura",
+     "data_plantio": "01-21",
+     "decendio": 3,
+     "deficit_mm_mediano": 44.45,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": false,
+     "margem_r_ha": {
+      "central": null,
+      "conservador": null,
+      "favoravel": null
+     },
+     "motivo": "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).",
+     "motivos_indisponivel": [
+      "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha)."
+     ],
+     "perda_relativa_quantis": null,
+     "portaria_zarc": "337",
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "7930343cc8ece6af",
+      "motor": "49b4f6ecfc563ef2"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "conservador": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "favoravel": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      }
+     },
+     "cultura": "braquiaria_cobertura",
+     "data_plantio": "02-01",
+     "decendio": 4,
+     "deficit_mm_mediano": 65.54,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": false,
+     "margem_r_ha": {
+      "central": null,
+      "conservador": null,
+      "favoravel": null
+     },
+     "motivo": "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).",
+     "motivos_indisponivel": [
+      "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha)."
+     ],
+     "perda_relativa_quantis": null,
+     "portaria_zarc": "337",
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 20,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "7930343cc8ece6af",
+      "motor": "49b4f6ecfc563ef2"
+     }
+    },
+    {
+     "anos_validos": 25,
+     "cenarios": {
+      "central": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 50,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "conservador": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 75,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      },
+      "favoravel": {
+       "custo_r_ha": null,
+       "margem_r_ha": null,
+       "percentil_perda": 25,
+       "perda_relativa": 0.0,
+       "produtividade_kg_ha": 0.0,
+       "receita_r_ha": 0.0,
+       "sacas_ha": 0.0
+      }
+     },
+     "cultura": "braquiaria_cobertura",
+     "data_plantio": "02-11",
+     "decendio": 5,
+     "deficit_mm_mediano": 76.17,
+     "grupo": "GRUPO I",
+     "hipoteses": [
+      "O resultado usa hipóteses: Profundidade efetiva do sistema radicular; Capacidade de água disponível por classe de solo; Duração das fases I a IV (estabelecimento até a dessecação); Coeficiente de cultura (inicial, médio, final); Fração de esgotamento sem estresse (p); Limite de ISNA para falha de estabelecimento (fase I); Classe de solo estimada pela textura; Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+      "Percentis dos cenários (D-006)"
+     ],
+     "margem_disponivel": false,
+     "margem_r_ha": {
+      "central": null,
+      "conservador": null,
+      "favoravel": null
+     },
+     "motivo": "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha).",
+     "motivos_indisponivel": [
+      "Sem planilha de custo da Conab para esta cultura (cobertura). Informe o custo em R$/ha (custo_r_ha)."
+     ],
+     "perda_relativa_quantis": null,
+     "portaria_zarc": "337",
+     "risco_historico_falha_severa": 0.0,
+     "risco_zarc_pct": 40,
+     "unidades": {
+      "deficit_mm_mediano": "mm",
+      "margem_r_ha": "R$/ha",
+      "risco_historico_falha_severa": "fração dos anos",
+      "risco_zarc_pct": "%"
+     },
+     "versoes": {
+      "economia": "7930343cc8ece6af",
+      "motor": "49b4f6ecfc563ef2"
+     }
+    }
+   ],
+   "metodologia": "calculo_completo",
+   "recomendada": {
+    "anos_validos": 25,
+    "cenarios": {
+     "central": {
+      "custo_r_ha": 3806.76,
+      "margem_r_ha": -514.37,
+      "percentil_perda": 50,
+      "perda_relativa": 0.0023,
+      "produtividade_kg_ha": 3591.7,
+      "receita_r_ha": 3292.39,
+      "sacas_ha": 59.86
+     },
+     "conservador": {
+      "custo_r_ha": 3806.76,
+      "margem_r_ha": -651.96,
+      "percentil_perda": 75,
+      "perda_relativa": 0.044,
+      "produtividade_kg_ha": 3441.6,
+      "receita_r_ha": 3154.8,
+      "sacas_ha": 57.36
+     },
+     "favoravel": {
+      "custo_r_ha": 3806.76,
+      "margem_r_ha": -506.76,
+      "percentil_perda": 25,
+      "perda_relativa": 0.0,
+      "produtividade_kg_ha": 3600.0,
+      "receita_r_ha": 3300.0,
+      "sacas_ha": 60.0
+     }
+    },
+    "cultura": "sorgo_granifero_2a_safra",
+    "data_plantio": "01-20",
+    "decendio": 2,
+    "deficit_mm_mediano": 0.54,
+    "grupo": "GRUPO I",
+    "hipoteses": [
+     "O resultado usa hipóteses: Duração das fases I a IV por grupo; Coeficiente de cultura (inicial, médio, final); Fator de resposta da produtividade à água (total e por fase); Fração de esgotamento sem estresse (p); Água no solo no dia da colheita da soja (fração da CAD); Kc da entressafra (palhada).",
+     "Percentis dos cenários (D-006)",
+     "Premissas econômicas editadas pelo produtor",
+     "Preço informado pelo produtor (cotação de exemplo (cooperativa fictícia), 2026-11-14)"
+    ],
+    "margem_disponivel": true,
+    "margem_r_ha": {
+     "central": -514.37,
+     "conservador": -651.96,
+     "favoravel": -506.76
+    },
+    "motivos_indisponivel": [],
+    "perda_relativa_quantis": {
+     "10": 0.0,
+     "25": 0.0,
+     "50": 0.0023,
+     "75": 0.044,
+     "90": 0.0917
+    },
+    "portaria_zarc": "273",
+    "posicao": 1,
+    "risco_historico_falha_severa": 0.0,
+    "risco_zarc_pct": 20,
+    "unidades": {
+     "deficit_mm_mediano": "mm",
+     "margem_r_ha": "R$/ha",
+     "risco_historico_falha_severa": "fração dos anos",
+     "risco_zarc_pct": "%"
+    },
+    "versoes": {
+     "economia": "1cfdc08b1e8ef5c5",
+     "motor": "050f4b3bd2beeedf"
+    }
+   }
+  },
   "erro": null,
-  "estado": "pendente",
+  "estado": "disponivel",
   "id": "recomendacao",
   "obrigatoria": true,
-  "proveniencia": [],
+  "proveniencia": [
+   {
+    "cobre": [
+     "*.decendio",
+     "*.risco_zarc_pct"
+    ],
+    "fonte": "ZARC/MAPA (spec 004), portaria(s) 273, 322, 337",
+    "id": "zarc",
+    "localizacao": "município do pedido",
+    "periodo": "decêndios de semeadura da safra 2026/2027",
+    "qualidade": "só decêndios dentro da janela oficial entram (FR-002)",
+    "situacao": "fonte",
+    "unidade": "decêndio (1 a 36); % (risco oficial)",
+    "versao": "safra 2026/2027"
+   },
+   {
+    "cobre": [
+     "*.risco_historico_falha_severa",
+     "*.anos_validos",
+     "*.deficit_mm_mediano",
+     "*.perda_relativa_quantis.*",
+     "*.cenarios.*.perda_relativa"
+    ],
+    "fonte": "TELLUS motor hídrico (spec 006), mesmas entradas versionadas da seção risco_hidrico",
+    "id": "motor",
+    "localizacao": "ponto ou área do pedido",
+    "periodo": "série histórica IMERG/POWER usada pelo motor (ver versoes.motor de cada alternativa)",
+    "qualidade": "frequência histórica, não previsão",
+    "situacao": "calculado",
+    "unidade": "fração 0–1 (risco, perda); mm; anos",
+    "versao": "ded291a06f5cbf11"
+   },
+   {
+    "cobre": [
+     "*.margem_r_ha.*",
+     "*.cenarios.*.produtividade_kg_ha",
+     "*.cenarios.*.sacas_ha",
+     "*.cenarios.*.receita_r_ha",
+     "*.cenarios.*.custo_r_ha",
+     "*.cenarios.*.margem_r_ha"
+    ],
+    "fonte": "TELLUS economia (spec 007): custo Conab da praça mais próxima e preço com fonte ou informado",
+    "id": "economia",
+    "localizacao": "praça Conab mais próxima com a cultura",
+    "periodo": "mês de referência da planilha Conab e data do preço (ver versoes.economia)",
+    "qualidade": "margem nos cenários conservador, central e favorável",
+    "situacao": "calculado",
+    "unidade": "kg/ha, sacas/ha, R$/ha",
+    "versao": "ded291a06f5cbf11"
+   },
+   {
+    "cobre": [
+     "*.cenarios.*.percentil_perda"
+    ],
+    "fonte": "D-006 (decisão de produto do TELLUS, editável)",
+    "id": "percentis",
+    "localizacao": "não se aplica (regra de leitura dos cenários)",
+    "periodo": "série histórica do motor",
+    "qualidade": "hipotese — conservador P75, central P50, favorável P25",
+    "situacao": "hipotese",
+    "unidade": "percentil da perda relativa",
+    "versao": "quartis da perda"
+   },
+   {
+    "cobre": [
+     "*.posicao"
+    ],
+    "fonte": "TELLUS recomendação (spec 008): maior margem no cenário conservador; menor risco histórico de falha severa; menor risco oficial do ZARC; plantio mais cedo; desempate final",
+    "id": "ordenacao",
+    "localizacao": "alternativas desta resposta",
+    "periodo": "não se aplica (ordem das alternativas desta resposta)",
+    "qualidade": "critério público em criterio_ordem",
+    "situacao": "calculado",
+    "unidade": "posição (1 = primeira)",
+    "versao": "ded291a06f5cbf11"
+   },
+   {
+    "cobre": [
+     "*.cenarios.*.receita_r_ha"
+    ],
+    "fonte": "Informado pelo produtor: cotação de exemplo (cooperativa fictícia)",
+    "id": "informado_sorgo_granifero_2a_safra_preco_r_saca",
+    "localizacao": "informado pelo produtor (cotação de exemplo (cooperativa fictícia))",
+    "periodo": "2026-11-14",
+    "qualidade": "valor informado pelo produtor, sem indicador oficial (D-005); não conferido pelo TELLUS",
+    "situacao": "editado",
+    "unidade": "R$/saca de 60 kg",
+    "versao": "ded291a06f5cbf11"
+   }
+  ],
   "spec": "008 (#48)",
-  "versao_modulo": null
+  "versao_modulo": "ded291a06f5cbf11"
  },
- "versao_contrato": "1.0.0",
+ "versao_contrato": "1.1.0",
  "versoes": {
-  "contrato": "1.0.0",
-  "hash_pedido": "6b4e261449c1c07d",
-  "hash_principal": "ac43cdc334ee2796",
+  "contrato": "1.1.0",
+  "hash_pedido": "c6bd986a134ce7e3",
+  "hash_principal": "f2a3e6cecf0fafbc",
   "modulos": {
    "braquiaria_cobertura.economia": "7930343cc8ece6af",
    "braquiaria_cobertura.risco_hidrico": "49b4f6ecfc563ef2",
    "milho_2a_safra.economia": "0009c669502358ef",
    "milho_2a_safra.risco_hidrico": "f80f0a057b340a0a",
-   "sorgo_granifero_2a_safra.economia": "1af3e2d25af91dc5",
+   "sorgo_granifero_2a_safra.economia": "03e37eb9d284cc9d",
    "sorgo_granifero_2a_safra.risco_hidrico": "050f4b3bd2beeedf"
   }
  }

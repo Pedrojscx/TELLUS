@@ -16,7 +16,7 @@ def test_versao_incompativel_informa_aceitas(pedido_valido, v, codigo):
     with pytest.raises(versao.ErroContrato) as e:
         regras.normalizar_pedido(pedido_valido)
     assert e.value.codigo == codigo
-    assert e.value.versoes_aceitas == ["1.0.x"]
+    assert e.value.versoes_aceitas == ["1.0.x", "1.1.x"]
     assert e.value.como_dict()["origem"] == "pedido" and e.value.campo == "versao_contrato"
 
 

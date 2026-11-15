@@ -29,6 +29,7 @@ class PedidoRecomendacao(BaseModel):
     edicoes_cultura: dict[str, dict[str, float | list[float]]] | None = None
     edicoes_economia: dict[str, dict[str, float | str]] | None = None
     percentis: dict[str, int | str] | None = None
+    informacoes_economia: dict[str, dict[str, dict[str, str]]] | None = None  # {cultura: {chave: {origem_informada, data_informada}}}
 
 
 @router.post("/recomendacao")
