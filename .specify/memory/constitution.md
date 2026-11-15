@@ -1,50 +1,158 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report (rascunho para revisão humana; remover antes do commit final se desejado)
+- Version change: (template sem versão) → 1.0.0
+- Modified principles: nenhum (primeira ratificação)
+- Added sections: Core Principles I a IX; Restrições de Stack e Idioma; Fluxo de Trabalho e
+  Portões de Qualidade; Governance
+- Removed sections: nenhuma
+- O template tinha 5 princípios; o projeto pediu 9. A estrutura de títulos foi mantida.
+- Follow-up TODOs: nenhum placeholder adiado; revisão humana da etapa 1 pendente.
+- Templates dependentes (.specify/templates/*.md): lidos em tempo de execução; não alterados.
+-->
+
+# Tellus Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Rastreabilidade
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Todo número exibido ao produtor ou devolvido pelo contrato de API MUST trazer: fonte, versão do
+produto, período coberto, unidade, localização (ponto, célula, município ou praça) e informação
+de qualidade (dias válidos, cobertura, bandeira ou aviso).
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Regra verificável: para cada campo numérico da resposta existe um registro de proveniência com
+os seis itens acima preenchidos; um teste automático percorre a resposta e falha se algum número
+não tiver o registro completo.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Motivo: o produtor e o revisor precisam saber de onde veio cada número antes de confiar nele.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Sem parâmetro inventado
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Nenhum parâmetro agronômico ou econômico entra no produto sem fonte. Valor sem fonte MUST ter
+status `hipotese`, visível na interface e presente no contrato de API.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Regra verificável: todo parâmetro da base de referência tem os campos fonte, data, unidade e
+validade regional, ou então status `hipotese`; um teste falha se houver parâmetro sem fonte e sem
+esse status; a interface mostra a marca de hipótese ao lado de cada valor nessa condição.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Motivo: um número sem origem, mostrado como fato, engana o produtor.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Reprodutibilidade
+
+O mesmo pedido com o mesmo cache MUST gerar a mesma resposta. Dados brutos MUST ser recriados
+por scripts e MUST NOT ser versionados no Git.
+
+Regra verificável: um teste automático faz o mesmo pedido duas vezes sobre o mesmo cache e
+compara as respostas, que devem ser iguais; `git ls-files` não lista arquivos brutos de dados
+(só os registros de fonte e metadados); cada conjunto bruto tem um script que o recria e um
+registro com consulta, data de obtenção e hash.
+
+Motivo: sem repetição não há como conferir nem corrigir um resultado.
+
+### IV. Respeito à escala
+
+A resolução e a limitação de cada produto de dados MUST aparecer junto do resultado que o usa.
+Frequência histórica MUST NOT ser apresentada como previsão.
+
+Regra verificável: cada resultado mostra a resolução espacial e temporal da fonte e o seu limite
+de uso; nenhum texto da interface ou do contrato usa "previsão", "vai chover" ou equivalente para
+número derivado de série histórica; produtos de escala regional trazem aviso explícito de escala.
+
+Motivo: uma célula de quilômetros não é a lavoura, e o passado não é a próxima safra.
+
+### V. Premissas editáveis
+
+O produtor MUST poder substituir qualquer premissa econômica ou agronômica e ver o efeito no
+resultado.
+
+Regra verificável: toda premissa usada no cálculo aparece em uma lista editável; ao trocar um
+valor, o resultado é recalculado e mostra o valor padrão, o valor do produtor e a origem de cada
+um; um teste troca uma premissa e confere o efeito esperado, inclusive quando o efeito é nulo.
+Editar uma premissa não autoriza plantio fora do ZARC. Valores incompatíveis com a fonte
+ou com o domínio físico devem gerar erro claro, sem ajuste silencioso.
+
+Motivo: a realidade da fazenda vale mais que a média da região.
+
+### VI. Motor de cálculo puro
+
+O motor de cálculo MUST ser puro: sem acesso à rede, sem leitura de relógio e sem estado oculto.
+Ele MUST ser testado contra pelo menos um caso calculado à mão.
+
+Regra verificável: os testes do motor rodam com a rede bloqueada; existe ao menos um caso com as
+contas feitas à mão, documentadas passo a passo, e o teste compara o resultado do motor com esse
+caso dentro de uma tolerância declarada.
+
+Motivo: só um cálculo isolado pode ser conferido linha a linha.
+
+### VII. Degradação explícita
+
+Quando uma fonte estiver indisponível, o sistema MUST usar o cache e avisar com a data do cache.
+Sem cache, MUST devolver erro legível que nomeia a origem.
+
+Regra verificável: um teste simula a queda de cada fonte externa; com cache, a resposta traz um
+aviso com a fonte e a data do cache; sem cache, a resposta traz erro com código, mensagem em
+português e nome da fonte; nenhum caso devolve resultado silenciosamente incompleto.
+
+Motivo: um resultado que esconde uma falha é pior que um erro claro.
+
+### VIII. Segredos fora do Git
+
+Segredos MUST ficar fora do Git. Credenciais Earthdata MUST entrar só por variável de ambiente.
+
+Regra verificável: `.env` está no `.gitignore` e `git log --all -- .env` é vazio; uma checagem
+automática de segredos roda antes de cada integração; nenhum arquivo versionado, log ou resposta
+da API contém token; agentes de IA não leem nem exibem `.env`.
+
+Motivo: uma credencial publicada não volta a ser secreta.
+
+### IX. Stack, idioma e forma de trabalho
+
+O projeto MUST seguir as restrições da seção "Restrições de Stack e Idioma" e o fluxo da seção
+"Fluxo de Trabalho e Portões de Qualidade".
+
+Regra verificável: cada item dessas duas seções tem um critério que a revisão confere antes da
+integração.
+
+Motivo: dois agentes de IA e uma equipe humana só trabalham juntos com regras comuns.
+
+## Restrições de Stack e Idioma
+
+- Frontend: Astro com Tailwind.
+- Backend: Python gerenciado com uv.
+- Comunicação entre frontend e backend: só por contrato de API versionado. Mudança incompatível
+  no contrato exige nova versão.
+- Implementação: Claude Code e Codex.
+- Idioma: specs, documentos, commits e textos da interface em PT-BR. As specs mantêm os nomes de
+  seção dos templates do Spec Kit.
+- Specs descrevem o quê e o porquê. Specs MUST NOT citar framework, biblioteca ou detalhe de
+  implementação; isso fica no plano.
+- Identidade visual: paleta e identidade visual ainda não existem. São uma feature própria,
+  posterior ao fluxo funcional. Até lá, a interface usa estilo neutro e não fixa marca.
+
+## Fluxo de Trabalho e Portões de Qualidade
+
+- Cada agente trabalha em branch e worktree próprios. Dois agentes não editam a mesma árvore de
+  trabalho ao mesmo tempo.
+- Issues usam labels `area:*`, `tipo:*` e `agente:*`.
+- Antes de começar, o agente confere `git status` e `git log` e para se achar alteração inesperada.
+- Push exige confirmação humana.
+- Nesta etapa, o responsável humano faz os commits e pushes, conforme sua orientação vigente.
+- Portões antes de integrar: testes passam; o teste de rastreabilidade (I), o de parâmetros (II),
+  o de reprodutibilidade (III), o caso à mão (VI) e o de queda de fonte (VII) passam; a checagem
+  de segredos (VIII) passa.
+- Toda devolutiva de agente registra: arquivos alterados, testes rodados com resultado e limitações.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Esta constituição vale acima de qualquer outro documento de prática do projeto. Em conflito, ela
+prevalece; `docs/PLANO.md` é histórico.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- Emenda: proposta por escrito, com o motivo e o efeito nas specs e planos existentes; aprovada
+  pelo responsável humano do projeto; registrada com nova versão e data.
+- Versão: semântica. MAJOR para remoção ou redefinição incompatível de princípio; MINOR para
+  princípio ou seção nova, ou ampliação relevante; PATCH para esclarecimento de texto.
+- Conformidade: toda spec, plano e revisão de integração confere os princípios I a IX. Desvio
+  precisa de justificativa escrita no plano da feature e de aprovação humana.
+- Guia de execução dos agentes: `CLAUDE.md` e `AGENTS.md`.
+
+**Version**: 1.0.0 | **Ratified**: 2026-11-14 | **Last Amended**: 2026-11-14

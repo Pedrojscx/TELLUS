@@ -21,6 +21,8 @@
 | context-mode (Claude) | 2.2.0 | `claude plugin marketplace add mksglu/context-mode` e `claude plugin install context-mode@context-mode` | ok | `claude plugin list`: enabled, escopo user |
 | context-mode (npm global) | 2.2.0 | `npm i -g --prefix ~/.local context-mode` | ok | `/home/pedrolucas/.local/bin/context-mode` |
 | context-mode (Codex) | 2.2.0 | `codex plugin marketplace add mksglu/context-mode`, `codex plugin add context-mode@context-mode`, `context-mode setup --yes --agents codex` | ok | setup: PASS (aviso hook-seen: ainda não visto) |
+| github-mcp-server | 2.1.0 (binário oficial, checksum ok) | `gh release download v2.1.0 -R github/github-mcp-server`, instalado em `~/.local/bin` | ok | ferramentas `list_issues`, `issue_write` e outras de issues; `claude mcp get github`: Connected |
+| MCP github (Claude e Codex) | — | `claude mcp add --scope user github -- ~/.local/bin/github-mcp-gh` e `codex mcp add github -- ~/.local/bin/github-mcp-gh` | ok | o script pega o token com `gh auth token` na hora; só o grupo `issues`; nenhum token gravado em arquivo |
 | ctx-doctor | — | `/context-mode:ctx-doctor` | pendente | exige reiniciar o Claude Code |
 
 ## Spec Kit: comandos por agente
@@ -31,7 +33,7 @@
 | converge (novo na 1.4.0) | sim | sim |
 | taskstoissues (extensão `github`) | sim: `speckit-github-taskstoissues` | sim: `$speckit-github-taskstoissues` |
 
-Na 1.4.0, `taskstoissues` saiu do núcleo. Ele vem na extensão oficial **GitHub Integration** (`github`, v1.0.5, autor spec-kit-core, catálogo default). Ela traz o comando `speckit.github.taskstoissues`, que cria issues em ordem de dependência a partir do `tasks.md`. Ela exige `git` e o `github-mcp-server` (ferramentas `list_issues` e `issue_write`). Instalada depois, a pedido (`specify extension add github`). Para registrar no Codex também: `specify integration use codex`, `specify extension add github --force`, `specify integration use claude`. O registro mostra o comando nos dois agentes; `specify integration status`: OK, 0 arquivos alterados. Falta o `github-mcp-server`, sem ele o comando não cria issues.
+Na 1.4.0, `taskstoissues` saiu do núcleo. Ele vem na extensão oficial **GitHub Integration** (`github`, v1.0.5, autor spec-kit-core, catálogo default). Ela traz o comando `speckit.github.taskstoissues`, que cria issues em ordem de dependência a partir do `tasks.md`. Ela exige `git` e o `github-mcp-server` (ferramentas `list_issues` e `issue_write`). Instalada depois, a pedido (`specify extension add github`). Para registrar no Codex também: `specify integration use codex`, `specify extension add github --force`, `specify integration use claude`. O registro mostra o comando nos dois agentes; `specify integration status`: OK, 0 arquivos alterados. O `github-mcp-server` 2.1.0 foi instalado depois (veja a tabela).
 
 ## Estado do Git
 
@@ -65,7 +67,7 @@ Os hooks não se sobrescrevem, porque cada um fica num arquivo diferente.
 
 1. Reiniciar o Claude Code e rodar `/context-mode:ctx-doctor`.
 2. Abrir o Codex, fazer uma chamada de ferramenta (o aviso "hook-seen" some) e rodar `/ctx-doctor`.
-3. Instalar e configurar o `github-mcp-server` no Claude e no Codex. A extensão `github` precisa dele.
+3. Reiniciar o Claude Code e o Codex para carregar o MCP `github`.
 4. Opcional: o README do graphify pede `multi_agent = true` em `[features]` no `~/.codex/config.toml` para extração em paralelo. Não mexi.
 
 ## Desvios deste prompt
@@ -78,3 +80,5 @@ Os hooks não se sobrescrevem, porque cada um fica num arquivo diferente.
 6. **Diff do Codex**: para mostrar o diff antes de editar, rodei os comandos numa cópia com `CODEX_HOME`/`HOME` temporários e só apliquei depois da sua aprovação. Backups de `config.toml` e `hooks.json` ficaram na pasta temporária da sessão.
 7. **Histórico público**: `git rm --cached` tira `data/raw` só da ponta. Os `.xls`, `.pdf` e `.json` brutos antigos continuam nos commits anteriores ao `4bb0b9e` (pack de cerca de 10 MiB). Não reescrevi o histórico.
 8. **Spec Kit**: `specify init` aceita uma integração por vez. Usei `init` para claude e `specify integration install codex` para o Codex.
+9. **Commits**: a partir de 15/11, você faz os commits e pushes no seu padrão. Eu só crio Issues. A instalação do github-mcp-server e esta edição do retorno ficaram no disco, sem commit.
+10. **Permissão dos scripts**: a troca de agente padrão para instalar a extensão no Codex tirou o bit de execução de 6 scripts em `.specify/scripts/bash/`. Devolvi com `chmod +x`.
