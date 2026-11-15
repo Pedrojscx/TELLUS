@@ -98,7 +98,8 @@ def main() -> int:
               "urs.earthdata.nasa.gov sem login. Nenhum valor foi baixado ou inventado.")
         return 3
     try:
-        p = cliente.atualizar_celula(DIR_RAW, a.produto, f, f["grade"], lin, col, inicio, fim)
+        p = cliente.atualizar_celula(DIR_RAW, a.produto, f, f["grade"], lin, col, inicio, fim,
+                                     dir_bruto=DIR_RAW / "opendap" / a.produto)
     except cliente.FonteIndisponivel as e:
         print(f"BLOQUEIO: {e}")
         return 4

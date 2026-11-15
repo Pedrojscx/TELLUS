@@ -6,10 +6,16 @@ da NASA e nunca devem ser apresentados como dado real.
 
 import pytest
 
-from tellus.umidade import cliente
+from tellus.umidade import cliente, servico
 
 LAT, LON = -17.785278, -50.965  # Rio Verde-GO (caso de referência)
 CEL_M09 = (1059, 1382)  # célula SPL3SMP_E/SPL4SMGP de Rio Verde (conferida com pyproj)
+
+
+@pytest.fixture(autouse=True)
+def sem_referencia_versionada(monkeypatch):
+    """Isola os testes da série real versionada em referencias/umidade/ (test_rio_verde a reativa)."""
+    monkeypatch.setattr(servico, "DIR_REFERENCIA", None)
 
 
 def _reg(dia, variante, valor, qualidade="0", situacao="ok"):

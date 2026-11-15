@@ -1,7 +1,9 @@
 """Cliente SMAP sem rede: HDF5 SINTÉTICO gerado no teste e transporte HTTP simulado."""
 
 import datetime as dt
+import hashlib
 import io
+import json
 
 import h5py
 import httpx
@@ -53,11 +55,26 @@ def test_restricao_dap4_pede_so_a_celula():
 
 
 def _cmr(entradas):
+    """Forma real do CMR (2026-11-15): `title` é o GranuleUR com sufixo, e há link OPeNDAP com esse UR."""
+    def ur(d, n):
+        return f"SMAP_L3_SM_P_E_{d.replace('-', '')}_R19240_{n}.h5_1MMe51bJ"
     return {"feed": {"entry": [
-        {"time_start": f"{d}T00:00:00.000Z", "time_end": f"{d}T23:59:59.999Z", "updated": "2026-11-14",
+        {"title": ur(d, n), "time_start": f"{d}T00:00:00.000Z", "time_end": f"{d}T23:59:59.999Z", "updated": "2026-11-14",
          "links": [{"href": f"https://data.nsidc.earthdatacloud.nasa.gov/x/SMAP_L3_SM_P_E_{d.replace('-', '')}_R19240_{n}.h5"},
-                   {"href": "s3://x/y.h5"}]}
+                   {"href": "s3://x/y.h5"},
+                   {"href": f"https://opendap.earthdata.nasa.gov/collections/C2938664763-NSIDC_CPRD/granules/{ur(d, n)}"}]}
         for d, n in entradas]}}
+
+
+def test_url_opendap_usa_o_granule_ur_do_cmr():
+    """O Hyrax responde 404 para o nome do arquivo .h5; o grânulo é endereçado pelo GranuleUR."""
+    t = httpx.MockTransport(lambda req: httpx.Response(200, json=_cmr([("2026-11-01", "001")])))
+    g, = cliente.buscar_granulos(FICHA, dt.date(2026, 11, 1), dt.date(2026, 11, 1), httpx.Client(transport=t))
+    assert cliente.url_opendap(FICHA, g) == (
+        "https://opendap.earthdata.nasa.gov/collections/C2938664763-NSIDC_CPRD/granules/"
+        "SMAP_L3_SM_P_E_20261101_R19240_001.h5_1MMe51bJ.dap.nc4")
+    sem_link = {k: v for k, v in g.items() if k != "url_opendap"}
+    assert cliente.url_opendap(FICHA, sem_link).endswith("/granules/SMAP_L3_SM_P_E_20261101_R19240_001.h5_1MMe51bJ.dap.nc4")
 
 
 def test_buscar_granulos_fica_com_o_reprocessamento_mais_recente():
@@ -90,9 +107,18 @@ def test_atualizar_celula_ponta_a_ponta_e_servico(monkeypatch, tmp_path):
         return httpx.Response(200, content=_h5_recorte(valor_am=0.2 if "20261112" in str(req.url) else 0.3))
 
     c = httpx.Client(transport=httpx.MockTransport(responder))
-    cliente.atualizar_celula(tmp_path, "SPL3SMP_E", FICHA, "EASE2_M09", *CEL_M09, dt.date(2026, 11, 12), dt.date(2026, 11, 13), c)
+    bruto = tmp_path / "bruto"
+    cliente.atualizar_celula(tmp_path, "SPL3SMP_E", FICHA, "EASE2_M09", *CEL_M09, dt.date(2026, 11, 12), dt.date(2026, 11, 13), c,
+                             dir_bruto=bruto)
+    crus = sorted(bruto.glob("*.dap.nc4"))
+    assert [p.name for p in crus] == [f"SMAP_L3_SM_P_E_2026111{d}_R19240_001.h5_r{CEL_M09[0]}_c{CEL_M09[1]}.dap.nc4" for d in (2, 3)]
+    for p in crus:
+        m = json.loads(p.with_name(p.name + ".meta.json").read_text(encoding="utf-8"))
+        assert m["sha256"] == hashlib.sha256(p.read_bytes()).hexdigest() and m["url"].endswith(".dap.nc4")
+        assert "token-de-teste" not in json.dumps(m) and "Authorization" not in json.dumps(m)
     opendap = [r for r in vistos if "opendap" in r.url.host]
     assert len(opendap) == 2 and all(r.headers["Authorization"] == "Bearer token-de-teste" for r in opendap)
+    assert all(r.url.path.endswith(".h5_1MMe51bJ.dap.nc4") for r in opendap)
     linhas, meta = cliente.ler_cache(tmp_path, "SPL3SMP_E", "EASE2_M09", *CEL_M09)
     assert "token" not in str(meta).lower() and meta["versao"] == "006" and meta["sintetico"] is False
     assert len(linhas) == 4

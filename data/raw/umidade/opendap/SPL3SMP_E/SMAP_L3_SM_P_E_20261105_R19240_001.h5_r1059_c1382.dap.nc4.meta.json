@@ -1,0 +1,10 @@
+{
+ "bytes": 38125,
+ "formato": "netCDF4/HDF5 (OPeNDAP DAP4 .dap.nc4)",
+ "obtido_em": "2026-11-15",
+ "parametros": {
+  "dap4.ce": "/Soil_Moisture_Retrieval_Data_AM/soil_moisture[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_AM/retrieval_qual_flag[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_AM/EASE_row_index[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_AM/EASE_column_index[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_PM/soil_moisture_pm[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_PM/retrieval_qual_flag_pm[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_PM/EASE_row_index_pm[1059:1:1059][1382:1:1382];/Soil_Moisture_Retrieval_Data_PM/EASE_column_index_pm[1059:1:1059][1382:1:1382]"
+ },
+ "sha256": "849daf2f4310604b2d5bcc0d09b1fee4e267de4743f3df02c759ec9aa1aa2552",
+ "url": "https://opendap.earthdata.nasa.gov/collections/C2938664763-NSIDC_CPRD/granules/SMAP_L3_SM_P_E_20261105_R19240_001.h5_1MMe51bJ.dap.nc4"
+}

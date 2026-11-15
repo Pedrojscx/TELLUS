@@ -2,7 +2,7 @@
  "url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2938664763-NSIDC_CPRD&page_size=2000&sort_key=start_date&temporal=2026-10-17T00%3A00%3A00Z%2C2026-11-15T23%3A59%3A59Z",
  "obtido_em": "2026-11-15",
  "http": 200,
- "sha256": "f43863df158c5343dde5f6b4816076ad04e109428b67dae32a6ce7e5542a868f",
+ "sha256": "3e18aac9173dbf4a477902087baaa70b5280134472a13ba10824ddccc7b12121",
  "granulos_unicos": 27,
  "entradas_cmr": 32,
  "dias_sem_granulo": [

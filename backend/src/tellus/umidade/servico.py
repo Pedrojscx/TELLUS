@@ -24,6 +24,8 @@ from . import cliente, regras
 RAIZ = Path(__file__).resolve().parents[4]
 DIR_CACHE = Path(os.environ.get("TELLUS_CACHE_UMIDADE", RAIZ / "data" / "raw" / "umidade"))
 FICHA = RAIZ / "referencias" / "umidade" / "produtos.json"
+# Séries derivadas versionadas (demo sem rede). Usadas só quando não há cache local da célula.
+DIR_REFERENCIA: Path | None = RAIZ / "referencias" / "umidade"
 PRODUTO_HIPOTESE = "SPL3SMP_E"  # hipótese operacional do protótipo (#70), NÃO é decisão aprovada
 JANELA_DIAS = 30  # hipótese operacional do protótipo (#70), parametrizável
 MAX_DIAS = 31  # limite de tamanho da resposta (não é regra agronômica)
@@ -169,6 +171,8 @@ def contexto(lat=None, lon=None, produto: str | None = None, variante: str | Non
             except cliente.FonteIndisponivel as e:
                 falha = str(e)
         lido = cliente.ler_cache(dir_cache, produto, grade_id, lin, col)
+        if lido is None and DIR_REFERENCIA is not None:
+            lido = cliente.ler_referencia(DIR_REFERENCIA, produto, grade_id, lin, col)
         if lido is None:
             if falha:
                 raise ErroUmidade("fonte_indisponivel", f"A fonte SMAP não respondeu ({falha}) e não há cache para esta célula.",
@@ -178,7 +182,11 @@ def contexto(lat=None, lon=None, produto: str | None = None, variante: str | Non
         linhas, meta = lido
         sintetico = sintetico or bool(meta.get("sintetico"))
         obtido.append(meta.get("obtido_em"))
-        origem_dados.add("fixture_sintetica" if meta.get("sintetico") else "cache")
+        origem_dados.add("fixture_sintetica" if meta.get("sintetico") else meta.get("_origem", "cache"))
+        if meta.get("_origem") == "referencia_versionada":
+            avisos.append({"codigo": "referencia_versionada", "mensagem": (
+                f"Sem cache local desta célula: mostrando a série versionada em {meta['_caminho']}, "
+                f"obtida da NASA em {meta.get('obtido_em')}.")})
         if falha:
             avisos.append({"codigo": "cache_usado", "mensagem": (
                 f"A fonte {_origem(produto, f)} não respondeu; mostrando o cache obtido em {meta.get('obtido_em')}.")})
