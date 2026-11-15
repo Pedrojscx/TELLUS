@@ -30,8 +30,8 @@ def test_bloqueio_fora_da_janela():
 
 
 def test_uf_nao_baixada_nao_infere():
-    cal = servico.calendario("3550308", "milho_2a_safra")  # São Paulo-SP: UF não baixada
-    assert cal["disponivel"] is False and "SP" in cal["motivo"] and cal["grupos"] == []
+    cal = servico.calendario("4314902", "milho_2a_safra")  # Porto Alegre-RS: UF não baixada
+    assert cal["disponivel"] is False and "RS" in cal["motivo"] and cal["grupos"] == []
 
 
 def test_combinacao_ausente_nao_infere(monkeypatch):
