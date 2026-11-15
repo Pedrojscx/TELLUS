@@ -92,7 +92,7 @@ export interface RespostaContrato {
   premissas_editadas?: { modulo: string; id: string; valor_novo: number; unidade: string; cultura: string | null;
                          valor_padrao: number | null; origem_informada?: string | null; data_informada?: string | null }[];
   fontes?: { fonte: string; estado: "ok" | "cache" | "falha"; obtido_em: string | null; secao: string }[];
-  culturas?: ({ cultura: string } & Partial<Record<"risco_hidrico" | "economia", { estado: string; obrigatoria?: boolean; erro: ErroContrato | null }>>)[];
+  culturas?: ({ cultura: string } & Partial<Record<"risco_hidrico" | "economia", { estado: string; obrigatoria?: boolean; erro: ErroContrato | null; avisos?: AvisoContrato[] }>>)[];
 }
 
 const num = (v: number) => v.toLocaleString("pt-BR", { maximumFractionDigits: 2 });

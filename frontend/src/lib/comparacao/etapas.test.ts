@@ -4,12 +4,14 @@ import {
   ETAPAS_PROVISORIAS,
   TEXTO_SITUACAO,
   etapaAtual,
+  etapasDaResposta,
   podeMostrarComoFinal,
   simular,
   situacao,
   type Etapa,
   type EstadoEtapa,
 } from "./etapas";
+import type { RespostaContrato } from "./contrato";
 
 const ESTADOS: EstadoEtapa[] = ["pendente", "rodando", "ok", "cache", "falha"];
 
@@ -184,5 +186,24 @@ describe("#103: etapas da resposta real", () => {
     expect(textoErro({ codigo: "x", mensagem: "Chuva indisponível.", origem: "NASA IMERG", cache_obtido_em: "2026-11-14", acao: "Tente mais tarde." }))
       .toBe("Chuva indisponível. Origem: NASA IMERG. Usando cópia guardada de 2026-11-14. O que fazer: Tente mais tarde.");
     expect(textoErro({ codigo: "x", mensagem: "Falhou.", origem: "SICAR", cache_obtido_em: null, acao: null })).toContain("Sem cópia guardada");
+  });
+});
+
+describe("grupo \"não sei\": culturas calculadas por grupo na recomendação", () => {
+  it("não aparecem como falha e as fontes de clima são listadas", () => {
+    const sec = { estado: "indisponivel", obrigatoria: false, erro: null, avisos: [{ codigo: "grupo_nao_sei", mensagem: "x" }] };
+    const r = {
+      versao_contrato: "1.2.0", estado_geral: "final", final: true,
+      recomendacao: { estado: "disponivel", conteudo: {}, proveniencia: [], avisos: [], erro: null },
+      contextos: { vegetacao: { estado: "nao_solicitado", conteudo: null, avisos: [], erro: null },
+                   umidade: { estado: "nao_solicitado", conteudo: null, avisos: [], erro: null } },
+      avisos: [], erros: [], hipoteses: [],
+      fontes: [{ fonte: "NASA GPM IMERG Final", estado: "cache", obtido_em: "2026-11-14", secao: "recomendacao" }],
+      culturas: [{ cultura: "milho_2a_safra", risco_hidrico: sec, economia: sec }],
+    } as unknown as RespostaContrato;
+    const et = etapasDaResposta(r);
+    expect(et.find((e) => e.id === "fonte:NASA GPM IMERG Final")).toMatchObject({ estado: "cache", detalhe: "cópia guardada de 2026-11-14" });
+    expect(et.filter((e) => e.id.startsWith("milho_2a_safra")).map((e) => [e.estado, e.detalhe]))
+      .toEqual([["ok", "por grupo, na recomendação"], ["ok", "por grupo, na recomendação"]]);
   });
 });

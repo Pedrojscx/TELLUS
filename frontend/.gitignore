@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Playwright (registros temporários; capturas e relatório ficam em docs/testes-e2e/)
+test-results/
+playwright-report/

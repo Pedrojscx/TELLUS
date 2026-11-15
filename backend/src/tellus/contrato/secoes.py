@@ -69,6 +69,13 @@ def _prov_clima(chave: str, prov: Mapping, origem_dados: str, cobre: list[str]) 
     }
 
 
+def fontes_da_serie(proveniencia: Mapping, origem_dados: str, obtido: Mapping | None = None, secao: str = "risco_hidrico") -> list[dict]:
+    """Estado das fontes de clima (chuva IMERG e POWER) de uma série do motor: ok, ou cache com a data."""
+    estado = "ok" if origem_dados == "fonte" else "cache"
+    return [{"fonte": _s(proveniencia[k].get("fonte")), "estado": estado, "obtido_em": proveniencia[k].get("obtido_em"), "secao": secao}
+            for k in ("chuva", "power")]
+
+
 def secao_risco_hidrico(s: Mapping) -> tuple[dict, list[dict], list[str]]:
     """Seção 006 + estados de fonte + hipóteses declaradas pelo motor."""
     ent = s["entradas"]
@@ -105,9 +112,7 @@ def secao_risco_hidrico(s: Mapping) -> tuple[dict, list[dict], list[str]]:
         "avisos": [_aviso(a["codigo"], a["mensagem"], "spec 006") for a in s.get("avisos", [])],
         "erro": None,
     }
-    estado = "ok" if clima["origem_dados"] == "fonte" else "cache"
-    fontes = [{"fonte": _s(chuva.get("fonte")), "estado": estado, "obtido_em": chuva.get("obtido_em"), "secao": "risco_hidrico"},
-              {"fonte": _s(power.get("fonte")), "estado": estado, "obtido_em": power.get("obtido_em"), "secao": "risco_hidrico"}]
+    fontes = fontes_da_serie(clima["proveniencia"], clima["origem_dados"])
     hipoteses = [a["mensagem"] for a in s.get("avisos", []) if a["codigo"] == "hipoteses"]
     return secao, fontes, hipoteses
 
@@ -319,7 +324,8 @@ def erro_tempo_excedido(prazo_s: float, decorrido_s: float) -> versao.ErroContra
 def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] | None = None,
              simular: Callable[[dict], dict] | None = None, margem: Callable[..., dict] | None = None,
              prazo_s: float | None = None, relogio: Callable[[], float] | None = None,
-             recomendar: Callable[[dict], dict] | None = None) -> dict:
+             recomendar: Callable[[dict], dict] | None = None,
+             serie_clima: Callable[..., tuple[list[dict], dict]] | None = None) -> dict:
     """Executa 006, 007 e 008 para o pedido normalizado (rota POST /api/contrato/calcular).
 
     `simular`/`margem` permitem injetar falhas nos testes; por padrão são os módulos reais.
@@ -345,6 +351,7 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
     simular = simular or motor.simular
     recomendar = recomendar or recomendacao_servico.recomendar
     margem = margem or economia.margem
+    serie_clima = serie_clima or motor._serie_com_eto
     a = pedido["area"]
     lat, lon = (a["lat"], a["lon"]) if a["tipo"] == "ponto" else car_regras.centroide_bbox(a["geometria"])
     culturas = [pedido["cultura"]] if pedido["metodologia"] == "cultura_escolhida" else list(CULTURAS)
@@ -366,6 +373,15 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
         if ed_motor:
             ped_motor["edicoes"] = ed_motor
         s = None
+        if pedido["grupo"] == "nao_sei" and not fontes:
+            # O risco é calculado por grupo dentro da recomendação (008), com a MESMA série de clima do ponto/área.
+            # Sem isto, `fontes` ficava vazio: a tela não mostrava as fontes e o estado geral não via o cache.
+            try:
+                _, serie = serie_clima(lat, lon, a.get("geometria") if a["tipo"] == "geometria" else None,
+                                       a.get("id_geometria") if a["tipo"] == "geometria" else None)
+                fontes += fontes_da_serie(serie["proveniencia"], serie["origem_dados"], secao="recomendacao")
+            except Exception:  # noqa: BLE001 — se o clima falhar, a própria recomendação traz o erro
+                pass
         if pedido["grupo"] == "nao_sei":
             rh = secao_indisponivel("risco_hidrico", "006 (#44)", "grupo_nao_sei",
                                     "Grupo 'não sei': o risco de cada grupo testado está na seção recomendacao (008), "
@@ -409,10 +425,17 @@ def calcular(pedido: Mapping, contextos_respostas: Mapping[str, Mapping | None] 
                 e = erro_fonte(exc, "spec 007 (economia)")
                 erros.append(e)
                 ec = secao_com_erro("economia", "007 (#46)", e)
+        alteracoes_econ = (ec.get("conteudo") or {}).get("alteracoes", [])
+        if pedido["grupo"] == "nao_sei" and ed_econ:
+            # Só para mostrar "padrão → novo": a margem por grupo já vem da recomendação. Sem simulação (perdas None).
+            try:
+                alteracoes_econ = margem(lat, lon, c, None, ed_econ, informacoes=info_econ or None).get("alteracoes", [])
+            except Exception:  # noqa: BLE001 — sem padrão consultável, fica "sem padrão com fonte"
+                alteracoes_econ = []
         for p in mine:
             padrao = None
-            if p["modulo"] == "economia" and ec.get("conteudo"):
-                padrao = next((x["valor_anterior"] for x in ec["conteudo"].get("alteracoes", []) if x["premissa"] == p["id"]), None)
+            if p["modulo"] == "economia" and alteracoes_econ:
+                padrao = next((x["valor_anterior"] for x in alteracoes_econ if x["premissa"] == p["id"]), None)
             elif p["modulo"] == "culturas" and s:
                 padrao = next((x["valor_anterior"] for x in s["entradas"]["cultura"]["alteracoes"] if x["parametro"] == p["id"]), None)
             elif p["modulo"] == "motor" and s and p["id"] == "armazenamento_inicial_frac":

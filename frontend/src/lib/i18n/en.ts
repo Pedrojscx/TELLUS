@@ -341,6 +341,14 @@ export const FRASES: Record<string, string> = {
 export const TRECHOS: [string, string][] = [
   // rótulos montados pela tela (selo + texto, etapa + estado)
   ["margem central", "central margin"],
+  ["por grupo, na recomendação", "by group, in the recommendation"],
+  // frases de estado geral, que aparecem dentro de um selo ("Aviso: …", "Fonte: …")
+  ["Resultado completo, mas parte dos dados veio de cópia guardada. Veja as datas abaixo.", "Complete result, but part of the data came from a saved copy. See the dates below."],
+  ["Resultado completo, mas parte dos dados veio do cache. Veja as datas.", "Complete result, but part of the data came from the cache. See the dates."],
+  ["Resultado PARCIAL com erro: uma parte obrigatória não pôde ser calculada. Não é o resultado final; veja os erros e o que fazer.",
+    "PARTIAL result with error: a required part could not be calculated. This is not the final result; see the errors and what to do."],
+  ["Resultado PARCIAL: algumas partes não puderam ser calculadas. Não é o resultado final; veja o que faltou.",
+    "PARTIAL result: some parts could not be calculated. This is not the final result; see what is missing."],
   ["Fonte:", "Source:"],
   ["Aviso:", "Warning:"],
   ["Hipótese:", "Assumption:"],
