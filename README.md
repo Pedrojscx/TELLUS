@@ -1,151 +1,153 @@
 <div align="center">
 
-<img src="docs/assets/banner.svg" alt="Banner do TELLUS: fundo verde-folha escuro com moldura dourada fina, o ícone do projeto (três faixas de lavoura e um sol em órbita), o nome TELLUS em serifa e a frase Segunda safra com dados da NASA." width="800">
+<img src="docs/assets/banner-en.svg" alt="TELLUS banner: dark leaf-green background with a thin gold frame, the project icon (three crop rows and a sun in orbit), the name TELLUS in a serif typeface and the phrase Second-crop decisions with NASA data." width="800">
 
-**Apoio à decisão da segunda safra com dados da NASA e fontes oficiais.**
+**Decision support for the second crop season with NASA data and official sources.**
 
-**Português** · [English](README.en.md)
+**English** · [Português](README.pt-BR.md)
 
 <img src="https://img.shields.io/badge/Python-3.12%2B-3776ab?style=flat-square&logo=python&logoColor=white" alt="Python 3.12+">
 <img src="https://img.shields.io/badge/FastAPI-0.163%2B-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI 0.163+">
 <img src="https://img.shields.io/badge/Astro-7-bc52ee?style=flat-square&logo=astro&logoColor=white" alt="Astro 7">
 <img src="https://img.shields.io/badge/Tailwind-4-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind 4">
 <img src="https://img.shields.io/badge/Node-22.23.4%2B-5fa04e?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node 22.23.4+">
-<img src="https://img.shields.io/badge/testes-483%20pytest%20%C2%B7%20184%20vitest-2f6b2f?style=flat-square" alt="Testes: 483 pytest e 184 vitest">
+<img src="https://img.shields.io/badge/tests-483%20pytest%20%C2%B7%20184%20vitest-2f6b2f?style=flat-square" alt="Tests: 483 pytest and 184 vitest">
 <img src="https://img.shields.io/badge/NASA%20Space%20Apps-2026-0b3d91?style=flat-square&logo=nasa&logoColor=white" alt="NASA Space Apps 2026">
-<img src="https://img.shields.io/badge/licen%C3%A7a-MIT-8a8a8a?style=flat-square" alt="Licença MIT">
-<img src="https://img.shields.io/badge/idioma-pt--BR-13204a?style=flat-square" alt="Idioma pt-BR">
+<img src="https://img.shields.io/badge/license-MIT-8a8a8a?style=flat-square" alt="MIT license">
+<img src="https://img.shields.io/badge/language-en-13204a?style=flat-square" alt="Language: English">
 
-[Galeria](#-galeria) · [Como foi feito](#-como-foi-feito) · [Funcionalidades](#-funcionalidades) · [Por que o nome?](#-por-que-o-nome) · [Arquitetura](#-arquitetura) · [Executar](#-executar) · [Estrutura](#-estrutura) · [Limitações](#-limitações-e-próximos-passos) · [Contexto](#-contexto)
+[Gallery](#-gallery) · [How it was built](#-how-it-was-built) · [Features](#-features) · [Why the name?](#-why-the-name) · [Architecture](#-architecture) · [Running](#-running) · [Structure](#-structure) · [Limitations](#-limitations-and-next-steps) · [Context](#-context)
 
 </div>
 
 ---
 
 > [!NOTE]
-> Projeto de uma equipe de três pessoas feito para o **NASA Space Apps Challenge 2026**, desafio *Field Shift*. Roda
-> localmente, sem hospedagem, e o caso de referência é Rio Verde-GO. O resultado é frequência histórica e margem por
-> cenário, **não é previsão de safra**.
+> A project by a team of three, built for the **NASA Space Apps Challenge 2026**, *Field Shift* challenge. It runs
+> locally, with no hosting, and the reference case is Rio Verde, in the state of Goiás, Brazil. The output is historical
+> frequency and margin per scenario; **it is not a crop forecast**.
 
-Todo ano, entre janeiro e março, o produtor de soja do Cerrado precisa decidir o que plantar depois da colheita:
-milho de segunda safra, sorgo ou uma planta de cobertura. A resposta depende da data em que a soja sai do campo, da
-água que o solo guarda, da janela oficial de plantio e do custo de cada cultura, informações que existem mas estão
-espalhadas entre satélites da NASA, portarias do Ministério da Agricultura, planilhas da Conab e indicadores do Cepea.
+Every year, between January and March, soybean farmers in the Brazilian Cerrado have to decide what to plant after the
+harvest: second-crop corn, sorghum or a cover crop. The answer depends on the day the soybeans leave the field, how much
+water the soil holds, the official planting window and the cost of each crop. All of that information exists, but it
+is scattered across NASA satellites, ordinances from Brazil's Ministry of Agriculture (MAPA), spreadsheets from Conab
+(the national supply company) and price indicators from Cepea.
 
-O TELLUS junta essas fontes num fluxo só. O produtor
-marca a lavoura no mapa, pelo número do CAR ou por arquivo, informa a data da colheita, o solo e o grupo da cultivar, e
-recebe as alternativas que estão dentro do zoneamento oficial (ZARC), ordenadas por um critério público, com o risco
-oficial, o risco histórico de falta de água simulado com 25 anos de chuva do satélite e a margem por hectare em três
-cenários. Cada número da resposta traz a fonte, o período e se é dado oficial, hipótese ou valor informado pelo próprio
-produtor, e qualquer premissa pode ser editada para ver o efeito no resultado.
+TELLUS brings those sources into a single flow. The farmer marks the field on the map, by its CAR number (Brazil's Rural
+Environmental Registry) or by uploading a file, enters the harvest date, the soil and the cultivar group, and gets the
+options that fall inside the official agricultural climate risk zoning (ZARC). They come ranked by a public criterion,
+with the official risk, the historical water-shortage risk simulated over 25 years of satellite rainfall, and the margin
+per hectare in three scenarios. Every number in the response carries its source, its period and whether it is official
+data, an assumption or a value the farmer entered, and any assumption can be edited to see how it changes the result.
 
-## 📸 Galeria
+## 📸 Gallery
 
 <table align="center">
   <tr>
-    <td align="center"><img src="docs/screenshots/inicio.png" width="400" alt="Tela inicial com Rio Verde-GO marcado no mapa"><br><sub><b>Onde fica a lavoura</b><br><code>/</code></sub></td>
-    <td align="center"><img src="docs/screenshots/fontes.png" width="400" alt="Fontes de dados do local escolhido com a distância de cada uma"><br><sub><b>De onde vêm os dados</b><br><code>/</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/home.png" width="400" alt="Home page with Rio Verde-GO marked on the map"><br><sub><b>Where is your field?</b><br><code>/?lang=en</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/sources.png" width="400" alt="Data sources for the chosen location with the distance to each one"><br><sub><b>Where the data come from</b><br><code>/?lang=en</code></sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/entradas.png" width="400" alt="Entradas: área confirmada, colheita em 20/01/2027, solo argiloso e grupo não sei"><br><sub><b>Entradas do caso de referência</b><br><code>/comparacao/entradas</code></sub></td>
-    <td align="center"><img src="docs/screenshots/resultado.png" width="400" alt="Alternativas dentro do ZARC ordenadas pela margem no cenário conservador"><br><sub><b>Alternativas dentro do ZARC</b><br><code>/comparacao/resultado</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/inputs.png" width="400" alt="Inputs: confirmed area, harvest on 01/20/2027, clayey soil and group I don't know"><br><sub><b>Reference case inputs</b><br><code>/comparacao/entradas</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/result.png" width="400" alt="Options inside ZARC ranked by the margin in the conservative scenario"><br><sub><b>Options inside ZARC</b><br><code>/comparacao/resultado</code></sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/alternativa.png" width="400" alt="Alternativa aberta com risco ZARC, risco histórico, margem em três cenários, hipóteses e fontes"><br><sub><b>Risco, margem e proveniência</b><br><code>/comparacao/resultado</code></sub></td>
-    <td align="center"><img src="docs/screenshots/premissas.png" width="400" alt="Premissas com padrões reais de Rio Verde-GO e o preço do milho editado"><br><sub><b>Premissas editáveis</b><br><code>/comparacao/premissas</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/option.png" width="400" alt="Expanded option with ZARC risk, historical risk, margin in three scenarios, assumptions and sources"><br><sub><b>Risk, margin and provenance</b><br><code>/comparacao/resultado</code></sub></td>
+    <td align="center"><img src="docs/screenshots/en/assumptions.png" width="400" alt="Assumptions with the real defaults for Rio Verde-GO and the corn price edited"><br><sub><b>Editable assumptions</b><br><code>/comparacao/premissas</code></sub></td>
   </tr>
 </table>
 
-<p align="center"><img src="docs/screenshots/celular-resultado.png" width="230" alt="Resultado no celular, 390 por 844"><br><sub><b>Resultado no celular (390 × 844)</b></sub></p>
+<p align="center"><img src="docs/screenshots/en/mobile-result.png" width="230" alt="Result on a phone, 390 by 844"><br><sub><b>Result on a phone (390 × 844)</b></sub></p>
 
-<p align="center"><sub>Capturas reais do site rodando contra a API local, com as séries versionadas do repositório. As duas primeiras
-vêm da bateria e2e da equipe (Edge, commit <code>a4719cc</code>); as demais foram tiradas com Chrome sobre o commit
-<code>ccd4590</code>, em ambiente sem acesso aos mapas do OpenStreetMap.</sub></p>
+<p align="center"><sub>Real captures of the English version of the site running against the local API, with the series versioned in
+the repository. The first two come from the team's e2e suite (Edge, commit <code>a4719cc</code>); the others were
+taken with Chrome on commit <code>ccd4590</code>, in an environment without access to OpenStreetMap tiles. The few
+Portuguese strings still visible are real translation gaps, listed under <a href="#-limitations-and-next-steps">Limitations</a>.</sub></p>
 
-## 🧭 Como foi feito
+## 🧭 How it was built
 
-### 1. O que o desafio pedia
+### 1. What the challenge asked for
 
-O *Field Shift* pede uma ferramenta de apoio à decisão de rotação de culturas que use dados da NASA, o solo local, as
-características das culturas e as prioridades do produtor. A equipe transformou isso em critérios de aceitação
-concretos antes de escrever código:
+*Field Shift* asks for a crop rotation decision support tool that uses NASA data, local soil, crop characteristics and
+the farmer's priorities. Before writing any code, the team turned that into concrete acceptance criteria:
 
-- a recomendação só pode conter alternativas dentro da janela oficial do ZARC;
-- risco oficial, risco histórico e margem aparecem separados, porque medem coisas diferentes;
-- todo número mostra fonte, versão, período, unidade, local e qualidade, e nada é apresentado como previsão;
-- parâmetro sem fonte entra como hipótese declarada e editável, nunca como valor escondido;
-- o fluxo funciona no computador e no celular, em português e em inglês.
+- the recommendation may only contain options inside the official ZARC planting window;
+- official risk, historical risk and margin are shown separately, because they measure different things;
+- every number shows its source, version, period, unit, location and quality, and nothing is presented as a forecast;
+- a parameter without a source is a declared, editable assumption, never a hidden value;
+- the flow works on desktop and on phones, in Portuguese and in English.
 
-### 2. O que analisamos
+### 2. What we analyzed
 
-A primeira pergunta foi qual chuva usar, porque o balanço hídrico inteiro depende dela. A chuva do NASA POWER
-consultada em Rio Verde-GO caía de uma mediana de 1.353 mm/ano (1984 a 2024) para 678 mm em 2025, e a suspeita era de
-viés do produto, não de seca real. Para verificar, a série foi comparada dia a dia com a estação automática do INMET
-A025, a 0 km da cidade, nas mesmas datas válidas.
+The first question was which rainfall to use, since the whole water balance depends on it. NASA POWER rainfall for Rio
+Verde dropped from a median of 1,353 mm/year (1984 to 2024) to 678 mm in 2025, and the suspicion was a product bias
+rather than a real drought. To check it, the series was compared day by day with the INMET automatic weather station
+A025 (INMET is Brazil's national meteorological institute), 0 km from the town, on the same valid dates.
 
 <details>
-<summary><b>Fontes de chuva avaliadas (jan a jun, 1.218 dias pareados em sete anos)</b></summary>
+<summary><b>Rainfall sources evaluated (January to June, 1,218 paired days over seven years)</b></summary>
 
-| Fonte | Viés contra a A025 | MAE (mm/dia) | RMSE (mm/dia) | Situação |
+| Source | Bias against A025 | MAE (mm/day) | RMSE (mm/day) | Outcome |
 |---|---|---|---|---|
-| NASA GPM IMERG Final V07B (0,1°) | −1,03% | 4,13 | 8,59 | adotada como fonte principal |
-| NASA POWER `PRECTOTCORR` (0,5° × 0,625°) | −26,96% | 4,53 | 9,85 | descartada para chuva |
-| POWER corrigido por mês com a estação | viés de −49,62% para −46,65% na avaliação | 4,87 para 4,93 | | descartado: a correção piorou o MAE |
-| ERA5 (Open-Meteo) | também baixo nos anos recentes | | | não serve de árbitro e não é NASA |
+| NASA GPM IMERG Final V07B (0.1°) | −1.03% | 4.13 | 8.59 | adopted as the main source |
+| NASA POWER `PRECTOTCORR` (0.5° × 0.625°) | −26.96% | 4.53 | 9.85 | rejected for rainfall |
+| POWER corrected per month with the station | bias from −49.62% to −46.65% in evaluation | 4.87 to 4.93 | | rejected: the correction made MAE worse |
+| ERA5 (Open-Meteo) | also low in recent years | | | cannot act as referee and is not NASA |
 
-O viés agregado do IMERG esconde diferenças por ano (+25,64% em 2012, −19,50% em 2025), e por isso a tela mostra a
-validação local junto do resultado. Scripts, gráficos e números completos estão em
-[`docs/pesquisa_chuva/RELATORIO.md`](docs/pesquisa_chuva/RELATORIO.md).
+The aggregate IMERG bias hides yearly differences (+25.64% in 2012, −19.50% in 2025), which is why the app shows the
+local validation next to the result. Scripts, charts and full numbers are in
+[`docs/pesquisa_chuva/RELATORIO.md`](docs/pesquisa_chuva/RELATORIO.md) (in Portuguese).
 
 </details>
 
-As outras fontes também foram testadas com dado real antes de entrar no plano: custos da Conab por praça, janelas do
-SISZARC (que responde a POST simples, sem login), imóveis do CAR pelo WFS do SICAR, NDVI MODIS e umidade do solo SMAP.
-O resultado de cada teste, com data e bloqueios, está na pesquisa da spec correspondente, em [`specs/`](specs/).
+The other sources were also tested with real data before entering the plan: Conab costs per market location, ZARC
+windows from SISZARC (which answers a plain POST, with no login), CAR properties through the SICAR WFS service, MODIS
+NDVI and SMAP soil moisture. Each test's result, with its date and blockers, is in the research file of the matching spec under [`specs/`](specs/).
 
-### 3. O que decidimos
+### 3. What we decided
 
-A chuva vem do IMERG Final, a estação INMET serve de validação local e o POWER fica com temperatura, radiação, umidade
-e vento, que alimentam a evapotranspiração. O recorte agronômico é a segunda safra depois da soja, com cobertura
-nacional e Rio Verde-GO como caso de referência validado. Nenhum déficit, produtividade ou margem é calculado sem
-modelo verificável: o balanço hídrico segue a FAO-56, as janelas e a água disponível vêm das portarias do ZARC, os
-custos da Conab e o preço do milho do Cepea, e o que não tem fonte (Kc do sorgo, cenários de perda) aparece como
-hipótese com a decisão que a criou (D-001 a D-011).
+Rainfall comes from IMERG Final, the INMET station is the local validation, and POWER provides temperature, radiation,
+humidity and wind, which feed evapotranspiration. The agronomic scope is the second crop after soybeans, with
+nationwide coverage and Rio Verde as the validated reference case. No deficit, yield or margin is computed without a
+verifiable model: the water balance follows FAO-56, windows and available water come from the ZARC ordinances, costs
+from Conab and the corn price from Cepea, and whatever has no source (sorghum Kc, loss scenarios) appears as an
+assumption together with the decision that created it (D-001 to D-011).
 
-O trabalho foi organizado por especificações com o GitHub Spec Kit: 14 specs, cada uma com plano, tarefas, checklist e
-issues, integradas na `main` por pull request. As decisões de produto (D-001 a D-011) estão em
-[`docs/sdd/DUVIDAS_ETAPA1.md`](docs/sdd/DUVIDAS_ETAPA1.md) e os princípios do projeto em
-[`docs/CONSTITUICAO.md`](docs/CONSTITUICAO.md).
+Work was organized as specifications with GitHub Spec Kit: 14 specs, each with a plan, tasks, a checklist and issues,
+merged into `main` through pull requests. Product decisions (D-001 to D-011) are in
+[`docs/sdd/DUVIDAS_ETAPA1.md`](docs/sdd/DUVIDAS_ETAPA1.md) and the project principles in
+[`docs/CONSTITUICAO.md`](docs/CONSTITUICAO.md) (both in Portuguese).
 
-### 4. Como implementamos
+### 4. How we implemented it
 
-| Passo | Spec / módulo | O que foi feito | Recurso usado |
+| Step | Spec / module | What was done | Resource used |
 |---|---|---|---|
-| a | 002 `tellus.localizacao` | Município, coordenadas e célula de cada fonte (POWER, IMERG, estação INMET, praça Conab) com a distância | IBGE (5.571 municípios), catálogo INMET |
-| b | 001 e 002 `tellus.car`, `tellus.lavoura` | Lavoura por CAR, shapefile do SICAR, KML, KMZ, GeoJSON ou desenho no mapa; validação e confirmação | WFS do SICAR, `pyshp`, Leaflet puro |
-| c | 003 `tellus.clima` | Cliente IMERG por DAP4 e POWER, cache por célula, chuva ponderada pela área da lavoura | OPeNDAP Earthdata, `h5py` |
-| d | 004 `tellus.zarc` | Janelas de plantio 2026/27 das 27 UFs (5.569 municípios com ao menos uma cultura zoneada) | SISZARC/MAPA |
-| e | 005 `tellus.culturas` | Classes AD1 a AD6, água disponível pela granulometria e parâmetros com status de fonte ou hipótese | IN SPA/MAPA nº 1/2022, portarias |
-| f | 006 `tellus.motor` | ETo Penman-Monteith e balanço hídrico diário com entressafra, simulado na mesma data em cada ano | FAO-56 e FAO-33 |
-| g | 007 `tellus.economia` | Custo da praça Conab, preço Cepea ou informado, margem nos cenários conservador, central e favorável | planilhas Conab, indicador Cepea |
-| h | 008 `tellus.recomendacao` | Avaliação por decêndio e grupo, ordem pública e paridade entre cultura escolhida e cálculo completo | |
-| i | 009 e 010 | NDVI MODIS e umidade SMAP como contexto regional, isolados do cálculo | ORNL DAAC, NSIDC |
-| j | 011 `tellus.contrato` | Contrato versionado (1.2.0) com proveniência em todo número e envelope único de erro | FastAPI, Pydantic |
-| k | 012 a 014 `frontend/` | Interface em 8 páginas, identidade visual com contraste AA e versão em inglês | Astro 7, Tailwind 4 |
+| a | 002 `tellus.localizacao` | Municipality, coordinates and the cell of each source (POWER, IMERG, INMET station, Conab location) with its distance | IBGE (5,571 municipalities), INMET catalog |
+| b | 001 and 002 `tellus.car`, `tellus.lavoura` | Field by CAR number, SICAR shapefile, KML, KMZ, GeoJSON or drawing on the map; validation and confirmation | SICAR WFS, `pyshp`, plain Leaflet |
+| c | 003 `tellus.clima` | IMERG client over DAP4 and POWER client, per-cell cache, rainfall weighted by the field area | Earthdata OPeNDAP, `h5py` |
+| d | 004 `tellus.zarc` | 2026/27 planting windows for all 27 states (5,569 municipalities with at least one zoned crop) | SISZARC/MAPA |
+| e | 005 `tellus.culturas` | Classes AD1 to AD6, available water from soil texture and parameters flagged as sourced or assumed | IN SPA/MAPA nº 1/2022, ordinances |
+| f | 006 `tellus.motor` | Penman-Monteith ETo and daily water balance including the off-season, simulated on the same date each year | FAO-56 and FAO-33 |
+| g | 007 `tellus.economia` | Conab cost for the location, Cepea or farmer-provided price, margin in the conservative, central and favorable scenarios | Conab sheets, Cepea indicator |
+| h | 008 `tellus.recomendacao` | Evaluation by 10-day period and group, public ranking and parity between single-crop and full comparison | |
+| i | 009 and 010 | MODIS NDVI and SMAP moisture as regional context, isolated from the calculation | ORNL DAAC, NSIDC |
+| j | 011 `tellus.contrato` | Versioned contract (1.2.0) with provenance on every number and a single error envelope | FastAPI, Pydantic |
+| k | 012 to 014 `frontend/` | Eight-page interface, visual identity with AA contrast and the English version | Astro 7, Tailwind 4 |
 
-Alguns cuidados não são óbvios. O servidor do SICAR só negocia cifras que o OpenSSL 3.5 recusa por padrão, então o
-cliente usa `DEFAULT:@SECLEVEL=1` mantendo a verificação do certificado. O relatório oficial do SISZARC rotula a coluna
-do decêndio 35 como "Dev 35" e grafa vários municípios de forma diferente do IBGE (em SP, chega a gravar "Conceic?o"),
-e cada divergência foi resolvida por um apelido conferido contra as contagens do IBGE. A equação oficial de água disponível não é monotônica na argila, e
-por isso a textura sozinha só gera hipótese. O pedido de cálculo leva a geometria da lavoura confirmada, e não só o ponto do município, e o resultado diz qual
-área entrou na conta (um talhão de 142,89 ha ou "ponto do município (sem talhão)"); a correção veio no commit `97cdc1c`
-com um teste próprio (`pedido-area.test.ts`). Por fim, um teste percorre a árvore de importações para garantir que nenhum
-módulo de cálculo importe a umidade do SMAP, e outro roda a recomendação real com e sem SMAP e exige resultado idêntico.
+Some details are not obvious. The SICAR server only negotiates ciphers that OpenSSL 3.5 rejects by default, so the
+client uses `DEFAULT:@SECLEVEL=1` while still verifying the certificate. The official SISZARC report labels the
+column for 10-day period 35 as "Dev 35" and spells several municipalities differently from IBGE (in São Paulo it even
+stores "Conceic?o"), and each mismatch was resolved by an alias checked against the IBGE counts. The official
+available-water equation is not monotonic in clay content, so texture alone only yields an assumption. The calculation
+request carries the geometry of the confirmed field, not just the municipality point, and the result states which area
+went into the calculation (a 142.89 ha plot, or "municipality point, no plot"); that fix came in commit `97cdc1c` with
+its own test (`pedido-area.test.ts`). Finally, one test walks the import tree to make sure no calculation module
+imports SMAP moisture, and another runs the real recommendation with and without SMAP and requires an identical result.
 
-### 5. Como verificamos
+### 5. How we verified it
 
-Com a API rodando, este laço envia à rota de cálculo os seis pedidos de exemplo do contrato e confere o código HTTP e o
-estado de cada resposta:
+With the API running, this loop sends the contract's six example requests to the calculation route and checks the
+HTTP code and state of each response:
 
 ```bash
 cd specs/011-contrato-api/contracts/exemplos
@@ -162,102 +164,104 @@ else:
 done
 ```
 
-| Pedido | HTTP | Resposta |
+| Request | HTTP | Response |
 |---|---|---|
-| `pedido_valido.json` (Rio Verde, colheita 20/01/2027, argilosa, grupo I, sorgo a R$ 55/sc informado) | 200 | `incompleto`, 12 alternativas, primeira: sorgo granífero, grupo I, decêndio 2 |
+| `pedido_valido.json` (Rio Verde, harvest 01/20/2027, clayey soil, group I, sorghum at R$ 55/bag entered by the farmer) | 200 | `incompleto`, 12 options, first: grain sorghum, group I, 10-day period 2 |
 | `pedido_area_nao_confirmada.json` | 422 | `pedido_invalido` |
-| `pedido_geometria_invalida.json` (polígono que se cruza) | 422 | `geometria_invalida` |
+| `pedido_geometria_invalida.json` (self-intersecting polygon) | 422 | `geometria_invalida` |
 | `pedido_sem_solo.json` | 422 | `pedido_invalido` |
 | `pedido_versao_ausente.json` | 422 | `versao_ausente` |
 | `pedido_versao_incompativel.json` | 422 | `versao_incompativel` |
 
-O estado `incompleto` do pedido válido é o comportamento esperado: a braquiária não tem custo na Conab nem informado no
-pedido, então a economia dela fica indisponível, e a regra do contrato não deixa um resultado parcial se passar por
-final. As demais verificações executadas sobre o commit `ccd4590`:
+The `incompleto` (incomplete) state of the valid request is expected: brachiaria has no Conab cost and none was
+entered in the request, so its economics section is unavailable, and the contract rule does not let a partial result
+pass as final. The other checks, run on commit `ccd4590`:
 
-| Verificação | Resultado |
+| Check | Result |
 |---|---|
-| `uv run pytest` (backend) | 483 passaram, 1 pulado, em 69,6 s |
-| `npm test` (vitest, frontend) | 184 de 184 em 10 arquivos |
-| Fluxo do caso de referência no navegador (grupo "não sei") | resultado calculado no computador e no celular, 6 alternativas, com a área usada no cálculo informada no topo |
-| Bateria e2e da equipe com Playwright ([relatório](docs/testes-e2e/RELATORIO.md)) | 21 de 21 testes, 131 de 131 verificações, 45 capturas (commit `a4719cc`, Edge) |
-| Teste de usabilidade guiado por roteiro ([relatório](docs/teste-usabilidade/RELATORIO.md)) | 45 de 45 itens, com vídeo de cada sessão |
-| Chuva IMERG contra a estação A025 | viés −1,03%, MAE 4,13 mm/dia em 1.218 dias pareados |
+| `uv run pytest` (backend) | 483 passed, 1 skipped, in 69.6 s |
+| `npm test` (vitest, frontend) | 184 of 184 in 10 files |
+| Reference case flow in the browser, in English (group "I don't know") | result calculated on desktop and phone, 6 options, with the area used shown at the top |
+| Team e2e suite with Playwright ([report](docs/testes-e2e/RELATORIO.md)) | 21 of 21 tests, 131 of 131 checks, 45 captures (commit `a4719cc`, Edge) |
+| Script-guided usability test ([report](docs/teste-usabilidade/RELATORIO.md)) | 45 of 45 items, with a video of each session |
+| IMERG rainfall against station A025 | bias −1.03%, MAE 4.13 mm/day over 1,218 paired days |
 
-Voltando aos critérios da etapa 1: a lista de alternativas só recebe decêndios dentro da janela do ZARC, o resultado
-separa risco oficial, risco histórico e margem, cada fonte e hipótese aparece com selo próprio (e o teste do contrato
-percorre mais de 1.000 números do caso de Rio Verde sem encontrar um sem proveniência), as premissas editadas chegam ao
-backend e voltam ao lado do padrão, e o fluxo foi verificado em 390 × 844 e em inglês.
+Going back to the criteria in step 1: the option list only receives 10-day periods inside the ZARC window, the result
+keeps official risk, historical risk and margin apart, every source and assumption has its own badge (and the contract
+test walks more than 1,000 numbers in the Rio Verde case without finding one lacking provenance), edited assumptions
+reach the backend and come back next to their defaults, and the flow was checked at 390 × 844 and in English.
 
-## ✨ Funcionalidades
+## ✨ Features
 
-| | O que faz |
+| | What it does |
 |---|---|
-| **Localização da lavoura** | Busca de município, coordenadas, clique no mapa, número do CAR, shapefile do SICAR, KML, KMZ, GeoJSON ou desenho de polígono. A área é validada e confirmada antes do cálculo. |
-| **Fontes do local** | Mostra a célula do POWER e do IMERG, a estação INMET e a praça Conab mais próximas, com a distância de cada uma, e avisa quando a referência fica longe. |
-| **Duas metodologias** | Cultura escolhida (quais os melhores períodos para ela) ou comparação completa (qual cultura e qual período), com paridade testada entre as duas. |
-| **Risco em duas medidas** | Risco oficial do ZARC por decêndio e frequência histórica de falha severa simulada pelo balanço hídrico, lado a lado e nunca somados. |
-| **Margem em três cenários** | Conservador, central e favorável pelos quartis da perda simulada (P75, P50, P25), com custo Conab e preço Cepea ou informado. |
-| **Premissas editáveis** | Água disponível, preço, custo e produtividade do milho e cotação do sorgo com origem e data; o resultado mostra padrão e novo valor. |
-| **Proveniência** | Selos de fonte, hipótese, aviso e erro com texto e ícone, nunca só cor; lista do que foi consultado, com data da cópia guardada. |
-| **Funciona sem rede** | Séries reais de Rio Verde versionadas com sha256: sem token Earthdata, a demonstração roda inteira a partir delas. |
-| **Contexto regional** | NDVI MODIS e umidade SMAP exibidos como contexto, isolados do cálculo. |
-| **Português e inglês** | Seletor PT \| EN no topo e `?lang=en`; o mesmo pedido nos dois idiomas devolve números, ordem e hash idênticos. |
+| **Field location** | Municipality search, coordinates, click on the map, CAR number, SICAR shapefile, KML, KMZ, GeoJSON or a drawn polygon. The area is validated and confirmed before any calculation. |
+| **Sources for the location** | Shows the POWER and IMERG cells and the nearest INMET station and Conab location, with the distance to each, and warns when the reference is far away. |
+| **Two methods** | Chosen crop (best periods for it) or full comparison (which crop and which period), with tested parity between both. |
+| **Risk as two measures** | Official ZARC risk per 10-day period and historical frequency of severe failure simulated by the water balance, side by side and never added up. |
+| **Margin in three scenarios** | Conservative, central and favorable from the quartiles of simulated loss (P75, P50, P25), with Conab cost and a Cepea or farmer-provided price. |
+| **Editable assumptions** | Available water, corn price, cost and yield, and a sorghum quote with its origin and date; the result shows the default and the new value. |
+| **Provenance** | Source, assumption, warning and error badges with text and icon, never color alone; a list of what was queried, with the date of any saved copy. |
+| **Works offline** | Real Rio Verde series versioned with sha256: without an Earthdata token, the whole demo runs from them. |
+| **Regional context** | MODIS NDVI and SMAP moisture shown as context, isolated from the calculation. |
+| **Portuguese and English** | PT \| EN switch at the top and `?lang=en`; the same request in both languages returns identical numbers, ranking and hash. |
 
-## 🌾 Por que o nome?
+## 🌾 Why the name?
 
-<img src="docs/marca/tellus-icone.svg" alt="Ícone do TELLUS: quadrado verde-folha com três faixas de lavoura e um ponto dourado de satélite" width="96" align="right">
+<img src="docs/marca/tellus-icone.svg" alt="TELLUS icon: leaf-green square with three crop rows and a gold satellite dot" width="96" align="right">
 
-*Tellus*, também chamada *Tellus Mater* ou *Terra Mater*, era a deusa romana da terra, a mãe que faz o solo produzir. É
-uma divindade muito antiga, anterior ao Império, e mais tarde foi identificada com a Gaia dos gregos. O templo dela
-ficava no monte Esquilino, em Roma, e nasceu de um voto do general Públio Semprônio Sofo, que o prometeu à deusa em
-268 a.C., quando um terremoto sacudiu o campo de batalha durante a guerra contra os picenos.
+*Tellus*, also called *Tellus Mater* or *Terra Mater*, was the Roman goddess of the earth, the mother who makes the soil
+bear fruit. She is a very old deity, older than the Empire, and was later identified with the Greek Gaia. Her temple
+stood on the Esquiline Hill in Rome and came from a vow by the general Publius Sempronius Sophus, who promised it to the
+goddess in 268 BC when an earthquake shook the battlefield during the war against the Picentes.
 
-Os romanos a honravam em festas ligadas à fertilidade e à boa colheita. A mais próxima deste projeto é a *Sementivae*,
-a festa da semeadura: num dia de fim de janeiro, marcado a cada ano pelos pontífices, Tellus e Ceres recebiam
-oferendas como "mães das messes", pedindo que o grão lançado à terra vingasse. É justamente nessa época que o produtor
-do Cerrado colhe a soja e decide o que semear em seguida, e o caso de referência do TELLUS tem colheita em 20 de
-janeiro.
+The Romans honored her in festivals tied to fertility and good harvests. The one closest to this project is the
+*Sementivae*, the sowing festival: on a day in late January, set each year by the pontiffs, Tellus and Ceres received
+offerings as "mothers of the crops", so that the grain sown in the earth would take root. That is exactly when farmers
+in the Cerrado harvest their soybeans and decide what to sow next, and the TELLUS reference case has its harvest on
+January 20.
 
-O nome também funciona como sigla: **T**errestrial **E**nvironmental **L**earning & **L**and **U**tilization
-**S**ystem, um sistema que aprende com dados ambientais da Terra, vistos do espaço pelos satélites da NASA, para
-orientar o uso da terra cultivada.
+The name is also an acronym: **T**errestrial **E**nvironmental **L**earning & **L**and **U**tilization **S**ystem, a
+system that learns from environmental data about the Earth, seen from space by NASA satellites, to guide the use of
+farmland.
 
-## 🧱 Arquitetura
+## 🧱 Architecture
 
-O frontend é estático (Astro) e conversa com uma API FastAPI pelo contrato versionado. A API não calcula nada sozinha:
-o contrato chama a recomendação, que avalia cada cultura e grupo dentro das janelas do ZARC usando o motor hídrico (que
-puxa o clima) e a economia, e depois embala tudo com proveniência.
+The frontend is static (Astro) and talks to a FastAPI backend through the versioned contract. The API computes nothing
+on its own: the contract calls the recommendation, which evaluates each crop and group inside the ZARC windows using the
+water-balance engine (which pulls the weather series) and the economics module, and then wraps everything with
+provenance.
 
 ```mermaid
 sequenceDiagram
-    actor P as Produtor
-    participant W as Site Astro
-    participant C as Contrato 1.2.0
-    participant R as Recomendação
+    actor F as Farmer
+    participant W as Astro site
+    participant C as Contract 1.2.0
+    participant R as Recommendation
     participant Z as ZARC
-    participant M as Motor hídrico
-    participant K as Clima IMERG e POWER
-    participant E as Economia
-    P->>W: lavoura, colheita, solo e grupo
+    participant M as Water balance
+    participant K as IMERG and POWER weather
+    participant E as Economics
+    F->>W: field, harvest date, soil and group
     W->>C: POST /api/contrato/calcular
-    C->>C: valida versão, área e campos
-    C->>R: pedido traduzido
-    loop cada cultura e grupo
-        R->>Z: decêndios da janela oficial
-        R->>M: simular cada decêndio
-        M->>K: série diária da célula ou da área
-        K-->>M: chuva e ETo com proveniência
-        M-->>R: perda por ano e risco histórico
-        R->>E: margem nos três cenários
-        E-->>R: custo Conab e preço
+    C->>C: checks version, area and fields
+    C->>R: translated request
+    loop each crop and group
+        R->>Z: 10-day periods in the official window
+        R->>M: simulate each period
+        M->>K: daily series for the cell or the area
+        K-->>M: rainfall and ETo with provenance
+        M-->>R: loss per year and historical risk
+        R->>E: margin in the three scenarios
+        E-->>R: Conab cost and price
     end
-    R-->>C: alternativas ordenadas e indisponíveis
-    C-->>W: seções, fontes, hipóteses e estado geral
-    W-->>P: resultado com selos e avisos
+    R-->>C: ranked and unavailable options
+    C-->>W: sections, sources, assumptions and overall state
+    W-->>F: result with badges and warnings
 ```
 
-O balanço hídrico é uma função pura de um dia, aplicada em sequência da colheita da soja até o fim do ciclo:
+The water balance is a pure one-day function, applied in sequence from the soybean harvest to the end of the cycle
+(code comments are in Portuguese, as in the repository):
 
 ```python
 # backend/src/tellus/motor/balanco.py
@@ -278,7 +282,7 @@ def passo(dr: float, chuva: float, eto: float, kc: float, cad: float, p: float) 
     return dr_novo, etc, eta, drenagem
 ```
 
-A ordem das alternativas é pública e vai na própria resposta, para o produtor saber por que uma ficou à frente da outra:
+The ranking is public and travels in the response itself, so the farmer can see why one option came ahead of another:
 
 ```python
 # backend/src/tellus/recomendacao/servico.py
@@ -286,7 +290,7 @@ def _chave(a: dict) -> tuple:
     return (-a["margem_r_ha"]["conservador"], a["risco_historico_falha_severa"], a["risco_zarc_pct"] or 0, a["decendio"], a["cultura"], a["grupo"])
 ```
 
-E o estado geral nunca chama de final um resultado em que falta uma seção obrigatória:
+And the overall state never calls a result final when a required section is missing:
 
 ```python
 # backend/src/tellus/contrato/regras.py
@@ -302,122 +306,127 @@ def estado_geral(secoes: Iterable[Mapping], fontes: Iterable[Mapping]) -> str:
     return "final"
 ```
 
-A API expõe 37 rotas em 33 caminhos (`/api/localizacao`, `/api/car`, `/api/lavoura`, `/api/clima`, `/api/zarc`,
-`/api/culturas`, `/api/motor`, `/api/economia`, `/api/recomendacao`, `/api/vegetacao`, `/api/umidade` e
-`/api/contrato`), documentadas em `http://localhost:8000/docs` com a API rodando.
+The API exposes 37 routes over 33 paths (`/api/localizacao`, `/api/car`, `/api/lavoura`, `/api/clima`, `/api/zarc`,
+`/api/culturas`, `/api/motor`, `/api/economia`, `/api/recomendacao`, `/api/vegetacao`, `/api/umidade` and
+`/api/contrato`), documented at `http://localhost:8000/docs` while the API is running.
 
-## 📦 Executar
+## 📦 Running
 
-Requisitos: Python 3.12+ com [uv](https://docs.astral.sh/uv/) e Node 22.23.4+ (versão exigida em `frontend/package.json`).
+Requirements: Python 3.12+ with [uv](https://docs.astral.sh/uv/) and Node 22.23.4+ (the version required in
+`frontend/package.json`).
 
 ```bash
 git clone https://github.com/Pedrojscx/TELLUS.git
 cd TELLUS
 
-# API (porta 8000)
+# API (port 8000)
 cd backend
 uv sync
 uv run uvicorn tellus.api.app:app --port 8000
 
-# Site (porta 4321), em outro terminal
+# Site (port 4321), in another terminal
 cd frontend
 npm ci
 npm run dev
 ```
 
-Abra `http://localhost:4321`, busque "Rio Verde", siga para a comparação e use colheita em 20/01/2027, solo argiloso e
-grupo "não sei" para reproduzir o caso de referência.
+Open `http://localhost:4321/?lang=en`, search for "Rio Verde", go to the comparison and use harvest on 01/20/2027,
+clayey soil and group "I don't know" to reproduce the reference case.
 
 ```bash
-cd backend && uv run pytest          # 483 testes do backend
-cd frontend && npm test              # 184 testes do frontend
-cd frontend && npm run test:e2e      # bateria e2e (usa o Microsoft Edge instalado)
+cd backend && uv run pytest          # 483 backend tests
+cd frontend && npm test              # 184 frontend tests
+cd frontend && npm run test:e2e      # e2e suite (uses the installed Microsoft Edge)
 ```
 
 > [!TIP]
-> Sem a variável `EARTHDATA_TOKEN`, o app usa as séries reais versionadas em `referencias/` e funciona sem rede para
-> Rio Verde-GO. Para baixar o IMERG de outra célula, gere um token no Earthdata, autorize a aplicação "NASA GESDISC DATA
-> ARCHIVE" no perfil e coloque o token em `.env` na raiz (o arquivo é ignorado pelo Git). Para abrir no celular na
-> mesma rede, use o IP do computador na porta 4321: o site chama a API na mesma máquina, na porta 8000.
+> Without the `EARTHDATA_TOKEN` variable, the app uses the real series versioned in `referencias/` and works offline
+> for Rio Verde. To download IMERG for another cell, create a token on Earthdata, authorize the "NASA GESDISC DATA
+> ARCHIVE" application in your profile and put the token in a `.env` file at the repository root (ignored by Git). To
+> open the site on a phone on the same network, use the computer's IP on port 4321: the site calls the API on the same
+> machine, on port 8000.
 
-## 📁 Estrutura
+## 📁 Structure
 
 ```text
 TELLUS/
 ├── backend/
-│   ├── src/tellus/              # pacote da API (6.961 linhas)
-│   │   ├── api/                 # rotas FastAPI e app.py
+│   ├── src/tellus/              # API package (6,961 lines)
+│   │   ├── api/                 # FastAPI routes and app.py
 │   │   ├── localizacao/ car/ lavoura/
-│   │   ├── clima/               # IMERG, POWER e chuva ponderada pela área
-│   │   ├── zarc/ culturas/      # janelas oficiais, solo e parâmetros
-│   │   ├── motor/               # ETo e balanço hídrico (FAO-56)
+│   │   ├── clima/               # IMERG, POWER and area-weighted rainfall
+│   │   ├── zarc/ culturas/      # official windows, soil and parameters
+│   │   ├── motor/               # ETo and water balance (FAO-56)
 │   │   ├── economia/ recomendacao/
-│   │   ├── vegetacao/ umidade/  # contexto MODIS e SMAP, fora do cálculo
-│   │   ├── contrato/            # contrato versionado e limites
-│   │   └── i18n/                # mensagens em português e inglês
-│   └── tests/                   # 483 testes pytest (4.399 linhas)
+│   │   ├── vegetacao/ umidade/  # MODIS and SMAP context, outside the calculation
+│   │   ├── contrato/            # versioned contract and limits
+│   │   └── i18n/                # Portuguese and English messages
+│   └── tests/                   # 483 pytest tests (4,399 lines)
 ├── frontend/
-│   ├── src/pages/               # tela inicial e 7 telas da comparação
-│   ├── src/components/ lib/     # seletor de local, resultado, contrato, i18n
-│   └── e2e/                     # bateria Playwright e teste de usabilidade
-├── referencias/                 # séries e tabelas derivadas, versionadas com sha256
-├── scripts/                     # 19 scripts de preparo e da pesquisa de chuva
-├── specs/                       # 14 specs do Spec Kit (001 a 014)
+│   ├── src/pages/               # home page and 7 comparison pages
+│   ├── src/components/ lib/     # location picker, result, contract, i18n
+│   └── e2e/                     # Playwright suite and usability test
+├── referencias/                 # derived series and tables, versioned with sha256
+├── scripts/                     # 19 preparation and rainfall research scripts
+├── specs/                       # 14 Spec Kit specs (001 to 014)
 ├── docs/
-│   ├── pesquisa_chuva/          # relatório e gráficos IMERG × POWER × INMET
-│   ├── testes-e2e/              # relatório, capturas e evidências da API
-│   ├── teste-usabilidade/       # relatório e vídeos das sessões
-│   ├── marca/                   # guia de marca e ícone
-│   ├── sdd/                     # mapa das specs, decisões e base de referência
-│   ├── screenshots/ assets/     # imagens deste README
-│   └── CONSTITUICAO.md          # princípios do projeto
-├── data/                        # dados brutos fora do Git, só a procedência
-├── README.en.md                 # este README em inglês
+│   ├── pesquisa_chuva/          # IMERG × POWER × INMET report and charts
+│   ├── testes-e2e/              # report, captures and API evidence
+│   ├── teste-usabilidade/       # report and session videos
+│   ├── marca/                   # brand guide and icon
+│   ├── sdd/                     # spec map, decisions and reference base
+│   ├── screenshots/ assets/     # images for both READMEs
+│   └── CONSTITUICAO.md          # project principles
+├── data/                        # raw data kept out of Git, only provenance tracked
+├── README.md                    # this file (English, default)
+├── README.pt-BR.md              # Portuguese README
 └── LICENSE
 ```
 
-## 🔭 Limitações e próximos passos
+Code, specs and project documents are written in Portuguese; the site and the API messages are available in both
+languages.
 
-- **`httpx` está só nas dependências de desenvolvimento**, mas seis módulos o importam em tempo de execução. Uma
-  instalação com `uv sync --no-dev` sobe sem ele e a API falha ao importar. Correção: mover `httpx` para
-  `dependencies` no `backend/pyproject.toml`.
-- **Ponto do município escolhido sem o produtor pedir.** Ao abrir `/` ou `/comparacao/entradas` sem lavoura
-  confirmada, o seletor grava o ponto padrão do município como lavoura, e o cálculo pode rodar sobre um local que o
-  produtor não escolheu. A tela avisa "ponto do município (sem talhão)", mas o correto é não gravar nada até ele
-  localizar a área, ou mostrar o padrão só como sugestão.
-- **Versão em inglês com lacunas.** A linha da área usada no cálculo (que veio no `97cdc1c`), o botão "Usar a lavoura
-  confirmada", alguns cabeçalhos de tabela e trechos das descrições de fonte continuam em português, e numa delas a
-  troca de palavras deixa "portaria do corn". A correção é levar esses textos ao catálogo de i18n e incluí-los no teste
-  e2e de idioma.
-- **Sem teste com produtores reais.** O teste de usabilidade seguiu o roteiro da equipe com um agente que age como
-  pessoa; o critério SC-001 da spec 012 pede cinco participantes. Próximo passo: sessões com produtores ou agrônomos de
-  Rio Verde.
-- **Validação local limitada.** Só a A025 (Rio Verde) e a A026 (Mineiros) têm validação de chuva, e a série IMERG
-  versionada termina em 30/09/2025, último mês publicado no catálogo consultado. Outras regiões precisam de token e de
-  cerca de 20 minutos de download por célula.
-- **Parâmetros como hipótese.** Kc e Ky vêm da FAO só como método, as fases do sorgo e toda a braquiária não têm fonte
-  regional, e os percentis dos cenários são decisão de produto (D-006). Todos aparecem marcados e editáveis; o caminho é
-  calibrar com dados de ensaio da Embrapa.
-- **Preço do sorgo e custo da cobertura.** Não há indicador Cepea de sorgo nem planilha Conab de cobertura, então os
-  dois dependem do valor informado pelo produtor.
-- **Validação de polígono O(n²).** Com 20.000 vértices levou 43,8 s; o limite atual de 10.000 vértices cabe nos 60 s
-  da decisão D-009. Um índice espacial resolveria para áreas maiores.
-- **Sem hospedagem.** O app roda localmente; publicar exige servidor para a API e cache das séries.
+## 🔭 Limitations and next steps
 
-## 🎓 Contexto
+- **`httpx` is only a development dependency**, but six modules import it at runtime. An install with
+  `uv sync --no-dev` comes up without it and the API fails on import. Fix: move `httpx` to `dependencies` in
+  `backend/pyproject.toml`.
+- **Municipality point chosen without the farmer asking.** When `/` or `/comparacao/entradas` opens with no confirmed
+  field, the location picker saves the municipality's default point as the field, and the calculation may run on a
+  place the farmer did not choose. The page warns "municipality point (no plot)", but the right behavior is to save
+  nothing until the farmer locates the area, or to show the default only as a suggestion.
+- **English version has gaps.** The line stating the area used in the calculation (added in `97cdc1c`), the "use the
+  confirmed field" button, a few table headers and parts of the source descriptions still appear in Portuguese, and in
+  one source text a word replacement leaves "portaria do corn". The fix is to move those strings into the i18n catalog
+  and add them to the e2e language test.
+- **No test with real farmers.** The usability test followed the team's script with an agent acting as a person; the
+  SC-001 criterion in spec 012 asks for five participants. Next step: sessions with farmers or agronomists in Rio Verde.
+- **Limited local validation.** Only A025 (Rio Verde) and A026 (Mineiros) have rainfall validation, and the versioned
+  IMERG series ends on 2025-09-30, the last month published in the catalog queried. Other regions need a token and
+  about 20 minutes of download per cell.
+- **Parameters as assumptions.** Kc and Ky follow FAO only as a method, sorghum stages and all of brachiaria have no
+  regional source, and the scenario percentiles are a product decision (D-006). All of them are flagged and editable;
+  the path forward is calibrating with Embrapa trial data.
+- **Sorghum price and cover crop cost.** There is no Cepea sorghum indicator and no Conab sheet for cover crops, so
+  both depend on values entered by the farmer.
+- **O(n²) polygon validation.** With 20,000 vertices it took 43.8 s; the current limit of 10,000 vertices fits the 60 s
+  of decision D-009. A spatial index would handle larger areas.
+- **No hosting.** The app runs locally; publishing it requires a server for the API and a cache for the series.
+
+## 🎓 Context
 
 | | |
 |---|---|
-| Evento | NASA Space Apps Challenge 2026 |
-| Desafio | *Field Shift* (rotação de culturas com dados da NASA) |
-| Equipe | Pedro Lucas Matias (programador), Lucas Krauss (programador) e Egon Henrique (engenheiro ambiental) |
-| Período | 14 e 15 de novembro de 2026 |
-| Dados NASA | GPM IMERG Final V07B, POWER, MODIS MOD13Q1, SMAP SPL3SMP_E, HLS (opcional) |
-| Fontes oficiais | ZARC/MAPA, Conab, Cepea/Esalq, INMET, IBGE, CAR/SICAR |
-| Licença | [MIT](LICENSE) |
+| Event | NASA Space Apps Challenge 2026 |
+| Challenge | *Field Shift* (crop rotation with NASA data) |
+| Team | Pedro Lucas Matias (developer), Lucas Krauss (developer) and Egon Henrique (environmental engineer) |
+| Period | November 14 and 15, 2026 |
+| NASA data | GPM IMERG Final V07B, POWER, MODIS MOD13Q1, SMAP SPL3SMP_E, HLS (optional) |
+| Official sources | ZARC/MAPA, Conab, Cepea/Esalq, INMET, IBGE, CAR/SICAR |
+| License | [MIT](LICENSE) |
 
-Os dados e nomes da NASA, do MAPA, da Conab, do Cepea, do INMET e do IBGE pertencem às respectivas instituições; o
-TELLUS só os consulta e cita a origem em cada número.
+The data and names of NASA, MAPA, Conab, Cepea, INMET and IBGE belong to their respective institutions; TELLUS only
+queries them and cites the origin of every number.
 
 ---
 
